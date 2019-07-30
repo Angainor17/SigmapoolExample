@@ -1,6 +1,7 @@
 *.iml
 .gradle
 /local.properties
+.idea/**/vcs.xml
 /.idea
 .DS_Store
 /build
