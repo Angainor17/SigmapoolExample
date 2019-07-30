@@ -1,19 +1,18 @@
-apply plugin: 'com.android.application'
-
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-kapt'
 
-apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
+
     defaultConfig {
-        applicationId "com.sigmapool.app"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -24,30 +23,25 @@ android {
         }
     }
 
-    dataBinding{
-        enabled true
-    }
 }
 
 dependencies {
-    implementation kotlinCore.core
-    implementation picasso.core
-    implementation kodein.core
+
     implementation gson.core
+
+    implementation kotlinCore.core
+    implementation kotlinCore.coroutine
 
     implementation retrofit.core
     implementation retrofit.gsonConverter
     implementation retrofit.coroutinesAdapter
 
-    implementation androidx.appcompat
-    implementation androidx.coreKtx
-    implementation androidx.constraintlayout
-    implementation androidx.lifecycle
-    implementation androidx.liveData
-    implementation androidx.navigationFragment
-    implementation androidx.navigationUI
-
     testImplementation test.junit
     androidTestImplementation test.testRunner
     androidTestImplementation test.espresso
 }
+
+repositories {
+    mavenCentral()
+}
+
