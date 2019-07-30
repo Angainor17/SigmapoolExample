@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="strokeColor" format="color"/>
+
+    <declare-styleable name="RubView">
+
+        <attr name="android:textColor"/>
+        <attr name="strokeColor"/>
+        <attr name="android:background"/>
+
+    </declare-styleable>
+
+
+</resources>
