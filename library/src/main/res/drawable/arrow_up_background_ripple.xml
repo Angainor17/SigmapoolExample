@@ -3,12 +3,12 @@
         android:color="@color/white">
 
     <item android:id="@android:id/mask">
-        <shape android:shape="oval">
+        <shape android:shape="rectangle">
             <solid android:color="@color/white"/>
             <corners android:radius="@dimen/up_arrow_btn_corner_radius"/>
         </shape>
     </item>
 
-    <item android:drawable="@drawable/ic_rb_background_vector"/>
+    <item android:drawable="@drawable/arrow_up_background"/>
 
 </ripple>

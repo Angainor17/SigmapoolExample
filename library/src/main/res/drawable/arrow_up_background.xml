@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <padding
+            android:bottom="@dimen/up_btn_padding"
+            android:right="@dimen/up_btn_padding"
+            android:top="@dimen/up_btn_padding"
+            android:left="@dimen/up_btn_padding"/>
+
+    <stroke
+            android:width="1dp"
+            android:color="@color/white"/>
+
+    <corners android:radius="@dimen/up_arrow_btn_corner_radius"/>
+
+    <solid android:color="@android:color/transparent"/>
+
+</shape>

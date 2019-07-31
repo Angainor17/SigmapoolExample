@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="up_arrow_btn_corner_radius">15dp</dimen>
+    <dimen name="up_btn_padding">9dp</dimen>
+
+</resources>
