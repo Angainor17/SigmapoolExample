@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable name="vm" type="com.sigmapool.common.viewModels.IIndicatorSeekBarViewModel"/>
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="8dp"
+            android:background="@drawable/seek_bar_background">
+
+        <com.warkiz.widget.IndicatorSeekBar
+                android:id="@+id/indicatorSeekBar"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:isb_min="@{vm.getStartRange()}"
+                app:isb_max="@{vm.getEndRange()}"
+                app:isb_step="@{vm.getStep()}"
+                app:isb_tick_texts_array="@{vm.getArrayRes()}"
+
+                app:isb_seek_smoothly="true"
+                app:isb_show_indicator="rectangle"
+                app:isb_progress_value_float="true"
+                app:isb_show_tick_marks_type="oval"
+                app:isb_show_tick_texts="true"
+
+                app:isb_thumb_adjust_auto="false"
+                app:isb_ticks_count="6"
+
+                app:isb_track_progress_color="@color/blue"/>
+
+    </LinearLayout>
+
+</layout>

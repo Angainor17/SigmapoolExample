@@ -14,5 +14,4 @@ class MiningProfitFragment : Fragment(), IMiningProfitFragmentModel {
         binding.lifecycleOwner = this
         return binding.root
     }
-
 }

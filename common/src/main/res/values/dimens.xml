@@ -3,5 +3,6 @@
 
     <dimen name="up_arrow_btn_corner_radius">15dp</dimen>
     <dimen name="up_btn_padding">9dp</dimen>
+    <dimen name="seek_bar_background_corner_radius">4dp</dimen>
 
 </resources>

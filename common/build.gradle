@@ -17,12 +17,21 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
+
+
+    dataBinding{
+        enabled true
+    }
 }
 
 dependencies {
 
+    implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.2'
+
     implementation kotlinCore.core
     implementation kotlinCore.coroutine
+
+    implementation androidx.appcompat
 
     testImplementation test.junit
     androidTestImplementation test.testRunner
