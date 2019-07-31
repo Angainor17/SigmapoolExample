@@ -3,5 +3,6 @@
 
     <string name="app_name">Sigmapool</string>
     <string name="profit">Profit</string>
+    <string name="mining_profit">Mining Profit</string>
 
 </resources>

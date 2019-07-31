@@ -9,6 +9,6 @@
         </shape>
     </item>
 
-    <item android:drawable="@drawable/ic_rb_background_vector"/>
+    <item android:drawable="@drawable/ic_rub_background_vector"/>
 
 </ripple>
