@@ -7,7 +7,6 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.RecyclerView
 import com.sigmapool.app.screens.miningProfit.ItemBindingHelper
-import com.sigmapool.common.listLibrary.decorators.SimpleDividerItemDecoration
 import com.sigmapool.common.listLibrary.pagedlist.SimplePagedAdapter
 import com.sigmapool.common.listLibrary.pagedlist.SimplePagedListViewModel
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
@@ -24,16 +23,6 @@ fun setPagedAdapter(view: RecyclerView, listVm: SimplePagedListViewModel<BaseIte
                 pagedRecyclerAdapter.submitList(t)
             }
         )
-    }
-}
-
-@BindingAdapter("addItemDecorator")
-fun setDecorator(view: RecyclerView, decoratorId: String) {
-    when (decoratorId) {
-        "gray_line" -> view.addItemDecoration(
-            SimpleDividerItemDecoration(view.context)
-        )
-        else -> return
     }
 }
 
