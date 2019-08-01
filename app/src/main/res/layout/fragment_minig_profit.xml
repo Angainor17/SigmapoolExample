@@ -26,6 +26,10 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="20dp"/>
 
+        <include
+                layout="@layout/mining_profit_list"
+                app:vm="@{vm}"/>
+
     </LinearLayout>
 
 </layout>

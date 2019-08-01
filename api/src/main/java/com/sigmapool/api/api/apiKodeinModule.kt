@@ -5,7 +5,7 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.singleton
 
 internal val apiModule = Module("ApiModule"){
-    bind<IPostService>() with singleton { StubPostService() }
+    bind<IMinerService>() with singleton { StubMinerService() }
 }
 
 

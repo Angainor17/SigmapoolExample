@@ -36,7 +36,6 @@ class SimplePagedListViewModel<ItemViewModel : BaseItemViewModel, ItemDto>(
         dataSource.errorMessage
     }
 
-
     private fun onQueryChanged(query: String) {
         dataSourceFactory.query = query
         items.value?.dataSource?.invalidate()

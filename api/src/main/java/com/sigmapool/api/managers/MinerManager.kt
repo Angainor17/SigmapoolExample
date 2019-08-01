@@ -1,22 +1,22 @@
 package com.sigmapool.api.managers
 
-import com.sigmapool.api.api.IPostService
-import com.sigmapool.common.IPostsManager
+import com.sigmapool.api.api.IMinerService
+import com.sigmapool.common.IMinerManager
 import com.sigmapool.common.ManagerResult
-import com.sigmapool.common.models.PostDto
+import com.sigmapool.common.models.Miner
 import org.kodein.di.generic.instance
 
-class PostsManager() : IPostsManager {
+class MinerManager : IMinerManager {
 
-    private val postsService: IPostService by managerKodein.instance()
+    private val postsService: IMinerService by managerKodein.instance()
 
-    override suspend fun getPosts(offset: Int, limit: Int): ManagerResult<List<PostDto>> {
+    override suspend fun getMiner(offset: Int, limit: Int): ManagerResult<List<Miner>> {
         return try {
             ManagerResult(
                 postsService
-                    .getPosts(offset, limit)
+                    .getMiners(offset, limit)
                     .map {
-                        PostDto(
+                        Miner(
                             it.id,
                             it.title,
                             it.text
