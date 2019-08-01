@@ -26,7 +26,9 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':common')
 
+    implementation kodein.core
     implementation gson.core
 
     implementation kotlinCore.core

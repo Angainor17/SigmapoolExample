@@ -18,7 +18,9 @@ buildscript {
             espresso             : '3.2.0',
             databinding          : '3.4.2',
             picasso              : '2.71828',
-            paging               : '1.0.1'
+            paging               : '1.0.1',
+            pagingKtx            : '2.1.0',
+            appcompat            : '28.0.0'
     ]
 
     ext.kotlinCore = [
@@ -38,6 +40,11 @@ buildscript {
             core: "com.google.code.gson:gson:$versions.gson"
     ]
 
+    ext.support = [
+            recyclerView: "com.android.support:recyclerview-v7:$versions.appcompat",
+            appcompat   : "com.android.support:appcompat-v7:$versions.appcompat"
+    ]
+
     ext.androidx = [
             appcompat         : "androidx.appcompat:appcompat:$versions.androidxAppcompat",
             coreKtx           : "androidx.core:core-ktx:$versions.androidxAppcompat",
@@ -46,7 +53,9 @@ buildscript {
             liveData          : "androidx.lifecycle:lifecycle-livedata-ktx:$versions.livedata",
             navigationFragment: "androidx.navigation:navigation-fragment-ktx:$versions.navigation",
             navigationUI      : "androidx.navigation:navigation-ui-ktx:$versions.navigation",
-            databinding       : "androidx.databinding:databinding-runtime:$versions.databinding"
+            databinding       : "androidx.databinding:databinding-runtime:$versions.databinding",
+            paging            : "android.arch.paging:runtime:$versions.paging",
+            pagingKtx         : "androidx.paging:paging-runtime-ktx:$versions.pagingKtx",
     ]
 
     ext.retrofit = [

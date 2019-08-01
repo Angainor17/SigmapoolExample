@@ -32,6 +32,8 @@ dependencies {
     implementation kotlinCore.coroutine
 
     implementation androidx.appcompat
+    implementation androidx.paging
+    implementation androidx.pagingKtx
 
     testImplementation test.junit
     androidTestImplementation test.testRunner
