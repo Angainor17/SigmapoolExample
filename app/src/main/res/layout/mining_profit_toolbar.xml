@@ -57,10 +57,8 @@
                 android:adjustViewBounds="true"
                 android:scaleType="center"
 
-
                 app:iconChecked="@{@drawable/vector_rub}"
                 app:iconUnchecked="@{@drawable/vector_usd}"
-
 
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintTop_toTopOf="@+id/profitButton"
