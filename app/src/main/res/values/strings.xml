@@ -4,5 +4,8 @@
     <string name="app_name">Sigmapool</string>
     <string name="profit">Profit</string>
     <string name="mining_profit">Mining Profit</string>
+    <string name="power_cost">Power Cost</string>
+    <string name="kilowatt_hour">Kwh</string>
+    <string name="kilowatt_hour_prefix">P</string>
 
 </resources>

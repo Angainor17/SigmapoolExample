@@ -3,11 +3,14 @@ package com.sigmapool.common.databinding
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import com.warkiz.widget.IndicatorSeekBar
+import com.warkiz.widget.OnSeekChangeListener
+import com.warkiz.widget.SeekParams
 
 @BindingAdapter("app:isb_min")
 fun setSeekBarMinRange(view: IndicatorSeekBar, liveData: LiveData<Int>) {
     liveData.value?.let {
         view.min = it.toFloat()
+
     }
 }
 
@@ -30,4 +33,25 @@ fun setSeekBarStringArray(view: IndicatorSeekBar, liveData: LiveData<Int>) {
     liveData.value?.let {
         view.customTickTexts(view.context.resources.getStringArray(it))
     }
+}
+
+@BindingAdapter("app:changeListener")
+fun setSeekBarChangeListener(view: IndicatorSeekBar, action: OnSeekValueChangeListener) {
+    view.onSeekChangeListener = object : OnSeekChangeListener {
+        override fun onSeeking(seekParams: SeekParams?) {
+            seekParams?.progressFloat?.let { action.onChange(it) }
+        }
+
+        override fun onStartTrackingTouch(seekBar: IndicatorSeekBar?) {
+
+        }
+
+        override fun onStopTrackingTouch(seekBar: IndicatorSeekBar?) {
+
+        }
+    }
+}
+
+interface OnSeekValueChangeListener {
+    fun onChange(float: Float)
 }
