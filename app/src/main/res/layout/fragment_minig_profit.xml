@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.miningProfit.MiningProfitViewModel"/>
+        <variable name="vm" type="com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitViewModel"/>
     </data>
 
     <LinearLayout
@@ -13,11 +13,12 @@
 
         <include
                 layout="@layout/mining_profit_toolbar"
-                app:vm="@{vm}"/>
+                app:titleVm="@{vm}"
+                app:toolbarVm="@{vm}"/>
 
         <include
                 layout="@layout/seek_bar"
-                app:vm="@{vm}"
+                app:vm="@{vm.seekBarViewModel}"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

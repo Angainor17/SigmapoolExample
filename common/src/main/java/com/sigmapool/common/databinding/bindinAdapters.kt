@@ -12,7 +12,7 @@ import com.warkiz.widget.SeekParams
 fun setSeekBarMinRange(view: IndicatorSeekBar, liveData: LiveData<Int>) {
     liveData.value?.let {
         view.min = it.toFloat()
-
+        view.setProgress(it.toFloat())
     }
 }
 
@@ -54,16 +54,26 @@ fun setSeekBarChangeListener(view: IndicatorSeekBar, action: OnSeekValueChangeLi
     }
 }
 
-@BindingAdapter("app:iconChecked", "app:iconUnchecked", requireAll = true)
-fun setImageViewIconSelectable(view: ImageView, iconChecked: Drawable, iconUnchecked: Drawable) {
+@BindingAdapter("app:iconChecked", "app:iconUnchecked", "app:onImageSelected", requireAll = true)
+fun setImageViewIconSelectable(
+    view: ImageView,
+    iconChecked: Drawable,
+    iconUnchecked: Drawable,
+    onImageClick: OnImageClick
+) {
     var isChecked = true
     view.setImageDrawable(iconChecked)
     view.setOnClickListener {
         isChecked = !isChecked
         view.setImageDrawable(if (isChecked) iconChecked else iconUnchecked)
+        onImageClick.onCurrencyBtnSelected(isChecked)
     }
 }
 
 interface OnSeekValueChangeListener {
     fun onChange(float: Float)
+}
+
+interface OnImageClick {
+    fun onCurrencyBtnSelected(isSelected: Boolean)
 }
