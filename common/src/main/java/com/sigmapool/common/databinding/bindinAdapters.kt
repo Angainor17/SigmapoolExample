@@ -1,5 +1,7 @@
 package com.sigmapool.common.databinding
 
+import android.graphics.drawable.Drawable
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import com.warkiz.widget.IndicatorSeekBar
@@ -49,6 +51,16 @@ fun setSeekBarChangeListener(view: IndicatorSeekBar, action: OnSeekValueChangeLi
         override fun onStopTrackingTouch(seekBar: IndicatorSeekBar?) {
 
         }
+    }
+}
+
+@BindingAdapter("app:iconChecked", "app:iconUnchecked", requireAll = true)
+fun setImageViewIconSelectable(view: ImageView, iconChecked: Drawable, iconUnchecked: Drawable) {
+    var isChecked = true
+    view.setImageDrawable(iconChecked)
+    view.setOnClickListener {
+        isChecked = !isChecked
+        view.setImageDrawable(if (isChecked) iconChecked else iconUnchecked)
     }
 }
 

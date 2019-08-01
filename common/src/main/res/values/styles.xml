@@ -11,7 +11,6 @@
     </style>
 
     <style name="RubView" parent="RippleView">
-        <item name="android:src">@drawable/vector_rub</item>
         <item name="android:padding">9dp</item>
         <item name="android:background">@drawable/ic_rub_background</item>
     </style>
@@ -23,7 +22,7 @@
         <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
     </style>
 
-    <style name="WhiteArrowUpBtn" parent="RippleView">
+    <style name="WhiteArrowBtn" parent="RippleView">
         <item name="android:background">@drawable/arrow_up_background_ripple</item>
         <item name="android:drawableEnd">@drawable/arrow_up_drawable</item>
         <item name="android:drawablePadding">3dp</item>

@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
 
     <item
+            android:state_activated="false"
+            android:drawable="@drawable/arrow_down"
+            android:height="14dp"
+            android:width="10dp"/>
+
+    <item
+            android:state_activated="true"
             android:drawable="@drawable/arrow_up"
             android:height="14dp"
             android:width="10dp"/>
 
-</layer-list>
+</selector>
