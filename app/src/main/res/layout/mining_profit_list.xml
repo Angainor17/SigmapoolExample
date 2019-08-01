@@ -14,15 +14,16 @@
             app:onRefreshListener="@{() -> vm.itemsVM.onRefresh()}"
             app:refreshing="@{vm.itemsVM.refreshing}">
 
-        <LinearLayout android:orientation="vertical"
-                      android:layout_height="match_parent"
-                      android:layout_width="match_parent">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:addItemDecorator='@{"gray_line"}'
                     app:goneIfNotBlank="@{vm.itemsVM.message}"
                     app:setPagedAdapter="@{vm.itemsVM}"/>
 

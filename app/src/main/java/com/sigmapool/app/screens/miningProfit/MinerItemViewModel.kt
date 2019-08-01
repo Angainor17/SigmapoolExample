@@ -1,16 +1,16 @@
 package com.sigmapool.app.screens.miningProfit
 
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
-import com.sigmapool.common.models.PostDto
+import com.sigmapool.common.models.Miner
 
-class PostItemViewModel(dto: PostDto) : BaseItemViewModel {
+class MinerItemViewModel(dto: Miner) : BaseItemViewModel {
 
     val id = dto.id
     val title = dto.title
     val text = dto.text
 
     companion object {
-        val itemType = PostItemViewModel::class.hashCode()
+        val itemType = MinerItemViewModel::class.hashCode()
     }
 
     override val itemViewType: Int = itemType
@@ -20,7 +20,7 @@ class PostItemViewModel(dto: PostDto) : BaseItemViewModel {
     }
 
     override fun areContentsTheSame(item: BaseItemViewModel): Boolean {
-        return item is PostItemViewModel && item.id == this.id
+        return item is MinerItemViewModel && item.id == this.id
     }
 }
 
