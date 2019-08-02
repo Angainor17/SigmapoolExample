@@ -25,15 +25,16 @@
             <ImageView
                     android:id="@+id/antIcon"
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_antminer"
+                    android:layout_width="30dp"
+                    android:layout_height="0dp"
+                    android:src="@mipmap/ic_ant"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
+                    android:scaleType="centerCrop"
 
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-            />
+                    app:layout_constraintTop_toTopOf="@+id/antminerName"
+                    app:layout_constraintBottom_toBottomOf="@+id/btcValue" android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"/>
 
             <TextView
                     android:id="@+id/antminerName"
@@ -41,14 +42,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:fontFamily="@font/google_sans_regular"
+                    android:fontFamily="@font/google_sans_medium"
                     android:text="@{vm.name}"
                     android:textColor="#363636"
+                    android:layout_marginTop="10dp"
 
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/antIcon"
 
-                    tools:text="Antminer S17 Pro" android:layout_marginTop="10dp"/>
+                    tools:text="Antminer S17 Pro"/>
 
             <TextView
                     android:id="@+id/btcValue"
@@ -85,9 +87,9 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/google_sans_regular"
                     android:layout_marginTop="4dp"
                     android:text="@{vm.hashratePower}"
+                    android:fontFamily="@font/google_sans_medium"
 
                     app:layout_constraintStart_toStartOf="@+id/hashratePowerLabel"
                     app:layout_constraintTop_toBottomOf="@+id/hashratePowerLabel"
