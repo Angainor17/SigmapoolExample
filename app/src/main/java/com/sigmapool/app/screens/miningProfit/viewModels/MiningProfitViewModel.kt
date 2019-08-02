@@ -19,7 +19,7 @@ class MiningProfitViewModel(model: IMinerFragmentModel) : ViewModel(), ITitleVie
     private val rubCurrency = Currency(1, 6, 1, R.array.array_first_and_last_1_6, 2)
     private val usdCurrency = Currency(1, 12, 1, R.array.array_first_and_last_1_12, 0)
 
-    private val currencyLiveData = MutableLiveData(rubCurrency)
+    private val currencyLiveData = MutableLiveData(usdCurrency)
     val seekBarVM = SeekBarViewModel(currencyLiveData)
 
     val itemsVM: SimplePagedListViewModel<BaseItemViewModel, Any> = SimplePagedListViewModel(
@@ -28,7 +28,7 @@ class MiningProfitViewModel(model: IMinerFragmentModel) : ViewModel(), ITitleVie
     ) as SimplePagedListViewModel<BaseItemViewModel, Any>
 
     override fun onCurrencyBtnSelected(isSelected: Boolean) {
-        currencyLiveData.postValue(if (isSelected) rubCurrency else usdCurrency)
+        currencyLiveData.postValue(if (isSelected) usdCurrency else rubCurrency)
     }
 
     override fun onProfitBtnSelected(isSelected: Boolean) {

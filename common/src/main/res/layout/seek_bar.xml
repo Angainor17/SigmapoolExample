@@ -12,12 +12,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <LinearLayout
+           <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="4dp"
-                android:orientation="vertical"
-                android:background="@drawable/seek_bar_background">
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="10dp"
+
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="4dp">
 
             <com.warkiz.widget.IndicatorSeekBar
                     android:id="@+id/indicatorSeekBar"
@@ -25,6 +31,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="8dp"
 
                     app:isb_ticks_count="6"
                     app:isb_min="@{vm.getStartRange()}"
@@ -49,7 +59,8 @@
 
                     app:isb_track_progress_color="@color/blue"/>
 
-        </LinearLayout>
+
+           </androidx.cardview.widget.CardView>
 
         <TextView
                 android:id="@+id/powerCostTv"
