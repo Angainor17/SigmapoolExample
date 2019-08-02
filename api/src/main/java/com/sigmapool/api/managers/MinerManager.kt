@@ -18,8 +18,14 @@ class MinerManager : IMinerManager {
                     .map {
                         Miner(
                             it.id,
-                            it.title,
-                            it.text
+                            it.name,
+                            it.hashrate,
+                            it.power,
+                            it.btcValue,
+                            it.revenueValue,
+                            it.powerCost,
+                            it.shutdownPrice,
+                            it.profit
                         )
                     }
             )

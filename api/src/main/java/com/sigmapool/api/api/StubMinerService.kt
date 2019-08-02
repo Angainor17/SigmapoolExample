@@ -8,8 +8,14 @@ internal class StubMinerService : IMinerService {
     private val items = List(200) {
         MinerDto(
             it.toLong(),
-            "Title of post $it",
-            "Some text for post $it. Not enough words.... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
+            "Antminer S$it Pro",
+            56,
+            2780,
+            11000,
+            20.24f,
+            2.01f,
+            18.23f,
+            18.24f
         )
     }
 
