@@ -1,4 +1,4 @@
-package com.sigmapool.common.listLibrary.databinding
+package com.sigmapool.common.databinding
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView

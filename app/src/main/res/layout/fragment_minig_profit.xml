@@ -16,17 +16,43 @@
                 app:titleVm="@{vm}"
                 app:toolbarVm="@{vm}"/>
 
-        <include
-                layout="@layout/seek_bar"
-                app:vm="@{vm.seekBarVM}"
+        <!--<androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"/>
+                <!--app:onRefreshListener="@{() -> vm.itemsVM.onRefresh()}"-->
+                <!--app:refreshing="@{vm.itemsVM.refreshing}">-->
 
-        <include
-                layout="@layout/mining_profit_list"
-                app:vm="@{vm}"/>
+            <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:fillViewport="true"
+                    android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="vertical">
+
+                    <include
+                            layout="@layout/seek_bar"
+                            app:vm="@{vm.seekBarVM}"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"/>
+
+                    <include
+                            layout="@layout/mining_profit_list"
+                            app:vm="@{vm}"/>
+
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        <!--</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
 
     </LinearLayout>
 

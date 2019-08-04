@@ -57,6 +57,5 @@ class SimplePagedListViewModel<ItemViewModel : BaseItemViewModel, ItemDto>(
     init {
         query.observeForever { onQueryChanged(it) }
     }
-
 }
 

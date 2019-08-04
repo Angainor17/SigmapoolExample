@@ -12,7 +12,7 @@ import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 import com.sigmapool.common.models.Currency
 import com.sigmapool.common.viewModels.ITitleViewModel
 
-const val GOOGLE_FONT_FAMILY = "Google Sans"
+const val GOOGLE_FONT_FAMILY = "Google Sans"//FIXME
 
 class MiningProfitViewModel(model: IMinerFragmentModel) : ViewModel(), ITitleViewModel, IMiningProfitToolbarViewModel {
 

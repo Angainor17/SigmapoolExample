@@ -10,5 +10,8 @@
     <string name="hashrate_power">Hashrate/Power</string>
     <string name="revenue_power_cost">Revenue/Power Cost</string>
     <string name="shutdown_price">Shutdown Price</string>
+    <string name="btc_caps">BTC</string>
+    <string name="hashrate_postfix">T</string>
+    <string name="power_postfix">W</string>
 
 </resources>

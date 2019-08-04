@@ -3,6 +3,7 @@ package com.sigmapool.app.screens.miningProfit
 import androidx.databinding.ViewDataBinding
 import com.sigmapool.app.R
 import com.sigmapool.app.databinding.ItemViewMinerBinding
+import com.sigmapool.app.screens.miningProfit.viewModels.MinerItemViewModel
 import com.sigmapool.common.listLibrary.IItemBindingHelper
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 
