@@ -42,7 +42,8 @@ buildscript {
 
     ext.support = [
             recyclerView: "com.android.support:recyclerview-v7:$versions.appcompat",
-            appcompat   : "com.android.support:appcompat-v7:$versions.appcompat"
+            appcompat   : "com.android.support:appcompat-v7:$versions.appcompat",
+            design   : "com.android.support:design:$versions.appcompat"
     ]
 
     ext.androidx = [

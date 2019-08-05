@@ -13,5 +13,10 @@
     <string name="btc_caps">BTC</string>
     <string name="hashrate_postfix">T</string>
     <string name="power_postfix">W</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="sign_in_api_key">Sign in with API Key</string>
+    <string name="or">or</string>
 
 </resources>

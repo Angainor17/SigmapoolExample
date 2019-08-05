@@ -5,11 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.sigmapool.app.R
+import com.sigmapool.app.models.Currency
 import com.sigmapool.app.utils.getColor
 import com.sigmapool.app.utils.getString
 import com.sigmapool.app.utils.plus
 import com.sigmapool.app.utils.spannableString
-import com.sigmapool.common.models.Currency
 import com.sigmapool.common.viewModels.IIndicatorSeekBarViewModel
 import java.text.DecimalFormat
 

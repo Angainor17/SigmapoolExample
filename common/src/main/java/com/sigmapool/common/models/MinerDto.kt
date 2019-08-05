@@ -1,6 +1,6 @@
 package com.sigmapool.common.models
 
-data class Miner(
+data class MinerDto(
     val id: Long,
     val name: String,
     val hashrate: Int,
@@ -10,4 +10,5 @@ data class Miner(
     val powerCost: Float,
     val shutdownPrice: Float,
     val profit: Float
+
 )

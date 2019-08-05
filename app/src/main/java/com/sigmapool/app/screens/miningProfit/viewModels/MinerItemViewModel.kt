@@ -7,11 +7,11 @@ import com.sigmapool.app.utils.getString
 import com.sigmapool.app.utils.plus
 import com.sigmapool.app.utils.spannableString
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
-import com.sigmapool.common.models.Miner
+import com.sigmapool.common.models.MinerDto
 import com.sigmapool.common.utils.INT_PATTERN
 import com.sigmapool.common.utils.format
 
-class MinerItemViewModel(miner: Miner) : BaseItemViewModel {
+class MinerItemViewModel(miner: MinerDto) : BaseItemViewModel {
 
     val name: String = miner.name
     val hashratePower: CharSequence = createHashratePower(miner)
@@ -39,10 +39,10 @@ class MinerItemViewModel(miner: Miner) : BaseItemViewModel {
         return item is MinerItemViewModel && item.name == this.name
     }
 
-    private fun createBtcValueText(miner: Miner) =
+    private fun createBtcValueText(miner: MinerDto) =
         getString(R.string.btc_caps) + " - " + getCurrencyLabel() + " " + miner.btcValue.format(INT_PATTERN)
 
-    private fun createHashratePower(miner: Miner): CharSequence {
+    private fun createHashratePower(miner: MinerDto): CharSequence {
         return miner.hashrate.toString().spannable(Color.BLACK) +
                 getString(R.string.hashrate_postfix).spannable(getColor(R.color.titleGray)) +
                 (" / " + miner.power).spannable(Color.BLACK) +

@@ -1,4 +1,4 @@
-package com.sigmapool.common.models
+package com.sigmapool.app.models
 
 import androidx.annotation.ArrayRes
 

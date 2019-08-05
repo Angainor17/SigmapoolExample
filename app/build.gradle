@@ -53,6 +53,7 @@ dependencies {
     implementation androidx.pagingKtx
 
     implementation support.recyclerView
+    implementation support.design
 
     testImplementation test.junit
     androidTestImplementation test.testRunner

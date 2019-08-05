@@ -3,13 +3,13 @@ package com.sigmapool.app.screens.miningProfit.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sigmapool.app.R
+import com.sigmapool.app.models.Currency
 import com.sigmapool.app.screens.miningProfit.IMinerFragmentModel
 import com.sigmapool.app.screens.miningProfit.MinerItemMapper
 import com.sigmapool.app.screens.miningProfit.MinerLoader
 import com.sigmapool.app.utils.getString
 import com.sigmapool.common.listLibrary.pagedlist.SimplePagedListViewModel
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
-import com.sigmapool.common.models.Currency
 import com.sigmapool.common.viewModels.ITitleViewModel
 
 const val GOOGLE_FONT_FAMILY = "Google Sans"//FIXME

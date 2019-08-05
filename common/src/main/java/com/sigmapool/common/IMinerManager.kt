@@ -1,7 +1,7 @@
 package com.sigmapool.common
 
-import com.sigmapool.common.models.Miner
+import com.sigmapool.common.models.MinerDto
 
 interface IMinerManager {
-    suspend fun getMiner(offset: Int, limit: Int): ManagerResult<List<Miner>>
+    suspend fun getMiner(offset: Int, limit: Int): ManagerResult<List<MinerDto>>
 }
