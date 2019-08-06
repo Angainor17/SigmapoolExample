@@ -20,7 +20,8 @@ buildscript {
             picasso              : '2.71828',
             paging               : '1.0.1',
             pagingKtx            : '2.1.0',
-            appcompat            : '28.0.0'
+            appcompat            : '28.0.0',
+            retrofitLogging      : '3.9.0'
     ]
 
     ext.kotlinCore = [
@@ -43,7 +44,7 @@ buildscript {
     ext.support = [
             recyclerView: "com.android.support:recyclerview-v7:$versions.appcompat",
             appcompat   : "com.android.support:appcompat-v7:$versions.appcompat",
-            design   : "com.android.support:design:$versions.appcompat"
+            design      : "com.android.support:design:$versions.appcompat"
     ]
 
     ext.androidx = [
@@ -62,7 +63,8 @@ buildscript {
     ext.retrofit = [
             core             : "com.squareup.retrofit2:retrofit:$versions.retrofit",
             gsonConverter    : "com.squareup.retrofit2:converter-gson:$versions.retrofitGsonConverter",
-            coroutinesAdapter: "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$versions.coroutinesAdapter"
+            coroutinesAdapter: "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$versions.coroutinesAdapter",
+            logging          : "com.squareup.okhttp3:logging-interceptor:$versions.retrofitLogging",
     ]
 
     ext.test = [

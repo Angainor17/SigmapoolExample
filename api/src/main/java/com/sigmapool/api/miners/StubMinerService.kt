@@ -1,4 +1,4 @@
-package com.sigmapool.api.api
+package com.sigmapool.api.miners
 
 import com.sigmapool.api.models.Miner
 import kotlinx.coroutines.delay

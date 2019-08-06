@@ -1,0 +1,22 @@
+package com.sigmapool.app.screens.login.data
+
+import com.sigmapool.api.retrofit.AUTHORIZATION
+import com.sigmapool.api.retrofit.HeaderMapper
+import com.sigmapool.app.App.Companion.kodein
+import com.sigmapool.app.utils.JsonDataStorage
+import com.sigmapool.common.models.AuthDto
+import org.kodein.di.generic.instance
+
+const val AUTH_KEY = "auth_info"
+
+class AuthHeaderMapper : HeaderMapper() {
+
+    private val jsonDataStorage: JsonDataStorage by kodein.instance()
+
+    override fun getHeaderName(): String = AUTHORIZATION
+
+    override fun getValue(): String {
+        val authDto = jsonDataStorage.get<AuthDto>(AUTH_KEY)
+        return authDto?.accessToken ?: ""
+    }
+}

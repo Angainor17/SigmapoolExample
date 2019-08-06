@@ -37,6 +37,7 @@ dependencies {
     implementation retrofit.core
     implementation retrofit.gsonConverter
     implementation retrofit.coroutinesAdapter
+    implementation retrofit.logging
 
     testImplementation test.junit
     androidTestImplementation test.testRunner

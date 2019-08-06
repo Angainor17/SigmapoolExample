@@ -39,8 +39,6 @@ dependencies {
     implementation gson.core
 
     implementation retrofit.core
-    implementation retrofit.gsonConverter
-    implementation retrofit.coroutinesAdapter
 
     implementation androidx.appcompat
     implementation androidx.coreKtx

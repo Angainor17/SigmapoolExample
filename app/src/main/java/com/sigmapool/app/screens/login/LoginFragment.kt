@@ -6,12 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast.LENGTH_SHORT
+import android.widget.Toast.makeText
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.sigmapool.app.databinding.FragmentLoginBinding
 import com.sigmapool.app.screens.login.viewModel.LoginViewModel
 
 
 class LoginFragment : Fragment(), ILoginFragmentModel {
+
+    val vm = LoginViewModel(this)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        vm.errorLiveData.observe(this, Observer {
+            toast(it)
+        })
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentLoginBinding.inflate(inflater, container, false)
@@ -23,5 +35,9 @@ class LoginFragment : Fragment(), ILoginFragmentModel {
     override fun hideKeyBoard() {
         val inputMethodManager = context?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
+    }
+
+    private fun toast(text: String) {
+        makeText(context, text, LENGTH_SHORT).show()
     }
 }
