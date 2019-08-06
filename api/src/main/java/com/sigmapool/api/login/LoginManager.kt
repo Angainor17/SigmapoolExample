@@ -1,13 +1,17 @@
 package com.sigmapool.api.login
 
+import com.sigmapool.api.kodein.IApiServiceProvider
 import com.sigmapool.common.managers.ILoginManager
 import com.sigmapool.common.models.AuthDto
 import com.sigmapool.common.models.ManagerResult
 
-internal class LoginManager(private val loginService: ILoginService) : ILoginManager {
+internal class LoginManager(serviceProvider: IApiServiceProvider) : ILoginManager {
+
+    private val loginService = serviceProvider.create(LoginApi::class.java)
 
     override suspend fun login(login: String, password: String): ManagerResult<AuthDto> = try {
-        val authInfo = ManagerResult(loginService.login(login, password)).data!!
+
+        val authInfo = loginService.login(login, password).payload!!
 
         val authDto = AuthDto(
             authInfo.id,

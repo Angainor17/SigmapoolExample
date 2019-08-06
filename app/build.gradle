@@ -41,8 +41,6 @@ dependencies {
     implementation kodein.core
     implementation gson.core
 
-    implementation retrofit.core
-
     implementation androidx.appcompat
     implementation androidx.coreKtx
     implementation androidx.constraintlayout

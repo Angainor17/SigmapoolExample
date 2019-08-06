@@ -1,28 +1,20 @@
 package com.sigmapool.app.kodein
 
-import com.sigmapool.api.BASE_URL
-import com.sigmapool.api.kodein.BTC
-import com.sigmapool.api.kodein.LTC
-import com.sigmapool.api.retrofit.createRetrofit
+import com.sigmapool.api.kodein.managersModule
+import com.sigmapool.api.retrofit.HeaderMapper
 import com.sigmapool.app.screens.login.data.AuthHeaderMapper
+import com.sigmapool.app.utils.JsonDataStorage
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
-import retrofit2.Retrofit
 
+//TODO rename
 internal val retrofitModule = Kodein.Module("RetrofitModule") {
 
-    bind<Retrofit>(BTC) with singleton {
-        createRetrofit(
-            "http://$BTC.$BASE_URL/",
-            arrayListOf(AuthHeaderMapper())
-        )
-    }
+    bind<HeaderMapper>() with provider { AuthHeaderMapper() }
+    bind<JsonDataStorage>() with singleton { JsonDataStorage(instance()) }
 
-    bind<Retrofit>(LTC) with singleton {
-        createRetrofit(
-            "http://$LTC.$BASE_URL/",
-            arrayListOf(AuthHeaderMapper())
-        )
-    }
+    import(managersModule)
 }
