@@ -7,7 +7,7 @@ abstract class HeaderMapper {
     abstract fun getHeaderName(): String
 
     /*** Валидно ли значение Header и можно ли его добавлять в запрос */
-    fun isValueValid(): Boolean = getValue().isNotEmpty()
+    fun isValueValid(): Boolean = !getValue().isNullOrEmpty()
 
-    abstract fun getValue():String
+    abstract fun getValue(): String
 }

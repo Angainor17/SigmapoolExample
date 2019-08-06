@@ -3,7 +3,6 @@ package com.sigmapool.app.utils
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
 class JsonDataStorage(context: Context) {
 
@@ -14,6 +13,9 @@ class JsonDataStorage(context: Context) {
         sharedPreferences.edit().putString(key, Gson().toJson(data)).apply()
     }
 
-    fun <Type> get(key: String): Type? =
-        Gson().fromJson(sharedPreferences.getString(key, ""), object : TypeToken<Type>() {}.type)
+    fun getJson(key: String, default: String = ""): String? = try {
+        sharedPreferences.getString(key, "")
+    } catch (e: Exception) {
+        default
+    }
 }

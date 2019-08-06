@@ -50,11 +50,7 @@ private fun getDefaultAuthRetrofit(
  */
 private fun getDefaultRetrofitBuilder(baseUrl: String): Retrofit.Builder = Retrofit.Builder()
     .baseUrl(baseUrl)
-    .addConverterFactory(GsonConverterFactory.create(
-        GsonBuilder()
-            .setLenient()
-            .create()
-    ))
+    .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
 
 /*** @return OkHttpClient with connection Params */
 private fun getDefaultOkHttpClientBuilder() = OkHttpClient.Builder()

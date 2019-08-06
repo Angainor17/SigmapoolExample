@@ -26,7 +26,9 @@ buildscript {
 
     ext.kotlinCore = [
             core     : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin",
-            coroutine: "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutine"
+            coroutine: "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutine",
+            kotlinxCoroutine: "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1"
+
     ]
 
     ext.picasso = [
@@ -52,6 +54,7 @@ buildscript {
             coreKtx           : "androidx.core:core-ktx:$versions.androidxAppcompat",
             constraintlayout  : "androidx.constraintlayout:constraintlayout:$versions.constraintlayout",
             lifecycle         : "androidx.lifecycle:lifecycle-extensions:$versions.lifecycleExtension",
+            lifecycleViewModel: "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycleExtension",
             liveData          : "androidx.lifecycle:lifecycle-livedata-ktx:$versions.livedata",
             navigationFragment: "androidx.navigation:navigation-fragment-ktx:$versions.navigation",
             navigationUI      : "androidx.navigation:navigation-ui-ktx:$versions.navigation",

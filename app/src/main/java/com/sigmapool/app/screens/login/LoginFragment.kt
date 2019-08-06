@@ -16,19 +16,14 @@ import com.sigmapool.app.screens.login.viewModel.LoginViewModel
 
 class LoginFragment : Fragment(), ILoginFragmentModel {
 
-    val vm = LoginViewModel(this)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val binding = FragmentLoginBinding.inflate(inflater, container, false)
+        val vm = LoginViewModel(this)
+        binding.vm = vm
+        binding.lifecycleOwner = this
         vm.errorLiveData.observe(this, Observer {
             toast(it)
         })
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding = FragmentLoginBinding.inflate(inflater, container, false)
-        binding.vm = LoginViewModel(this)
-        binding.lifecycleOwner = this
         return binding.root
     }
 
