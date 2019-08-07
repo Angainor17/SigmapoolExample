@@ -1,6 +1,6 @@
 package com.sigmapool.api.login
 
-import com.sigmapool.api.kodein.IApiServiceProvider
+import com.sigmapool.api.providers.IApiServiceProvider
 import com.sigmapool.common.managers.ILoginManager
 import com.sigmapool.common.models.AuthDto
 import com.sigmapool.common.models.ManagerResult

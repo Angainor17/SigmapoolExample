@@ -10,8 +10,7 @@ import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
 
-//TODO rename
-internal val retrofitModule = Kodein.Module("RetrofitModule") {
+internal val apiModule = Kodein.Module("ApiModule") {
 
     bind<HeaderMapper>() with provider { AuthHeaderMapper() }
     bind<JsonDataStorage>() with singleton { JsonDataStorage(instance()) }

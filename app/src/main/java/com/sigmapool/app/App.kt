@@ -2,7 +2,7 @@ package com.sigmapool.app
 
 import android.app.Application
 import android.content.Context
-import com.sigmapool.app.kodein.retrofitModule
+import com.sigmapool.app.kodein.apiModule
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.singleton
@@ -13,7 +13,7 @@ class App : Application() {
         super.onCreate()
         kodein = Kodein {
             bind<Context>() with singleton { this@App }
-            import(retrofitModule)
+            import(apiModule)
         }
     }
 

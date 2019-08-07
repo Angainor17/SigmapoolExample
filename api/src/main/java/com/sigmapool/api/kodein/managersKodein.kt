@@ -3,7 +3,9 @@ package com.sigmapool.api.kodein
 import com.sigmapool.api.BASE_URL
 import com.sigmapool.api.login.LoginManager
 import com.sigmapool.api.miners.MinerManager
-import com.sigmapool.api.retrofit.HeaderMapper
+import com.sigmapool.api.providers.BTCServiceProvider
+import com.sigmapool.api.providers.IApiServiceProvider
+import com.sigmapool.api.providers.LTCServiceProvider
 import com.sigmapool.api.retrofit.createRetrofit
 import com.sigmapool.common.managers.ILoginManager
 import com.sigmapool.common.managers.IMinerManager
@@ -32,37 +34,10 @@ val managersModule = Kodein.Module("ManagersModule") {
     }
 
     bind<IApiServiceProvider>(BTC) with singleton { BTCServiceProvider(instance()) }
-    bind<IApiServiceProvider>(LTC) with singleton { BTCServiceProvider(instance()) }
+    bind<IApiServiceProvider>(LTC) with singleton { LTCServiceProvider(instance()) }
 
     bind<IMinerManager>() with singleton { MinerManager(instance()) }
 
     bind<ILoginManager>() with singleton { LoginManager(instance(BTC)) }
 
-}
-
-//TODO move to separate files
-interface IApiServiceProvider{
-    fun <T> create(service: Class<T>): T
-}
-
-class  BTCServiceProvider(headerMapper:HeaderMapper):IApiServiceProvider{
-    override fun <T> create(service: Class<T>): T {
-        return retrofit.create(service)
-    }
-
-    private val retrofit = createRetrofit(
-        "http://$BTC.$BASE_URL/",
-        arrayListOf(headerMapper)
-    )
-}
-
-class  LTCServiceProvider(headerMapper:HeaderMapper):IApiServiceProvider{
-    override fun <T> create(service: Class<T>): T {
-        return retrofit.create(service)
-    }
-
-    val retrofit = createRetrofit(
-        "http://$LTC.$BASE_URL/",
-        arrayListOf(headerMapper)
-    )
 }

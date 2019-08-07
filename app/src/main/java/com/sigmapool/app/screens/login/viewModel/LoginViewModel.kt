@@ -26,7 +26,7 @@ class LoginViewModel(private val fragmentModel: ILoginFragmentModel) : ViewModel
 
     fun hideKeyBoard(): View.OnClickListener = View.OnClickListener {
         fragmentModel.hideKeyBoard()
-        it.requestFocus()
+        clearEditTextFocus(it)
     }
 
     fun nexAuth(login: String, password: String) {
@@ -44,5 +44,11 @@ class LoginViewModel(private val fragmentModel: ILoginFragmentModel) : ViewModel
                 }
             }
         }
+    }
+
+    private fun clearEditTextFocus(it: View) {
+        it.isFocusableInTouchMode = true
+        it.requestFocusFromTouch()
+        it.isFocusableInTouchMode = false
     }
 }
