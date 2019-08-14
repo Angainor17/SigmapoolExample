@@ -18,5 +18,6 @@
     <string name="remember_me">Remember me</string>
     <string name="sign_in_api_key">Sign in with API Key</string>
     <string name="or">or</string>
+    <string name="pool_info">Pool Info</string>
 
 </resources>
