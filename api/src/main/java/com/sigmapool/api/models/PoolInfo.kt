@@ -5,5 +5,5 @@ data class PoolInfo(
     val feeFpps: Float,
     val settlementTime: String,
     val addressChangeTimeout: Int,
-    val stratumURLs: String
+    val stratumURLs: Array<String>
 )
