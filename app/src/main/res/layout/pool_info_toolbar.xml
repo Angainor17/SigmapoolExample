@@ -4,10 +4,8 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="titleVm" type="com.sigmapool.common.viewModels.ITitleViewModel"/>
-
-        <variable name="toolbarVm"
-                  type="com.sigmapool.app.screens.miningProfit.viewModels.IMiningProfitToolbarViewModel"/>
+        <variable name="poolInfoVm"
+                  type="com.sigmapool.app.screens.poolInfo.viewmodels.PoolInfoViewModel"/>
     </data>
 
 
