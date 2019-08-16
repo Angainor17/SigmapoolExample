@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 
 interface ITitleViewModel {
 
+    val title1:String
     fun getTitle(): LiveData<String>
 
 }

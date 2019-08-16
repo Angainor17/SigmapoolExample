@@ -18,7 +18,7 @@
             android:layout_marginTop="41dp" app:layout_constraintTop_toBottomOf="@id/backBtn"
             tools:showIn="@layout/pool_info_toolbar">
         <TextView
-                android:setCurrencySelected="@{true}"
+
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:drawableLeft="@drawable/bitcoin"
@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content" android:id="@+id/bitcoinRadioButton"
                 android:layout_weight="1" android:textAlignment="center"/>
         <TextView
-                android:setCurrencySelected="@{false}"
+
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:drawableLeft="@drawable/bitcoin"

@@ -18,6 +18,8 @@ import org.kodein.di.generic.instance
 const val GOOGLE_FONT_FAMILY = "Google Sans"//FIXME
 
 class MiningProfitViewModel(model: IMinerFragmentModel) : ViewModel(), ITitleViewModel, IMiningProfitToolbarViewModel {
+    override val title1: String = model.getTitle()
+
 
     private val rubCurrency = Currency(1, 6, 1, R.array.array_first_and_last_1_6, 2)
     private val usdCurrency = Currency(1, 12, 1, R.array.array_first_and_last_1_12, 0)
