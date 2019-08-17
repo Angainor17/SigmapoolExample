@@ -3,7 +3,7 @@ package com.sigmapool.app
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.sigmapool.app.screens.poolInfo.viewmodels.PoolInfoFragment
+import com.sigmapool.app.screens.poolInfo.viewmodel.PoolInfoFragment
 import com.sigmapool.common.managers.IPoolInfoManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

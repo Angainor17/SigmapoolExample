@@ -3,7 +3,7 @@
 >
 
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.poolInfo.viewmodels.PoolInfoViewModel"/>
+        <variable name="vm" type="com.sigmapool.app.screens.poolInfo.viewmodel.PoolInfoViewModel"/>
     </data>
 
     <LinearLayout
@@ -13,12 +13,11 @@
             android:focusable="true"
             android:padding="16dp"
             android:orientation="vertical">
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Fragment Pool Info">
-
-        </TextView>
+        <include
+            layout="@layout/pool_info_toolbar"
+            app:titleVm="@{vm}"
+            app:toolbarVm="@{vm}"
+            />
 
     </LinearLayout>
 

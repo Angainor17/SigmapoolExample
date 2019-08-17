@@ -1,4 +1,4 @@
-package com.sigmapool.app.screens.poolInfo.viewmodels
+package com.sigmapool.app.screens.poolInfo.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,8 +8,9 @@ import com.sigmapool.common.viewModels.ITitleViewModel
 
 
 class PoolInfoViewModel(model: IPoolInfoModel) : ViewModel(), ITitleViewModel, ICurrencySwitcherViewModel {
+
     override val title1: String
-        get() = "Test Title"
+        get() = getString(R.string.pool_info)
 
     override fun setCurrencySelected(isSelected: Boolean) {
         // TODO: change appropriate model state

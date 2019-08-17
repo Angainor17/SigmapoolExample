@@ -1,4 +1,4 @@
-package com.sigmapool.app.screens.poolInfo.viewmodels
+package com.sigmapool.app.screens.poolInfo.viewmodel
 
 interface ICurrencySwitcherViewModel {
     fun setCurrencySelected(isSelected: Boolean)

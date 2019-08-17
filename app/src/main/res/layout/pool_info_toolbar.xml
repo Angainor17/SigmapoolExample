@@ -4,8 +4,10 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="poolInfoVm"
-                  type="com.sigmapool.app.screens.poolInfo.viewmodels.PoolInfoViewModel"/>
+        <variable name="titleVm" type="com.sigmapool.common.viewModels.ITitleViewModel"/>
+
+        <variable name="toolbarVm"
+                  type="com.sigmapool.app.screens.poolInfo.viewmodel.ICurrencySwitcherViewModel"/>
     </data>
 
 
@@ -33,7 +35,7 @@
 
         <TextView
                 android:id="@+id/toolbarTitle"
-
+                android:text="@{titleVm.title1}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/ToolbarTitle"
