@@ -18,6 +18,18 @@
             app:titleVm="@{vm}"
             app:toolbarVm="@{vm}"
             />
+        <LinearLayout
+                android:background="@drawable/currency_background_left"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+            <TextView
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView"/>
+        </LinearLayout>
 
     </LinearLayout>
 
