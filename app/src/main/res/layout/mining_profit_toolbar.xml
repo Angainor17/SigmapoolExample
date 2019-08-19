@@ -79,7 +79,7 @@
                 android:layout_marginEnd="12dp"
                 android:text="@string/profit"
 
-                android:onClick="@{(v) ->v.setActivated(!v.isActivated)}"
+                app:onProfitClickAction="@{toolbarVm}"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="@+id/toolbarTitle"
