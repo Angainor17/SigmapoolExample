@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import com.sigmapool.common.listLibrary.IItemBindingHelper
 import com.sigmapool.common.listLibrary.datasource.SimpleDateSourceFactory
 import com.sigmapool.common.listLibrary.datasource.SimpleMapper
 
@@ -15,8 +16,11 @@ import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 class SimplePagedListViewModel<ItemViewModel : BaseItemViewModel, ItemDto>(
     mapper: SimpleMapper<ItemDto, ItemViewModel>,
     loader: IItemsLoader<ItemDto>,
+    bindingHelper: IItemBindingHelper,
     itemPerPage: Int = 20
 ) {
+
+    val pagedRecyclerAdapter = SimplePagedAdapter(bindingHelper)
 
     private val dataSourceFactory = SimpleDateSourceFactory(
         loader,

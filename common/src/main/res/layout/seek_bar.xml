@@ -53,7 +53,7 @@
 
                     app:isb_tick_texts_color="@color/lightGray"
                     app:isb_tick_texts_size="16dp"
-                    app:changeListener="@{vm::onValueChange}"
+                    app:changeListener="@{vm::onChange}"
 
                     app:isb_thumb_adjust_auto="false"
 

@@ -8,7 +8,6 @@ data class MinerDto(
     val btcValue: Int,
     val revenueValue: Float,
     val powerCost: Float,
-    val shutdownPrice: Float,
-    val profit: Float
+    val shutdownPrice: Float
 
 )

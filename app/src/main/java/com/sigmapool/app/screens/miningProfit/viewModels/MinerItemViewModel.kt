@@ -11,7 +11,7 @@ import com.sigmapool.common.models.MinerDto
 import com.sigmapool.common.utils.INT_PATTERN
 import com.sigmapool.common.utils.format
 
-class MinerItemViewModel(miner: MinerDto) : BaseItemViewModel {
+class MinerItemViewModel(val miner: MinerDto) : BaseItemViewModel {
 
     val name: String = miner.name
     val hashratePower: CharSequence = createHashratePower(miner)
@@ -20,7 +20,11 @@ class MinerItemViewModel(miner: MinerDto) : BaseItemViewModel {
 
     val revenuePowerCost = getCurrencyLabel() + miner.revenueValue + " / " + getCurrencyLabel() + miner.powerCost
     val shutdownPrice: String = getCurrencyLabel() + " " + miner.shutdownPrice
-    val profit = getCurrencyLabel() + " " + miner.profit
+    var profit = getCurrencyLabel() + " " + (miner.revenueValue - 1.00f)
+
+    fun initProfit(powerCost: Float) {
+        profit = getCurrencyLabel() + " " + (miner.revenueValue - powerCost)
+    }
 
     companion object {
         val itemType = MinerItemViewModel::class.hashCode()

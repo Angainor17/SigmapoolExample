@@ -50,26 +50,6 @@
 
                 tools:text="@string/mining_profit"/>
 
-        <ImageView
-                android:id="@+id/rubView"
-
-                style="@style/RubView"
-
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="14dp"
-                android:adjustViewBounds="true"
-                android:scaleType="center"
-
-                app:iconChecked="@{@drawable/vector_rub}"
-                app:iconUnchecked="@{@drawable/vector_usd}"
-                app:onImageSelected="@{toolbarVm::onCurrencyBtnSelected}"
-
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintTop_toTopOf="@+id/profitButton"
-                app:layout_constraintBottom_toBottomOf="@+id/profitButton"
-                app:layout_constraintEnd_toStartOf="@+id/profitButton"/>
-
         <Button
                 android:id="@+id/profitButton"
                 style="@style/WhiteArrowBtn"

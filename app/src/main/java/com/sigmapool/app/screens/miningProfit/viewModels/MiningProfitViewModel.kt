@@ -1,11 +1,14 @@
 package com.sigmapool.app.screens.miningProfit.viewModels
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.models.Currency
 import com.sigmapool.app.screens.miningProfit.IMinerFragmentModel
+import com.sigmapool.app.screens.miningProfit.ItemBindingHelper
 import com.sigmapool.app.screens.miningProfit.MinerItemMapper
 import com.sigmapool.app.screens.miningProfit.MinerLoader
 import com.sigmapool.app.utils.getString
@@ -13,13 +16,15 @@ import com.sigmapool.common.listLibrary.pagedlist.SimplePagedListViewModel
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 import com.sigmapool.common.managers.IMinerManager
 import com.sigmapool.common.viewModels.ITitleViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
 const val GOOGLE_FONT_FAMILY = "Google Sans"//FIXME
 
 class MiningProfitViewModel(model: IMinerFragmentModel) : ViewModel(), ITitleViewModel, IMiningProfitToolbarViewModel {
 
-    private val rubCurrency = Currency(1, 6, 1, R.array.array_first_and_last_1_6, 2)
     private val usdCurrency = Currency(1, 12, 1, R.array.array_first_and_last_1_12, 0)
 
     private val currencyLiveData = MutableLiveData(usdCurrency)
@@ -27,14 +32,29 @@ class MiningProfitViewModel(model: IMinerFragmentModel) : ViewModel(), ITitleVie
 
     private val minerManager by kodein.instance<IMinerManager>()
 
+    val seekBarLiveData = map(seekBarVM.seekBarValueLiveData) { value ->
+        Log.d("voronin", "SeekBar = $value")
+        GlobalScope.launch(Dispatchers.Default) {
+            itemsVM.pagedRecyclerAdapter.currentList?.forEach {
+                (it as MinerItemViewModel).initProfit(value)
+                Log.d("voronin", "Name " + it.name + " = $value")
+            }
+        }
+
+        GlobalScope.launch(Dispatchers.Main) {
+            itemsVM.pagedRecyclerAdapter.notifyItemRangeChanged(0, itemsVM.pagedRecyclerAdapter.itemCount)
+//            (0..itemsVM.pagedRecyclerAdapter.itemCount).forEach {
+//                itemsVM.pagedRecyclerAdapter.notifyItemChanged(it)
+//            }
+            Log.d("voronin", "notifyDataSetChanged ")
+        }
+    }
+
     val itemsVM: SimplePagedListViewModel<BaseItemViewModel, Any> = SimplePagedListViewModel(
         MinerItemMapper(),
-        MinerLoader(minerManager)
+        MinerLoader(minerManager),
+        ItemBindingHelper()
     ) as SimplePagedListViewModel<BaseItemViewModel, Any>
-
-    override fun onCurrencyBtnSelected(isSelected: Boolean) {
-        currencyLiveData.postValue(if (isSelected) usdCurrency else rubCurrency)
-    }
 
     override fun onProfitBtnSelected(isSelected: Boolean) {
 

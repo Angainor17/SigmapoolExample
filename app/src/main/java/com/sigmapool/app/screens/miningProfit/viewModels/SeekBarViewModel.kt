@@ -16,6 +16,7 @@ import java.text.DecimalFormat
 
 class SeekBarViewModel(private val currencyLiveData: MutableLiveData<Currency>) : IIndicatorSeekBarViewModel {
 
+    val seekBarValueLiveData = MutableLiveData<Float>()
     private val seekLabelLiveData = MutableLiveData(getSeekText(currencyLiveData.value?.initValue?.toFloat()))
 
     override fun getStartRange(): LiveData<Int> = Transformations.map(currencyLiveData) { it.scaleFrom }
@@ -24,7 +25,10 @@ class SeekBarViewModel(private val currencyLiveData: MutableLiveData<Currency>) 
     override fun getStep(): LiveData<Int> = Transformations.map(currencyLiveData) { it.step }
     override fun getDisplayedValue(): LiveData<CharSequence> = seekLabelLiveData
     override fun getArrayRes(): LiveData<Int> = Transformations.map(currencyLiveData) { it.stringArrayRes }
-    override fun onValueChange(value: Float) = seekLabelLiveData.postValue(getSeekText(value))
+    override fun onChange(value: Float) {
+        seekLabelLiveData.postValue(getSeekText(value))
+        seekBarValueLiveData.postValue(value)
+    }
 
     private fun getSeekText(value: Float?): CharSequence =
         spannableString(

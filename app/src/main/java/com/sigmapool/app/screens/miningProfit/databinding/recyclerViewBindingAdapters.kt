@@ -7,27 +7,24 @@ import androidx.databinding.BindingAdapter
 import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.RecyclerView
-import com.sigmapool.app.screens.miningProfit.ItemBindingHelper
 import com.sigmapool.app.screens.miningProfit.viewModels.IMiningProfitToolbarViewModel
-import com.sigmapool.common.listLibrary.pagedlist.SimplePagedAdapter
 import com.sigmapool.common.listLibrary.pagedlist.SimplePagedListViewModel
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 
 @BindingAdapter("setPagedAdapter")
 fun setPagedAdapter(view: RecyclerView, listVm: SimplePagedListViewModel<BaseItemViewModel, Any>) {
     if (view.adapter == null) {
-        val pagedRecyclerAdapter = SimplePagedAdapter(ItemBindingHelper())
-        view.adapter = pagedRecyclerAdapter
+
+        view.adapter = listVm.pagedRecyclerAdapter
         val activity = view.context as AppCompatActivity
 
         listVm.items.observe(activity,
             Observer<PagedList<BaseItemViewModel>?> { t ->
-                pagedRecyclerAdapter.submitList(t)
+                listVm.pagedRecyclerAdapter.submitList(t)
             }
         )
     }
 }
-
 
 @BindingAdapter("app:onProfitClickAction")
 fun onClickBasicAction(view: Button, toolbarVm: IMiningProfitToolbarViewModel?) {

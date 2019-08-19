@@ -2,7 +2,7 @@ package com.sigmapool.common.viewModels
 
 import androidx.lifecycle.LiveData
 
-interface IIndicatorSeekBarViewModel {
+interface IIndicatorSeekBarViewModel : OnValueChange<Float> {
 
     /*** Scale value from */
     fun getStartRange(): LiveData<Int>
@@ -21,8 +21,5 @@ interface IIndicatorSeekBarViewModel {
 
     /*** Value displayed below seekBar*/
     fun getDisplayedValue(): LiveData<CharSequence>
-
-    /*** On seekBar value change listener*/
-    fun onValueChange(value: Float)
 
 }

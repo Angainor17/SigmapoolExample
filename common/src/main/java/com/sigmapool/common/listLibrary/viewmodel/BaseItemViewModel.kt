@@ -1,10 +1,10 @@
 package com.sigmapool.common.listLibrary.viewmodel
 
-interface BaseItemViewModel{
+interface BaseItemViewModel {
 
-    val itemViewType:Int
+    val itemViewType: Int
 
-    fun areItemsTheSame(item: BaseItemViewModel):Boolean
+    fun areItemsTheSame(item: BaseItemViewModel): Boolean
 
-    fun areContentsTheSame(item: BaseItemViewModel):Boolean
+    fun areContentsTheSame(item: BaseItemViewModel): Boolean
 }
