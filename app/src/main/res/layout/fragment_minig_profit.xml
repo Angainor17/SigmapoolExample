@@ -35,13 +35,13 @@
 
                         android:orientation="vertical">
 
-                    <include
-                            layout="@layout/seek_bar"
-                            app:vm="@{vm.seekBarVM}"
+                    <!--<include-->
+                            <!--layout="@layout/seek_bar"-->
+                            <!--app:vm="@{vm.seekBarVM}"-->
 
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"/>
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                          <!--/>-->
 
                     <include
                             layout="@layout/mining_profit_list"

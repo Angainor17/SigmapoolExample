@@ -26,6 +26,13 @@ class SimplePagedAdapter(private val itemLayoutProvider: IItemBindingHelper) :
         )
     }
 
+    override fun getItemCount(): Int {
+        return super.getItemCount()
+//        return itemLayoutProvider.getItemCount()
+    }
+
+    override fun getItemId(position: Int) = position.toLong()
+
     override fun getItemViewType(position: Int): Int {
         return getItem(position)?.itemViewType ?: super.getItemViewType(position)
     }

@@ -8,7 +8,7 @@ import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.models.Currency
 import com.sigmapool.app.screens.miningProfit.IMinerFragmentModel
-import com.sigmapool.app.screens.miningProfit.ItemBindingHelper
+import com.sigmapool.app.screens.miningProfit.MinerBindingHelper
 import com.sigmapool.app.screens.miningProfit.MinerItemMapper
 import com.sigmapool.app.screens.miningProfit.MinerLoader
 import com.sigmapool.app.utils.getString
@@ -31,30 +31,35 @@ class MiningProfitViewModel(model: IMinerFragmentModel) : ViewModel(), ITitleVie
     val seekBarVM = SeekBarViewModel(currencyLiveData)
 
     private val minerManager by kodein.instance<IMinerManager>()
+    val itemsVM: SimplePagedListViewModel<BaseItemViewModel, Any>
+
+    init {
+        itemsVM = SimplePagedListViewModel(
+            MinerItemMapper(),
+            MinerLoader(minerManager),
+            MinerBindingHelper()
+        ) as SimplePagedListViewModel<BaseItemViewModel, Any>
+
+//        itemsVM.pagedRecyclerAdapter.currentList?.add(MinerHeaderVM())//submitList()
+    }
 
     val seekBarLiveData = map(seekBarVM.seekBarValueLiveData) { value ->
-        Log.d("voronin", "SeekBar = $value")
         GlobalScope.launch(Dispatchers.Default) {
-            itemsVM.pagedRecyclerAdapter.currentList?.forEach {
-                (it as MinerItemViewModel).initProfit(value)
-                Log.d("voronin", "Name " + it.name + " = $value")
-            }
+            setProfitValue(value)
         }
 
         GlobalScope.launch(Dispatchers.Main) {
             itemsVM.pagedRecyclerAdapter.notifyItemRangeChanged(0, itemsVM.pagedRecyclerAdapter.itemCount)
-//            (0..itemsVM.pagedRecyclerAdapter.itemCount).forEach {
-//                itemsVM.pagedRecyclerAdapter.notifyItemChanged(it)
-//            }
-            Log.d("voronin", "notifyDataSetChanged ")
         }
     }
 
-    val itemsVM: SimplePagedListViewModel<BaseItemViewModel, Any> = SimplePagedListViewModel(
-        MinerItemMapper(),
-        MinerLoader(minerManager),
-        ItemBindingHelper()
-    ) as SimplePagedListViewModel<BaseItemViewModel, Any>
+    private fun setProfitValue(value: Float) {
+        itemsVM.pagedRecyclerAdapter.currentList?.forEach {
+            (it as MinerItemViewModel).initPowerCost(value)
+            Log.d("voronin", "Name " + it.name + " = $value")
+        }
+    }
+
 
     override fun onProfitBtnSelected(isSelected: Boolean) {
 

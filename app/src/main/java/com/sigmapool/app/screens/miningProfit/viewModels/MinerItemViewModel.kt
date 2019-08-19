@@ -13,17 +13,22 @@ import com.sigmapool.common.utils.format
 
 class MinerItemViewModel(val miner: MinerDto) : BaseItemViewModel {
 
-    val name: String = miner.name
+    val name: String = miner.title
     val hashratePower: CharSequence = createHashratePower(miner)
 
     val btcValue: String = createBtcValueText(miner)
 
-    val revenuePowerCost = getCurrencyLabel() + miner.revenueValue + " / " + getCurrencyLabel() + miner.powerCost
+    var revenuePowerCost = ""
     val shutdownPrice: String = getCurrencyLabel() + " " + miner.shutdownPrice
-    var profit = getCurrencyLabel() + " " + (miner.revenueValue - 1.00f)
+    var profit = ""
 
-    fun initProfit(powerCost: Float) {
+    init {
+        initPowerCost(1f)
+    }
+
+    fun initPowerCost(powerCost: Float) {
         profit = getCurrencyLabel() + " " + (miner.revenueValue - powerCost)
+        revenuePowerCost = getCurrencyLabel() + miner.revenueValue + " / " + getCurrencyLabel() + powerCost
     }
 
     companion object {
@@ -34,8 +39,7 @@ class MinerItemViewModel(val miner: MinerDto) : BaseItemViewModel {
         return "$"
     }
 
-    override val itemViewType: Int =
-        itemType
+    override val itemViewType: Int = itemType
 
     override fun areItemsTheSame(item: BaseItemViewModel) = this == item
 

@@ -22,10 +22,7 @@ class SimplePagedListViewModel<ItemViewModel : BaseItemViewModel, ItemDto>(
 
     val pagedRecyclerAdapter = SimplePagedAdapter(bindingHelper)
 
-    private val dataSourceFactory = SimpleDateSourceFactory(
-        loader,
-        mapper
-    )
+    private val dataSourceFactory = SimpleDateSourceFactory(loader, mapper)
 
     private val query = MutableLiveData<String>()
 

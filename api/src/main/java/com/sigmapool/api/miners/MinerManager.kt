@@ -18,7 +18,6 @@ internal class MinerManager(private val minerService: IMinerService) : IMinerMan
                         it.power,
                         it.btcValue,
                         it.revenueValue,
-                        it.powerCost,
                         it.shutdownPrice
                     )
                 }
