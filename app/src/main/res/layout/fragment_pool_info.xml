@@ -17,18 +17,21 @@
             layout="@layout/pool_info_toolbar"
             app:titleVm="@{vm}"
             app:toolbarVm="@{vm}"
-            />
+            />/
         <LinearLayout
-                android:background="@drawable/currency_background_left"
+                android:background="@drawable/miner_background"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
-            <TextView
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:text="TextView"
+            <!-- TODO: disable swipe -->
+            <androidx.viewpager.widget.ViewPager
+                    android:btc_selected="@{vm.btcSelected}"
+                    android:id="@+id/pager"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textView"/>
+                    android:layout_height="match_parent"
+            >
+
+            </androidx.viewpager.widget.ViewPager>
         </LinearLayout>
 
     </LinearLayout>
