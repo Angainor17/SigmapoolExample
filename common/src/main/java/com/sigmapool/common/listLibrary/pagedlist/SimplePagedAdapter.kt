@@ -11,7 +11,7 @@ import com.sigmapool.common.listLibrary.IItemBindingHelper
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModelDiffCallback
 
-class SimplePagedAdapter(private val itemLayoutProvider: IItemBindingHelper) :
+open class SimplePagedAdapter(val itemLayoutProvider: IItemBindingHelper) :
     PagedListAdapter<BaseItemViewModel, SimplePagedAdapter.ViewHolder>(BaseItemViewModelDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,13 +25,6 @@ class SimplePagedAdapter(private val itemLayoutProvider: IItemBindingHelper) :
             )
         )
     }
-
-    override fun getItemCount(): Int {
-        return super.getItemCount()
-//        return itemLayoutProvider.getItemCount()
-    }
-
-    override fun getItemId(position: Int) = position.toLong()
 
     override fun getItemViewType(position: Int): Int {
         return getItem(position)?.itemViewType ?: super.getItemViewType(position)

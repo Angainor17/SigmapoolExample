@@ -1,16 +1,12 @@
 package com.sigmapool.app.screens.miningProfit.viewModels
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.models.Currency
-import com.sigmapool.app.screens.miningProfit.IMinerFragmentModel
-import com.sigmapool.app.screens.miningProfit.MinerBindingHelper
-import com.sigmapool.app.screens.miningProfit.MinerItemMapper
-import com.sigmapool.app.screens.miningProfit.MinerLoader
+import com.sigmapool.app.screens.miningProfit.*
 import com.sigmapool.app.utils.getString
 import com.sigmapool.common.listLibrary.pagedlist.SimplePagedListViewModel
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
@@ -28,7 +24,9 @@ class MiningProfitViewModel(model: IMinerFragmentModel) : ViewModel(), ITitleVie
     private val usdCurrency = Currency(1, 12, 1, R.array.array_first_and_last_1_12, 0)
 
     private val currencyLiveData = MutableLiveData(usdCurrency)
-    val seekBarVM = SeekBarViewModel(currencyLiveData)
+    private val seekBarVM = SeekBarVM(currencyLiveData)
+    private val minerHeaderVM = MinerHeaderVM(seekBarVM)
+    private val minerBindingHelper = MinerBindingHelper()
 
     private val minerManager by kodein.instance<IMinerManager>()
     val itemsVM: SimplePagedListViewModel<BaseItemViewModel, Any>
@@ -37,10 +35,11 @@ class MiningProfitViewModel(model: IMinerFragmentModel) : ViewModel(), ITitleVie
         itemsVM = SimplePagedListViewModel(
             MinerItemMapper(),
             MinerLoader(minerManager),
-            MinerBindingHelper()
+            minerBindingHelper,
+            MiningListAdapter(minerHeaderVM, minerBindingHelper)
         ) as SimplePagedListViewModel<BaseItemViewModel, Any>
 
-//        itemsVM.pagedRecyclerAdapter.currentList?.add(MinerHeaderVM())//submitList()
+        currencyLiveData.value = usdCurrency
     }
 
     val seekBarLiveData = map(seekBarVM.seekBarValueLiveData) { value ->
@@ -49,17 +48,15 @@ class MiningProfitViewModel(model: IMinerFragmentModel) : ViewModel(), ITitleVie
         }
 
         GlobalScope.launch(Dispatchers.Main) {
-            itemsVM.pagedRecyclerAdapter.notifyItemRangeChanged(0, itemsVM.pagedRecyclerAdapter.itemCount)
+            itemsVM.pagedRecyclerAdapter.notifyItemRangeChanged(1, itemsVM.pagedRecyclerAdapter.itemCount)
         }
     }
 
     private fun setProfitValue(value: Float) {
         itemsVM.pagedRecyclerAdapter.currentList?.forEach {
             (it as MinerItemViewModel).initPowerCost(value)
-            Log.d("voronin", "Name " + it.name + " = $value")
         }
     }
-
 
     override fun onProfitBtnSelected(isSelected: Boolean) {
 

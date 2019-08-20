@@ -3,6 +3,7 @@ package com.sigmapool.app.screens.miningProfit
 import androidx.databinding.ViewDataBinding
 import com.sigmapool.app.BR
 import com.sigmapool.app.R
+import com.sigmapool.app.screens.miningProfit.viewModels.MinerHeaderVM
 import com.sigmapool.app.screens.miningProfit.viewModels.MinerItemViewModel
 import com.sigmapool.common.listLibrary.IItemBindingHelper
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
@@ -27,10 +28,14 @@ class MinerBindingHelper : IItemBindingHelper {
         }
     }
 
-    override fun getItemCount(): Int = 1
+    private fun postBinding(db: ViewDataBinding, vm: BaseItemViewModel) {
+        if (vm is MinerItemViewModel) {
+            db.setVariable(BR.vm, vm)
+            return
+        }
 
-}
-
-private fun postBinding(db: ViewDataBinding, vm: BaseItemViewModel) {
-    db.setVariable(BR.vm, vm)
+        if (vm is MinerHeaderVM) {
+            db.setVariable(BR.vm, vm.indicatorSeekBarViewModel)
+        }
+    }
 }

@@ -5,7 +5,7 @@ import kotlinx.coroutines.delay
 
 internal class StubMinerService : IMinerService {
 
-    private val items = List(20) {
+    private val items = List(120) {
         Miner(
             it.toLong(),
             "Antminer S$it Pro",

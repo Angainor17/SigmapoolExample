@@ -20,7 +20,7 @@
 
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:goneIfNotBlank="@{vm.itemsVM.message}"
-                    app:setPagedAdapter="@{vm.itemsVM}"/>
+                    app:setPagedAdapter="@{vm}"/>
 
             <TextView
                     android:layout_width="match_parent"

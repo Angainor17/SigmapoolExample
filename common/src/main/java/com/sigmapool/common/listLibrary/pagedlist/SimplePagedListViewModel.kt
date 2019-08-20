@@ -17,10 +17,9 @@ class SimplePagedListViewModel<ItemViewModel : BaseItemViewModel, ItemDto>(
     mapper: SimpleMapper<ItemDto, ItemViewModel>,
     loader: IItemsLoader<ItemDto>,
     bindingHelper: IItemBindingHelper,
+    val pagedRecyclerAdapter: SimplePagedAdapter = SimplePagedAdapter(bindingHelper),
     itemPerPage: Int = 20
 ) {
-
-    val pagedRecyclerAdapter = SimplePagedAdapter(bindingHelper)
 
     private val dataSourceFactory = SimpleDateSourceFactory(loader, mapper)
 

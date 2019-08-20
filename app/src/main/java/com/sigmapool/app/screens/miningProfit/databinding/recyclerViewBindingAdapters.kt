@@ -8,23 +8,20 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.RecyclerView
 import com.sigmapool.app.screens.miningProfit.viewModels.IMiningProfitToolbarViewModel
-import com.sigmapool.app.screens.miningProfit.viewModels.MinerHeaderVM
-import com.sigmapool.common.listLibrary.pagedlist.SimplePagedListViewModel
+import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitViewModel
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 
 @BindingAdapter("setPagedAdapter")
-fun setPagedAdapter(view: RecyclerView, listVm: SimplePagedListViewModel<BaseItemViewModel, Any>) {
+fun setPagedAdapter(view: RecyclerView, listVm: MiningProfitViewModel) {
     if (view.adapter == null) {
-        listVm.pagedRecyclerAdapter.setHasStableIds(true)
-
-        view.adapter = listVm.pagedRecyclerAdapter
+        view.adapter = listVm.itemsVM.pagedRecyclerAdapter
         val activity = view.context as AppCompatActivity
 
-        listVm.items.observe(activity,
+        listVm.itemsVM.items.observe(activity,
             Observer<PagedList<BaseItemViewModel>?> { t ->
-                //                t?.add( MinerHeaderVM())
-                listVm.pagedRecyclerAdapter.submitList(t)
-                listVm.pagedRecyclerAdapter.currentList?.add( MinerHeaderVM())
+
+                listVm.itemsVM.pagedRecyclerAdapter.submitList(t)
+
             }
         )
     }
