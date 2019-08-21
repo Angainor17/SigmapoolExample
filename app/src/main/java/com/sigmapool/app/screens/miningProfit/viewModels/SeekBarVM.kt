@@ -1,7 +1,6 @@
 package com.sigmapool.app.screens.miningProfit.viewModels
 
 import android.graphics.Color
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.sigmapool.app.R
 import com.sigmapool.app.models.Currency
@@ -16,22 +15,19 @@ import java.text.DecimalFormat
 class SeekBarVM(private val currencyLiveData: MutableLiveData<Currency>) : IIndicatorSeekBarViewModel {
 
     val seekBarValueLiveData = MutableLiveData<Float>()
-    private val seekLabelLiveData = MutableLiveData(getSeekText(currencyLiveData.value?.initValue?.toFloat()))
 
     override fun getStartRange() = currencyLiveData.value?.scaleFrom ?: 1
     override fun getEndRange() = currencyLiveData.value?.scaleTo ?: 12
     override fun getInitValue() = currencyLiveData.value?.initValue ?: 1
     override fun getStep() = currencyLiveData.value?.step ?: 0
-    override fun getDisplayedValue(): LiveData<CharSequence> = seekLabelLiveData
+    override fun getDisplayedValue() = getSeekText(getInitValue().toFloat())
     override fun getArrayRes() = currencyLiveData.value?.stringArrayRes ?: R.array.array_first_and_last_1_12
 
     override fun onChange(value: Float) {
-        val usd = value / 100
-        seekLabelLiveData.postValue(getSeekText(value))
-        seekBarValueLiveData.postValue(usd)
+        seekBarValueLiveData.postValue(value)
     }
 
-    private fun getSeekText(value: Float?): CharSequence =
+    fun getSeekText(value: Float?): CharSequence =
         spannableString(
             getString(R.string.power_cost) + ": " + getString(R.string.kilowatt_hour_prefix) + " ",
             16,

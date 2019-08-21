@@ -2,6 +2,7 @@ package com.sigmapool.app.screens.miningProfit
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import com.sigmapool.app.R
 import com.sigmapool.app.screens.miningProfit.viewModels.MinerHeaderVM
@@ -11,6 +12,12 @@ import com.sigmapool.common.listLibrary.pagedlist.SimplePagedAdapter
 
 class MiningListAdapter(private val minerHeaderVM: MinerHeaderVM, itemLayoutProvider: IItemBindingHelper) :
     SimplePagedAdapter(itemLayoutProvider) {
+
+    private var powerCostTv: TextView? = null
+
+    fun setPowerCost(text: CharSequence) {
+        powerCostTv?.text = text
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         if (viewType == MINER_LIST_HEADER) {
@@ -45,6 +52,7 @@ class MiningListAdapter(private val minerHeaderVM: MinerHeaderVM, itemLayoutProv
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (position == 0) {
+            powerCostTv = holder.itemView.findViewById<TextView>(R.id.powerCostTv)
             holder.bind(minerHeaderVM)
             return
         }

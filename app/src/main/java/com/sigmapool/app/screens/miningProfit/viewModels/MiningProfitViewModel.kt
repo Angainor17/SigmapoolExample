@@ -27,6 +27,7 @@ class MiningProfitViewModel(model: IMinerFragmentModel) : ViewModel(), ITitleVie
     private val seekBarVM = SeekBarVM(currencyLiveData)
     private val minerHeaderVM = MinerHeaderVM(seekBarVM)
     private val minerBindingHelper = MinerBindingHelper()
+    private val minerAdapter = MiningListAdapter(minerHeaderVM, minerBindingHelper)
 
     private val minerManager by kodein.instance<IMinerManager>()
     val itemsVM: SimplePagedListViewModel<BaseItemViewModel, Any>
@@ -36,7 +37,7 @@ class MiningProfitViewModel(model: IMinerFragmentModel) : ViewModel(), ITitleVie
             MinerItemMapper(),
             MinerLoader(minerManager),
             minerBindingHelper,
-            MiningListAdapter(minerHeaderVM, minerBindingHelper)
+            minerAdapter
         ) as SimplePagedListViewModel<BaseItemViewModel, Any>
 
         currencyLiveData.value = usdCurrency
@@ -44,11 +45,13 @@ class MiningProfitViewModel(model: IMinerFragmentModel) : ViewModel(), ITitleVie
 
     val seekBarLiveData = map(seekBarVM.seekBarValueLiveData) { value ->
         GlobalScope.launch(Dispatchers.Default) {
-            setProfitValue(value)
+            val usd = value / 100
+            setProfitValue(usd)
         }
 
         GlobalScope.launch(Dispatchers.Main) {
             itemsVM.pagedRecyclerAdapter.notifyItemRangeChanged(1, itemsVM.pagedRecyclerAdapter.itemCount)
+            minerAdapter.setPowerCost(seekBarVM.getSeekText(value))
         }
     }
 

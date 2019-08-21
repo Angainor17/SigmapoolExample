@@ -8,6 +8,7 @@ import com.sigmapool.app.utils.plus
 import com.sigmapool.app.utils.spannableString
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 import com.sigmapool.common.models.MinerDto
+import com.sigmapool.common.utils.FLOAT_PATTERN
 import com.sigmapool.common.utils.INT_PATTERN
 import com.sigmapool.common.utils.format
 
@@ -27,7 +28,7 @@ class MinerItemViewModel(val miner: MinerDto) : BaseItemViewModel {
     }
 
     fun initPowerCost(powerCost: Float) {
-        profit = getCurrencyLabel() + " " + (miner.revenueValue - powerCost)
+        profit = getCurrencyLabel() + " " + (miner.revenueValue - powerCost).format(FLOAT_PATTERN)
         revenuePowerCost = getCurrencyLabel() + miner.revenueValue + " / " + getCurrencyLabel() + powerCost
     }
 
