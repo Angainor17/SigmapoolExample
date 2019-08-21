@@ -2,7 +2,7 @@ package com.sigmapool.app.screens.poolInfo.databindings
 
 import android.view.View
 import androidx.databinding.BindingAdapter
-import androidx.viewpager.widget.ViewPager
+import com.sigmapool.app.views.SwipeFreeViewPager
 
 @BindingAdapter("android:set_selected")
     fun set_selected(view: View, selected: Boolean) {
@@ -10,6 +10,6 @@ import androidx.viewpager.widget.ViewPager
     }
 
     @BindingAdapter("android:btc_selected")
-    fun setBtcSelected(pager: ViewPager, btcSelected: Boolean){
+    fun setBtcSelected(pager: SwipeFreeViewPager, btcSelected: Boolean){
         pager.currentItem = if(btcSelected) 0 else 1
     }

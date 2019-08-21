@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
 import com.sigmapool.app.R
+import com.sigmapool.app.views.SwipeFreeViewPager
 
 class PoolInfoFragment: Fragment(), IPoolInfoModel {
 
-    lateinit var pager: ViewPager
+    lateinit var pager: SwipeFreeViewPager
     lateinit var pagerAdapter: PagerAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
