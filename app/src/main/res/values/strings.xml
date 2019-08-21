@@ -19,5 +19,12 @@
     <string name="sign_in_api_key">Sign in with API Key</string>
     <string name="or">or</string>
     <string name="pool_info">Pool Info</string>
-
+    <string name="fee">Fee</string>
+    <string name="fpps">FPPS</string>
+    <string name="pps">PPS</string>
+    <string name="dailyProfitPerTHs">Daily Profit Per TH/s (FPPS)</string>
+    <string name="btc">BTC</string>
+    <string name="paymentTime">Payment Time</string>
+    <string name="minimumPayout">Minimum Payout</string>
+    <string name="settlementDetails">Settlement Details</string>
 </resources>

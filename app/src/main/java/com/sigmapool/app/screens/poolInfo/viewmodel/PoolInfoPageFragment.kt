@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.sigmapool.app.R
 
@@ -23,7 +22,6 @@ class PoolInfoPageFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view:View = inflater.inflate(R.layout.pool_info_page_fragment, null)
-        val tvPage: TextView = view.findViewById(R.id.tvPage)
         view.setBackgroundColor(if(pageNumber == 0) Color.RED else Color.CYAN)
         return view
     }
