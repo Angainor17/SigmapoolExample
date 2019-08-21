@@ -13,11 +13,11 @@ internal class MinerManager(private val minerService: IMinerService) : IMinerMan
                 .map {
                     MinerDto(
                         it.id,
-                        it.name,
+                        it.title,
+                        it.coin,
                         it.hashrate,
                         it.power,
-                        it.btcValue,
-                        it.revenueValue,
+                        it.revenue,
                         it.shutdownPrice
                     )
                 }

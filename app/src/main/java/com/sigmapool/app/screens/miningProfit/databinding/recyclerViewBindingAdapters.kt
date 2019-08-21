@@ -19,9 +19,7 @@ fun setPagedAdapter(view: RecyclerView, listVm: MiningProfitViewModel) {
 
         listVm.itemsVM.items.observe(activity,
             Observer<PagedList<BaseItemViewModel>?> { t ->
-
                 listVm.itemsVM.pagedRecyclerAdapter.submitList(t)
-
             }
         )
     }

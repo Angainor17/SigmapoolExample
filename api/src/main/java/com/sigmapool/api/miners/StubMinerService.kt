@@ -9,13 +9,11 @@ internal class StubMinerService : IMinerService {
         Miner(
             it.toLong(),
             "Antminer S$it Pro",
-            56 + (it / 10),
-            2780 + it,
-            11000 + it,
-            20.24f + (it / 10),
-            2.01f + (it / 100),
-            18.23f + (it / 100),
-            18.24f + (it / 100)
+            "btc",
+            10000000000000,
+            2500 + it,
+            20f + (it / 10),
+            15f + (it / 100)
         )
     }
 

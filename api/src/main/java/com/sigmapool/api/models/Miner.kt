@@ -2,12 +2,10 @@ package com.sigmapool.api.models
 
 internal data class Miner(
     val id: Long,
-    val name: String,
-    val hashrate: Int,
+    val title: String,
+    val coin: String,
+    val hashrate: Long,
     val power: Int,
-    val btcValue: Int,
-    val revenueValue: Float,
-    val powerCost: Float,
-    val shutdownPrice: Float,
-    val profit: Float
+    val revenue: Float,
+    val shutdownPrice: Float
 )

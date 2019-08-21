@@ -11,6 +11,8 @@ fun Float.format(pattern: String): String = format(this, pattern)
 
 fun Int.format(pattern: String): String = format(this, pattern)
 
+fun Long.format(pattern: String): String = format(this, pattern)
+
 private fun format(obj: Any, pattern: String) = DecimalFormat(pattern, getDecimalFormatSymbols()).format(obj)
 
 private fun getDecimalFormatSymbols(): DecimalFormatSymbols {

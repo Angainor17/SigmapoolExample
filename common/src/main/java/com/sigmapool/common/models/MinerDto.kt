@@ -3,10 +3,10 @@ package com.sigmapool.common.models
 data class MinerDto(
     val id: Long,
     val title: String,
-    val hashrate: Int,
+    val coin: String,
+    val hashrate: Long,
     val power: Int,
-    val btcValue: Int,
-    val revenueValue: Float,
+    val revenue: Float,
     val shutdownPrice: Float
 
 )
