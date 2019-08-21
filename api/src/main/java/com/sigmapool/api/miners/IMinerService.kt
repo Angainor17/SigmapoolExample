@@ -4,6 +4,6 @@ import com.sigmapool.api.models.Miner
 
 
 internal interface IMinerService {
-    suspend fun getMiners(offset: Int, limit: Int): List<Miner>
+    suspend fun getMiners(page: Int, perPage: Int): List<Miner>
 }
 

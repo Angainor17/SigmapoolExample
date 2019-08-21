@@ -1,8 +1,10 @@
 package com.sigmapool.api.models
 
+import com.sigmapool.api.miners.TitleModel
+
 internal data class Miner(
     val id: Long,
-    val title: String,
+    val title: TitleModel,
     val coin: String,
     val hashrate: Long,
     val power: Int,

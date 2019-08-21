@@ -6,14 +6,14 @@ import com.sigmapool.common.models.MinerDto
 
 internal class MinerManager(private val minerService: IMinerService) : IMinerManager {
 
-    override suspend fun getMiner(offset: Int, limit: Int): ManagerResult<List<MinerDto>> = try {
+    override suspend fun getMiner(page: Int, perPage: Int): ManagerResult<List<MinerDto>> = try {
         ManagerResult(
             minerService
-                .getMiners(offset, limit)
+                .getMiners(page, perPage)
                 .map {
                     MinerDto(
                         it.id,
-                        it.title,
+                        it.title.en,
                         it.coin,
                         it.hashrate,
                         it.power,

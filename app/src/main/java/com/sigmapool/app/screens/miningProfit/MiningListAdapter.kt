@@ -6,14 +6,17 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import com.sigmapool.app.R
 import com.sigmapool.app.screens.miningProfit.viewModels.MinerHeaderVM
+import com.sigmapool.app.screens.miningProfit.viewModels.MinerItemViewModel
 import com.sigmapool.common.listLibrary.IItemBindingHelper
 import com.sigmapool.common.listLibrary.pagedlist.SimplePagedAdapter
+import com.sigmapool.common.models.CoinDto
 
 
 class MiningListAdapter(private val minerHeaderVM: MinerHeaderVM, itemLayoutProvider: IItemBindingHelper) :
     SimplePagedAdapter(itemLayoutProvider) {
 
     private var powerCostTv: TextView? = null
+    var coinInfo: CoinDto? = null
 
     fun setPowerCost(text: CharSequence) {
         powerCostTv?.text = text
@@ -34,7 +37,6 @@ class MiningListAdapter(private val minerHeaderVM: MinerHeaderVM, itemLayoutProv
 
         return super.onCreateViewHolder(parent, viewType)
     }
-
 
     override fun getItemId(position: Int): Long {
         if (position == 0) return -1L
@@ -57,6 +59,10 @@ class MiningListAdapter(private val minerHeaderVM: MinerHeaderVM, itemLayoutProv
             return
         }
         getItem(position - 1)?.let {
+            coinInfo.let { coin ->
+                (it as MinerItemViewModel).initCoin(coin?.btc ?: 0f)
+            }
+
             holder.bind(it)
         }
     }

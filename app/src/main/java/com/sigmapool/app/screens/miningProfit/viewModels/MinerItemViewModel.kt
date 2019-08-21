@@ -33,9 +33,7 @@ class MinerItemViewModel(val miner: MinerDto) : BaseItemViewModel {
         val itemType = MinerItemViewModel::class.hashCode()
     }
 
-    private fun getCurrencyLabel(): String {
-        return "$"
-    }
+    private fun getCurrencyLabel(): String = "$"
 
     override val itemViewType: Int = itemType
 
@@ -46,7 +44,7 @@ class MinerItemViewModel(val miner: MinerDto) : BaseItemViewModel {
     }
 
     private fun createBtcValueText(value: Float) =
-        getString(R.string.btc_caps) + " - " + getCurrencyLabel() + " " + value.format(INT_PATTERN)//FIXME
+        getString(R.string.btc_caps) + " - " + getCurrencyLabel() + " " + value.format(INT_PATTERN)
 
     private fun createHashratePower(miner: MinerDto): CharSequence {
         val hashrate = formatLongValue(miner.hashrate)
@@ -55,6 +53,10 @@ class MinerItemViewModel(val miner: MinerDto) : BaseItemViewModel {
                 hashrate.substring(hashrate.length - 1).spannable(getColor(R.color.titleGray)) +
                 (" / " + miner.power).spannable(Color.BLACK) +
                 getString(R.string.power_postfix).spannable(getColor(R.color.titleGray))
+    }
+
+    fun initCoin(value: Float) {
+        btcValue = createBtcValueText(value)
     }
 }
 

@@ -8,5 +8,4 @@ data class MinerDto(
     val power: Int,
     val revenue: Float,
     val shutdownPrice: Float
-
 )

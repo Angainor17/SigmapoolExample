@@ -8,27 +8,30 @@
         <variable name="vm" type="com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitViewModel"/>
     </data>
 
-        <LinearLayout
-                android:orientation="vertical"
-                android:layout_marginTop="8dp"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:goneIfNotBlank="@{vm.itemsVM.message}"
-                    app:setPagedAdapter="@{vm}"/>
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:setPagedAdapter="@{vm}"/>
 
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="20dp"
-                    android:text="@{vm.itemsVM.message}"
-                    app:goneIfBlank="@{vm.itemsVM.message}"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="@{vm.itemsVM.message}"
 
-        </LinearLayout>
+                app:goneIfBlank="@{vm.itemsVM.message}"
+        />
+
+    </LinearLayout>
 
 </layout>

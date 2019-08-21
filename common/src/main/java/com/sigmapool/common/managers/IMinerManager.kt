@@ -4,5 +4,5 @@ import com.sigmapool.common.models.ManagerResult
 import com.sigmapool.common.models.MinerDto
 
 interface IMinerManager {
-    suspend fun getMiner(offset: Int, limit: Int): ManagerResult<List<MinerDto>>
+    suspend fun getMiner(page: Int, perPage: Int): ManagerResult<List<MinerDto>>
 }
