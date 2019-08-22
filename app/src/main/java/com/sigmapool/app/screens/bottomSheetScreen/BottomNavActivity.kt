@@ -16,14 +16,6 @@ class BottomNavActivity : ColoredToolbarActivity(), IBottomSheetScreen {
 
         binding.lifecycleOwner = this
         binding.vm = vm
-
-//        supportFragmentManager.beginTransaction()//TODO implement navigation
-//            .replace(R.id.container, HomeFragment())
-////            .replace(R.id.container, LoginFragment())
-//            .commitNow()
-    }
-
-    override fun navigate() {
-
+        binding.fragmentManager = supportFragmentManager
     }
 }
