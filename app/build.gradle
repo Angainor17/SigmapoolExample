@@ -36,6 +36,7 @@ dependencies {
     implementation kotlinCore.core
     implementation kotlinCore.coroutine
     implementation kotlinCore.kotlinxCoroutine
+    implementation kotlinCore.reflection
 
     implementation picasso.core
     implementation kodein.core

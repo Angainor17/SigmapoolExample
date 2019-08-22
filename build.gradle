@@ -27,7 +27,8 @@ buildscript {
     ext.kotlinCore = [
             core     : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin",
             coroutine: "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutine",
-            kotlinxCoroutine: "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1"
+            kotlinxCoroutine: "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1",
+            reflection: "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
 
     ]
 

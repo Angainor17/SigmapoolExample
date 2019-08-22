@@ -13,13 +13,21 @@
 
             tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".screens.bottomSheetScreen.BottomNavActivity">
+        <activity
+                android:name=".screens.bottomSheetScreen.BottomNavActivity"
+                android:screenOrientation="portrait"
+        >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+                android:name=".navigation.ContainerActivity"
+                android:screenOrientation="portrait"
+        />
 
     </application>
 

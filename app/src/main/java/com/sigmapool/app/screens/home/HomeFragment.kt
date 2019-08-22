@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.sigmapool.app.databinding.FragmentHomeBinding
+import com.sigmapool.app.navigation.showScreen
 import com.sigmapool.app.screens.home.viewModel.HomeVM
 
 
@@ -19,6 +20,7 @@ class HomeFragment : Fragment() {
 
         val vm = HomeVM()
         vm.urlLiveData.observe(this, Observer { openUrlInBrowser(it) })
+        vm.fragmentLiveData.observe(this, Observer { openFragment(it) })
 
         binding.vm = vm
         binding.lifecycleOwner = this
@@ -29,5 +31,9 @@ class HomeFragment : Fragment() {
     private fun openUrlInBrowser(url: String) {
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(browserIntent)
+    }
+
+    private fun openFragment(fragmentClass: Class<out Fragment>) {
+        showScreen(context!!, fragmentClass)
     }
 }
