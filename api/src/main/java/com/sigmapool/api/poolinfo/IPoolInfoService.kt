@@ -1,11 +1,11 @@
 package com.sigmapool.api.poolinfo
 
-import com.sigmapool.api.models.PoolInfo
+import com.sigmapool.api.models.PoolInfoBtc
 
 
 
 internal interface IPoolInfoService {
-    suspend fun getPoolInfo(): PoolInfo?
+    suspend fun getPoolInfo(): PoolInfoBtc?
 }
 
 /*

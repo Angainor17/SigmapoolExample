@@ -1,6 +1,6 @@
 package com.sigmapool.api.models
 
-data class PoolInfo(
+data class PoolInfoBtc(
     val feePps: Float,
     val feeFpps: Float,
     val settlementTime: String,

@@ -18,12 +18,7 @@ class PoolInfoFragment: Fragment(), IPoolInfoModel {
         val binding = com.sigmapool.app.databinding.FragmentPoolInfoBinding.inflate(inflater, container, false)
         binding.vm = PoolInfoViewModel(this)
         binding.lifecycleOwner = this
-
-
-
         return binding.root
-//        return inflater.inflate(R.layout.fragment_pool_info, container, false)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
