@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
 >
 
     <data>
@@ -8,14 +8,13 @@
 
     <LinearLayout
             android:layout_width="match_parent"
+            android:orientation="vertical"
             android:layout_height="match_parent">
 
-        <TextView
-                android:gravity="center_vertical|center_horizontal"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:text="Home"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+
+        <include
+                layout="@layout/fragment_home_header"
+                app:vm="@{vm}"/>
 
     </LinearLayout>
 
