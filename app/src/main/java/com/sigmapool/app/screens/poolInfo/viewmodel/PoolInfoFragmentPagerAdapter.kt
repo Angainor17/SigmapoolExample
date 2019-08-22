@@ -13,8 +13,11 @@ class PoolInfoFragmentPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(f
     }
 
     override fun getItem(position: Int): Fragment {
-        // TODO: if position==1 btc else ltc
-        return PoolInfoBtcPageFragment.newInstance(position)
+        return when (position) {
+            0 ->  PoolInfoBtcPageFragment.newInstance(position)
+            else -> PoolInfoLtcPageFragment.newInstance(position) // TODO: replace by LtcPageFragment
+        }
+
     }
 
 }

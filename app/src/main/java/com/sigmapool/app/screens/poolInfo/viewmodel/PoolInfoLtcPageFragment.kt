@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.sigmapool.app.R
-import com.sigmapool.app.databinding.PoolInfoBtcPageFragmentBinding
+import com.sigmapool.app.databinding.PoolInfoLtcPageFragmentBinding
 
 
-class PoolInfoBtcPageFragment: Fragment(), IPoolInfoLtcModel {
+class PoolInfoLtcPageFragment: Fragment(), IPoolInfoLtcModel {
 
     var pageNumber: Int = 0
 
@@ -19,16 +19,16 @@ class PoolInfoBtcPageFragment: Fragment(), IPoolInfoLtcModel {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view:View = inflater.inflate(R.layout.pool_info_btc_page_fragment, null)
-        val binding = PoolInfoBtcPageFragmentBinding.inflate(inflater, container, false)
-        binding.vm = PoolInfoBtcViewModel(this)
+        val view:View = inflater.inflate(R.layout.pool_info_ltc_page_fragment, null)
+        val binding = PoolInfoLtcPageFragmentBinding.inflate(inflater, container, false)
+        binding.vm = PoolInfoLtcViewModel(this)
         return binding.root
     }
 
     companion object {
         val ARGUMENT_PAGE_NUMBER: String = "arg_page_number"
         fun newInstance(page: Int): Fragment{
-            val pageFragment = PoolInfoBtcPageFragment()
+            val pageFragment = PoolInfoLtcPageFragment()
             val arguments = Bundle()
             arguments.putInt(ARGUMENT_PAGE_NUMBER, page)
             pageFragment.arguments = arguments
