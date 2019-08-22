@@ -19,13 +19,15 @@ class MinerItemViewModel(val miner: MinerDto) : BaseItemViewModel {
     var revenuePowerCost = ""
     val shutdownPrice: String = getCurrencyLabel() + " " + miner.shutdownPrice
     var profit = ""
+    var profitValue = 0f
 
     init {
         initPowerCost(1f)
     }
 
     fun initPowerCost(powerCost: Float) {
-        profit = getCurrencyLabel() + " " + (miner.revenue - powerCost).format(FLOAT_PATTERN)
+        profitValue = miner.revenue - powerCost
+        profit = getCurrencyLabel() + " " + profitValue.format(FLOAT_PATTERN)
         revenuePowerCost = getCurrencyLabel() + miner.revenue + " / " + getCurrencyLabel() + powerCost
     }
 

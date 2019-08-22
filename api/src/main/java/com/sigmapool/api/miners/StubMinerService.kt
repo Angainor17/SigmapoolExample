@@ -3,6 +3,7 @@ package com.sigmapool.api.miners
 import com.sigmapool.api.models.Miner
 import kotlinx.coroutines.delay
 import retrofit2.Retrofit
+import kotlin.random.Random
 
 internal class StubMinerService(retrofit: Retrofit) : IMinerService {
 
@@ -13,7 +14,7 @@ internal class StubMinerService(retrofit: Retrofit) : IMinerService {
             "btc",
             10000000000000,
             2500 + it,
-            20f + (it / 10),
+            20f + it + Random.nextInt(0, 10) + (Random.nextInt(0, 10) / 100),
             15f + (it / 100)
         )
     }

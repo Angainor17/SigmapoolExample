@@ -91,7 +91,7 @@ class MiningProfitViewModel(model: IMinerFragmentModel) : ViewModel(), ITitleVie
     }
 
     private fun refreshMinersList() {
-         itemsVM.pagedRecyclerAdapter.notifyItemRangeChanged(1, itemsVM.pagedRecyclerAdapter.itemCount)
+        itemsVM.pagedRecyclerAdapter.notifyItemRangeChanged(1, itemsVM.pagedRecyclerAdapter.itemCount)
     }
 
     private fun setProfitValue(value: Float) {
@@ -110,8 +110,25 @@ class MiningProfitViewModel(model: IMinerFragmentModel) : ViewModel(), ITitleVie
         }
     }
 
-    override fun onProfitBtnSelected(isSelected: Boolean) {
-
+    override fun onProfitBtnSelected(isUpSort: Boolean) {
+        //TODO implement sort
+//        val listBefore = ArrayList<MinerItemViewModel>()
+//        itemsVM.pagedRecyclerAdapter.currentList?.forEach {
+//            listBefore.add(it as MinerItemViewModel)
+//        }
+//
+//        val listAfter = listBefore.sortedWith(Comparator { o1, o2 ->
+//            (if (isUpSort) -1 else 1) * o1.profitValue.compareTo(o2.profitValue)
+//        })
+//        val newIndexes = ArrayList<Int>()
+//
+//        listBefore.forEach {
+//            newIndexes.add(listAfter.indexOf(it))
+//        }
+//
+//        newIndexes.forEachIndexed { index, item ->
+//            minerAdapter.notifyItemMoved(index + 1, item + 1)
+//        }
     }
 
     override fun getTitle() = MutableLiveData<String>().apply { value = getString(R.string.mining_profit) }
