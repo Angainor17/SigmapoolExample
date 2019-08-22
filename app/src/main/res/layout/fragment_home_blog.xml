@@ -9,18 +9,43 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#EFF3F7"
     >
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:background="@drawable/gradient_status_bar"
-                android:layout_height="30dp"
+                android:layout_height="50dp"
 
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
         />
 
+        <ss.com.bannerslider.Slider
+                android:id="@+id/banner_slider"
+
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                app:setImages="@{vm.blogImages}"
+                app:onImageClick="@{vm}"
+
+                app:slider_hideIndicators="true"
+
+                app:slider_interval="10000"
+                app:slider_loopSlides="true"
+                app:slider_animateIndicators="true"
+                app:slider_selectedSlideIndicator="@null"
+                app:slider_unselectedSlideIndicator="@null"
+                app:slider_indicatorSize="0dp"
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+        />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

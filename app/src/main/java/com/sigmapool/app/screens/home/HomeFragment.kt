@@ -29,6 +29,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun openUrlInBrowser(url: String) {
+        if (url.isEmpty()) return
+
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(browserIntent)
     }

@@ -33,6 +33,8 @@ dependencies {
     implementation project(path: ':api')
     implementation project(path: ':common')
 
+    implementation bannerslider.core
+
     implementation kotlinCore.core
     implementation kotlinCore.coroutine
     implementation kotlinCore.kotlinxCoroutine
