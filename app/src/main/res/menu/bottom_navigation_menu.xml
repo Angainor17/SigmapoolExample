@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-
     <item
             android:id="@+id/home"
 
@@ -21,7 +20,6 @@
 
             android:icon="@mipmap/ic_workers"
             android:title="@string/workers_screen_icon_title"
-
     />
 
     <item

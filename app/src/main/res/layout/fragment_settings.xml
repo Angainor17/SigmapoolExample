@@ -3,7 +3,7 @@
 >
 
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.home.viewModel.HomeVM"/>
+        <variable name="vm" type="com.sigmapool.app.screens.settings.viewModel.SettingsVM"/>
     </data>
 
     <LinearLayout
@@ -14,7 +14,7 @@
         <TextView
                 android:gravity="center_horizontal|center_vertical"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:text="Home"
+                android:text="Settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
