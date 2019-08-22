@@ -16,6 +16,11 @@
                 layout="@layout/fragment_home_header"
                 app:vm="@{vm}"/>
 
+
+        <include
+                layout="@layout/fragment_home_blog"
+                app:vm="@{vm}"/>
+
     </LinearLayout>
 
 </layout>
