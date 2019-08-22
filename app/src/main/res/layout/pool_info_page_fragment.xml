@@ -32,6 +32,7 @@
             </TextView>
 
             <TextView
+                    style="@style/ItemValue"
                     android:id="@+id/fppsValue"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
@@ -57,7 +58,7 @@
                     android:text="@string/pps">
             </TextView>
             <TextView
-
+                    style="@style/ItemValue"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
 
@@ -67,7 +68,7 @@
             </TextView>
         </RelativeLayout>
 
-        <View style="@style/Divider"/>
+        <View style="@style/DividerPoolInfo"/>
 
         <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
             <TextView
@@ -79,6 +80,7 @@
             </TextView>
 
             <TextView
+                    style="@style/ItemValue"
                     android:id="@+id/profitValue"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
@@ -95,7 +97,7 @@
             </TextView>
         </RelativeLayout>
 
-        <View style="@style/Divider"/>
+        <View style="@style/DividerPoolInfo"/>
 
         <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
             <TextView
@@ -106,7 +108,7 @@
                     android:text="@string/paymentTime">
             </TextView>
             <TextView
-                    style="@style/ItemLabel"
+                    style="@style/ItemValue"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -116,7 +118,7 @@
 
         </RelativeLayout>
 
-        <View style="@style/Divider"/>
+        <View style="@style/DividerPoolInfo"/>
 
         <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
             <TextView
@@ -128,6 +130,7 @@
             </TextView>
 
             <TextView
+                    style="@style/ItemValue"
                     android:id="@+id/minimumPayoutValue"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
@@ -148,7 +151,7 @@
 
         </RelativeLayout>
 
-        <View style="@style/Divider"/>
+        <View style="@style/DividerPoolInfo"/>
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -158,14 +161,33 @@
                     style="@style/ItemLabel"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:layout_alignParentStart="true"
                     android:text="@string/settlementDetails">
             </TextView>
             <TextView
+                    style="@style/ItemValue"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:layout_alignParentStart="true"
                     android:text="Lorem ipsum lorem ipsum lorem ipsum long long long lorem ipsum, as long as possible ">
+            </TextView>
+        </LinearLayout>
+
+        <View style="@style/DividerPoolInfo"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <TextView
+                    style="@style/ItemLabel"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/miningURL">
+            </TextView>
+            <TextView
+
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="There is lack a lot of URLs">
             </TextView>
         </LinearLayout>
     </LinearLayout>

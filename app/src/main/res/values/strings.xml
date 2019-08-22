@@ -27,4 +27,5 @@
     <string name="paymentTime">Payment Time</string>
     <string name="minimumPayout">Minimum Payout</string>
     <string name="settlementDetails">Settlement Details</string>
+    <string name="miningURL">Mining URL</string>
 </resources>
