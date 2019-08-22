@@ -21,7 +21,7 @@ class BottomNavVM(val bottomSheetScreen: IBottomSheetScreen) : ViewModel(),
         R.id.home -> 0
         R.id.dashboard -> 1
         R.id.workers -> 2
-        R.id.charges -> 3
+        R.id.earnings -> 3
         R.id.settings -> 4
         else -> 0
     }

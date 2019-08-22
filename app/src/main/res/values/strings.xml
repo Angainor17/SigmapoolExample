@@ -21,7 +21,7 @@
     <string name="home_screen_icon_title">Главная</string>
     <string name="dashboard_screen_icon_title">Дашборд</string>
     <string name="workers_screen_icon_title">Воркеры</string>
-    <string name="charges_screen_icon_title">Начисления</string>
+    <string name="earnings_screen_icon_title">Начисления</string>
     <string name="settings_screen_icon_title">Настройки</string>
 
 
