@@ -2,4 +2,7 @@
 <resources>
     <color name="green">#C6FFC1</color>
     <color name="violet">#6A52C1</color>
+
+    <color name="menu_gray">#A1A1A1</color>
+    <color name="home_bg_color">#EFF3F7</color>
 </resources>
