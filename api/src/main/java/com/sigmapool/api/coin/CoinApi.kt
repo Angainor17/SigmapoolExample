@@ -6,5 +6,5 @@ import retrofit2.http.GET
 internal interface CoinApi {
 
     @GET("api/v2/coin")
-    suspend fun getMiners(): PayloadModel<CoinResponse>
+    suspend fun getCoin(): PayloadModel<CoinResponse>
 }

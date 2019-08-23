@@ -61,7 +61,7 @@ class MiningListAdapter(private val minerHeaderVM: MinerHeaderVM, itemLayoutProv
 
         getItem(position - 1)?.let {
             coinInfo.let { coin ->
-                (it as MinerItemViewModel).initCoin(coin?.btc ?: 0f)
+                (it as MinerItemViewModel).initCoin(coin?.price ?: 0f)
             }
 
             holder.bind(it)

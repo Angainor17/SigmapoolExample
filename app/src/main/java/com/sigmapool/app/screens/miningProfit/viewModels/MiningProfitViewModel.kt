@@ -70,7 +70,7 @@ class MiningProfitViewModel(val view: IMinerFragmentModel) : ViewModel(), ITitle
         if (!json.isNullOrEmpty()) {
             val coinDto: CoinDto = Gson().fromJson(json, CoinDto::class.java)
             setCoin(coinDto)
-            setCoinValue(coinDto.btc)
+            setCoinValue(coinDto.price)
             return
         }
 
@@ -78,7 +78,7 @@ class MiningProfitViewModel(val view: IMinerFragmentModel) : ViewModel(), ITitle
             val coin = coinManager.getCoin()
             if (coin.success) {
                 setCoin(coin.data!!)
-                setCoinValue(coin.data?.btc ?: 0f)
+                setCoinValue(coin.data?.price ?: 0f)
                 jsonDataStorage.getJson(COIN_TAG, "")
             }
         }

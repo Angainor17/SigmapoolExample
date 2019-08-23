@@ -2,8 +2,8 @@ package com.sigmapool.api.kodein
 
 import com.sigmapool.api.blog.BlogService
 import com.sigmapool.api.blog.IBlogService
+import com.sigmapool.api.coin.CoinService
 import com.sigmapool.api.coin.ICoinService
-import com.sigmapool.api.coin.StubCoinService
 import com.sigmapool.api.login.ILoginService
 import com.sigmapool.api.login.LoginService
 import com.sigmapool.api.miners.IMinerService
@@ -19,7 +19,7 @@ const val LTC = "ltc"
 internal val serviceModule = Module("ServiceModule") {
 
     bind<IBlogService>() with singleton { BlogService(instance(BTC)) }
-    bind<ICoinService>() with singleton { StubCoinService(instance(BTC)) }
+    bind<ICoinService>() with singleton { CoinService(instance(BTC)) }
     bind<IMinerService>() with singleton { StubMinerService(instance(BTC)) }
     bind<ILoginService>() with singleton { LoginService(instance(BTC)) }
 }

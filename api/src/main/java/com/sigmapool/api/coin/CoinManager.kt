@@ -7,7 +7,16 @@ import com.sigmapool.common.models.ManagerResult
 internal class CoinManager(private val service: ICoinService) : ICoinManager {
 
     override suspend fun getCoin(): ManagerResult<CoinDto> = try {
-        ManagerResult(CoinDto(service.getCoin().btc))
+        val coinResponse = service.getCoin()
+        ManagerResult(
+            CoinDto(
+                coinResponse.poolHashrate,
+                coinResponse.poolWorkers,
+                coinResponse.payoutScheme,
+                coinResponse.price,
+                coinResponse.previousPrice
+            )
+        )
     } catch (e: Throwable) {
         ManagerResult(error = e.message)
     }
