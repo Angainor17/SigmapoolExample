@@ -1,10 +1,7 @@
 package com.sigmapool.api.pool
 
 import com.sigmapool.common.managers.IPoolManager
-import com.sigmapool.common.models.CoinDto
-import com.sigmapool.common.models.ManagerResult
-import com.sigmapool.common.models.PaymentDto
-import com.sigmapool.common.models.TimeIntervalDto
+import com.sigmapool.common.models.*
 
 internal class PoolManager(private val service: IPoolService) : IPoolManager {
 
@@ -29,6 +26,22 @@ internal class PoolManager(private val service: IPoolService) : IPoolManager {
             PaymentDto(
                 TimeIntervalDto(response.time.from, response.time.from),
                 response.min
+            )
+        )
+    } catch (e: Throwable) {
+        ManagerResult(error = e.message)
+    }
+
+    override suspend fun getNetwork(): ManagerResult<NetworkDto> = try {
+        val response = service.getNetwork()
+        ManagerResult(
+            NetworkDto(
+                response.blockReward,
+                response.blockTime,
+                response.networkHashrate,
+                response.networkDifficulty,
+                response.blockHeight,
+                response.nextDifficultyAt
             )
         )
     } catch (e: Throwable) {
