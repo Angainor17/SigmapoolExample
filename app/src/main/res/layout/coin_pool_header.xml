@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+>
+
+    <data>
+        <variable name="vm" type="com.sigmapool.app.screens.home.coin.CoinItemVM"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+    >
+
+        <ImageView
+                android:id="@+id/coinIcon"
+
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                tools:src="@mipmap/ic_btc"
+        />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/google_sans_medium"
+                android:textColor="@color/black"
+                android:text="@{vm.coinLabel}"
+                android:textSize="17dp"
+                android:layout_marginStart="8dp"
+
+                app:layout_constraintStart_toEndOf="@+id/coinIcon"
+                app:layout_constraintTop_toTopOf="@+id/coinIcon"
+                app:layout_constraintBottom_toBottomOf="@+id/coinIcon"
+
+                tools:text="BTC"
+        />
+
+        <TextView
+                android:id="@+id/coinPrice"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/google_sans_medium"
+                android:textColor="@color/black"
+                android:layout_marginEnd="16dp"
+                android:text="@{vm.coinPrice}"
+                android:textSize="17dp"
+
+                app:layout_constraintTop_toTopOf="@+id/coinPriceChange"
+                app:layout_constraintBottom_toBottomOf="@+id/coinPriceChange"
+                app:layout_constraintEnd_toStartOf="@+id/coinPriceChange"
+
+                tools:text="$ 12000"
+        />
+
+        <Button
+                android:id="@+id/coinPriceChange"
+                style="@style/IconBtn"
+
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:background="@drawable/price_change_background"
+                android:drawableStart="@drawable/triangle_icon"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:drawablePadding="1dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@{vm.coinPriceChange}"
+
+                app:onActivatedChange="@{vm.isCoinPriceUp}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                tools:text="8.54 %"
+        />
+
+        <ImageView
+                android:id="@+id/chart"
+
+                android:src="@mipmap/chart_stub"
+                android:layout_width="match_parent"
+                android:adjustViewBounds="true"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/coinPrice"
+
+                android:layout_marginTop="8dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

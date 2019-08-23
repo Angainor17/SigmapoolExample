@@ -5,4 +5,5 @@
 
     <color name="menu_gray">#A1A1A1</color>
     <color name="home_bg_color">#EFF3F7</color>
+    <color name="separator_color">#C2E6E9EC</color>
 </resources>

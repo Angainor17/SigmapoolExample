@@ -17,7 +17,8 @@ val managersModule = Kodein.Module("ManagersModule") {
     import(serviceModule)
 
     bind<IBlogManager>() with singleton { BlogManager(instance()) }
-    bind<IPoolManager>() with singleton { PoolManager(instance()) }
+    bind<IPoolManager>(BTC) with singleton { PoolManager(instance(BTC)) }
+    bind<IPoolManager>(LTC) with singleton { PoolManager(instance(LTC)) }
     bind<IMinerManager>() with singleton { MinerManager(instance()) }
     bind<ILoginManager>() with singleton { LoginManager(instance()) }
 }

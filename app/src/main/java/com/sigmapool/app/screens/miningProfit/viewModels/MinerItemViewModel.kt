@@ -2,6 +2,7 @@ package com.sigmapool.app.screens.miningProfit.viewModels
 
 import android.graphics.Color
 import com.sigmapool.app.R
+import com.sigmapool.app.provider.currency.ICurrencyProvider
 import com.sigmapool.app.utils.*
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 import com.sigmapool.common.models.MinerDto
@@ -9,7 +10,10 @@ import com.sigmapool.common.utils.FLOAT_PATTERN
 import com.sigmapool.common.utils.INT_PATTERN
 import com.sigmapool.common.utils.format
 
-class MinerItemViewModel(val miner: MinerDto) : BaseItemViewModel {
+class MinerItemViewModel(
+    private val currencyProvider: ICurrencyProvider,
+    private val miner: MinerDto
+) : BaseItemViewModel {
 
     val name: String = miner.title
     val hashratePower: CharSequence = createHashratePower(miner)
@@ -35,7 +39,7 @@ class MinerItemViewModel(val miner: MinerDto) : BaseItemViewModel {
         val itemType = MinerItemViewModel::class.hashCode()
     }
 
-    private fun getCurrencyLabel(): String = "$"
+    private fun getCurrencyLabel(): String = currencyProvider.getSymbol().toString()
 
     override val itemViewType: Int = itemType
 

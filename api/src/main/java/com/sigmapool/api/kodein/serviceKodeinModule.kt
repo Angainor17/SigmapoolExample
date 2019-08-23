@@ -19,7 +19,8 @@ const val LTC = "ltc"
 internal val serviceModule = Module("ServiceModule") {
 
     bind<IBlogService>() with singleton { BlogService(instance(BTC)) }
-    bind<IPoolService>() with singleton { PoolService(instance(BTC)) }
+    bind<IPoolService>(BTC) with singleton { PoolService(instance(BTC)) }
+    bind<IPoolService>(LTC) with singleton { PoolService(instance(LTC)) }
     bind<IMinerService>() with singleton { StubMinerService(instance(BTC)) }
     bind<ILoginService>() with singleton { LoginService(instance(BTC)) }
 }

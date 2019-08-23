@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
 >
 
     <data>
         <variable name="vm" type="com.sigmapool.app.screens.home.coin.CoinItemVM"/>
     </data>
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:background="#E5E5E5"
 
-            android:background="#0B549C"
+            app:cardCornerRadius="8dp"
     >
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+        >
 
-    </LinearLayout>
+            <include
+                    layout="@layout/coin_pool_header"
+                    app:vm="@{vm}"
+            />
+
+            <include
+                    layout="@layout/coin_pool_info"
+                    app:vm="@{vm}"
+            />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </layout>

@@ -3,6 +3,7 @@ package com.sigmapool.app
 import android.app.Application
 import android.content.Context
 import com.sigmapool.api.kodein.managersModule
+import com.sigmapool.app.kodein.providersModule
 import com.sigmapool.app.kodein.retrofitModule
 import com.sigmapool.app.utils.JsonDataStorage
 import com.sigmapool.app.utils.slider.PicassoImageLoadingService
@@ -21,6 +22,7 @@ class App : Application() {
         kodein = Kodein {
             import(retrofitModule)
             import(managersModule)
+            import(providersModule)
 
             bind<Context>() with singleton { this@App }
             bind<JsonDataStorage>() with singleton { JsonDataStorage(instance()) }

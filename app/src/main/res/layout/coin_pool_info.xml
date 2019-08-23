@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+>
+
+    <data>
+        <variable name="vm" type="com.sigmapool.app.screens.home.coin.CoinItemVM"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+    >
+
+        <TextView
+                android:id="@+id/poolHashrateLabel"
+                style="@style/PoolTitle"
+
+                android:text="@string/pool_hashrate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+        />
+
+        <TextView
+                android:id="@+id/poolHashrate"
+                style="@style/PoolText"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{vm.poolHashrate}"
+
+                app:layout_constraintTop_toBottomOf="@+id/poolHashrateLabel"
+                app:layout_constraintStart_toStartOf="@+id/poolHashrateLabel"
+
+                tools:text="156.25 PH/s"
+        />
+
+        <TextView
+                android:id="@+id/workerCountLabel"
+                style="@style/PoolTitle"
+
+                android:text="@string/worker_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.7"
+        />
+
+        <TextView
+                android:id="@+id/workerCount"
+                style="@style/PoolText"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{vm.workerCount}"
+
+                app:layout_constraintTop_toBottomOf="@+id/workerCountLabel"
+                app:layout_constraintStart_toStartOf="@+id/workerCountLabel"
+
+                tools:text="10 000"
+        />
+
+        <TextView
+                android:id="@+id/minPaymentLabel"
+                style="@style/PoolTitle"
+
+                android:text="@string/min_payment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/poolHashrate"
+        />
+
+        <TextView
+                android:id="@+id/minPayment"
+                style="@style/PoolText"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{vm.minPayment}"
+
+                app:layout_constraintStart_toStartOf="@+id/minPaymentLabel"
+                app:layout_constraintTop_toBottomOf="@+id/minPaymentLabel"
+
+                tools:text="0.001 BTC"
+        />
+
+        <TextView
+                android:id="@+id/paymentTimeLabel"
+                style="@style/PoolTitle"
+
+                android:text="@string/payment_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+
+                app:layout_constraintTop_toBottomOf="@+id/workerCount"
+                app:layout_constraintStart_toStartOf="@+id/workerCount"
+        />
+
+        <TextView
+                android:id="@+id/paymentTime"
+                style="@style/PoolText"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{vm.paymentTime}"
+
+                app:layout_constraintTop_toBottomOf="@+id/paymentTimeLabel"
+                app:layout_constraintStart_toStartOf="@+id/paymentTimeLabel"
+
+                tools:text="9:00-12:00"
+        />
+
+        <TextView
+                android:id="@+id/payoutSchemeLabel"
+                style="@style/PoolTitle"
+
+                android:text="@string/payoutScheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+
+                app:layout_constraintTop_toBottomOf="@+id/minPayment"
+                app:layout_constraintStart_toStartOf="@+id/minPayment"
+        />
+
+        <TextView
+                android:id="@+id/payoutScheme"
+                style="@style/PoolText"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{vm.payoutScheme}"
+
+                app:layout_constraintStart_toStartOf="@+id/payoutSchemeLabel"
+                app:layout_constraintTop_toBottomOf="@+id/payoutSchemeLabel"
+
+                tools:text="PPS/FPPS"
+        />
+
+        <TextView
+                android:id="@+id/profitLabel"
+                style="@style/PoolTitle"
+
+                android:text="@string/profitLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+
+                app:layout_constraintTop_toBottomOf="@+id/paymentTime"
+                app:layout_constraintStart_toStartOf="@+id/paymentTime"
+        />
+
+        <TextView
+                android:id="@+id/profit"
+                style="@style/PoolText"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{vm.profit}"
+
+                app:layout_constraintTop_toBottomOf="@+id/profitLabel"
+                app:layout_constraintStart_toStartOf="@+id/profitLabel"
+
+                tools:text="0.00003750 BTC"
+        />
+
+        <View
+                android:id="@+id/separator"
+                android:background="@color/separator_color"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/payoutScheme"
+                app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
