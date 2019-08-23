@@ -3,6 +3,8 @@ package com.sigmapool.api.pool
 import com.sigmapool.common.managers.IPoolManager
 import com.sigmapool.common.models.CoinDto
 import com.sigmapool.common.models.ManagerResult
+import com.sigmapool.common.models.PaymentDto
+import com.sigmapool.common.models.TimeIntervalDto
 
 internal class PoolManager(private val service: IPoolService) : IPoolManager {
 
@@ -15,6 +17,18 @@ internal class PoolManager(private val service: IPoolService) : IPoolManager {
                 coinResponse.payoutScheme,
                 coinResponse.price,
                 coinResponse.previousPrice
+            )
+        )
+    } catch (e: Throwable) {
+        ManagerResult(error = e.message)
+    }
+
+    override suspend fun getPayment(): ManagerResult<PaymentDto> = try {
+        val response = service.getPayment()
+        ManagerResult(
+            PaymentDto(
+                TimeIntervalDto(response.time.from, response.time.from),
+                response.min
             )
         )
     } catch (e: Throwable) {

@@ -1,10 +1,15 @@
 package com.sigmapool.api.pool
 
 import com.sigmapool.api.models.PayloadModel
+import com.sigmapool.api.pool.models.CoinResponse
+import com.sigmapool.api.pool.models.PaymentResponse
 import retrofit2.http.GET
 
 internal interface PoolApi {
 
     @GET("api/v2/coin")
     suspend fun getCoin(): PayloadModel<CoinResponse>
+
+    @GET("api/v2/payment")
+    suspend fun getPayment(): PayloadModel<PaymentResponse>
 }
