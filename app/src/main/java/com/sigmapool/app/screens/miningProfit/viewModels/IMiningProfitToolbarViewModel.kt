@@ -4,4 +4,6 @@ interface IMiningProfitToolbarViewModel {
 
     fun onProfitBtnSelected(isUpSort: Boolean)
 
+    fun backBtnClick()
+
 }

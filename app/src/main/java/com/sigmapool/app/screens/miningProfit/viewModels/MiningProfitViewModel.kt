@@ -24,7 +24,7 @@ import org.kodein.di.generic.instance
 const val COIN_TAG = "coin"
 const val GOOGLE_FONT_FAMILY = "Google Sans"//FIXME
 
-class MiningProfitViewModel(model: IMinerFragmentModel) : ViewModel(), ITitleViewModel, IMiningProfitToolbarViewModel {
+class MiningProfitViewModel(val view: IMinerFragmentModel) : ViewModel(), ITitleViewModel, IMiningProfitToolbarViewModel {
 
     private val usdCurrency = Currency(1, 12, 1, R.array.array_first_and_last_1_12, 0)
 
@@ -108,6 +108,10 @@ class MiningProfitViewModel(model: IMinerFragmentModel) : ViewModel(), ITitleVie
         GlobalScope.launch(Dispatchers.Main) {
             refreshMinersList()
         }
+    }
+
+    override fun backBtnClick() {
+        view.backBtnClick()
     }
 
     override fun onProfitBtnSelected(isUpSort: Boolean) {

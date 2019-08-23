@@ -19,4 +19,8 @@ class MiningProfitFragment : Fragment(), IMinerFragmentModel {
         binding.lifecycleOwner = this
         return binding.root
     }
+
+    override fun backBtnClick() {
+        activity?.onBackPressed()
+    }
 }
