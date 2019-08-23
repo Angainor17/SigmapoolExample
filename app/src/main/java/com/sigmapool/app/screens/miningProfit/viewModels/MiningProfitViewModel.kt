@@ -12,8 +12,8 @@ import com.sigmapool.app.utils.JsonDataStorage
 import com.sigmapool.app.utils.getString
 import com.sigmapool.common.listLibrary.pagedlist.SimplePagedListViewModel
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
-import com.sigmapool.common.managers.ICoinManager
 import com.sigmapool.common.managers.IMinerManager
+import com.sigmapool.common.managers.IPoolManager
 import com.sigmapool.common.models.CoinDto
 import com.sigmapool.common.viewModels.ITitleViewModel
 import kotlinx.coroutines.Dispatchers
@@ -35,7 +35,7 @@ class MiningProfitViewModel(val view: IMinerFragmentModel) : ViewModel(), ITitle
     private val minerAdapter = MiningListAdapter(minerHeaderVM, minerBindingHelper)
 
     private val minerManager by kodein.instance<IMinerManager>()
-    private val coinManager by kodein.instance<ICoinManager>()
+    private val coinManager by kodein.instance<IPoolManager>()
     private val jsonDataStorage by kodein.instance<JsonDataStorage>()
 
     private var coinInfo: CoinDto? = null

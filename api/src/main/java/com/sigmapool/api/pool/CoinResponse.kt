@@ -1,4 +1,4 @@
-package com.sigmapool.api.coin
+package com.sigmapool.api.pool
 
 internal class CoinResponse(
     val poolHashrate: Long,
