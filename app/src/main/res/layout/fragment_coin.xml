@@ -3,7 +3,7 @@
 >
 
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.home.viewModel.CoinItemVM"/>
+        <variable name="vm" type="com.sigmapool.app.screens.home.coin.CoinItemVM"/>
     </data>
 
     <LinearLayout

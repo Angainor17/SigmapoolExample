@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.sigmapool.app.databinding.FragmentCoinBinding
-import com.sigmapool.app.screens.home.viewModel.CoinItemVM
 
 class CoinFragment(private val vm: CoinItemVM) : Fragment() {
 

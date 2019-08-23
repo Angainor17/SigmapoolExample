@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.sigmapool.app.screens.home.coin.CoinFragment
-import com.sigmapool.app.screens.home.viewModel.CoinItemVM
+import com.sigmapool.app.screens.home.coin.CoinItemVM
 
 class CoinViewPagerAdapter(
     private val items: ArrayList<CoinItemVM>,

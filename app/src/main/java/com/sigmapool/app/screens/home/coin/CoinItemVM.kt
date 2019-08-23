@@ -1,4 +1,4 @@
-package com.sigmapool.app.screens.home.viewModel
+package com.sigmapool.app.screens.home.coin
 
 import androidx.lifecycle.ViewModel
 
