@@ -27,6 +27,9 @@ class HomeVM : ViewModel(), OnSlideClickListener {
     val fragmentLiveData = MutableLiveData<Class<out Fragment>>()
     val blogImages = MutableLiveData<ArrayList<BlogDto>>()
 
+    val homeMenuVM = HomeMenuVM(fragmentLiveData)
+    val coinsVM = CoinsVM()
+
     init {
         initBlogBanner()
     }

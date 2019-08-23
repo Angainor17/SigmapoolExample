@@ -1,5 +1,6 @@
 package com.sigmapool.app.utils
 
+import android.widget.ImageView
 import android.widget.RadioButton
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.FragmentManager
@@ -37,8 +38,13 @@ fun onScreenChange(view: FragmentViewPager, position: Int) {
     view.currentItem = position
 }
 
-@BindingAdapter("app:setImages","app:onImageClick", requireAll = true)
-fun setImages(slider: Slider, items: ArrayList<BlogDto>?,  listener: OnSlideClickListener?) {
+@BindingAdapter("app:src")
+fun imageMipmapSrc(view: ImageView, mipmapRes: Int) {
+    view.setImageResource(mipmapRes)
+}
+
+@BindingAdapter("app:setImages", "app:onImageClick", requireAll = true)
+fun setImages(slider: Slider, items: ArrayList<BlogDto>?, listener: OnSlideClickListener?) {
     items.let {
         val adapter = it?.let { it1 -> MainSliderAdapter(it1) }
         slider.setAdapter(adapter)

@@ -25,6 +25,9 @@
     <string name="settings_screen_icon_title">Настройки</string>
     <string name="registration">Регистрация</string>
     <string name="enter">Вход</string>
+    <string name="pool_info">Pool Info</string>
+    <string name="calculator">Calculator</string>
+    <string name="news">News</string>
 
 
 </resources>

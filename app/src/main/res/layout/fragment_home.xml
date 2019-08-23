@@ -9,17 +9,31 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:background="#EFF3F7"
             android:layout_height="match_parent">
-
 
         <include
                 layout="@layout/fragment_home_header"
                 app:vm="@{vm}"/>
 
-
         <include
                 layout="@layout/fragment_home_blog"
                 app:vm="@{vm}"/>
+
+        <include
+                layout="@layout/fragment_home_menu"
+                app:vm="@{vm.homeMenuVM}"/>
+
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <include
+                    layout="@layout/fragment_home_coin"
+                    app:vm="@{vm.coinsVM}"/>
+
+        </ScrollView>
 
     </LinearLayout>
 
