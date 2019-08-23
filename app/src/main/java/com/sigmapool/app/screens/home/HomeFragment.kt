@@ -23,6 +23,7 @@ class HomeFragment : Fragment() {
         vm.fragmentLiveData.observe(this, Observer { openFragment(it) })
 
         binding.vm = vm
+        binding.fragmentManager = childFragmentManager
         binding.lifecycleOwner = this
 
         return binding.root

@@ -4,37 +4,42 @@
 
     <data>
         <variable name="vm" type="com.sigmapool.app.screens.home.viewModel.HomeVM"/>
+        <variable name="fragmentManager" type="androidx.fragment.app.FragmentManager"/>
     </data>
 
-    <LinearLayout
+    <ScrollView
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:background="#EFF3F7"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-        <include
-                layout="@layout/fragment_home_header"
-                app:vm="@{vm}"/>
-
-        <include
-                layout="@layout/fragment_home_blog"
-                app:vm="@{vm}"/>
-
-        <include
-                layout="@layout/fragment_home_menu"
-                app:vm="@{vm.homeMenuVM}"/>
-
-
-        <ScrollView
+        <LinearLayout
                 android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="#EFF3F7"
                 android:layout_height="wrap_content">
 
             <include
+                    layout="@layout/fragment_home_header"
+                    app:vm="@{vm}"
+            />
+
+            <include
+                    layout="@layout/fragment_home_blog"
+                    app:vm="@{vm}"
+            />
+
+            <include
+                    layout="@layout/fragment_home_menu"
+                    app:vm="@{vm.homeMenuVM}"
+            />
+
+            <include
                     layout="@layout/fragment_home_coin"
-                    app:vm="@{vm.coinsVM}"/>
+                    app:vm="@{vm.coinsVM}"
+                    app:fragmentManager="@{fragmentManager}"
+            />
 
-        </ScrollView>
+        </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
 </layout>

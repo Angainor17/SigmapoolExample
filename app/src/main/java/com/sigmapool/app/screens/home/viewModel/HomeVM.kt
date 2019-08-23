@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App
+import com.sigmapool.app.screens.home.coin.CoinsVM
 import com.sigmapool.app.screens.login.LoginFragment
 import com.sigmapool.common.managers.IBlogManager
 import com.sigmapool.common.models.BlogDto

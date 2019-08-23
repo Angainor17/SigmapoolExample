@@ -4,12 +4,17 @@ import android.widget.ImageView
 import android.widget.RadioButton
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.FragmentManager
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.tabs.TabLayout
 import com.sigmapool.app.screens.bottomSheetScreen.ViewPagerAdapter
+import com.sigmapool.app.screens.home.adapter.CoinViewPagerAdapter
+import com.sigmapool.app.screens.home.coin.CoinsVM
 import com.sigmapool.app.utils.slider.MainSliderAdapter
 import com.sigmapool.common.models.BlogDto
 import ss.com.bannerslider.Slider
 import ss.com.bannerslider.event.OnSlideClickListener
+
 
 @BindingAdapter("onCheckedInitValue")
 fun radioBtnOnClick(view: RadioButton, value: Boolean) {
@@ -28,6 +33,11 @@ fun onNavigationItemSelected(
     view.setOnNavigationItemSelectedListener(listener)
 }
 
+@BindingAdapter("app:initCoinAdapter", "app:fragmentManager", requireAll = true)
+fun initCoinAdapter(view: ViewPager, vm: CoinsVM, fragmentManager: FragmentManager) {
+    view.adapter = CoinViewPagerAdapter(vm.getCoins(), fragmentManager)
+}
+
 @BindingAdapter("app:viewPagerAdapter")
 fun viewPagerAdapter(view: FragmentViewPager, fragmentManager: FragmentManager) {
     view.adapter = ViewPagerAdapter(fragmentManager)
@@ -41,6 +51,11 @@ fun onScreenChange(view: FragmentViewPager, position: Int) {
 @BindingAdapter("app:src")
 fun imageMipmapSrc(view: ImageView, mipmapRes: Int) {
     view.setImageResource(mipmapRes)
+}
+
+@BindingAdapter("bind:pager")
+fun bindViewPagerTabs(view: TabLayout, pagerView: ViewPager) {
+    view.setupWithViewPager(pagerView, true)
 }
 
 @BindingAdapter("app:setImages", "app:onImageClick", requireAll = true)
