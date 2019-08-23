@@ -3,6 +3,7 @@ package com.sigmapool.api.pool
 import com.sigmapool.api.pool.models.CoinResponse
 import com.sigmapool.api.pool.models.NetworkResponse
 import com.sigmapool.api.pool.models.PaymentResponse
+import com.sigmapool.api.pool.models.ProfitDailyResponse
 import retrofit2.Retrofit
 
 internal class PoolService(retrofit: Retrofit) : IPoolService {
@@ -14,4 +15,6 @@ internal class PoolService(retrofit: Retrofit) : IPoolService {
     override suspend fun getPayment(): PaymentResponse = api.getPayment().payload!!
 
     override suspend fun getNetwork(): NetworkResponse = api.getNetwork().payload!!
+
+    override suspend fun getProfitDaily(): ProfitDailyResponse = api.getProfitDaily().payload!!
 }

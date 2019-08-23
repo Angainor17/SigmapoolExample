@@ -47,4 +47,11 @@ internal class PoolManager(private val service: IPoolService) : IPoolManager {
     } catch (e: Throwable) {
         ManagerResult(error = e.message)
     }
+
+    override suspend fun getProfitDaily(): ManagerResult<ProfitDailyDto> = try {
+        val response = service.getProfitDaily()
+        ManagerResult(ProfitDailyDto(response.profit))
+    } catch (e: Throwable) {
+        ManagerResult(error = e.message)
+    }
 }

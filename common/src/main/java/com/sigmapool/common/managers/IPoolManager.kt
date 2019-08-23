@@ -1,9 +1,6 @@
 package com.sigmapool.common.managers
 
-import com.sigmapool.common.models.CoinDto
-import com.sigmapool.common.models.ManagerResult
-import com.sigmapool.common.models.NetworkDto
-import com.sigmapool.common.models.PaymentDto
+import com.sigmapool.common.models.*
 
 interface IPoolManager {
 
@@ -12,4 +9,6 @@ interface IPoolManager {
     suspend fun getPayment(): ManagerResult<PaymentDto>
 
     suspend fun getNetwork(): ManagerResult<NetworkDto>
+
+    suspend fun getProfitDaily(): ManagerResult<ProfitDailyDto>
 }
