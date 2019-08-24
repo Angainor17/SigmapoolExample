@@ -40,6 +40,6 @@ val managersModule = Kodein.Module("ManagersModule") {
 
     bind<IMinerManager>() with singleton { MinerManager(instance()) }
     bind<ILoginManager>() with singleton { LoginManager(instance(BTC)) }
-    bind<IPoolInfoManager>() with singleton { PoolInfoManager(instance(BTC)) } // TODO: obtaining BTC/LTC from view state?
+    bind<IPoolInfoManager>() with singleton { PoolInfoManager(instance(BTC), instance(LTC)) } // TODO: obtaining BTC/LTC from view state?
 
 }

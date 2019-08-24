@@ -1,14 +1,12 @@
 package com.sigmapool.api.models
 
-data class PoolInfoBtc(
-    val fee: BtcFee,
+data class PoolInfoLtc(
+    val fee: LtcFee,
     val settlementTime: String,
     val addressChangeTimeout: Int,
     val stratumURLs: Array<String>
-
 )
 
-data class BtcFee(
-    val pps: Float,
-    val fpps: Float
+data class LtcFee(
+    val pps: Float
 )
