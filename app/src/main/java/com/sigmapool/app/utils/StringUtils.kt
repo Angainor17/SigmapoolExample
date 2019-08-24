@@ -21,7 +21,7 @@ fun formatLongValue(value: Long): String {
 }
 
 fun spannableString(
-    text: String,
+    text: CharSequence,
     textSize: Int? = null,
     color: Int? = null,
     fontFamily: String? = null

@@ -9,23 +9,22 @@ import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.utils.ViewState
 import com.sigmapool.app.utils.plus
 import com.sigmapool.app.utils.spannableString
-import com.sigmapool.common.models.CoinDto
-import com.sigmapool.common.models.NetworkDto
-import com.sigmapool.common.models.PaymentDto
-import com.sigmapool.common.models.ProfitDailyDto
+import com.sigmapool.common.models.*
 import com.sigmapool.common.utils.FLOAT_PATTERN
+import com.sigmapool.common.utils.INT_PATTERN
 import com.sigmapool.common.utils.format
 import org.kodein.di.generic.instance
+import java.text.SimpleDateFormat
+import java.util.*
 
-class CoinItemVM : ViewModel() {
+class CoinItemVM(val coinLabel: String) : ViewModel() {
 
     private val resProvider by App.kodein.instance<IResProvider>()
     private val currencyProvider by App.kodein.instance<ICurrencyProvider>()
 
     val viewState = MutableLiveData(ViewState.LOADING)
 
-    val coinLabel = MutableLiveData<String>()
-    val coinPrice = MutableLiveData<String>()
+    val coinPrice = MutableLiveData<CharSequence>()
     val coinPriceChange = MutableLiveData<String>()
     val isCoinPriceUp = MutableLiveData<Boolean>()
 
@@ -36,30 +35,38 @@ class CoinItemVM : ViewModel() {
     val payoutScheme = MutableLiveData<String>()
     val profit = MutableLiveData<CharSequence>()
 
-    fun formatPoolHasrate(value: Float): CharSequence = formatValue(
-        "$value ",
-        coinLabel.value ?: ""
-    )
+    fun formatProfit(value: Float): CharSequence = formatValue("$value ", coinLabel.toUpperCase())
 
-    fun formatMinPayment(value: Float): CharSequence = formatValue(
-        value.format(FLOAT_PATTERN) + " ",
-        resProvider.getString(R.string.pool_hashrate_per_second)
-    )
+    fun initVMs(coinDto: CoinDto, networkDto: NetworkDto, paymentDto: PaymentDto, profitDailyDto: ProfitDailyDto) {
+        coinPrice.postValue(
+            spannableString(currencyProvider.getSymbol(), color = resProvider.getColor(R.color.titleGray)) +
+                    spannableString(" " + coinDto.price.toInt().format(INT_PATTERN))
+        )
+        coinPriceChange.postValue("9.54 %")//FIXME
+        isCoinPriceUp.postValue(false)//FIXME
 
-    fun payoutScheme(): String {
-        return ""
+        poolHashrate.postValue(formatPoolHashrate(156.25f))//FIXME
+        workerCount.postValue(coinDto.poolWorkers.format(INT_PATTERN))
+        minPayment.postValue(formatMinPayment(paymentDto.min))
+        paymentTime.postValue(formatPaymentTime(paymentDto.time))
+        payoutScheme.postValue(coinDto.payoutScheme.joinToString("/").toUpperCase())
+        profit.postValue(formatValue("" + profitDailyDto.profit, " " + coinLabel.toUpperCase()))
     }
 
-    fun formatProfit(value: Float): CharSequence = formatValue(
-        "$value ",
-        coinLabel.value ?: ""
+    private fun formatMinPayment(value: Float): CharSequence = formatValue(
+        value.format(FLOAT_PATTERN) + " ", coinLabel.toUpperCase()
     )
+
+    private fun formatPaymentTime(timeInterval: TimeIntervalDto): String {
+        return formatTime(timeInterval.from) + "-" + formatTime(timeInterval.to)
+    }
+
+    private fun formatPoolHashrate(value: Float): CharSequence =
+        formatValue("$value ", resProvider.getString(R.string.pool_hashrate_per_second))
 
     private fun formatValue(value: String, postfix: String): CharSequence =
         spannableString(value) + spannableString(postfix, color = resProvider.getColor(R.color.titleGray))
-
-    fun initVMs(coinDto: CoinDto, networkDto: NetworkDto, paymentDto: PaymentDto, profitDailyDto: ProfitDailyDto) {
-        //TODO
-    }
 }
+
+fun formatTime(date: Date): String = SimpleDateFormat("HH:mm").format(date)
 

@@ -13,8 +13,8 @@ import org.kodein.di.generic.instance
 
 class CoinsVM : ViewModel() {
 
-    private val btcCoinVM = CoinItemVM()
-    private val ltcCoinVM = CoinItemVM()
+    private val btcCoinVM = CoinItemVM(BTC)
+    private val ltcCoinVM = CoinItemVM(LTC)
 
     private val btcPoolProvider by App.kodein.instance<IPoolManager>(BTC)
     private val ltcPoolProvider by App.kodein.instance<IPoolManager>(LTC)
