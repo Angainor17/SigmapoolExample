@@ -35,7 +35,12 @@
     <string name="payoutScheme">Схема выплат</string>
     <string name="profitLabel">Доходность (24ч)</string>
 
-    <string name="pool_hashrate_per_second">PH/s</string>
+    <string name="hashrate_per_second">H/s</string>
+    <string name="network_hashrate">Хешрейт сети</string>
+    <string name="network_difficulty">Сложность сети</string>
+    <string name="current_block">Текущий блок</string>
+    <string name="difficulty_change_date">Дата изм. сложности</string>
+    <string name="next_difficulty_label">Следующая прогнозируемая сложность</string>
 
 
 </resources>

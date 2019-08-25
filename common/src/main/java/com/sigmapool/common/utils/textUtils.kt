@@ -7,7 +7,7 @@ import java.text.DecimalFormatSymbols
 const val FLOAT_PATTERN = "###,##0.00"
 const val INT_PATTERN = "###,##0"
 
-fun Float.format(pattern: String): String = format(this, pattern)
+fun Float.format(pattern: String): String = format(this, pattern).replace(",",".")
 
 fun Int.format(pattern: String): String = format(this, pattern)
 

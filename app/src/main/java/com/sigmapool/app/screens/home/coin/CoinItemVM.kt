@@ -7,6 +7,7 @@ import com.sigmapool.app.R
 import com.sigmapool.app.provider.currency.ICurrencyProvider
 import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.utils.ViewState
+import com.sigmapool.app.utils.formatLongValue
 import com.sigmapool.app.utils.plus
 import com.sigmapool.app.utils.spannableString
 import com.sigmapool.common.models.*
@@ -35,7 +36,14 @@ class CoinItemVM(val coinLabel: String) : ViewModel() {
     val payoutScheme = MutableLiveData<String>()
     val profit = MutableLiveData<CharSequence>()
 
-    fun formatProfit(value: Float): CharSequence = formatValue("$value ", coinLabel.toUpperCase())
+    val networkHashrate = MutableLiveData<CharSequence>()
+    val networkDifficulty = MutableLiveData<CharSequence>()
+    val block = MutableLiveData<String>()
+    val nextDifficultyAt = MutableLiveData<String>()
+    val nextDifficulty = MutableLiveData<CharSequence>()
+
+    val nextDifficultyChange = MutableLiveData<String>()
+    val isNextDifficultyChangeUp = MutableLiveData<Boolean>()
 
     fun initVMs(coinDto: CoinDto, networkDto: NetworkDto, paymentDto: PaymentDto, profitDailyDto: ProfitDailyDto) {
         coinPrice.postValue(
@@ -43,14 +51,34 @@ class CoinItemVM(val coinLabel: String) : ViewModel() {
                     spannableString(" " + coinDto.price.toInt().format(INT_PATTERN))
         )
         coinPriceChange.postValue("9.54 %")//FIXME
-        isCoinPriceUp.postValue(false)//FIXME
+        isCoinPriceUp.postValue(coinDto.previousPrice < coinDto.price)
 
-        poolHashrate.postValue(formatPoolHashrate(156.25f))//FIXME
+        poolHashrate.postValue(formatHashrate(coinDto.poolHashrate))
         workerCount.postValue(coinDto.poolWorkers.format(INT_PATTERN))
         minPayment.postValue(formatMinPayment(paymentDto.min))
         paymentTime.postValue(formatPaymentTime(paymentDto.time))
         payoutScheme.postValue(coinDto.payoutScheme.joinToString("/").toUpperCase())
-        profit.postValue(formatValue("" + profitDailyDto.profit, " " + coinLabel.toUpperCase()))
+        profit.postValue(
+            formatValue(
+                String.format("%f", profitDailyDto.profit),
+                " " + coinLabel.toUpperCase()
+            )
+        )
+
+        networkHashrate.postValue(formatHashrate(networkDto.networkHashrate.toLong()))
+        networkDifficulty.postValue(formatNetworkDifficulty(networkDto))
+        block.postValue(networkDto.blockHeight.format(INT_PATTERN))
+        nextDifficultyAt.postValue(formatDate(networkDto.nextDifficultyAt))
+        nextDifficulty.postValue(formatValue("7.93", " T"))//FIXME
+
+        nextDifficultyChange.postValue("9.54 %")//FIXME
+        isNextDifficultyChangeUp.postValue(false)//FIXME
+    }
+
+    private fun formatNetworkDifficulty(networkDto: NetworkDto): CharSequence {
+        val result = formatLongValue(networkDto.networkDifficulty, FLOAT_PATTERN)
+
+        return formatValue(result.beforeLastChar(), " " + result.lastChar())
     }
 
     private fun formatMinPayment(value: Float): CharSequence = formatValue(
@@ -61,12 +89,22 @@ class CoinItemVM(val coinLabel: String) : ViewModel() {
         return formatTime(timeInterval.from) + "-" + formatTime(timeInterval.to)
     }
 
-    private fun formatPoolHashrate(value: Float): CharSequence =
-        formatValue("$value ", resProvider.getString(R.string.pool_hashrate_per_second))
+    private fun formatHashrate(value: Long): CharSequence {
+        val result = formatLongValue(value, FLOAT_PATTERN)
+
+        return formatValue(
+            result.beforeLastChar() + " ",
+            result.lastChar() + resProvider.getString(R.string.hashrate_per_second)
+        )
+    }
 
     private fun formatValue(value: String, postfix: String): CharSequence =
         spannableString(value) + spannableString(postfix, color = resProvider.getColor(R.color.titleGray))
 }
 
+fun String.lastChar() = substring(length - 1)
+fun String.beforeLastChar() = substring(0, length - 1)
+
 fun formatTime(date: Date): String = SimpleDateFormat("HH:mm").format(date)
+fun formatDate(date: Date): String = SimpleDateFormat("dd.MM.yyyy").format(date)
 

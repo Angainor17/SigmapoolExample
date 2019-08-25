@@ -11,6 +11,7 @@ import com.google.android.material.tabs.TabLayout
 import com.sigmapool.app.screens.bottomSheetScreen.ViewPagerAdapter
 import com.sigmapool.app.screens.home.adapter.CoinViewPagerAdapter
 import com.sigmapool.app.screens.home.coin.CoinsVM
+import com.sigmapool.app.utils.customViews.FragmentViewPager
 import com.sigmapool.app.utils.slider.MainSliderAdapter
 import com.sigmapool.common.models.BlogDto
 import ss.com.bannerslider.Slider

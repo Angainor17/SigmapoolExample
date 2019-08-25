@@ -9,9 +9,11 @@
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#E5E5E5"
+            android:layout_marginBottom="2dp"
 
+            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="8dp"
+            app:cardElevation="5dp"
     >
         <LinearLayout
                 android:layout_width="match_parent"
@@ -28,7 +30,6 @@
                     layout="@layout/coin_pool_info"
                     app:vm="@{vm}"
             />
-
 
         </LinearLayout>
 

@@ -8,8 +8,8 @@ import android.text.style.TypefaceSpan
 import com.sigmapool.common.utils.INT_PATTERN
 import com.sigmapool.common.utils.format
 
-fun formatLongValue(value: Long): String {
-    var result = value
+fun formatLongValue(value: Long, pattern: String = INT_PATTERN): String {
+    var result: Float = value.toFloat()
     val arr = arrayOf("", "K", "M", "B", "T", "P", "E")
     var index = 0
     while (result / 1000 >= 1) {
@@ -17,7 +17,7 @@ fun formatLongValue(value: Long): String {
         index++
     }
 
-    return String.format("%s%s", result.format(INT_PATTERN), arr[index])
+    return String.format("%s%s", result.format(pattern), arr[index])
 }
 
 fun spannableString(
