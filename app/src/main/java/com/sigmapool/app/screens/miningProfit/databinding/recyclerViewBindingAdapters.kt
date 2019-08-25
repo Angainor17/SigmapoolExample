@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.Observer
 import androidx.paging.PagedList
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sigmapool.app.screens.miningProfit.viewModels.IMiningProfitToolbarViewModel
 import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitViewModel
@@ -13,16 +14,17 @@ import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 
 @BindingAdapter("setPagedAdapter")
 fun setPagedAdapter(view: RecyclerView, listVm: MiningProfitViewModel) {
-    if (view.adapter == null) {
-        view.adapter = listVm.itemsVM.pagedRecyclerAdapter
-        val activity = view.context as AppCompatActivity
+    val linearLayoutManager = LinearLayoutManager(view.context)
+    view.layoutManager = linearLayoutManager
+    listVm.itemsVM.pagedRecyclerAdapter.linearLayoutManager = linearLayoutManager
+    view.adapter = listVm.itemsVM.pagedRecyclerAdapter
+    val activity = view.context as AppCompatActivity
 
-        listVm.itemsVM.items.observe(activity,
-            Observer<PagedList<BaseItemViewModel>?> { t ->
-                listVm.itemsVM.pagedRecyclerAdapter.submitList(t)
-            }
-        )
-    }
+    listVm.itemsVM.items.observe(activity,
+        Observer<PagedList<BaseItemViewModel>?> { t ->
+            listVm.itemsVM.pagedRecyclerAdapter.submitList(t)
+        }
+    )
 }
 
 @BindingAdapter("app:onProfitClickAction")

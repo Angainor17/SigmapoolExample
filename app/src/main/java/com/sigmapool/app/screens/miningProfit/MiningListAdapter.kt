@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.sigmapool.app.R
 import com.sigmapool.app.screens.miningProfit.viewModels.MinerHeaderVM
 import com.sigmapool.app.screens.miningProfit.viewModels.MinerItemViewModel
@@ -12,11 +13,25 @@ import com.sigmapool.common.listLibrary.pagedlist.SimplePagedAdapter
 import com.sigmapool.common.models.CoinDto
 
 
-class MiningListAdapter(private val minerHeaderVM: MinerHeaderVM, itemLayoutProvider: IItemBindingHelper) :
+class MiningListAdapter(
+    private val minerHeaderVM: MinerHeaderVM,
+    itemLayoutProvider: IItemBindingHelper
+) :
     SimplePagedAdapter(itemLayoutProvider) {
 
     private var powerCostTv: TextView? = null
     var coinInfo: CoinDto? = null
+
+    init {
+        registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                super.onItemRangeInserted(positionStart, itemCount)
+                if (positionStart == 0) {
+                    linearLayoutManager?.scrollToPosition(0)
+                }
+            }
+        })
+    }
 
     fun setPowerCost(text: CharSequence) {
         powerCostTv?.text = text

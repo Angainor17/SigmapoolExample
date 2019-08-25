@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.paging.PagedList
 import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sigmapool.common.listLibrary.IItemBindingHelper
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
@@ -13,6 +14,8 @@ import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModelDiffCallback
 
 open class SimplePagedAdapter(val itemLayoutProvider: IItemBindingHelper) :
     PagedListAdapter<BaseItemViewModel, SimplePagedAdapter.ViewHolder>(BaseItemViewModelDiffCallback()) {
+
+    var linearLayoutManager: LinearLayoutManager? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(

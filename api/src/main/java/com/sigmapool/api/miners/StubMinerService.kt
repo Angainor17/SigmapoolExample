@@ -24,7 +24,7 @@ internal class StubMinerService(retrofit: Retrofit) : IMinerService {
             return emptyList()
         }
 
-        delay(2000)
+        delay(5000)
 
         return items.slice(IntRange(page, page + perPage - 1))
     }
