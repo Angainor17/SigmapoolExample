@@ -22,12 +22,10 @@ class SimpleDataSource<ItemDto, ItemViewModel : BaseItemViewModel>(
 
     init {
         loaderState.postValue(ItemsLoaderState.Idle)
-        errorMessage.postValue("")
     }
 
     override fun loadRange(params: LoadRangeParams, callback: LoadRangeCallback<ItemViewModel>) {
         loaderState.postValue(ItemsLoaderState.Loading)
-        errorMessage.postValue("")
 
         GlobalScope.launch(Dispatchers.Default) {
             val t = loader.load(query, params.startPosition, params.loadSize)
@@ -43,7 +41,6 @@ class SimpleDataSource<ItemDto, ItemViewModel : BaseItemViewModel>(
 
     override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<ItemViewModel>) {
         loaderState.postValue(ItemsLoaderState.Refreshing)
-        errorMessage.postValue("")
 
         GlobalScope.launch(Dispatchers.Default) {
             val t = loader.load(query, 0, params.pageSize)

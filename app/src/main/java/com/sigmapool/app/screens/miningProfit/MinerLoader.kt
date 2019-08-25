@@ -10,6 +10,10 @@ const val MINER_PAGE_SIZE = 20
 class MinerLoader(private val manager: IMinerManager) : IItemsLoader<MinerDto> {
 
     override suspend fun load(query: String, offset: Int, limit: Int): LoaderResult<List<MinerDto>> {
+        if (offset % limit != 0) {
+            return LoaderResult(ArrayList())
+        }
+
         val result = manager.getMiner((offset / MINER_PAGE_SIZE) + 1, MINER_PAGE_SIZE)
 
         return if (result.success) {

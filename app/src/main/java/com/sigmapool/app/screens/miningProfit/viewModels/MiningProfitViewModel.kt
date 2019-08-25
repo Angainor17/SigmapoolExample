@@ -52,7 +52,6 @@ class MiningProfitViewModel(val view: IMinerFragmentModel) : ViewModel(), ITitle
             minerAdapter
         ) as SimplePagedListViewModel<BaseItemViewModel, Any>
 
-//        currencyLiveData.value = usdCurrency
         initCoinValue()
     }
 
