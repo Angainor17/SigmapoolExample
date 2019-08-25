@@ -13,7 +13,7 @@
             android:layout_marginTop="10dp"
             android:orientation="vertical">
 
-           <androidx.cardview.widget.CardView
+        <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
@@ -43,25 +43,34 @@
                     app:isb_step="@{vm.getStep()}"
                     app:isb_tick_texts_array="@{vm.getArrayRes()}"
                     app:isb_seek_smoothly="true"
-
+                    app:isb_thumb_drawable="@drawable/thumb_selector"
+                    app:isb_thumb_size="30dp"
                     app:isb_progress_value_float="true"
-                    app:isb_tick_marks_drawable="@drawable/high_seekbar_separator"
+                    app:isb_tick_marks_drawable="@drawable/tick_marks"
                     app:isb_show_tick_texts="true"
-                    app:isb_thumb_color="@color/blue"
+                    app:isb_thumb_color="@android:color/white"
                     app:isb_indicator_color="@color/blue"
                     app:isb_tick_texts_typeface="normal"
-
-
                     app:isb_tick_texts_color="@color/lightGray"
                     app:isb_tick_texts_size="16dp"
+                    app:isb_thumb_adjust_auto="false"
+                    app:isb_track_progress_color="@color/blue"
+
                     app:changeListener="@{vm::onChange}"
 
-                    app:isb_thumb_adjust_auto="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
 
-                    app:isb_track_progress_color="@color/blue"/>
+            />
 
+        </androidx.cardview.widget.CardView>
 
-           </androidx.cardview.widget.CardView>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/high_seekbar_separator"
+        />
 
         <TextView
                 android:id="@+id/powerCostTv"
