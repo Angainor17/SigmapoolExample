@@ -50,7 +50,7 @@ class CoinItemVM(val coinLabel: String) : ViewModel() {
             spannableString(currencyProvider.getSymbol(), color = resProvider.getColor(R.color.titleGray)) +
                     spannableString(" " + coinDto.price.toInt().format(INT_PATTERN))
         )
-        coinPriceChange.postValue("9.54 %")//FIXME
+        coinPriceChange.postValue(formatPriceChange(coinDto))
         isCoinPriceUp.postValue(coinDto.previousPrice < coinDto.price)
 
         poolHashrate.postValue(formatHashrate(coinDto.poolHashrate))
@@ -64,7 +64,6 @@ class CoinItemVM(val coinLabel: String) : ViewModel() {
                 " " + coinLabel.toUpperCase()
             )
         )
-
         networkHashrate.postValue(formatHashrate(networkDto.networkHashrate.toLong()))
         networkDifficulty.postValue(formatNetworkDifficulty(networkDto))
         block.postValue(networkDto.blockHeight.format(INT_PATTERN))
@@ -84,6 +83,13 @@ class CoinItemVM(val coinLabel: String) : ViewModel() {
     private fun formatMinPayment(value: Float): CharSequence = formatValue(
         value.format(FLOAT_PATTERN) + " ", coinLabel.toUpperCase()
     )
+
+    private fun formatPriceChange(coinDto: CoinDto): String {
+        var percent = (((coinDto.price - coinDto.previousPrice) / coinDto.previousPrice) * 100)
+        if (percent < -1) percent = -percent
+
+        return percent.format(FLOAT_PATTERN) + "%"
+    }
 
     private fun formatPaymentTime(timeInterval: TimeIntervalDto): String {
         return formatTime(timeInterval.from) + "-" + formatTime(timeInterval.to)
