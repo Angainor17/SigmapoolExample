@@ -22,10 +22,7 @@
                 android:background="@null"
                 app:initCoinAdapter="@{vm}"
                 app:fragmentManager="@{fragmentManager}"
-        >
-
-        </com.sigmapool.app.utils.customViews.WrapHeightViewPager>
-
+        />
 
         <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabDots"
