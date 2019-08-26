@@ -50,7 +50,6 @@ class SimplePagedListViewModel<ItemViewModel : BaseItemViewModel, ItemDto>(
         PagedList.Config.Builder()
             .setPageSize(itemPerPage)
             .setEnablePlaceholders(false)
-            .setPrefetchDistance(5)
             .build()
     ).build()
 

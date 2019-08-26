@@ -12,9 +12,9 @@ import org.kodein.di.generic.instance
 
 class NewsVM(val view: INewsFragmentModel) : ViewModel(), ITitleViewModel {
 
-    private val resProvider by App.kodein.instance<IResProvider>()
-
     val listVM = NewsListVM()
+
+    private val resProvider by App.kodein.instance<IResProvider>()
 
     override fun getTitle(): LiveData<String> = MutableLiveData(resProvider.getString(R.string.news))
 }

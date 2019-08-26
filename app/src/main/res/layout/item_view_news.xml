@@ -13,70 +13,82 @@
                 />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
             android:layout_width="match_parent"
+            android:orientation="vertical"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="10dp"
-
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="6dp"
-            app:cardElevation="3dp"
             >
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:orientation="vertical"
                 android:layout_height="wrap_content"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="3dp"
                 >
 
-            <TextView
+            <LinearLayout
                     android:layout_width="match_parent"
+                    android:orientation="vertical"
                     android:layout_height="wrap_content"
-                    android:singleLine="false"
-                    android:layout_marginTop="10dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/google_sans_bold"
-                    android:textSize="17dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    >
 
-                    android:text="@{vm.title}"
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="false"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/google_sans_bold"
+                        android:textSize="17dp"
 
-                    tools:text="Stockpoint.io: уникальное предложение для криптовалютных трейдеро"
-                    />
+                        app:htmlText="@{vm.title}"
+                        android:autoLink="web"
+                        android:linksClickable="true"
 
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:singleLine="false"
-                    android:textColor="#333333"
-                    android:textSize="13dp"
-                    android:fontFamily="@font/google_sans_regular"
-                    android:layout_marginTop="10dp"
-                    android:text="@{vm.text}"
+                        tools:text="Stockpoint.io: уникальное предложение для криптовалютных трейдеро"
+                        />
 
-                    tools:text="Криптобиржа Stockpoint.io завоевывает своими преимуществами все больше симпатий клиентов. В мире трейдинговых площадок глаза разбегаются: какую выбрать?"
-                    />
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="false"
+                        android:textColor="#333333"
+                        android:textSize="13dp"
+                        android:fontFamily="@font/google_sans_regular"
+                        android:layout_marginTop="7dp"
+                        app:htmlText="@{vm.text}"
+                        android:autoLink="web"
+                        android:linksClickable="true"
 
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:singleLine="false"
-                    android:textColor="@color/titleGray"
-                    android:textSize="13dp"
-                    android:text="@{vm.dateString}"
-                    android:fontFamily="@font/google_sans_regular"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="16dp"
+                        tools:text="Криптобиржа Stockpoint.io завоевывает своими преимуществами все больше симпатий клиентов. В мире трейдинговых площадок глаза разбегаются: какую выбрать?"
+                        />
 
-                    tools:text="2 мая, 12:33"
-                    />
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="false"
+                        android:textColor="@color/titleGray"
+                        android:textSize="13dp"
+                        android:fontFamily="@font/google_sans_regular"
+                        android:layout_marginTop="9dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="@{vm.dateString}"
 
-        </LinearLayout>
+                        tools:text="2 мая, 12:33"
+                        />
 
-    </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
 
 </layout>

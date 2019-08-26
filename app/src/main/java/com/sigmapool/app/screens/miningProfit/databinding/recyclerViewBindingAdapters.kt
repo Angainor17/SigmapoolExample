@@ -1,7 +1,11 @@
 package com.sigmapool.app.screens.miningProfit.databinding
 
+import android.os.Build
+import android.text.Html
+import android.text.util.Linkify
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.Observer
@@ -30,9 +34,7 @@ fun setPagedAdapter(view: RecyclerView, vm: MiningProfitListVM) {
 
 @BindingAdapter("setNewsAdapter")
 fun setNewsAdapter(view: RecyclerView, vm: NewsListVM) {
-    val linearLayoutManager = LinearLayoutManager(view.context)
-    view.layoutManager = linearLayoutManager
-    vm.itemsVM.pagedRecyclerAdapter.linearLayoutManager = linearLayoutManager
+    view.adapter = vm.itemsVM.pagedRecyclerAdapter
 
     val activity = view.context as AppCompatActivity
     vm.itemsVM.items.observe(activity,
@@ -59,4 +61,15 @@ fun goneIfValueBlank(view: View, value: String?) {
 @BindingAdapter("goneIfNotBlank")
 fun goneIfValueNotBlank(view: View, value: String?) {
     view.visibility = if (value.isNullOrEmpty()) View.VISIBLE else View.GONE
+}
+
+@BindingAdapter("htmlText")
+fun htmlText(view: TextView, value: String?) {
+    Linkify.addLinks(view, Linkify.WEB_URLS)
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        view.text = Html.fromHtml(value, Html.FROM_HTML_MODE_COMPACT)
+    } else {
+        view.text = Html.fromHtml(value)
+    }
 }

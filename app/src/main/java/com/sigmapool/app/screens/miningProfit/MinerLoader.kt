@@ -6,7 +6,6 @@ import com.sigmapool.common.listLibrary.loader.LoaderResult
 import com.sigmapool.common.managers.IMinerManager
 import com.sigmapool.common.models.MinerDto
 
-const val MINER_PAGE_SIZE = 20
 
 class MinerLoader(
     private val params: MinerListParams,
@@ -18,12 +17,7 @@ class MinerLoader(
             return LoaderResult(ArrayList())
         }
 
-        var pageSize = MINER_PAGE_SIZE     //TODO implement get data
-        if (params.maxCount > 0) {
-            pageSize = params.maxCount
-        }
-
-        val result = manager.getMiner((offset / pageSize) + 1, pageSize)
+        val result = manager.getMiner((offset / params.pageSize) + 1, params.pageSize)
 
         return if (result.success) {
             LoaderResult(result.data)
