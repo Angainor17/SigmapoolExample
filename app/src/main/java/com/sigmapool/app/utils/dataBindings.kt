@@ -14,6 +14,7 @@ import com.sigmapool.app.screens.home.coin.CoinsVM
 import com.sigmapool.app.utils.customViews.FragmentViewPager
 import com.sigmapool.app.utils.slider.MainSliderAdapter
 import com.sigmapool.common.models.BlogDto
+import com.sigmapool.common.utils.px
 import ss.com.bannerslider.Slider
 import ss.com.bannerslider.event.OnSlideClickListener
 
@@ -37,6 +38,7 @@ fun onNavigationItemSelected(
 
 @BindingAdapter("app:initCoinAdapter", "app:fragmentManager", requireAll = true)
 fun initCoinAdapter(view: ViewPager, vm: CoinsVM, fragmentManager: FragmentManager) {
+    view.pageMargin = 20.px
     view.adapter = CoinViewPagerAdapter(vm.getCoins(), fragmentManager)
 }
 
