@@ -90,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_toLeftOf="@id/profitUnits"
-                    android:text="TextView5">
+                    android:text="@{vm.dailyProfit}">
             </TextView>
             <TextView
                     android:id="@+id/profitUnits"

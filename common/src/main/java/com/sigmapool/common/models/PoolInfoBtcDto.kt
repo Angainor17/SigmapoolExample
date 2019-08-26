@@ -7,3 +7,8 @@ data class PoolInfoBtcDto(
     val addressChangeTimeout: Int,
     val stratumURLs: Array<String>
 )
+
+//TODO: move to separate file
+data class DailyProfitDto(
+    val profit: Float
+)

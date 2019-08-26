@@ -20,17 +20,17 @@ import retrofit2.Retrofit
 val managersModule = Kodein.Module("ManagersModule") {
 
     import(serviceModule)
-
+    // TODO: remove all BTC and LTC
     bind<Retrofit>(BTC) with singleton {
         createRetrofit(
-            "http://$BTC.$BASE_URL/",
+            "http://$BASE_URL/",
             arrayListOf(instance())
         )
     }
 
     bind<Retrofit>(LTC) with singleton {
         createRetrofit(
-            "http://$LTC.$BASE_URL/",
+            "http://$BASE_URL/",
             arrayListOf(instance())
         )
     }

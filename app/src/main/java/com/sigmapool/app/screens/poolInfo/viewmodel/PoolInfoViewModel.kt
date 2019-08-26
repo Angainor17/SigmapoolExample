@@ -16,16 +16,11 @@ class PoolInfoViewModel(model: IPoolInfoModel) : ViewModel(), ITitleViewModel, I
 
     override fun btcSelect(){
         btcSelected.set(true)
-
     }
 
     override fun ltcSelect(){
         btcSelected.set(false)
     }
-
-
-
-    // private val poolInfoManager by kodein.instance<IPoolInfoManager>() // TODO: move to model
 
     override fun getTitle() = MutableLiveData<String>().apply { value = getString(R.string.pool_info) }
 

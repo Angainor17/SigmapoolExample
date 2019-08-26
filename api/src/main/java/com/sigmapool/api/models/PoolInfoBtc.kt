@@ -12,3 +12,8 @@ data class BtcFee(
     val pps: Float,
     val fpps: Float
 )
+
+//TODO: вынести в отдельный файл
+data class DailyProfitBtc(
+    val profit: Float
+)

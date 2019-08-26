@@ -2,15 +2,18 @@ package com.sigmapool.api.poolinfo
 
 import com.sigmapool.api.providers.IApiServiceProvider
 import com.sigmapool.common.managers.IPoolInfoManager
+import com.sigmapool.common.models.DailyProfitDto
 import com.sigmapool.common.models.ManagerResult
 import com.sigmapool.common.models.PoolInfoBtcDto
 import com.sigmapool.common.models.PoolInfoLtcDto
 
 internal class PoolInfoManager(btcServiceProvider: IApiServiceProvider, ltcServiceProvider: IApiServiceProvider) : IPoolInfoManager {
 
+
     private val btcPoolInfoService = btcServiceProvider.create(PoolInfoApi::class.java)
     private val ltcPoolInfoService = ltcServiceProvider.create(PoolInfoApi::class.java)
 
+    // TODO signle function with "coin" parameter
     override suspend fun getBtcPoolInfo(): ManagerResult<PoolInfoBtcDto> = try {
 
         val poolInfo = btcPoolInfoService.getBtcPoolInfo().payload!!
@@ -27,6 +30,21 @@ internal class PoolInfoManager(btcServiceProvider: IApiServiceProvider, ltcServi
     } catch (e: Throwable) {
         ManagerResult(error = e.message)
     }
+
+    override suspend fun getBtcDailyProfit(): ManagerResult<DailyProfitDto> {
+        return try {
+            val dailyProfit = btcPoolInfoService.getBtcDailyProfit().payload!!
+
+            val dailyProfitDto = DailyProfitDto(
+                dailyProfit.profit
+            )
+
+            ManagerResult(dailyProfitDto)
+        } catch (e: Throwable) {
+            ManagerResult(error = e.message)
+        }
+    }
+
 
     override suspend fun getLtcPoolInfo(): ManagerResult<PoolInfoLtcDto> = try {
 
