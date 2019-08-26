@@ -6,10 +6,7 @@ import com.sigmapool.app.App
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.currency.ICurrencyProvider
 import com.sigmapool.app.provider.res.IResProvider
-import com.sigmapool.app.utils.ViewState
-import com.sigmapool.app.utils.formatLongValue
-import com.sigmapool.app.utils.plus
-import com.sigmapool.app.utils.spannableString
+import com.sigmapool.app.utils.*
 import com.sigmapool.common.models.*
 import com.sigmapool.common.utils.FLOAT_PATTERN
 import com.sigmapool.common.utils.INT_PATTERN
@@ -18,12 +15,12 @@ import org.kodein.di.generic.instance
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CoinItemVM(val coinLabel: String) : ViewModel() {
+class CoinItemVM(val coinLabel: String) : ViewModel(), StateVM {
 
     private val resProvider by App.kodein.instance<IResProvider>()
     private val currencyProvider by App.kodein.instance<ICurrencyProvider>()
 
-    val viewState = MutableLiveData(ViewState.LOADING)
+    override val viewState = MutableLiveData(ViewState.LOADING)
 
     val coinPrice = MutableLiveData<CharSequence>()
     val coinPriceChange = MutableLiveData<String>()

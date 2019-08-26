@@ -3,6 +3,8 @@
 >
 
     <data>
+        <import type="android.view.View"/>
+        <import type="com.sigmapool.app.utils.ViewState"/>
         <variable name="vm" type="com.sigmapool.app.screens.home.coin.CoinItemVM"/>
     </data>
 
@@ -10,6 +12,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:paddingBottom="2dp"
 
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="8dp"
@@ -32,6 +37,11 @@
             />
 
         </LinearLayout>
+
+        <include
+                layout="@layout/loading_error_frame"
+                app:vm="@{vm}"
+        />
 
     </androidx.cardview.widget.CardView>
 

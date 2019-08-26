@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+>
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.sigmapool.app.utils.ViewState"/>
+        <variable name="vm" type="com.sigmapool.app.utils.StateVM"/>
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:visibility="@{vm.viewState!=ViewState.CONTENT ? View.VISIBLE : View.INVISIBLE}"
+
+            tools:visibility="visible"
+    >
+
+        <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@null"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:src="@drawable/ic_error"
+                android:visibility="@{vm.viewState==ViewState.ERROR ? View.VISIBLE : View.INVISIBLE}"
+
+                tools:visibility="visible"
+        />
+
+        <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:indeterminate="true"
+                android:indeterminateTintMode="src_atop"
+                android:indeterminateTint="@color/violet"
+                android:visibility="@{vm.viewState==ViewState.LOADING ? View.VISIBLE : View.INVISIBLE}"
+
+                tools:visibility="gone"
+        />
+
+    </FrameLayout>
+
+</layout>
