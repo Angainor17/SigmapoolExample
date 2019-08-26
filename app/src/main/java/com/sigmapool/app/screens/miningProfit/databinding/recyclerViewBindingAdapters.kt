@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.sigmapool.app.screens.miningProfit.viewModels.IProfitBtnListener
+import com.sigmapool.app.screens.miningProfit.listener.IProfitBtnListener
 import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitListVM
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 

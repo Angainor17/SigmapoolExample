@@ -12,6 +12,7 @@ import com.sigmapool.app.screens.miningProfit.MinerBindingHelper
 import com.sigmapool.app.screens.miningProfit.MinerItemMapper
 import com.sigmapool.app.screens.miningProfit.MinerLoader
 import com.sigmapool.app.screens.miningProfit.MiningListAdapter
+import com.sigmapool.app.screens.miningProfit.params.MinerListParams
 import com.sigmapool.app.utils.JsonDataStorage
 import com.sigmapool.common.listLibrary.pagedlist.SimplePagedListViewModel
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
@@ -23,7 +24,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
-class MiningProfitListVM : ViewModel() {
+class MiningProfitListVM(params: MinerListParams = MinerListParams()) : ViewModel() {
 
     private val usdCurrency = Currency(1, 12, 1, R.array.array_first_and_last_1_12, 0)
 
@@ -45,7 +46,7 @@ class MiningProfitListVM : ViewModel() {
     init {
         itemsVM = SimplePagedListViewModel(
             MinerItemMapper(currencyProvider),
-            MinerLoader(minerManager),
+            MinerLoader(params, minerManager),
             minerBindingHelper,
             minerAdapter
         ) as SimplePagedListViewModel<BaseItemViewModel, Any>

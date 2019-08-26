@@ -1,4 +1,4 @@
-package com.sigmapool.app.screens.miningProfit.viewModels
+package com.sigmapool.app.screens.miningProfit.listener
 
 interface IProfitBtnListener {
 
