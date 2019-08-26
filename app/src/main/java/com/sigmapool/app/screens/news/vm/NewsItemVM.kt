@@ -16,8 +16,6 @@ class NewsItemVM(newsDto: NewsDto) : BaseItemViewModel {
     }
 
     override val itemViewType: Int = itemType
-
     override fun areItemsTheSame(item: BaseItemViewModel) = this == item
-
-    override fun areContentsTheSame(item: BaseItemViewModel) = item is NewsItemVM && item.title == this.title
+    override fun areContentsTheSame(item: BaseItemViewModel) = false
 }

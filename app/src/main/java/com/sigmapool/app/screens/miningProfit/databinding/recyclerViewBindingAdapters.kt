@@ -14,16 +14,16 @@ import com.sigmapool.app.screens.news.vm.NewsListVM
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 
 @BindingAdapter("setPagedAdapter")
-fun setPagedAdapter(view: RecyclerView, listVm: MiningProfitListVM) {
+fun setPagedAdapter(view: RecyclerView, vm: MiningProfitListVM) {
     val linearLayoutManager = LinearLayoutManager(view.context)
     view.layoutManager = linearLayoutManager
-    listVm.itemsVM.pagedRecyclerAdapter.linearLayoutManager = linearLayoutManager
-    view.adapter = listVm.itemsVM.pagedRecyclerAdapter
+    vm.itemsVM.pagedRecyclerAdapter.linearLayoutManager = linearLayoutManager
+    view.adapter = vm.itemsVM.pagedRecyclerAdapter
     val activity = view.context as AppCompatActivity
 
-    listVm.itemsVM.items.observe(activity,
+    vm.itemsVM.items.observe(activity,
         Observer<PagedList<BaseItemViewModel>?> { t ->
-            listVm.itemsVM.pagedRecyclerAdapter.submitList(t)
+            vm.itemsVM.pagedRecyclerAdapter.submitList(t)
         }
     )
 }

@@ -7,6 +7,7 @@ import com.sigmapool.app.App
 import com.sigmapool.app.provider.lang.ILanguageProvider
 import com.sigmapool.app.screens.home.coin.CoinsVM
 import com.sigmapool.app.screens.login.LoginFragment
+import com.sigmapool.app.screens.news.params.NewsListParams
 import com.sigmapool.app.screens.news.vm.NewsListVM
 import com.sigmapool.common.managers.IBlogManager
 import com.sigmapool.common.models.BlogDto
@@ -20,6 +21,7 @@ private const val REGISTER_URL = "https://btc.sigmapool.com/signup"
 
 private const val BLOG_INIT_PAGE = 1
 private const val BLOG_PER_PAGE = 20
+private const val NEWS_PER_PAGE = 3
 
 class HomeVM : ViewModel(), OnSlideClickListener {
 
@@ -33,7 +35,7 @@ class HomeVM : ViewModel(), OnSlideClickListener {
     val homeMenuVM = HomeMenuVM(fragmentLiveData)
     val coinsVM = CoinsVM()
     val minersVM = HomeMinerVM()
-    val newsVM = NewsListVM()
+    val newsVM = NewsListVM(NewsListParams(NEWS_PER_PAGE))
 
     init {
         initBlogBanner()
