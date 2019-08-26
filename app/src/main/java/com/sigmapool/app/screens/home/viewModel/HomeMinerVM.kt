@@ -13,5 +13,6 @@ class HomeMinerVM : ViewModel(), IProfitBtnListener {
 
     override fun onProfitBtnSelected(isUpSort: Boolean) {
         //TODO
+        miningProfitVM.itemsVM.onRefresh()
     }
 }

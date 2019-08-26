@@ -67,6 +67,9 @@ fun setImages(slider: Slider, items: ArrayList<BlogDto>?, listener: OnSlideClick
     items.let {
         val adapter = it?.let { it1 -> MainSliderAdapter(it1) }
         slider.setAdapter(adapter)
+        if (adapter != null) {
+            slider.setInterval(10000)
+        }
         slider.setOnSlideClickListener(listener)
     }
 }

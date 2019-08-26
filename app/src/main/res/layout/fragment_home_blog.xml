@@ -34,8 +34,6 @@
                 app:onImageClick="@{vm}"
 
                 app:slider_hideIndicators="true"
-
-                app:slider_interval="10000"
                 app:slider_loopSlides="true"
                 app:slider_animateIndicators="true"
                 app:slider_selectedSlideIndicator="@null"

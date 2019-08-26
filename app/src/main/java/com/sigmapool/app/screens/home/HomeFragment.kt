@@ -23,6 +23,7 @@ class HomeFragment : Fragment() {
         vm.fragmentLiveData.observe(this, Observer { openFragment(it) })
 
         binding.vm = vm
+        vm.minersVM.miningProfitVM.seekBarLiveData.observe(this, Observer {})
         binding.fragmentManager = childFragmentManager
         binding.lifecycleOwner = this
 
