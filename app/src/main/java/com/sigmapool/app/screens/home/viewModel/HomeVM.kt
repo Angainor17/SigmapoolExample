@@ -31,6 +31,7 @@ class HomeVM : ViewModel(), OnSlideClickListener {
 
     val homeMenuVM = HomeMenuVM(fragmentLiveData)
     val coinsVM = CoinsVM()
+    val minersVM = HomeMinerVM()
 
     init {
         initBlogBanner()

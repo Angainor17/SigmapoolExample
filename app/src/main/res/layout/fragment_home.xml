@@ -38,6 +38,11 @@
                     app:fragmentManager="@{fragmentManager}"
             />
 
+            <include
+                    layout="@layout/fragment_home_miners"
+                    app:vm="@{vm.minersVM}"
+            />
+
         </LinearLayout>
 
     </ScrollView>

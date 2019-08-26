@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.sigmapool.app.screens.miningProfit.viewModels.IMiningProfitToolbarViewModel
+import com.sigmapool.app.screens.miningProfit.viewModels.IProfitBtnListener
 import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitViewModel
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 
@@ -28,11 +28,11 @@ fun setPagedAdapter(view: RecyclerView, listVm: MiningProfitViewModel) {
 }
 
 @BindingAdapter("app:onProfitClickAction")
-fun onClickBasicAction(view: Button, toolbarVm: IMiningProfitToolbarViewModel?) {
+fun onClickBasicAction(view: Button, listener: IProfitBtnListener?) {
     val isProfit = false
     view.setOnClickListener {
         it.isActivated = !it.isActivated
-        toolbarVm?.onProfitBtnSelected(isProfit)
+        listener?.onProfitBtnSelected(isProfit)
     }
 }
 
