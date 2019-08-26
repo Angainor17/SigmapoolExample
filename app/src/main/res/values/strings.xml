@@ -42,6 +42,7 @@
     <string name="difficulty_change_date">Дата изм. сложности</string>
     <string name="next_difficulty_label">Следующая прогнозируемая сложность</string>
     <string name="profit_of_mining">Доходность майнинга</string>
+    <string name="last_news">Last News</string>
 
 
 </resources>

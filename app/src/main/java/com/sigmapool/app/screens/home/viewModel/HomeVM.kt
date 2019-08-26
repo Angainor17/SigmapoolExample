@@ -7,6 +7,7 @@ import com.sigmapool.app.App
 import com.sigmapool.app.provider.lang.ILanguageProvider
 import com.sigmapool.app.screens.home.coin.CoinsVM
 import com.sigmapool.app.screens.login.LoginFragment
+import com.sigmapool.app.screens.news.vm.NewsListVM
 import com.sigmapool.common.managers.IBlogManager
 import com.sigmapool.common.models.BlogDto
 import kotlinx.coroutines.Dispatchers
@@ -32,6 +33,7 @@ class HomeVM : ViewModel(), OnSlideClickListener {
     val homeMenuVM = HomeMenuVM(fragmentLiveData)
     val coinsVM = CoinsVM()
     val minersVM = HomeMinerVM()
+    val newsVM = NewsListVM()
 
     init {
         initBlogBanner()

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sigmapool.app.R
 import com.sigmapool.app.screens.miningProfit.MiningProfitFragment
+import com.sigmapool.app.screens.news.NewsFragment
 
 
 class HomeMenuVM(private val fragmentLiveData: MutableLiveData<Class<out Fragment>>) : ViewModel() {
@@ -23,6 +24,6 @@ class HomeMenuVM(private val fragmentLiveData: MutableLiveData<Class<out Fragmen
     })
 
     val newsVM = HomeMenuItem(R.mipmap.ic_rect, R.string.news, View.OnClickListener {
-        //TODO implement
+        fragmentLiveData.postValue(NewsFragment::class.java)
     })
 }

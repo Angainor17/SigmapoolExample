@@ -14,7 +14,7 @@
         <include
                 layout="@layout/mining_profit_toolbar"
                 app:titleVm="@{vm}"
-                app:toolbarVm="@{vm}"/>
+                app:toolbarVM="@{vm}"/>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:layout_width="match_parent"

@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sigmapool.app.R
 import com.sigmapool.app.screens.miningProfit.viewModels.MinerHeaderVM
-import com.sigmapool.app.screens.miningProfit.viewModels.MinerItemViewModel
+import com.sigmapool.app.screens.miningProfit.viewModels.MinerItemVM
 import com.sigmapool.common.listLibrary.IItemBindingHelper
 import com.sigmapool.common.listLibrary.pagedlist.SimplePagedAdapter
 import com.sigmapool.common.models.CoinDto
@@ -76,7 +76,7 @@ class MiningListAdapter(
 
         getItem(position - 1)?.let {
             coinInfo.let { coin ->
-                (it as MinerItemViewModel).initCoin(coin?.price ?: 0f)
+                (it as MinerItemVM).initCoin(coin?.price ?: 0f)
             }
 
             holder.bind(it)

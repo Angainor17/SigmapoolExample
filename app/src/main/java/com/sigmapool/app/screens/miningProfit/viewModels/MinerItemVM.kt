@@ -11,7 +11,7 @@ import com.sigmapool.common.utils.INT_PATTERN
 import com.sigmapool.common.utils.format
 import kotlin.math.abs
 
-class MinerItemViewModel(
+class MinerItemVM(
     private val currencyProvider: ICurrencyProvider,
     private val miner: MinerDto
 ) : BaseItemViewModel {
@@ -37,7 +37,7 @@ class MinerItemViewModel(
     }
 
     companion object {
-        val itemType = MinerItemViewModel::class.hashCode()
+        val itemType = MinerItemVM::class.hashCode()
     }
 
     private fun getCurrencyLabel(): String = currencyProvider.getSymbol().toString()
@@ -47,7 +47,7 @@ class MinerItemViewModel(
     override fun areItemsTheSame(item: BaseItemViewModel) = this == item
 
     override fun areContentsTheSame(item: BaseItemViewModel): Boolean {
-        return item is MinerItemViewModel && item.name == this.name
+        return item is MinerItemVM && item.name == this.name
     }
 
     private fun createBtcValueText(value: Float) =

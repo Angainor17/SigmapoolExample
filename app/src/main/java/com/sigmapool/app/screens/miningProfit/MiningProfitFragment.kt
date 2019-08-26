@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.sigmapool.app.databinding.FragmentMinigProfitBinding
 import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitVM
+import com.sigmapool.app.utils.customViews.InnerFragment
 
-class MiningProfitFragment : Fragment(), IMinerFragmentModel {
+class MiningProfitFragment : InnerFragment(), IMinerFragmentModel {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentMinigProfitBinding.inflate(inflater, container, false)
@@ -17,10 +17,7 @@ class MiningProfitFragment : Fragment(), IMinerFragmentModel {
         binding.vm = vm
         vm.listVM.seekBarLiveData.observe(this, Observer {})
         binding.lifecycleOwner = this
-        return binding.root
-    }
 
-    override fun backBtnClick() {
-        activity?.onBackPressed()
+        return binding.root
     }
 }

@@ -1,9 +1,7 @@
 package com.sigmapool.app.screens.home.coin
 
 import androidx.lifecycle.ViewModel
-import com.sigmapool.api.kodein.BTC
-import com.sigmapool.api.kodein.LTC
-import com.sigmapool.app.App
+import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.utils.ViewState
 import com.sigmapool.common.managers.IPoolManager
 import kotlinx.coroutines.Dispatchers
@@ -11,29 +9,29 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
+
 class CoinsVM : ViewModel() {
 
     private val btcCoinVM = CoinItemVM(BTC)
     private val ltcCoinVM = CoinItemVM(LTC)
 
-    private val btcPoolProvider by App.kodein.instance<IPoolManager>(BTC)
-    private val ltcPoolProvider by App.kodein.instance<IPoolManager>(LTC)
+    private val poolManager by kodein.instance<IPoolManager>()
 
     init {
-        initItem(btcCoinVM, btcPoolProvider)
-        initItem(ltcCoinVM, ltcPoolProvider)
+        initItem(btcCoinVM)
     }
 
     fun getCoins() = arrayListOf(btcCoinVM, ltcCoinVM)
 
-    private fun initItem(vm: CoinItemVM, poolManager: IPoolManager) {
+    private fun initItem(vm: CoinItemVM) {
         vm.viewState.postValue(ViewState.LOADING)
+        val coin = vm.coinLabel
 
         GlobalScope.launch(Dispatchers.IO) {
-            val coinDto = poolManager.getCoin()
-            val networkDto = poolManager.getNetwork()
-            val paymentDto = poolManager.getPayment()
-            val profitDailyDto = poolManager.getProfitDaily()
+            val coinDto = poolManager.getCoin(coin)
+            val networkDto = poolManager.getNetwork(coin)
+            val paymentDto = poolManager.getPayment(coin)
+            val profitDailyDto = poolManager.getProfitDaily(coin)
 
             if (coinDto.success && networkDto.success && paymentDto.success && profitDailyDto.success) {
                 vm.initVMs(coinDto.data!!, networkDto.data!!, paymentDto.data!!, profitDailyDto.data!!)

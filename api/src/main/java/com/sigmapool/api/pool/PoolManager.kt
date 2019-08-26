@@ -5,8 +5,8 @@ import com.sigmapool.common.models.*
 
 internal class PoolManager(private val service: IPoolService) : IPoolManager {
 
-    override suspend fun getCoin(): ManagerResult<CoinDto> = try {
-        val coinResponse = service.getCoin()
+    override suspend fun getCoin(coin: String): ManagerResult<CoinDto> = try {
+        val coinResponse = service.getCoin(coin)
         ManagerResult(
             CoinDto(
                 coinResponse.poolHashrate,
@@ -20,8 +20,8 @@ internal class PoolManager(private val service: IPoolService) : IPoolManager {
         ManagerResult(error = e.message)
     }
 
-    override suspend fun getPayment(): ManagerResult<PaymentDto> = try {
-        val response = service.getPayment()
+    override suspend fun getPayment(coin: String): ManagerResult<PaymentDto> = try {
+        val response = service.getPayment(coin)
         ManagerResult(
             PaymentDto(
                 TimeIntervalDto(response.time.from, response.time.from),
@@ -32,8 +32,8 @@ internal class PoolManager(private val service: IPoolService) : IPoolManager {
         ManagerResult(error = e.message)
     }
 
-    override suspend fun getNetwork(): ManagerResult<NetworkDto> = try {
-        val response = service.getNetwork()
+    override suspend fun getNetwork(coin: String): ManagerResult<NetworkDto> = try {
+        val response = service.getNetwork(coin)
         ManagerResult(
             NetworkDto(
                 response.blockReward,
@@ -48,8 +48,8 @@ internal class PoolManager(private val service: IPoolService) : IPoolManager {
         ManagerResult(error = e.message)
     }
 
-    override suspend fun getProfitDaily(): ManagerResult<ProfitDailyDto> = try {
-        val response = service.getProfitDaily()
+    override suspend fun getProfitDaily(coin: String): ManagerResult<ProfitDailyDto> = try {
+        val response = service.getProfitDaily(coin)
         ManagerResult(ProfitDailyDto(response.profit))
     } catch (e: Throwable) {
         ManagerResult(error = e.message)

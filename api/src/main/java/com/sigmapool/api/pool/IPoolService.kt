@@ -7,10 +7,10 @@ import com.sigmapool.api.pool.models.ProfitDailyResponse
 
 internal interface IPoolService {
 
-    suspend fun getCoin(): CoinResponse
-    suspend fun getPayment(): PaymentResponse
-    suspend fun getNetwork(): NetworkResponse
-    suspend fun getProfitDaily(): ProfitDailyResponse
+    suspend fun getCoin(coin: String): CoinResponse
+    suspend fun getPayment(coin: String): PaymentResponse
+    suspend fun getNetwork(coin: String): NetworkResponse
+    suspend fun getProfitDaily(coin: String): ProfitDailyResponse
 
 }
 

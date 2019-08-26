@@ -10,7 +10,7 @@ import com.sigmapool.common.viewModels.ITitleViewModel
 const val COIN_TAG = "coin"
 const val GOOGLE_FONT_FAMILY = "Google Sans"//FIXME
 
-class MiningProfitVM(val view: IMinerFragmentModel) : ViewModel(), ITitleViewModel, IMiningProfitToolbarViewModel {
+class MiningProfitVM(val view: IMinerFragmentModel) : ViewModel(), ITitleViewModel, IMiningProfitToolbarVM {
 
     val listVM = MiningProfitListVM()
 

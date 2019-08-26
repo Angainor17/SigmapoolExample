@@ -4,11 +4,11 @@ import com.sigmapool.common.models.*
 
 interface IPoolManager {
 
-    suspend fun getCoin(): ManagerResult<CoinDto>
+    suspend fun getCoin(coin: String): ManagerResult<CoinDto>
 
-    suspend fun getPayment(): ManagerResult<PaymentDto>
+    suspend fun getPayment(coin: String): ManagerResult<PaymentDto>
 
-    suspend fun getNetwork(): ManagerResult<NetworkDto>
+    suspend fun getNetwork(coin: String): ManagerResult<NetworkDto>
 
-    suspend fun getProfitDaily(): ManagerResult<ProfitDailyDto>
+    suspend fun getProfitDaily(coin: String): ManagerResult<ProfitDailyDto>
 }

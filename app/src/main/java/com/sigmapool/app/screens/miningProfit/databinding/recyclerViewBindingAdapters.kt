@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sigmapool.app.screens.miningProfit.listener.IProfitBtnListener
 import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitListVM
+import com.sigmapool.app.screens.news.vm.NewsListVM
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 
 @BindingAdapter("setPagedAdapter")
@@ -23,6 +24,20 @@ fun setPagedAdapter(view: RecyclerView, listVm: MiningProfitListVM) {
     listVm.itemsVM.items.observe(activity,
         Observer<PagedList<BaseItemViewModel>?> { t ->
             listVm.itemsVM.pagedRecyclerAdapter.submitList(t)
+        }
+    )
+}
+
+@BindingAdapter("setNewsAdapter")
+fun setNewsAdapter(view: RecyclerView, vm: NewsListVM) {
+    val linearLayoutManager = LinearLayoutManager(view.context)
+    view.layoutManager = linearLayoutManager
+    vm.itemsVM.pagedRecyclerAdapter.linearLayoutManager = linearLayoutManager
+
+    val activity = view.context as AppCompatActivity
+    vm.itemsVM.items.observe(activity,
+        Observer<PagedList<BaseItemViewModel>?> { t ->
+            vm.itemsVM.pagedRecyclerAdapter.submitList(t)
         }
     )
 }

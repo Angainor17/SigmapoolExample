@@ -8,6 +8,7 @@ import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.models.Currency
 import com.sigmapool.app.provider.currency.ICurrencyProvider
+import com.sigmapool.app.screens.home.coin.BTC
 import com.sigmapool.app.screens.miningProfit.MinerBindingHelper
 import com.sigmapool.app.screens.miningProfit.MinerItemMapper
 import com.sigmapool.app.screens.miningProfit.MinerLoader
@@ -78,13 +79,13 @@ class MiningProfitListVM(params: MinerListParams = MinerListParams()) : ViewMode
 
     private fun setProfitValue(value: Float) {
         itemsVM.pagedRecyclerAdapter.currentList?.forEach {
-            (it as MinerItemViewModel).initPowerCost(value)
+            (it as MinerItemVM).initPowerCost(value)
         }
     }
 
     private fun setCoinValue(value: Float) {
         itemsVM.pagedRecyclerAdapter.currentList?.forEach {
-            (it as MinerItemViewModel).initCoin(value)
+            (it as MinerItemVM).initCoin(value)
         }
 
         GlobalScope.launch(Dispatchers.Main) {
@@ -102,7 +103,7 @@ class MiningProfitListVM(params: MinerListParams = MinerListParams()) : ViewMode
         }
 
         GlobalScope.launch(Dispatchers.IO) {
-            val coin = coinManager.getCoin()
+            val coin = coinManager.getCoin(BTC)
             if (coin.success) {
                 setCoin(coin.data!!)
                 setCoinValue(coin.data?.price ?: 0f)

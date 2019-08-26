@@ -10,11 +10,11 @@ internal class PoolService(retrofit: Retrofit) : IPoolService {
 
     private val api = retrofit.create(PoolApi::class.java)
 
-    override suspend fun getCoin(): CoinResponse = api.getCoin().payload!!
+    override suspend fun getCoin(coin: String): CoinResponse = api.getCoin(coin).payload!!
 
-    override suspend fun getPayment(): PaymentResponse = api.getPayment().payload!!
+    override suspend fun getPayment(coin: String): PaymentResponse = api.getPayment(coin).payload!!
 
-    override suspend fun getNetwork(): NetworkResponse = api.getNetwork().payload!!
+    override suspend fun getNetwork(coin: String): NetworkResponse = api.getNetwork(coin).payload!!
 
-    override suspend fun getProfitDaily(): ProfitDailyResponse = api.getProfitDaily().payload!!
+    override suspend fun getProfitDaily(coin: String): ProfitDailyResponse = api.getProfitDaily(coin).payload!!
 }
