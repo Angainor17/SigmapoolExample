@@ -9,6 +9,7 @@ import com.sigmapool.common.models.MinerDto
 import com.sigmapool.common.utils.FLOAT_PATTERN
 import com.sigmapool.common.utils.INT_PATTERN
 import com.sigmapool.common.utils.format
+import kotlin.math.abs
 
 class MinerItemViewModel(
     private val currencyProvider: ICurrencyProvider,
@@ -31,7 +32,7 @@ class MinerItemViewModel(
 
     fun initPowerCost(powerCost: Float) {
         profitValue = miner.revenue - powerCost
-        profit = getCurrencyLabel() + " " + profitValue.format(FLOAT_PATTERN)
+        profit = (if (profitValue < 0) "-" else "") + getCurrencyLabel() + " " + abs(profitValue).format(FLOAT_PATTERN)
         revenuePowerCost = getCurrencyLabel() + miner.revenue + " / " + getCurrencyLabel() + powerCost
     }
 

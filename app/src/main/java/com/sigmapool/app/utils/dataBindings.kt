@@ -1,6 +1,6 @@
 package com.sigmapool.app.utils
 
-import android.widget.Button
+import android.view.View
 import android.widget.ImageView
 import android.widget.RadioButton
 import androidx.databinding.BindingAdapter
@@ -70,6 +70,6 @@ fun setImages(slider: Slider, items: ArrayList<BlogDto>?, listener: OnSlideClick
 }
 
 @BindingAdapter("app:onActivatedChange")
-fun onActivatedChange(view: Button, isActivated: Boolean) {
+fun onActivatedChange(view: View, isActivated: Boolean) {
     view.isActivated = isActivated
 }
