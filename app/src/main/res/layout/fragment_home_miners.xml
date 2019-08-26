@@ -67,6 +67,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+        <include
+                layout="@layout/mining_profit_list"
+                app:vm="@{vm.miningProfitVM}"/>
 
     </LinearLayout>
 

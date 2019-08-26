@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitViewModel"/>
+        <variable name="vm" type="com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitVM"/>
     </data>
 
     <LinearLayout
@@ -20,12 +20,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                app:onRefreshListener="@{() -> vm.itemsVM.onRefresh()}"
-                app:refreshing="@{vm.itemsVM.refreshing}">
+                app:onRefreshListener="@{() -> vm.listVM.itemsVM.onRefresh()}"
+                app:refreshing="@{vm.listVM.itemsVM.refreshing}">
 
             <include
                     layout="@layout/mining_profit_list"
-                    app:vm="@{vm}"/>
+                    app:vm="@{vm.listVM}"/>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

@@ -9,11 +9,11 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sigmapool.app.screens.miningProfit.viewModels.IProfitBtnListener
-import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitViewModel
+import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitListVM
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 
 @BindingAdapter("setPagedAdapter")
-fun setPagedAdapter(view: RecyclerView, listVm: MiningProfitViewModel) {
+fun setPagedAdapter(view: RecyclerView, listVm: MiningProfitListVM) {
     val linearLayoutManager = LinearLayoutManager(view.context)
     view.layoutManager = linearLayoutManager
     listVm.itemsVM.pagedRecyclerAdapter.linearLayoutManager = linearLayoutManager

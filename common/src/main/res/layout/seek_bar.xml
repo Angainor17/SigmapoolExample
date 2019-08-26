@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<layout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        >
 
     <data>
-        <variable name="vm" type="com.sigmapool.common.viewModels.IIndicatorSeekBarViewModel"/>
+
+        <variable
+                name="vm"
+                type="com.sigmapool.common.viewModels.IIndicatorSeekBarViewModel"
+                />
     </data>
 
 
@@ -11,7 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
         <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -24,7 +32,8 @@
 
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="6dp"
-                app:cardElevation="4dp">
+                app:cardElevation="4dp"
+                >
 
             <com.warkiz.widget.IndicatorSeekBar
                     android:id="@+id/indicatorSeekBar"
@@ -62,15 +71,9 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
 
-            />
+                    />
 
         </androidx.cardview.widget.CardView>
-
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/high_seekbar_separator"
-        />
 
         <TextView
                 android:id="@+id/powerCostTv"
@@ -85,7 +88,8 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
 
-                tools:text="Power Cost: P 3.57/Kwh"/>
+                tools:text="Power Cost: P 3.57/Kwh"
+                />
 
     </LinearLayout>
 </layout>
