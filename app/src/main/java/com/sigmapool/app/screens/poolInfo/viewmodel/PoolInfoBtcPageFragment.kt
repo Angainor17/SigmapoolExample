@@ -20,8 +20,8 @@ class PoolInfoBtcPageFragment: Fragment(), IPoolInfoBtcModel{
     //TODO: refactor
     private val btcPoolInfoManager by App.kodein.instance<IPoolInfoManager>()
 
-    override suspend fun getDailyProfit(): ManagerResult<DailyProfitDto> {
-        return btcPoolInfoManager.getBtcDailyProfit()
+    override suspend fun getDailyProfit(coin:String): ManagerResult<DailyProfitDto> {
+        return btcPoolInfoManager.getDailyProfit(coin)
     }
 
     override suspend fun getBtcPoolInfo(): ManagerResult<PoolInfoBtcDto> {

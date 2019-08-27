@@ -9,7 +9,7 @@ import com.sigmapool.common.models.PoolInfoLtcDto
 interface IPoolInfoManager {
 
     suspend fun getBtcPoolInfo(): ManagerResult<PoolInfoBtcDto>
-    suspend fun getBtcDailyProfit(): ManagerResult<DailyProfitDto>
+    suspend fun getDailyProfit(coin:String): ManagerResult<DailyProfitDto>
     suspend fun getLtcPoolInfo(): ManagerResult<PoolInfoLtcDto>
 
 }

@@ -6,5 +6,5 @@ import com.sigmapool.common.models.PoolInfoBtcDto
 
 interface IPoolInfoBtcModel {
     suspend fun getBtcPoolInfo(): ManagerResult<PoolInfoBtcDto>
-    suspend fun getDailyProfit(): ManagerResult<DailyProfitDto>
+    suspend fun getDailyProfit(coin:String): ManagerResult<DailyProfitDto>
 }

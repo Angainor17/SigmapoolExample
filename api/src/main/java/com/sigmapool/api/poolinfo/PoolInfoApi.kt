@@ -12,9 +12,6 @@ interface PoolInfoApi {
     @GET("api/v2/btc/pool")
     suspend fun getBtcPoolInfo(): PayloadModel<PoolInfoBtc>
 
-    @GET("api/v2/btc/profit/daily")
-    suspend fun getBtcDailyProfit(): PayloadModel<DailyProfitBtc>
-
     //TODO: through path parameter, make one function for btc/ltc
     @GET("api/v2/{coin}/profit/daily")
     suspend fun getDailyProfit(@Path("coin") coin:String): PayloadModel<DailyProfitBtc>

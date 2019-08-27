@@ -18,7 +18,7 @@ class PoolInfoBtcViewModel(model: IPoolInfoBtcModel) : ViewModel(){
     init {
         GlobalScope.launch(Dispatchers.Default) {
             handlePoolInfoData(model.getBtcPoolInfo())
-            handleDailyProfitData(model.getDailyProfit())
+            handleDailyProfitData(model.getDailyProfit("btc")) // TODO: dehardcode "btc" String
         }
     }
 

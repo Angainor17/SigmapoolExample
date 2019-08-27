@@ -7,16 +7,15 @@ import com.sigmapool.common.models.ManagerResult
 import com.sigmapool.common.models.PoolInfoBtcDto
 import com.sigmapool.common.models.PoolInfoLtcDto
 
-internal class PoolInfoManager(btcServiceProvider: IApiServiceProvider, ltcServiceProvider: IApiServiceProvider) : IPoolInfoManager {
+internal class PoolInfoManager(serviceProvider: IApiServiceProvider) : IPoolInfoManager {
 
 
-    private val btcPoolInfoService = btcServiceProvider.create(PoolInfoApi::class.java)
-    private val ltcPoolInfoService = ltcServiceProvider.create(PoolInfoApi::class.java)
+    private val poolInfoService = serviceProvider.create(PoolInfoApi::class.java)
 
     // TODO signle function with "coin" parameter
     override suspend fun getBtcPoolInfo(): ManagerResult<PoolInfoBtcDto> = try {
 
-        val poolInfo = btcPoolInfoService.getBtcPoolInfo().payload!!
+        val poolInfo = this.poolInfoService.getBtcPoolInfo().payload!!
 
         val poolInfoBtcDto = PoolInfoBtcDto(
             poolInfo.fee.pps,
@@ -31,9 +30,9 @@ internal class PoolInfoManager(btcServiceProvider: IApiServiceProvider, ltcServi
         ManagerResult(error = e.message)
     }
 
-    override suspend fun getBtcDailyProfit(): ManagerResult<DailyProfitDto> {
+    override suspend fun getDailyProfit(coin:String): ManagerResult<DailyProfitDto> {
         return try {
-            val dailyProfit = btcPoolInfoService.getBtcDailyProfit().payload!!
+            val dailyProfit = this.poolInfoService.getDailyProfit(coin).payload!! // TODO: dehardcode "btc" string
 
             val dailyProfitDto = DailyProfitDto(
                 dailyProfit.profit
@@ -48,7 +47,7 @@ internal class PoolInfoManager(btcServiceProvider: IApiServiceProvider, ltcServi
 
     override suspend fun getLtcPoolInfo(): ManagerResult<PoolInfoLtcDto> = try {
 
-        val poolInfo = ltcPoolInfoService.getLtcPoolInfo().payload!!
+        val poolInfo = this.poolInfoService.getLtcPoolInfo().payload!!
 
         val poolInfoLtcDto = PoolInfoLtcDto(
             poolInfo.fee.pps,
