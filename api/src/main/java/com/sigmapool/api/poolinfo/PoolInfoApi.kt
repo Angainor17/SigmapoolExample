@@ -4,6 +4,8 @@ import com.sigmapool.api.models.DailyProfitBtc
 import com.sigmapool.api.models.PayloadModel
 import com.sigmapool.api.models.PoolInfoBtc
 import com.sigmapool.api.models.PoolInfoLtc
+import com.sigmapool.common.models.PaymentDto
+import com.sigmapool.common.models.SettlementDetailsDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -19,4 +21,9 @@ interface PoolInfoApi {
     @GET("api/v2/ltc/pool")
     suspend fun getLtcPoolInfo(): PayloadModel<PoolInfoLtc>
 
+    @GET("api/v2/{coin}/payment")
+    suspend fun getPayment(@Path("coin") coin:String): PayloadModel<PaymentDto>
+
+    @GET("api/v2/{coin}/settlement-details?lang=en")
+    suspend fun getSettlementDetails(@Path("coin") coin:String): PayloadModel<SettlementDetailsDto> // TODO: lang path param
 }

@@ -9,13 +9,19 @@ import com.sigmapool.app.App
 import com.sigmapool.app.R
 import com.sigmapool.app.databinding.PoolInfoBtcPageFragmentBinding
 import com.sigmapool.common.managers.IPoolInfoManager
-import com.sigmapool.common.models.DailyProfitDto
-import com.sigmapool.common.models.ManagerResult
-import com.sigmapool.common.models.PoolInfoBtcDto
+import com.sigmapool.common.models.*
 import org.kodein.di.generic.instance
 
 
 class PoolInfoBtcPageFragment: Fragment(), IPoolInfoBtcModel{
+
+    override suspend fun getSettlementDetails(coin: String): ManagerResult<SettlementDetailsDto> {
+        return btcPoolInfoManager.getSettlementDetails(coin)
+    }
+
+    override suspend fun getPayment(coin: String): ManagerResult<PaymentDto> {
+        return btcPoolInfoManager.getPayment(coin)
+    }
 
     //TODO: refactor
     private val btcPoolInfoManager by App.kodein.instance<IPoolInfoManager>()

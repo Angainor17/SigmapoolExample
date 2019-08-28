@@ -2,12 +2,34 @@ package com.sigmapool.api.poolinfo
 
 import com.sigmapool.api.providers.IApiServiceProvider
 import com.sigmapool.common.managers.IPoolInfoManager
-import com.sigmapool.common.models.DailyProfitDto
-import com.sigmapool.common.models.ManagerResult
-import com.sigmapool.common.models.PoolInfoBtcDto
-import com.sigmapool.common.models.PoolInfoLtcDto
+import com.sigmapool.common.models.*
 
 internal class PoolInfoManager(serviceProvider: IApiServiceProvider) : IPoolInfoManager {
+
+    override suspend fun getSettlementDetails(coin: String): ManagerResult<SettlementDetailsDto>  = try {
+        val settlementDetails = this.poolInfoService.getSettlementDetails(coin).payload!!
+
+        val settlementDetailsDto = SettlementDetailsDto(
+            settlementDetails.settlementDetailsText
+        )
+
+        ManagerResult(settlementDetailsDto)
+    } catch(e:Throwable){
+        ManagerResult(error = e.message)
+    }
+
+    override suspend fun getPayment(coin: String): ManagerResult<PaymentDto> = try {
+        val paymentTime = this.poolInfoService.getPayment(coin).payload!!
+
+        val paymentTimeDto = PaymentDto(
+            PaymentTime(paymentTime.time.from, paymentTime.time.to),
+            paymentTime.min
+        )
+
+        ManagerResult(paymentTimeDto)
+    }catch (e:Throwable) {
+        ManagerResult(error = e.message)
+    }
 
 
     private val poolInfoService = serviceProvider.create(PoolInfoApi::class.java)
@@ -60,4 +82,6 @@ internal class PoolInfoManager(serviceProvider: IApiServiceProvider) : IPoolInfo
     } catch (e: Throwable) {
         ManagerResult(error = e.message)
     }
+
+
 }

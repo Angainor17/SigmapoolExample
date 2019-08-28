@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
 >
     <data>
         <variable name="vm" type="com.sigmapool.app.screens.poolInfo.viewmodel.PoolInfoBtcViewModel"/>
@@ -42,7 +42,9 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_toLeftOf="@id/fppsUnits"
-                    android:text="@{vm.fpps}">
+                    android:text="@{vm.fpps}"
+                    tools:text="4%"
+                    android:layout_marginEnd="4dp">
             </TextView>
             <TextView
                     android:id="@+id/fppsUnits"
@@ -69,7 +71,9 @@
 
                     android:layout_toLeftOf="@id/ppsValues"
                     android:layout_below="@id/fppsValue"
-                    android:text="@{vm.pps}">
+                    android:text="@{vm.pps}"
+                    tools:text="0%"
+                    android:layout_marginEnd="4dp">
             </TextView>
         </RelativeLayout>
 
@@ -90,7 +94,9 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_toLeftOf="@id/profitUnits"
-                    android:text="@{vm.dailyProfit}">
+                    android:text="@{vm.dailyProfit}"
+                    tools:text="0.00003750"
+                    android:layout_marginEnd="4dp">
             </TextView>
             <TextView
                     android:id="@+id/profitUnits"
@@ -117,7 +123,8 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="TextView7">
+                    android:text="@{vm.paymentTime}"
+                    tools:text="9:00-12:00">
             </TextView>
 
 
@@ -140,7 +147,9 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_toLeftOf="@id/minimumPayoutUnits"
-                    android:text="TextView8">
+                    android:text="@{vm.paymentMin}"
+                    tools:text="0.001"
+                    android:layout_marginEnd="4dp">
             </TextView>
             <TextView
                     android:id="@+id/minimumPayoutUnits"
@@ -172,7 +181,8 @@
                     style="@style/ItemValue"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Lorem ipsum lorem ipsum lorem ipsum long long long lorem ipsum, as long as possible ">
+                    android:text="@{vm.settlementDetails}"
+                    tools:text="Settlement is proceeded at UTC 0:30 for yesterday's mining profit. The payment will be delayed in cases of no wallet address, address modification in last 72 hours and balance not reaching minimum payment threshold.">
             </TextView>
         </LinearLayout>
 
@@ -192,7 +202,10 @@
 
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="There is lack a lot of URLs">
+                    android:text="@{vm.stratumURLs}"
+                    android:autoLink="web"
+                    android:textColorLink="#081EEA"
+                    tools:text="stratum+tcp://eu2.btc.sigmapool.com:3333\nstratum+tcp://eu3.btc.sigmapool.com:3333\nstratum+tcp://eu4.btc.sigmapool.com:3333">
             </TextView>
         </LinearLayout>
     </LinearLayout>
