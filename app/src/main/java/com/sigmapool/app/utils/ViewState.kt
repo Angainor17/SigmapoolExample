@@ -4,7 +4,7 @@ import com.sigmapool.app.utils.ViewState.*
 import com.sigmapool.common.listLibrary.loader.ItemsLoaderState
 import com.sigmapool.common.listLibrary.loader.ItemsLoaderState.*
 
-enum class ViewState(val text: String = "") {
+enum class ViewState {
     LOADING,
     ERROR,
     CONTENT;
