@@ -21,7 +21,7 @@ class SimplePagedListViewModel<ItemViewModel : BaseItemViewModel, ItemDto>(
     itemPerPage: Int = 20
 ) {
 
-    private val dataSourceFactory = SimpleDateSourceFactory(loader, mapper)
+    val dataSourceFactory = SimpleDateSourceFactory(loader, mapper)
 
     private val query = MutableLiveData<String>()
 

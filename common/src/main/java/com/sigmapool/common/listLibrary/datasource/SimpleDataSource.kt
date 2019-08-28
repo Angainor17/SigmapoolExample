@@ -11,12 +11,11 @@ import kotlinx.coroutines.launch
 
 
 class SimpleDataSource<ItemDto, ItemViewModel : BaseItemViewModel>(
-    private val query: String,
+    private val query: String = "",
+    val loaderState: MutableLiveData<ItemsLoaderState>,
     private val loader: IItemsLoader<ItemDto>,
     private val mapper: SimpleMapper<ItemDto, ItemViewModel>
 ) : PositionalDataSource<ItemViewModel>() {
-
-    val loaderState = MutableLiveData<ItemsLoaderState>()
 
     val errorMessage = MutableLiveData<String>()
 
@@ -45,7 +44,7 @@ class SimpleDataSource<ItemDto, ItemViewModel : BaseItemViewModel>(
         GlobalScope.launch(Dispatchers.Default) {
             val t = loader.load(query, 0, params.pageSize)
             if (t.isSuccess) {
-                callback.onResult(mapper.map(t.data!!), 0)
+                callback.onResult(mapper.map(t.data ?: ArrayList()), 0)
                 loaderState.postValue(ItemsLoaderState.Idle)
             } else {
                 loaderState.postValue(ItemsLoaderState.Error)
