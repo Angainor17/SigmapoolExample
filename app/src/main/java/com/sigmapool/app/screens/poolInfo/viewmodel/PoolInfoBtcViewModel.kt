@@ -1,5 +1,6 @@
 package com.sigmapool.app.screens.poolInfo.viewmodel
 
+import android.text.Html
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sigmapool.common.models.*
@@ -15,7 +16,7 @@ class PoolInfoBtcViewModel(model: IPoolInfoBtcModel) : ViewModel(){
     val paymentTime = MutableLiveData<String>()
     val paymentMin  = MutableLiveData<String>()
     val settlementDetails = MutableLiveData<String>()
-    val stratumURLs = MutableLiveData<String>()
+    val stratumURLs = MutableLiveData<CharSequence>()
 
     init {
         GlobalScope.launch(Dispatchers.Default) {
@@ -41,11 +42,32 @@ class PoolInfoBtcViewModel(model: IPoolInfoBtcModel) : ViewModel(){
             fpps.postValue(info?.feeFpps.toString())
             pps.postValue(info?.feePps.toString())
 
+//            var stratumUrl = "<html><head></head><body>"
+//            var stratumUrl = "<p>"
+//            var stratumUrl = "<html>"
+//            var stratumUrl  = "<![CDATA["
+//            var stratumUrl = "<string name=\"text\">"
             var stratumUrl = ""
+
             for(url in info!!.stratumURLs) {
-                stratumUrl += url + "\n"
+//                stratumUrl += "<p><a href=\'" + url + "\'>"+url+"</a></p>"
+//                stratumUrl += "<a href=\"" + url + "\">"+url+"</a>"
+//                stratumUrl+= "<b>Your variable: %1$url</b>
+                stratumUrl+= "<a href=\"$url\">$url</a><br>"
+//                stratumUrl += url+"\n"
+//                stratumUrl += "<a>"+url+"</a>\n"
             }
-            stratumURLs.postValue(stratumUrl)
+            stratumUrl+=""
+//            stratumUrl+="</string>"
+//            stratumUrl+="?]]>"
+//            stratumUrl+="</p>"
+//            stratumUrl+="</div>"
+//            stratumUrl +="</html>"
+//            stratumUrl +="<</body></html>"
+            stratumURLs.postValue(Html.fromHtml(stratumUrl))
+//            stratumURLs.postValue(Html.toHtml(stratumUrl.toSpannable()))
+
+//            stratumURLs.postValue(stratumUrl)
         } else{
             // TODO: error handling
         }

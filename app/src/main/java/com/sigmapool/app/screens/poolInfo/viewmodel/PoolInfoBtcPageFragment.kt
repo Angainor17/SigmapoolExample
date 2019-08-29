@@ -1,9 +1,11 @@
 package com.sigmapool.app.screens.poolInfo.viewmodel
 
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.sigmapool.app.App
 import com.sigmapool.app.R
@@ -39,6 +41,7 @@ class PoolInfoBtcPageFragment: Fragment(), IPoolInfoBtcModel{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pageNumber = getArguments()?.getInt(ARGUMENT_PAGE_NUMBER) ?: 0
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -47,6 +50,12 @@ class PoolInfoBtcPageFragment: Fragment(), IPoolInfoBtcModel{
         binding.vm = PoolInfoBtcViewModel(this)
         binding.lifecycleOwner = this
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val urlsTextView: TextView = view.findViewById(R.id.urlsTextView)
+        urlsTextView.movementMethod = LinkMovementMethod.getInstance()
     }
 
     companion object {

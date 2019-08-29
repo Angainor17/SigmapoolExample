@@ -24,6 +24,6 @@ interface PoolInfoApi {
     @GET("api/v2/{coin}/payment")
     suspend fun getPayment(@Path("coin") coin:String): PayloadModel<PaymentDto>
 
-    @GET("api/v2/{coin}/settlement-details?lang=en")
+    @GET("api/v2/{coin}/text/settlement-details?lang=en")
     suspend fun getSettlementDetails(@Path("coin") coin:String): PayloadModel<SettlementDetailsDto> // TODO: lang path param
 }

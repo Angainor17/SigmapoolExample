@@ -199,12 +199,12 @@
                     android:text="@string/miningURL">
             </TextView>
             <TextView
-
+                    android:id="@+id/urlsTextView"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@{vm.stratumURLs}"
-                    android:autoLink="web"
                     android:textColorLink="#081EEA"
+                    android:linksClickable="true"
                     tools:text="stratum+tcp://eu2.btc.sigmapool.com:3333\nstratum+tcp://eu3.btc.sigmapool.com:3333\nstratum+tcp://eu4.btc.sigmapool.com:3333">
             </TextView>
         </LinearLayout>
