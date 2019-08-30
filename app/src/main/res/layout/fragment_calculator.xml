@@ -92,6 +92,7 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginTop="4dp"
 
                         app:viewCalcTabAdapter="@{fragmentManager}"
                         app:initCalcAdapter="@{vm.calcItems}"
