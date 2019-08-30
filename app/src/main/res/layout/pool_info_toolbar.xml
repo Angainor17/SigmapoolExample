@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="titleVm"   type="com.sigmapool.common.viewModels.ITitleViewModel"/>
+        <variable name="toolbarVm" type="com.sigmapool.app.screens.poolInfo.viewmodel.ICurrencySwitcherViewModel"/>
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_status_bar"
+            android:paddingTop="16dp"
+
+    >
+    <!-- tools:showIn="@layout/fragment_minig_profit" //TODO: possibly would be used in calculator title, put it higher inside closing bracket -->
+
+
+        <ImageView
+                style="@style/BackBtnStyle"
+                android:id="@+id/backBtn"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="16dp"
+
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/toolbarTitle"
+                android:text="@{titleVm.getTitle()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/ToolbarTitle"
+                android:textSize="19sp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/google_sans_bold"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/backBtn"
+                app:layout_constraintTop_toTopOf="@+id/backBtn"
+
+                tools:text="@string/pool_info"/>
+
+        <include layout="@layout/currency_switcher"
+                 app:vm="@{toolbarVm}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -18,6 +18,18 @@
     <string name="sign_in_api_key">Sign in with API Key</string>
     <string name="or">or</string>
 
+    <string name="pool_info">Pool Info</string>
+    <string name="fee">Fee</string>
+    <string name="fpps">FPPS</string>
+    <string name="pps">PPS</string>
+    <string name="dailyProfitPerTHs">Daily Profit Per TH/s (FPPS)</string>
+    <string name="btc">BTC</string>
+    <string name="paymentTime">Payment Time</string>
+    <string name="minimumPayout">Minimum Payout</string>
+    <string name="settlementDetails">Settlement Details</string>
+    <string name="miningURL">Mining URL</string>
+
+
     <string name="home_screen_icon_title">Главная</string>
     <string name="dashboard_screen_icon_title">Дашборд</string>
     <string name="workers_screen_icon_title">Воркеры</string>
@@ -25,7 +37,6 @@
     <string name="settings_screen_icon_title">Настройки</string>
     <string name="registration">Регистрация</string>
     <string name="enter">Вход</string>
-    <string name="pool_info">Pool Info</string>
     <string name="calculator">Calculator</string>
     <string name="news">News</string>
     <string name="pool_hashrate">Хешрейт пула</string>

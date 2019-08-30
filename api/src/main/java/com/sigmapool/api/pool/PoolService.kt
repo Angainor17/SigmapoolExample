@@ -4,11 +4,11 @@ import com.sigmapool.api.pool.models.CoinResponse
 import com.sigmapool.api.pool.models.NetworkResponse
 import com.sigmapool.api.pool.models.PaymentResponse
 import com.sigmapool.api.pool.models.ProfitDailyResponse
-import retrofit2.Retrofit
+import com.sigmapool.api.providers.IApiServiceProvider
 
-internal class PoolService(retrofit: Retrofit) : IPoolService {
+internal class PoolService(apiProvider: IApiServiceProvider) : IPoolService {
 
-    private val api = retrofit.create(PoolApi::class.java)
+    private val api = apiProvider.create(PoolApi::class.java)
 
     override suspend fun getCoin(coin: String): CoinResponse = api.getCoin(coin).payload!!
 

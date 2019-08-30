@@ -1,6 +1,7 @@
 package com.sigmapool.api.retrofit
 
 import com.google.gson.GsonBuilder
+import com.sigmapool.api.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -21,7 +22,8 @@ fun createRetrofit(baseUrl: String, headerMappers: ArrayList<HeaderMapper>): Ret
 /*** Получение Interceptor логирования запросов в сеть */
 fun getHttpLoggingInterceptor(): HttpLoggingInterceptor {
     val logging = HttpLoggingInterceptor()
-    logging.level = HttpLoggingInterceptor.Level.BASIC
+    logging.level = if(BuildConfig.DEBUG){ HttpLoggingInterceptor.Level.BODY}
+    else HttpLoggingInterceptor.Level.BASIC
     return logging
 }
 

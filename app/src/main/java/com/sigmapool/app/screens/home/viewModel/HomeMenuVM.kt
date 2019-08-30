@@ -8,12 +8,13 @@ import com.sigmapool.app.R
 import com.sigmapool.app.screens.calculator.CalculatorFragment
 import com.sigmapool.app.screens.miningProfit.MiningProfitFragment
 import com.sigmapool.app.screens.news.NewsFragment
+import com.sigmapool.app.screens.poolInfo.viewmodel.PoolInfoFragment
 
 
 class HomeMenuVM(private val fragmentLiveData: MutableLiveData<Class<out Fragment>>) : ViewModel() {
 
     val poolInfoVM = HomeMenuItem(R.mipmap.ic_info, R.string.pool_info, View.OnClickListener {
-        //TODO implement
+        fragmentLiveData.postValue(PoolInfoFragment::class.java)
     })
 
     val calculatorVM = HomeMenuItem(R.mipmap.ic_calc, R.string.calculator, View.OnClickListener {
