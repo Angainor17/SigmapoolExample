@@ -13,8 +13,6 @@ import com.sigmapool.common.utils.FLOAT_PATTERN
 import com.sigmapool.common.utils.INT_PATTERN
 import com.sigmapool.common.utils.format
 import org.kodein.di.generic.instance
-import java.text.SimpleDateFormat
-import java.util.*
 
 class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewModel(), StateVM {
 
@@ -65,7 +63,7 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
         networkHashrate.postValue(formatHashrate(networkDto.networkHashrate.toLong()))
         networkDifficulty.postValue(formatNetworkDifficulty(networkDto))
         block.postValue(networkDto.blockHeight.format(INT_PATTERN))
-        nextDifficultyAt.postValue(formatDate(networkDto.nextDifficultyAt))
+        nextDifficultyAt.postValue(networkDto.nextDifficultyAt.formatDate())
         nextDifficulty.postValue(formatValue("7.93", " T"))//FIXME
 
         nextDifficultyChange.postValue("9.54 %")//FIXME
@@ -90,7 +88,7 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
     }
 
     private fun formatPaymentTime(timeInterval: TimeIntervalDto): String {
-        return formatTime(timeInterval.from) + "-" + formatTime(timeInterval.to)
+        return timeInterval.from.formatTime() + "-" + timeInterval.to.formatTime()
     }
 
     private fun formatHashrate(value: Long): CharSequence {
@@ -109,6 +107,4 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
 fun String.lastChar() = substring(length - 1)
 fun String.beforeLastChar() = substring(0, length - 1)
 
-fun formatTime(date: Date): String = SimpleDateFormat("HH:mm").format(date)
-fun formatDate(date: Date): String = SimpleDateFormat("dd.MM.yyyy").format(date)
 

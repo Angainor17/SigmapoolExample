@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.sigmapool.app.App
 import com.sigmapool.app.R
 import com.sigmapool.app.databinding.PoolInfoBtcPageFragmentBinding
-import com.sigmapool.app.screens.poolInfo.vm.PoolInfoBtcViewModel
+import com.sigmapool.app.screens.poolInfo.vm.PoolInfoBtcVM
 import com.sigmapool.common.managers.IPoolInfoManager
 import com.sigmapool.common.models.*
 import org.kodein.di.generic.instance
@@ -48,7 +48,7 @@ class PoolInfoBtcPageFragment: Fragment(), IPoolInfoBtcModel{
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view:View = inflater.inflate(R.layout.pool_info_btc_page_fragment, null)
         val binding = PoolInfoBtcPageFragmentBinding.inflate(inflater, container, false)
-        binding.vm = PoolInfoBtcViewModel(this)
+        binding.vm = PoolInfoBtcVM(this)
         binding.lifecycleOwner = this
         return binding.root
     }

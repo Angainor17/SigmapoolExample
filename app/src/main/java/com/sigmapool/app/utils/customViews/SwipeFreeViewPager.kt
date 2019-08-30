@@ -1,4 +1,4 @@
-package com.sigmapool.app.views
+package com.sigmapool.app.utils.customViews
 
 import android.content.Context
 import android.util.AttributeSet

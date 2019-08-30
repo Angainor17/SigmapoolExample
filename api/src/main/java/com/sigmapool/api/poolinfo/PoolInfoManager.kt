@@ -34,7 +34,7 @@ internal class PoolInfoManager(serviceProvider: IApiServiceProvider) : IPoolInfo
 
     private val poolInfoService = serviceProvider.create(PoolInfoApi::class.java)
 
-    // TODO signle function with "coin" parameter
+    // TODO single function with "coin" parameter
     override suspend fun getBtcPoolInfo(): ManagerResult<PoolInfoBtcDto> = try {
 
         val poolInfo = this.poolInfoService.getBtcPoolInfo().payload!!
@@ -82,6 +82,4 @@ internal class PoolInfoManager(serviceProvider: IApiServiceProvider) : IPoolInfo
     } catch (e: Throwable) {
         ManagerResult(error = e.message)
     }
-
-
 }

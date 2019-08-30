@@ -10,8 +10,7 @@ import com.sigmapool.app.utils.getString
 import com.sigmapool.common.viewModels.ITitleViewModel
 
 
-class PoolInfoViewModel(model: IPoolInfoModel) : ViewModel(), ITitleViewModel,
-    ICurrencySwitcherViewModel {
+class PoolInfoVM(model: IPoolInfoModel) : ViewModel(), ITitleViewModel, ICurrencySwitcherViewModel {
 
     override val btcSelected: ObservableBoolean = ObservableBoolean(true)
 

@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class PoolInfoLtcViewModel(model: IPoolInfoLtcModel) : ViewModel(){
+class PoolInfoLtcVM(model: IPoolInfoLtcModel) : ViewModel(){
     val pps = MutableLiveData<String>()
 
     init {

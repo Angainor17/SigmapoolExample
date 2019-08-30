@@ -3,7 +3,8 @@
 >
 
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.poolInfo.vm.PoolInfoViewModel"/>
+        <variable name="vm" type="com.sigmapool.app.screens.poolInfo.vm.PoolInfoVM"/>
+        <variable name="toolbarVm" type="com.sigmapool.app.utils.IBackBtnScreen"/>
     </data>
 
     <LinearLayout android:layout_width="match_parent"
@@ -11,35 +12,37 @@
                   android:orientation="vertical">
 
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/gradient_status_bar"
-            android:focusable="true"
-            android:orientation="vertical">
-        <include
-            layout="@layout/pool_info_toolbar"
-            app:titleVm="@{vm}"
-            app:toolbarVm="@{vm}"
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_status_bar"
+                android:focusable="true"
+                android:orientation="vertical">
+
+            <include
+                    layout="@layout/pool_info_toolbar"
+                    app:titleVm="@{vm}"
+                    app:toolbarVm="@{toolbarVm}"
+                    app:currencySwitcherVm="@{vm}"
             />
-    </LinearLayout>
+
+        </LinearLayout>
+
         <LinearLayout
                 android:background="@drawable/miner_background"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent">
             <!-- TODO: disable swipe -->
-            <com.sigmapool.app.views.SwipeFreeViewPager
+
+            <com.sigmapool.app.utils.customViews.SwipeFreeViewPager
                     android:btc_selected="@{vm.btcSelected}"
                     android:id="@+id/pager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-            >
+            />
 
-            </com.sigmapool.app.views.SwipeFreeViewPager>
-
-
-    </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </layout>

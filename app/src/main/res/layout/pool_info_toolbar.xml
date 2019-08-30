@@ -4,8 +4,10 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="titleVm"   type="com.sigmapool.common.viewModels.ITitleViewModel"/>
-        <variable name="toolbarVm" type="com.sigmapool.app.screens.poolInfo.viewmodel.ICurrencySwitcherViewModel"/>
+        <variable name="titleVm" type="com.sigmapool.common.viewModels.ITitleViewModel"/>
+        <variable name="currencySwitcherVm"
+                  type="com.sigmapool.app.screens.poolInfo.viewmodel.ICurrencySwitcherViewModel"/>
+        <variable name="toolbarVm" type="com.sigmapool.app.utils.IBackBtnScreen"/>
     </data>
 
 
@@ -17,7 +19,7 @@
             android:paddingTop="16dp"
 
     >
-    <!-- tools:showIn="@layout/fragment_minig_profit" //TODO: possibly would be used in calculator title, put it higher inside closing bracket -->
+        <!-- tools:showIn="@layout/fragment_minig_profit" //TODO: possibly would be used in calculator title, put it higher inside closing bracket -->
 
 
         <ImageView
@@ -28,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="16dp"
-
+                android:onClick="@{()->toolbarVm.backBtnClick()}"
 
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -51,8 +53,9 @@
 
                 tools:text="@string/pool_info"/>
 
-        <include layout="@layout/currency_switcher"
-                 app:vm="@{toolbarVm}"/>
+        <include
+                layout="@layout/currency_switcher"
+                app:vm="@{currencySwitcherVm}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

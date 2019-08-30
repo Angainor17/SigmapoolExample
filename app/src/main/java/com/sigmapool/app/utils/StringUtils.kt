@@ -7,6 +7,8 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.TypefaceSpan
 import com.sigmapool.common.utils.INT_PATTERN
 import com.sigmapool.common.utils.format
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun formatLongValue(value: Long, pattern: String = INT_PATTERN): String {
     var result: Float = value.toFloat()
@@ -36,4 +38,8 @@ fun spannableString(
 }
 
 operator fun SpannableString.plus(s: SpannableString) = SpannableString(TextUtils.concat(this, s))
+
+fun Date.formatTime(): String = SimpleDateFormat("HH:mm").format(this)
+fun Date.formatDate(): String = SimpleDateFormat("dd.MM.yyyy").format(this)
+
 

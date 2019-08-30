@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
 >
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.poolInfo.vm.PoolInfoLtcViewModel"/>
+        <variable name="vm" type="com.sigmapool.app.screens.poolInfo.vm.PoolInfoLtcVM"/>
     </data>
 
     <!-- TODO:scrollView -> LinearLayout orientation vertical -> relative layout - alignParentStart-Below/End-Top-->

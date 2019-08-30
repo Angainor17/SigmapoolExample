@@ -1,7 +1,8 @@
 package com.sigmapool.app.screens.poolInfo.viewmodel
 
-interface IPoolInfoModel {
+import com.sigmapool.common.viewModels.ITitleViewModel
+
+interface IPoolInfoModel : ITitleViewModel {
 
     fun setCurrencySelected(isSelected: Boolean)
-    fun getTitle()
 }

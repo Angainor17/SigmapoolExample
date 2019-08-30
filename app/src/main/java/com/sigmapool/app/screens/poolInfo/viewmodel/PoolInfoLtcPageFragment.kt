@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.sigmapool.app.App
 import com.sigmapool.app.R
 import com.sigmapool.app.databinding.PoolInfoLtcPageFragmentBinding
-import com.sigmapool.app.screens.poolInfo.vm.PoolInfoLtcViewModel
+import com.sigmapool.app.screens.poolInfo.vm.PoolInfoLtcVM
 import com.sigmapool.common.managers.IPoolInfoManager
 import com.sigmapool.common.models.ManagerResult
 import com.sigmapool.common.models.PoolInfoLtcDto
@@ -34,7 +34,7 @@ class PoolInfoLtcPageFragment: Fragment(), IPoolInfoLtcModel {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view:View = inflater.inflate(R.layout.pool_info_ltc_page_fragment, null)
         val binding = PoolInfoLtcPageFragmentBinding.inflate(inflater, container, false)
-        binding.vm = PoolInfoLtcViewModel(this)
+        binding.vm = PoolInfoLtcVM(this)
         binding.lifecycleOwner = this
         return binding.root
     }
