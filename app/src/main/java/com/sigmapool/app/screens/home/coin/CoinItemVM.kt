@@ -1,5 +1,6 @@
 package com.sigmapool.app.screens.home.coin
 
+import androidx.annotation.DrawableRes
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App
@@ -15,7 +16,7 @@ import org.kodein.di.generic.instance
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CoinItemVM(val coinLabel: String) : ViewModel(), StateVM {
+class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewModel(), StateVM {
 
     private val resProvider by App.kodein.instance<IResProvider>()
     private val currencyProvider by App.kodein.instance<ICurrencyProvider>()

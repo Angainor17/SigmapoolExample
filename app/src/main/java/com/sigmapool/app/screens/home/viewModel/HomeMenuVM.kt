@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sigmapool.app.R
+import com.sigmapool.app.screens.calculator.CalculatorFragment
 import com.sigmapool.app.screens.miningProfit.MiningProfitFragment
 import com.sigmapool.app.screens.news.NewsFragment
 
@@ -16,7 +17,7 @@ class HomeMenuVM(private val fragmentLiveData: MutableLiveData<Class<out Fragmen
     })
 
     val calculatorVM = HomeMenuItem(R.mipmap.ic_calc, R.string.calculator, View.OnClickListener {
-        //TODO implement
+        fragmentLiveData.postValue(CalculatorFragment::class.java)
     })
 
     val miningProfitVM = HomeMenuItem(R.mipmap.ic_mining_profit, R.string.mining_profit, View.OnClickListener {
