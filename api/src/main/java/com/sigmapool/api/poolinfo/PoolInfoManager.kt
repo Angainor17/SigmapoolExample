@@ -35,7 +35,7 @@ internal class PoolInfoManager(serviceProvider: IApiServiceProvider) : IPoolInfo
 
     private val poolInfoService = serviceProvider.create(PoolInfoApi::class.java)
 
-    // TODO signle function with "coin" parameter
+        // There is two functions get*tcPoolInfo b/c they returns different classes
     override suspend fun getBtcPoolInfo(): ManagerResult<PoolInfoBtcDto> {
         return wrapManagerResult {
 
