@@ -37,7 +37,7 @@
                 android:set_selected="@{!vm.btcSelected}"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:drawableStart="@drawable/bitcoin"
+                android:drawableStart="@drawable/litecoin"
                 android:background="@drawable/currency_background_right"
                 android:text="Litecoin"
                 android:layout_width="wrap_content"
