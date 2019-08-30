@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
 
-class LoginViewModel(private val fragmentModel: ILoginFragmentModel) : ViewModel() {
+class LoginViewModel(private val view: ILoginFragmentModel) : ViewModel() {
 
     private val loginManager: ILoginManager by App.kodein.instance()
     private val jsonDataStorage: JsonDataStorage by App.kodein.instance()
@@ -25,18 +25,18 @@ class LoginViewModel(private val fragmentModel: ILoginFragmentModel) : ViewModel
     val errorLiveData = MutableLiveData<String>()
 
     fun hideKeyBoard(): View.OnClickListener = View.OnClickListener {
-        fragmentModel.hideKeyBoard()
+        view.hideKeyBoard()
         clearEditTextFocus(it)
     }
 
     fun doAuth(login: String, password: String) {
-        fragmentModel.hideKeyBoard()
+        view.hideKeyBoard()
         if (login.isNotEmpty() && password.isNotEmpty()) {
             GlobalScope.launch(Dispatchers.Default) {
                 val result = loginManager.login(login, password)
                 if (result.success) {
                     jsonDataStorage.put(AUTH_KEY, result.data)
-                    //TODO navigation
+                    exit()
                 } else {
                     uiScope.launch {
                         errorLiveData.value = result.error
@@ -44,6 +44,10 @@ class LoginViewModel(private val fragmentModel: ILoginFragmentModel) : ViewModel
                 }
             }
         }
+    }
+
+    private fun exit() {
+        view.backBtnClick()
     }
 
     private fun clearEditTextFocus(it: View) {
