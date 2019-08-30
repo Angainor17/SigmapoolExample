@@ -29,7 +29,7 @@ class LoginViewModel(private val fragmentModel: ILoginFragmentModel) : ViewModel
         clearEditTextFocus(it)
     }
 
-    fun nexAuth(login: String, password: String) {
+    fun doAuth(login: String, password: String) {
         fragmentModel.hideKeyBoard()
         if (login.isNotEmpty() && password.isNotEmpty()) {
             GlobalScope.launch(Dispatchers.Default) {

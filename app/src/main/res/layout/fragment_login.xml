@@ -15,7 +15,7 @@
             android:padding="16dp"
             android:orientation="vertical">
 
-    <!--    <ImageView
+        <ImageView
                 android:id="@+id/icon"
 
                 android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
         />
-        -->
+
 
         <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -112,7 +112,7 @@
         </androidx.cardview.widget.CardView>
 
 
-   <!--     <ImageView
+        <ImageView
                 android:id="@+id/nextBtn"
 
                 android:layout_width="55dp"
@@ -122,7 +122,7 @@
                 android:layout_marginTop="38dp"
                 android:src="@drawable/arrow_right"
                 android:layout_gravity="center"
-                android:onClick="@{(v) -> vm.nexAuth(loginEditText.getText().toString(),passwordEditText.getText().toString())}"
+                android:onClick="@{(v) -> vm.doAuth(loginEditText.getText().toString(),passwordEditText.getText().toString())}"
                 android:scaleType="center"
                 android:background="@drawable/round_circle"
 
@@ -130,7 +130,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
         />
-    -->
     </LinearLayout>
 
 </layout>
