@@ -1,22 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
->
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
 
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.calculator.viewModel.CalculatorVM"/>
+
+        <variable
+                name="vm"
+                type="com.sigmapool.app.screens.calculator.viewModel.CalculatorVM"
+                />
     </data>
 
     <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-    >
+            android:background="@color/screenBgColor"
 
-        <TextView
-                android:gravity="center_vertical|center_horizontal"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:text="Calculator"
+            >
+
+
+        <include
+                layout="@layout/back_btn_toolbar"
+
+                app:titleVm="@{vm}"
+                app:toolbarVm="@{vm.view}"
+                />
+
+        <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/gradient_status_bar"
+
+                >
+
+            <include
+                    layout="@layout/custom_tab_view"
+                    app:vm="@{vm.calculatorTabVM}"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="16dp"
+                    />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:textAlignment="textStart"
+                    android:singleLine="false"
+                    android:text="@string/calculator_info"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:fontFamily="@font/google_sans_regular"
+                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"
+                    />
+
+        </LinearLayout>
 
     </LinearLayout>
 

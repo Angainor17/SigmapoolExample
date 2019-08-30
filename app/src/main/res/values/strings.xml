@@ -54,6 +54,9 @@
     <string name="next_difficulty_label">Следующая прогнозируемая сложность</string>
     <string name="profit_of_mining">Доходность майнинга</string>
     <string name="last_news">Last News</string>
+    <string name="calculator_info">The estimated FPPS revenue includes the daily estimated FPPS payout plus the transaction fee from the previous day. This should be used as a reference only as the actual income may differ.</string>
+    <string name="litecoin">Litecoin</string>
+    <string name="bitcoin">Bitcoin</string>
 
     <string-array name="months">
         <item>января</item>

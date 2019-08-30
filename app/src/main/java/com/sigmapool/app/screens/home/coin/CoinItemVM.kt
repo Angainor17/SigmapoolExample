@@ -3,7 +3,7 @@ package com.sigmapool.app.screens.home.coin
 import androidx.annotation.DrawableRes
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sigmapool.app.App
+import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.currency.ICurrencyProvider
 import com.sigmapool.app.provider.res.IResProvider
@@ -16,8 +16,8 @@ import org.kodein.di.generic.instance
 
 class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewModel(), StateVM {
 
-    private val resProvider by App.kodein.instance<IResProvider>()
-    private val currencyProvider by App.kodein.instance<ICurrencyProvider>()
+    private val resProvider by kodein.instance<IResProvider>()
+    private val currencyProvider by kodein.instance<ICurrencyProvider>()
 
     override val viewState = MutableLiveData(ViewState.LOADING)
 
