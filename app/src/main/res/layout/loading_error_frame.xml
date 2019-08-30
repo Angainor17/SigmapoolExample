@@ -28,7 +28,7 @@
             android:gravity="center_vertical"
             android:minHeight="300dp"
             android:layout_gravity="center_vertical"
-            android:visibility="@{vm.viewState!=ViewState.CONTENT ? View.VISIBLE : View.INVISIBLE}"
+            android:visibility="@{vm.viewState!=ViewState.CONTENT ? View.VISIBLE : View.GONE}"
 
             tools:visibility="visible"
             >
@@ -40,7 +40,7 @@
 
                 android:layout_gravity="center_horizontal|center_vertical"
 
-                android:visibility="@{vm.viewState==ViewState.ERROR ? View.VISIBLE : View.INVISIBLE}"
+                android:visibility="@{vm.viewState==ViewState.ERROR ? View.VISIBLE : View.GONE}"
                 >
 
             <ImageView
@@ -79,7 +79,7 @@
                 android:indeterminate="true"
                 android:indeterminateTintMode="src_atop"
                 android:indeterminateTint="@color/violet"
-                android:visibility="@{vm.viewState==ViewState.LOADING ? View.VISIBLE : View.INVISIBLE}"
+                android:visibility="@{vm.viewState==ViewState.LOADING ? View.VISIBLE : View.GONE}"
 
                 tools:visibility="gone"
                 />
