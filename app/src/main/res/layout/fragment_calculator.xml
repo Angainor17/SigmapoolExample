@@ -10,56 +10,102 @@
                 name="vm"
                 type="com.sigmapool.app.screens.calculator.viewModel.CalculatorVM"
                 />
+
+        <variable
+                name="fragmentManager"
+                type="androidx.fragment.app.FragmentManager"
+                />
+
     </data>
 
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/screenBgColor"
 
             >
 
-
         <include
-                layout="@layout/back_btn_toolbar"
+                layout="@layout/fragment_calculator_header"
 
-                app:titleVm="@{vm}"
-                app:toolbarVm="@{vm.view}"
+                app:vm="@{vm}"
                 />
 
-        <LinearLayout
-                android:orientation="vertical"
+
+        <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/gradient_status_bar"
-
                 >
 
-            <include
-                    layout="@layout/custom_tab_view"
-                    app:vm="@{vm.calculatorTabVM}"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="16dp"
-                    />
-
-            <TextView
+            <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:textAlignment="textStart"
-                    android:singleLine="false"
-                    android:text="@string/calculator_info"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:fontFamily="@font/google_sans_regular"
-                    android:textColor="@color/white"
                     android:layout_height="wrap_content"
-                    />
+                    >
 
-        </LinearLayout>
+                <LinearLayout
+                        android:id="@+id/calc_info"
+
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/gradient_status_bar"
+
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+
+                        >
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:textAlignment="textStart"
+                            android:singleLine="false"
+                            android:text="@string/calculator_info"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginRight="16dp"
+                            android:fontFamily="@font/google_sans_regular"
+                            android:textColor="@color/white"
+                            android:layout_height="wrap_content"
+
+                            />
+
+                </LinearLayout>
+
+
+                <View
+                        android:id="@+id/coloredLine"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:background="@drawable/gradient_status_bar"
+
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/calc_info"
+                        />
+
+
+                <com.sigmapool.app.utils.customViews.FragmentViewPager
+                        android:id="@+id/viewPager"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        app:viewCalcTabAdapter="@{fragmentManager}"
+                        app:initCalcAdapter="@{vm.calcItems}"
+                        app:onScreenChange="@{vm.tabPositionLiveData}"
+                        app:isWrapHeightEnabled="@{true}"
+
+                        app:layout_constraintTop_toTopOf="@id/coloredLine"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
 
     </LinearLayout>
 

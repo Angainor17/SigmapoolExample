@@ -3,7 +3,7 @@ package com.sigmapool.app.screens.news.vm
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sigmapool.app.App
+import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.screens.news.INewsFragmentModel
@@ -14,7 +14,7 @@ class NewsVM(val view: INewsFragmentModel) : ViewModel(), ITitleViewModel {
 
     val listVM = NewsListVM()
 
-    private val resProvider by App.kodein.instance<IResProvider>()
+    private val resProvider by kodein.instance<IResProvider>()
 
     override fun getTitle(): LiveData<String> = MutableLiveData(resProvider.getString(R.string.news))
 }

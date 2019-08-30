@@ -3,7 +3,7 @@ package com.sigmapool.app.utils.customViews
 import androidx.annotation.CallSuper
 import androidx.lifecycle.MutableLiveData
 
-abstract class AbstractCustomTabView {
+abstract class AbstractCustomTabView(private val tabPositionLiveData: MutableLiveData<Int>) {
 
     abstract val leftTabText: String
     abstract val rightTabText: String
@@ -16,6 +16,7 @@ abstract class AbstractCustomTabView {
         if (leftActivatedLiveData.value == false) {
             leftActivatedLiveData.postValue(true)
             rightActivatedLiveData.postValue(false)
+            tabPositionLiveData.postValue(0)
         }
     }
 
@@ -24,6 +25,7 @@ abstract class AbstractCustomTabView {
         if (rightActivatedLiveData.value == false) {
             leftActivatedLiveData.postValue(false)
             rightActivatedLiveData.postValue(true)
+            tabPositionLiveData.postValue(1)
         }
     }
 }

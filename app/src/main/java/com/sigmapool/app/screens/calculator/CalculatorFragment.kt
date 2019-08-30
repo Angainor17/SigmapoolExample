@@ -14,6 +14,7 @@ class CalculatorFragment : InnerFragment(), ICalculatorFragmentModel {
         val binding = FragmentCalculatorBinding.inflate(inflater, container, false)
         val vm = CalculatorVM(this)
         binding.vm = vm
+        binding.fragmentManager = childFragmentManager
 
         binding.lifecycleOwner = this
         return binding.root

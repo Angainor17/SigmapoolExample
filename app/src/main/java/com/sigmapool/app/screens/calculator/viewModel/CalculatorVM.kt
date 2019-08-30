@@ -6,12 +6,20 @@ import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.screens.calculator.ICalculatorFragmentModel
+import com.sigmapool.app.screens.home.coin.BTC
+import com.sigmapool.app.screens.home.coin.LTC
 import com.sigmapool.common.viewModels.ITitleViewModel
 import org.kodein.di.generic.instance
 
 class CalculatorVM(val view: ICalculatorFragmentModel) : ViewModel(), ITitleViewModel {
 
-    val calculatorTabVM = CalculatorTabVM()
+    val calcItems = arrayListOf(
+        CalcItemVM(BTC),
+        CalcItemVM(LTC)
+    )
+
+    val tabPositionLiveData = MutableLiveData<Int>()
+    val calculatorTabVM = CalculatorTabVM(tabPositionLiveData)
 
     private val resProvider by kodein.instance<IResProvider>()
 

@@ -25,12 +25,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/last_news"
-                android:textColor="@color/black"
-                android:textSize="18dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="12dp"
-                android:gravity="start"
-                android:fontFamily="@font/google_sans_bold"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
 
@@ -38,6 +34,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
 
+                style="@style/TitleHeaderStyle"
                 />
 
         <LinearLayout

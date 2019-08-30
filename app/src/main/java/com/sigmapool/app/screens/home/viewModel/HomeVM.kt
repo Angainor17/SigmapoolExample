@@ -3,7 +3,7 @@ package com.sigmapool.app.screens.home.viewModel
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sigmapool.app.App
+import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.provider.lang.ILanguageProvider
 import com.sigmapool.app.screens.home.coin.CoinsVM
 import com.sigmapool.app.screens.login.LoginFragment
@@ -25,8 +25,8 @@ private const val NEWS_PER_PAGE = 3
 
 class HomeVM : ViewModel(), OnSlideClickListener {
 
-    private val blogManager by App.kodein.instance<IBlogManager>()
-    private val langProvider by App.kodein.instance<ILanguageProvider>()
+    private val blogManager by kodein.instance<IBlogManager>()
+    private val langProvider by kodein.instance<ILanguageProvider>()
 
     val urlLiveData = MutableLiveData<String>()
     val fragmentLiveData = MutableLiveData<Class<out Fragment>>()

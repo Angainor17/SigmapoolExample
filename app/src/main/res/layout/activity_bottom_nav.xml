@@ -20,13 +20,13 @@
                 app:viewPagerAdapter="@{fragmentManager}"
                 app:onScreenChange="@{vm.screenPositionLiveData}"
 
+                app:isWrapHeightEnabled="@{false}"
+
                 app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-        >
-
-        </com.sigmapool.app.utils.customViews.FragmentViewPager>
+                />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNavigation"

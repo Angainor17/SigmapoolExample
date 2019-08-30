@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.sigmapool.app.App
+import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.databinding.PoolInfoBtcPageFragmentBinding
 import com.sigmapool.app.screens.poolInfo.vm.PoolInfoBtcVM
@@ -27,7 +27,7 @@ class PoolInfoBtcPageFragment: Fragment(), IPoolInfoBtcModel{
     }
 
     //TODO: refactor
-    private val btcPoolInfoManager by App.kodein.instance<IPoolInfoManager>()
+    private val btcPoolInfoManager by kodein.instance<IPoolInfoManager>()
 
     override suspend fun getDailyProfit(coin:String): ManagerResult<DailyProfitDto> {
         return btcPoolInfoManager.getDailyProfit(coin)

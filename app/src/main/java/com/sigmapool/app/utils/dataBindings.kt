@@ -9,6 +9,8 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 import com.sigmapool.app.screens.bottomSheetScreen.ViewPagerAdapter
+import com.sigmapool.app.screens.calculator.adapter.CalcTabAdapter
+import com.sigmapool.app.screens.calculator.viewModel.CalcItemVM
 import com.sigmapool.app.screens.home.adapter.CoinViewPagerAdapter
 import com.sigmapool.app.screens.home.coin.CoinsVM
 import com.sigmapool.app.utils.customViews.FragmentViewPager
@@ -47,6 +49,11 @@ fun viewPagerAdapter(view: FragmentViewPager, fragmentManager: FragmentManager) 
     view.adapter = ViewPagerAdapter(fragmentManager)
 }
 
+@BindingAdapter("app:initCalcAdapter", "app:viewCalcTabAdapter")
+fun viewCalcTabAdapter(view: FragmentViewPager, items: ArrayList<CalcItemVM>, fragmentManager: FragmentManager) {
+    view.adapter = CalcTabAdapter(items, fragmentManager)
+}
+
 @BindingAdapter("app:onScreenChange")
 fun onScreenChange(view: FragmentViewPager, position: Int) {
     view.currentItem = position
@@ -55,6 +62,16 @@ fun onScreenChange(view: FragmentViewPager, position: Int) {
 @BindingAdapter("app:src")
 fun imageMipmapSrc(view: ImageView, mipmapRes: Int) {
     view.setImageResource(mipmapRes)
+}
+
+@BindingAdapter("app:isPagingEnabled")
+fun isPagingEnabled(view: FragmentViewPager, isPagingEnabled: Boolean) {
+    view.isPagingEnabled = isPagingEnabled
+}
+
+@BindingAdapter("app:isWrapHeightEnabled")
+fun isWrapHeightEnabled(view: FragmentViewPager, isWrapHeightEnabled: Boolean) {
+    view.isWrapHeightEnabled = isWrapHeightEnabled
 }
 
 @BindingAdapter("bind:pager")

@@ -57,6 +57,7 @@
     <string name="calculator_info">The estimated FPPS revenue includes the daily estimated FPPS payout plus the transaction fee from the previous day. This should be used as a reference only as the actual income may differ.</string>
     <string name="litecoin">Litecoin</string>
     <string name="bitcoin">Bitcoin</string>
+    <string name="general_characteristic">Общие характеристики</string>
 
     <string-array name="months">
         <item>января</item>

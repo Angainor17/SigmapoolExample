@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.viewpager.widget.PagerAdapter
-import com.sigmapool.app.App
+import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.databinding.FragmentPoolInfoBinding
 import com.sigmapool.app.provider.res.IResProvider
@@ -18,7 +18,7 @@ import org.kodein.di.generic.instance
 
 class PoolInfoFragment : InnerFragment(), IPoolInfoModel {
 
-    private val resProvider by App.kodein.instance<IResProvider>()
+    private val resProvider by kodein.instance<IResProvider>()
 
     lateinit var pager: SwipeFreeViewPager
     lateinit var pagerAdapter: PagerAdapter
