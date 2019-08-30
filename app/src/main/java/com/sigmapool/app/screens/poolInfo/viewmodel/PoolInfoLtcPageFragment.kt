@@ -4,23 +4,35 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.sigmapool.app.App
 import com.sigmapool.app.R
 import com.sigmapool.app.databinding.PoolInfoLtcPageFragmentBinding
 import com.sigmapool.common.managers.IPoolInfoManager
-import com.sigmapool.common.models.ManagerResult
-import com.sigmapool.common.models.PoolInfoLtcDto
+import com.sigmapool.common.models.*
 import org.kodein.di.generic.instance
 
 
-class PoolInfoLtcPageFragment: Fragment(), IPoolInfoLtcModel {
+class PoolInfoLtcPageFragment: Fragment(), IPoolInfoLtcModel{
+
+    override suspend fun getSettlementDetails(coin: String): ManagerResult<SettlementDetailsDto> {
+        return btcPoolInfoManager.getSettlementDetails(coin)
+    }
+
+    override suspend fun getPayment(coin: String): ManagerResult<PaymentDto> {
+        return btcPoolInfoManager.getPayment(coin)
+    }
 
     //TODO: refactor
-    private val ltcPoolInfoManager by App.kodein.instance<IPoolInfoManager>()
+    private val btcPoolInfoManager by App.kodein.instance<IPoolInfoManager>()
+
+    override suspend fun getDailyProfit(coin:String): ManagerResult<DailyProfitDto> {
+        return btcPoolInfoManager.getDailyProfit(coin)
+    }
 
     override suspend fun getLtcPoolInfo(): ManagerResult<PoolInfoLtcDto> {
-        return ltcPoolInfoManager.getLtcPoolInfo()
+        return btcPoolInfoManager.getLtcPoolInfo()
     }
 
     var pageNumber: Int = 0
@@ -28,6 +40,7 @@ class PoolInfoLtcPageFragment: Fragment(), IPoolInfoLtcModel {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pageNumber = getArguments()?.getInt(ARGUMENT_PAGE_NUMBER) ?: 0
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -36,6 +49,13 @@ class PoolInfoLtcPageFragment: Fragment(), IPoolInfoLtcModel {
         binding.vm = PoolInfoLtcViewModel(this)
         binding.lifecycleOwner = this
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val urlsTextView: TextView = view.findViewById(R.id.ltcUrlsTextView)
+        // urlsTextView.movementMethod = LinkMovementMethod.getInstance() //TODO: unblock, if you want to get away
+        // TODO: with binding adapter bind that field with xml for cleaning findViewById() call
     }
 
     companion object {

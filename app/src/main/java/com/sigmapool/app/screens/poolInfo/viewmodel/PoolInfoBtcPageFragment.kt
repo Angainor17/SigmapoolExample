@@ -53,7 +53,7 @@ class PoolInfoBtcPageFragment: Fragment(), IPoolInfoBtcModel{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val urlsTextView: TextView = view.findViewById(R.id.urlsTextView)
+        val urlsTextView: TextView = view.findViewById(R.id.btcUrlsTextView)
         // urlsTextView.movementMethod = LinkMovementMethod.getInstance() //TODO: unblock, if you want to get away
         // TODO: with binding adapter bind that field with xml for cleaning findViewById() call
     }
