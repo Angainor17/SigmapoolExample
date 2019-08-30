@@ -1,7 +1,6 @@
 package com.sigmapool.app.screens.poolInfo.viewmodel
 
 import android.os.Bundle
-import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,7 +55,8 @@ class PoolInfoBtcPageFragment: Fragment(), IPoolInfoBtcModel{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val urlsTextView: TextView = view.findViewById(R.id.urlsTextView)
-        urlsTextView.movementMethod = LinkMovementMethod.getInstance()
+        // urlsTextView.movementMethod = LinkMovementMethod.getInstance() //TODO: unblock, if you want to get away
+        // TODO: with binding adapter bind that field with xml for cleaning findViewById() call
     }
 
     companion object {
