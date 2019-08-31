@@ -2,9 +2,12 @@
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         >
 
     <data>
+
+        <import type="android.text.InputType"/>
 
         <variable
                 name="vm"
@@ -15,7 +18,7 @@
 
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
 
@@ -23,6 +26,58 @@
             app:cardCornerRadius="6dp"
             app:cardElevation="4dp"
             >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                >
+
+            <include
+                    layout="@layout/value_postfix_view"
+
+                    app:inputType="@{InputType.TYPE_CLASS_NUMBER}"
+                    app:label="@{@string/hashrate}"
+                    app:postfix="@{@string/thashs_per_second}"
+                    app:value="@{@string/init_integer_number}"
+                    />
+
+
+            <include
+                    layout="@layout/change_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="16dp"
+
+                    app:clickAction="@{vm.clickAction}"
+                    />
+
+            <include
+                    layout="@layout/value_postfix_view"
+
+                    app:inputType="@{InputType.TYPE_CLASS_NUMBER}"
+                    app:label="@{@string/profit}"
+                    app:postfix="@{@string/btc_per_day}"
+                    app:value="@{@string/init_decimal_number}"
+                    />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/google_sans_regular"
+                    android:textColor="@color/titleGray"
+                    android:text="@{vm.price}"
+
+                    tools:text="~ $ 368.48"
+                    />
+
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

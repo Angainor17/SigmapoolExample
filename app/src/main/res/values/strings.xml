@@ -74,4 +74,11 @@
         <item>декабря</item>
     </string-array>
 
+    <string name="hashrate">Hashrate</string>
+    <string name="thashs_per_second">Thash/s</string>
+    <string name="btc_per_day">BTC/day</string>
+
+    <string name="init_decimal_number">0.0</string>
+    <string name="init_integer_number">0</string>
+
 </resources>
