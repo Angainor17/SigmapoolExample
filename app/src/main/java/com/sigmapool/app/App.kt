@@ -24,9 +24,7 @@ class App : Application() {
 
             bind<Context>() with singleton { this@App }
             bind<JsonDataStorage>() with singleton {
-                JsonDataStorage(
-                    instance()
-                )
+                JsonDataStorage(instance())
             }
         }
     }

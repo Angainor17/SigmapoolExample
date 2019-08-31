@@ -11,7 +11,15 @@ class CalculatorTabVM(tabPositionLiveData: MutableLiveData<Int>) : AbstractCusto
 
     private val resProvider by kodein.instance<IResProvider>()
 
-    override val leftTabText: String = resProvider.getString(R.string.bitcoin)
-    override val rightTabText: String = resProvider.getString(R.string.litecoin)
+    override val leftTab = CalcTabItemVM(
+        resProvider.getString(R.string.bitcoin),
+        R.mipmap.ic_btc,
+        MutableLiveData(true)
+    )
 
+    override val rightTab = CalcTabItemVM(
+        resProvider.getString(R.string.litecoin),
+        R.mipmap.ic_ltc,
+        MutableLiveData(false)
+    )
 }

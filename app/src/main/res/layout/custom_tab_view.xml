@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         >
 
@@ -19,16 +18,15 @@
             android:background="@color/transparent"
             >
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/leftContainer"
-                android:orientation="vertical"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:background="@drawable/left_tab_bg"
                 android:onClick="@{()->vm.leftClickAction()}"
 
-                app:onActivatedChange="@{vm.leftActivatedLiveData}"
+                app:onActivatedChange="@{vm.leftTab.activatedLiveData}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -36,32 +34,25 @@
                 app:layout_constraintEnd_toStartOf="@+id/rightContainer"
                 >
 
-            <TextView
-                    style="@style/TabTextViewStyle"
+            <include
+                    layout="@layout/custom_tab_view_item"
 
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="@{vm.leftTabText}"
-                    android:onClick="@{()->vm.leftClickAction()}"
-
-                    app:onActivatedChange="@{vm.leftActivatedLiveData}"
-
-                    tools:text="@string/bitcoin"
+                    app:vm="@{vm.leftTab}"
                     />
 
-        </LinearLayout>
 
-        <LinearLayout
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/rightContainer"
 
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:background="@drawable/right_tab_bg"
                 android:onClick="@{()->vm.rightClickAction()}"
 
-                app:onActivatedChange="@{vm.rightActivatedLiveData}"
+                app:onActivatedChange="@{vm.rightTab.activatedLiveData}"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -70,20 +61,13 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 >
 
-            <TextView
-                    style="@style/TabTextViewStyle"
+            <include
+                    layout="@layout/custom_tab_view_item"
 
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="@{vm.rightTabText}"
-                    android:onClick="@{()->vm.rightClickAction()}"
-
-                    app:onActivatedChange="@{vm.rightActivatedLiveData}"
-
-                    tools:text="@string/litecoin"
+                    app:vm="@{vm.rightTab}"
                     />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

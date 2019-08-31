@@ -2,29 +2,27 @@ package com.sigmapool.app.utils.customViews
 
 import androidx.annotation.CallSuper
 import androidx.lifecycle.MutableLiveData
+import com.sigmapool.app.screens.calculator.viewModel.CalcTabItemVM
 
 abstract class AbstractCustomTabView(private val tabPositionLiveData: MutableLiveData<Int>) {
 
-    abstract val leftTabText: String
-    abstract val rightTabText: String
-
-    val leftActivatedLiveData = MutableLiveData(true)
-    val rightActivatedLiveData = MutableLiveData(false)
+    abstract val leftTab: CalcTabItemVM
+    abstract val rightTab: CalcTabItemVM
 
     @CallSuper
     open fun leftClickAction() {
-        if (leftActivatedLiveData.value == false) {
-            leftActivatedLiveData.postValue(true)
-            rightActivatedLiveData.postValue(false)
+        if (leftTab.value() == false) {
+            leftTab.postValue(true)
+            rightTab.postValue(false)
             tabPositionLiveData.postValue(0)
         }
     }
 
     @CallSuper
     open fun rightClickAction() {
-        if (rightActivatedLiveData.value == false) {
-            leftActivatedLiveData.postValue(false)
-            rightActivatedLiveData.postValue(true)
+        if (rightTab.value() == false) {
+            leftTab.postValue(false)
+            rightTab.postValue(true)
             tabPositionLiveData.postValue(1)
         }
     }

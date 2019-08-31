@@ -20,6 +20,7 @@ class CoinsVM : ViewModel() {
 
     init {
         initItem(btcCoinVM)
+        initItem(ltcCoinVM)
     }
 
     fun getCoins() = arrayListOf(btcCoinVM, ltcCoinVM)
