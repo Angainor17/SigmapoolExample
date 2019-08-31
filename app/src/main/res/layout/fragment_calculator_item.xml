@@ -42,6 +42,13 @@
 
                 />
 
+
+        <include
+                layout="@layout/fragment_calc_other_params"
+                app:vm="@{vm}"
+                />
+
+
     </LinearLayout>
 
 </layout>

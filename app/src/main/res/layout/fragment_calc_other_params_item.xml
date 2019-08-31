@@ -8,6 +8,7 @@
     <data>
 
         <import type="android.text.InputType"/>
+        <import type="android.view.View"/>
 
         <variable
                 name="label"
@@ -29,6 +30,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             >
 
         <TextView
@@ -40,6 +42,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/google_sans_regular"
                 android:layout_marginStart="24dp"
+                android:textSize="14sp"
                 android:textColor="@color/titleGray"
 
                 app:layout_constraintTop_toTopOf="parent"
@@ -58,6 +61,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="8dp"
                 android:textColor="#333333"
+                android:textSize="16sp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/google_sans_regular"
 
@@ -72,11 +76,14 @@
                 android:layout_width="0dp"
                 android:background="#C2E6E9EC"
                 android:layout_height="1dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="8dp"
+                android:visibility="@{isSeparatorVisible ? View.VISIBLE : View.GONE}"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/label"
                 app:layout_constraintEnd_toEndOf="@id/value"
+                app:layout_constraintTop_toBottomOf="@+id/value"
                 />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
