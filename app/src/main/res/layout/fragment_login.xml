@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"
->
+<layout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        >
 
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.login.viewModel.LoginViewModel"/>
+
+        <variable
+                name="vm"
+                type="com.sigmapool.app.screens.login.viewModel.LoginViewModel"
+                />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/parent"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/gradient_status_bar"
             android:focusable="true"
             android:onClickListener="@{vm.hideKeyBoard()}"
             android:padding="16dp"
-    >
+            >
 
         <ImageView
                 android:id="@+id/icon"
@@ -32,7 +40,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/cardView"/>
+                app:layout_constraintBottom_toTopOf="@+id/cardView"
+                />
 
 
         <androidx.cardview.widget.CardView
@@ -48,7 +57,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0.42">
+                app:layout_constraintVertical_bias="0.42"
+                >
 
             <LinearLayout
                     android:layout_width="match_parent"
@@ -58,7 +68,8 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
 
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -68,8 +79,9 @@
                         android:textColorHint="@color/titleGray"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+
                         app:hintTextAppearance="@style/TextInputLayoutHintStyle"
-                >
+                        >
 
                     <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/loginEditText"
@@ -82,7 +94,7 @@
 
                             android:fontFamily="@font/google_sans_regular"
                             android:textColor="@color/black"
-                    />
+                            />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,9 +104,10 @@
                         android:theme="@style/LoginTextLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:hintTextAppearance="@style/TextInputLayoutHintStyle"
 
-                        app:passwordToggleEnabled="true">
+                        app:hintTextAppearance="@style/TextInputLayoutHintStyle"
+                        app:passwordToggleEnabled="true"
+                        >
 
                     <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/passwordEditText"
@@ -107,7 +120,8 @@
 
                             android:fontFamily="@font/google_sans_regular"
                             android:textColor="@color/black"
-                            android:inputType="textPassword"/>
+                            android:inputType="textPassword"
+                            />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -134,7 +148,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/cardView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-        />
+                />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
