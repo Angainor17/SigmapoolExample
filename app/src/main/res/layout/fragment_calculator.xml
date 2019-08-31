@@ -24,7 +24,6 @@
             android:layout_height="match_parent"
             android:background="@color/screenBgColor"
             android:fitsSystemWindows="true"
-
             >
 
         <include
@@ -33,19 +32,15 @@
                 app:vm="@{vm}"
                 />
 
-
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
+                android:scrollbars="none"
                 android:layout_height="wrap_content"
-                android:fillViewport="true"
-                android:background="@color/screenBgColor"
-                android:fitsSystemWindows="true"
                 >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/screenBgColor"
                     >
 
                 <LinearLayout
@@ -111,7 +106,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
 

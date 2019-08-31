@@ -30,7 +30,7 @@
                 >
 
             <include
-                    layout="@layout/fragment_home_header"
+                    layout="@layout/fragment_home_toolbar"
                     app:vm="@{vm}"
                     />
 

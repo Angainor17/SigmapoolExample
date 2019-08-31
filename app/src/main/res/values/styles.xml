@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-
+    <style name="AppTheme"
+           parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
+    </style>
 
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
-
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="ToolbarTitle">
@@ -33,7 +34,8 @@
         <item name="android:fontFamily">@font/google_sans_medium</item>
     </style>
 
-    <style name="LoginTextLabel" parent="TextAppearance.AppCompat">
+    <style name="LoginTextLabel"
+           parent="TextAppearance.AppCompat">
         <item name="android:textColorHint">@color/titleGray</item>
         <item name="android:textSize">17sp</item>
 
@@ -42,7 +44,8 @@
         <item name="colorControlActivated">@color/violet</item>
     </style>
 
-    <style name="TextInputLayoutHintStyle" parent="TextAppearance.AppCompat.Medium">
+    <style name="TextInputLayoutHintStyle"
+           parent="TextAppearance.AppCompat.Medium">
         <item name="android:textSize">18dp</item>
         <item name="android:color">@color/titleGray</item>
         <item name="android:fontFamily">@font/google_sans_regular</item>
@@ -71,7 +74,7 @@
     </style>
 
     <style name="Divider">
-        <item name="android:layout_width"> match_parent </item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:background">#C2E6E9EC</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:layout_marginEnd">16dp</item>
@@ -80,7 +83,7 @@
     </style>
 
     <style name="DividerPoolInfo">
-        <item name="android:layout_width"> match_parent </item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:background">#C2E6E9EC</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:layout_marginTop">8dp</item>

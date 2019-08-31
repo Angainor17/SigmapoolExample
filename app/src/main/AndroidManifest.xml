@@ -18,6 +18,8 @@
         <activity
                 android:name=".screens.bottomSheetScreen.BottomNavActivity"
                 android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.NoActionBar"
+
         >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -29,7 +31,8 @@
         <activity
                 android:name=".navigation.ContainerActivity"
                 android:screenOrientation="portrait"
-                android:windowSoftInputMode="stateVisible|adjustResize"
+                android:theme="@style/AppTheme.NoActionBar"
+                android:windowSoftInputMode="adjustResize"
         />
 
     </application>
