@@ -1,4 +1,4 @@
-package com.sigmapool.app.utils
+package com.sigmapool.app.utils.interfaces
 
 import androidx.lifecycle.LiveData
 

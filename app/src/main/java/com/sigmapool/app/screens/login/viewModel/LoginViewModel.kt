@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.screens.login.ILoginFragmentModel
 import com.sigmapool.app.screens.login.data.AUTH_KEY
-import com.sigmapool.app.utils.JsonDataStorage
+import com.sigmapool.app.utils.storages.JsonDataStorage
 import com.sigmapool.common.managers.ILoginManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

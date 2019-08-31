@@ -5,7 +5,7 @@
 
     <data>
         <import type="android.view.View"/>
-        <import type="com.sigmapool.app.utils.ViewState"/>
+        <import type="com.sigmapool.app.utils.interfaces.ViewState"/>
         <variable name="vm" type="com.sigmapool.app.screens.home.coin.CoinItemVM"/>
     </data>
 

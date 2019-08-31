@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import com.sigmapool.app.screens.miningProfit.listener.IProfitBtnListener
 import com.sigmapool.app.screens.miningProfit.params.MinerListParams
 import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitListVM
-import com.sigmapool.app.utils.StateVM
-import com.sigmapool.app.utils.mapToViwState
+import com.sigmapool.app.utils.interfaces.StateVM
+import com.sigmapool.app.utils.interfaces.mapToViwState
 import com.sigmapool.common.listLibrary.loader.ItemsLoaderState
 
 private const val LIST_ITEMS_COUNT = 3

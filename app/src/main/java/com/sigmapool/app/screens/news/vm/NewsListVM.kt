@@ -9,8 +9,8 @@ import com.sigmapool.app.screens.news.NewsBindingHelper
 import com.sigmapool.app.screens.news.NewsItemMapper
 import com.sigmapool.app.screens.news.NewsLoader
 import com.sigmapool.app.screens.news.params.NewsListParams
-import com.sigmapool.app.utils.StateVM
-import com.sigmapool.app.utils.mapToViwState
+import com.sigmapool.app.utils.interfaces.StateVM
+import com.sigmapool.app.utils.interfaces.mapToViwState
 import com.sigmapool.common.listLibrary.loader.ItemsLoaderState
 import com.sigmapool.common.listLibrary.pagedlist.SimplePagedListViewModel
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel

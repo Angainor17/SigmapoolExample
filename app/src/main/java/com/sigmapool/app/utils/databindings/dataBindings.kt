@@ -1,4 +1,4 @@
-package com.sigmapool.app.utils
+package com.sigmapool.app.utils.databindings
 
 import android.view.View
 import android.view.animation.Animation
@@ -15,7 +15,7 @@ import com.sigmapool.app.screens.calculator.viewModel.CalcItemVM
 import com.sigmapool.app.screens.home.adapter.CoinViewPagerAdapter
 import com.sigmapool.app.screens.home.coin.CoinsVM
 import com.sigmapool.app.utils.customViews.FragmentViewPager
-import com.sigmapool.app.utils.slider.MainSliderAdapter
+import com.sigmapool.app.utils.customViews.slider.MainSliderAdapter
 import com.sigmapool.common.models.BlogDto
 import com.sigmapool.common.utils.px
 import ss.com.bannerslider.Slider

@@ -1,4 +1,4 @@
-package com.sigmapool.app.utils.slider
+package com.sigmapool.app.utils.customViews.slider
 
 import android.content.Context
 import android.widget.ImageView

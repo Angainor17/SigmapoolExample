@@ -3,14 +3,18 @@ package com.sigmapool.app.screens.poolInfo.vm
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
+import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.screens.poolInfo.viewmodel.ICurrencySwitcherViewModel
 import com.sigmapool.app.screens.poolInfo.viewmodel.IPoolInfoModel
-import com.sigmapool.app.utils.getString
 import com.sigmapool.common.viewModels.ITitleViewModel
+import org.kodein.di.generic.instance
 
 
-class PoolInfoVM(model: IPoolInfoModel) : ViewModel(), ITitleViewModel, ICurrencySwitcherViewModel {
+class PoolInfoVM(val model: IPoolInfoModel) : ViewModel(), ITitleViewModel, ICurrencySwitcherViewModel {
+
+    private val res by kodein.instance<IResProvider>()
 
     override val btcSelected: ObservableBoolean = ObservableBoolean(true)
 
@@ -22,6 +26,6 @@ class PoolInfoVM(model: IPoolInfoModel) : ViewModel(), ITitleViewModel, ICurrenc
         btcSelected.set(false)
     }
 
-    override fun getTitle() = MutableLiveData<String>(getString(R.string.pool_info))
+    override fun getTitle() = MutableLiveData(res.getString(R.string.pool_info))
 
 }

@@ -5,7 +5,7 @@ import com.sigmapool.api.retrofit.AUTHORIZATION
 import com.sigmapool.api.retrofit.BEARER
 import com.sigmapool.api.retrofit.HeaderMapper
 import com.sigmapool.app.App.Companion.kodein
-import com.sigmapool.app.utils.JsonDataStorage
+import com.sigmapool.app.utils.storages.JsonDataStorage
 import com.sigmapool.common.models.AuthDto
 import org.kodein.di.generic.instance
 

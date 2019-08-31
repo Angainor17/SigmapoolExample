@@ -4,8 +4,8 @@ import android.app.Application
 import android.content.Context
 import com.sigmapool.app.kodein.apiModule
 import com.sigmapool.app.kodein.providersModule
-import com.sigmapool.app.utils.JsonDataStorage
-import com.sigmapool.app.utils.slider.PicassoImageLoadingService
+import com.sigmapool.app.utils.customViews.slider.PicassoImageLoadingService
+import com.sigmapool.app.utils.storages.JsonDataStorage
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
@@ -23,7 +23,11 @@ class App : Application() {
             import(apiModule)
 
             bind<Context>() with singleton { this@App }
-            bind<JsonDataStorage>() with singleton { JsonDataStorage(instance()) }
+            bind<JsonDataStorage>() with singleton {
+                JsonDataStorage(
+                    instance()
+                )
+            }
         }
     }
 

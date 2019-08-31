@@ -1,4 +1,4 @@
-package com.sigmapool.app.utils
+package com.sigmapool.app.utils.storages
 
 import android.content.Context
 import android.content.SharedPreferences

@@ -5,7 +5,7 @@ import androidx.databinding.DataBindingUtil
 import com.sigmapool.app.R
 import com.sigmapool.app.databinding.ActivityBottomNavBinding
 import com.sigmapool.app.screens.bottomSheetScreen.viewModel.BottomNavVM
-import com.sigmapool.app.utils.ColoredToolbarActivity
+import com.sigmapool.app.utils.customViews.ColoredToolbarActivity
 
 class BottomNavActivity : ColoredToolbarActivity(), IBottomSheetScreen {
 

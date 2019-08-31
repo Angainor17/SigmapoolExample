@@ -1,5 +1,7 @@
 package com.sigmapool.app.provider.res
 
+import android.graphics.drawable.Drawable
+
 interface IResProvider {
     fun getText(stringRes: Int): CharSequence
     fun getString(stringRes: Int): String
@@ -11,4 +13,5 @@ interface IResProvider {
     fun getColor(colorRes: Int): Int
     fun getBoolean(boolRes: Int): Boolean
     fun getInteger(integerRes: Int): Int
+    fun getDrawable(drawableRes: Int): Drawable
 }

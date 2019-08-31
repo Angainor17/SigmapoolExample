@@ -81,4 +81,8 @@
     <string name="init_decimal_number">0.0</string>
     <string name="init_integer_number">0</string>
 
+    <string name="current_price">Current Price</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="block_reward">Block Reward</string>
+
 </resources>

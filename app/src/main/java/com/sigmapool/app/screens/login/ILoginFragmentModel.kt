@@ -1,9 +1,6 @@
 package com.sigmapool.app.screens.login
 
-import com.sigmapool.app.utils.IBackBtnScreen
+import com.sigmapool.app.utils.interfaces.IBackBtnScreen
+import com.sigmapool.app.utils.interfaces.IKeyboardScreen
 
-interface ILoginFragmentModel : IBackBtnScreen {
-
-    fun hideKeyBoard()
-
-}
+interface ILoginFragmentModel : IBackBtnScreen, IKeyboardScreen

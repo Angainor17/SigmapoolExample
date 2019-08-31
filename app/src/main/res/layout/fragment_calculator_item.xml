@@ -10,8 +10,6 @@
                 name="vm"
                 type="com.sigmapool.app.screens.calculator.viewModel.CalcItemVM"
                 />
-
-
     </data>
 
     <LinearLayout

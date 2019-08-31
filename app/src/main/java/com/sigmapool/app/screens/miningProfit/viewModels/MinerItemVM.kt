@@ -1,20 +1,27 @@
 package com.sigmapool.app.screens.miningProfit.viewModels
 
 import android.graphics.Color
+import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.currency.ICurrencyProvider
-import com.sigmapool.app.utils.*
+import com.sigmapool.app.provider.res.IResProvider
+import com.sigmapool.app.utils.formatLongValue
+import com.sigmapool.app.utils.plus
+import com.sigmapool.app.utils.spannableString
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 import com.sigmapool.common.models.MinerDto
 import com.sigmapool.common.utils.FLOAT_PATTERN
 import com.sigmapool.common.utils.INT_PATTERN
 import com.sigmapool.common.utils.format
+import org.kodein.di.generic.instance
 import kotlin.math.abs
 
 class MinerItemVM(
     private val currencyProvider: ICurrencyProvider,
     private val miner: MinerDto
 ) : BaseItemViewModel {
+
+    private val res by kodein.instance<IResProvider>()
 
     val name: String = miner.title
     val hashratePower: CharSequence = createHashratePower(miner)
@@ -51,15 +58,15 @@ class MinerItemVM(
     }
 
     private fun createBtcValueText(value: Float) =
-        getString(R.string.btc_caps) + " - " + getCurrencyLabel() + " " + value.format(INT_PATTERN)
+        res.getString(R.string.btc_caps) + " - " + getCurrencyLabel() + " " + value.format(INT_PATTERN)
 
     private fun createHashratePower(miner: MinerDto): CharSequence {
         val hashrate = formatLongValue(miner.hashrate)
 
         return hashrate.substring(0, hashrate.length - 1).spannable(Color.BLACK) +
-                hashrate.substring(hashrate.length - 1).spannable(getColor(R.color.titleGray)) +
+                hashrate.substring(hashrate.length - 1).spannable(res.getColor(R.color.titleGray)) +
                 (" / " + miner.power).spannable(Color.BLACK) +
-                getString(R.string.power_postfix).spannable(getColor(R.color.titleGray))
+                res.getString(R.string.power_postfix).spannable(res.getColor(R.color.titleGray))
     }
 
     fun initCoin(value: Float) {

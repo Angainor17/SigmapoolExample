@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <data>
+
+        <import type="android.text.InputType"/>
+
+        <variable
+                name="vm"
+                type="com.sigmapool.app.screens.calculator.viewModel.CalcItemVM"
+                />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="4dp"
+            >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+            <include
+                    layout="@layout/fragment_calc_other_params_item"
+
+                    app:label="@{@string/current_price}"
+                    app:value="@{vm.currentPrice}"
+                    app:isSeparatorVisible="@{true}"
+                    />
+
+            <include
+                    layout="@layout/fragment_calc_other_params_item"
+
+                    app:label="@{@string/difficulty}"
+                    app:value="@{vm.difficulty}"
+                    app:isSeparatorVisible="@{true}"
+                    />
+
+            <include
+                    layout="@layout/fragment_calc_other_params_item"
+
+                    app:label="@{@string/block_reward}"
+                    app:value="@{vm.blockReward}"
+                    app:isSeparatorVisible="@{false}"
+                    />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

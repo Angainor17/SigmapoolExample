@@ -3,7 +3,7 @@ package com.sigmapool.app.navigation
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.sigmapool.app.R
-import com.sigmapool.app.utils.ColoredToolbarActivity
+import com.sigmapool.app.utils.customViews.ColoredToolbarActivity
 
 class ContainerActivity : ColoredToolbarActivity() {
 

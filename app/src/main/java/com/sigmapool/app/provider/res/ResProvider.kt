@@ -1,6 +1,7 @@
 package com.sigmapool.app.provider.res
 
 import android.content.res.Resources
+import android.graphics.drawable.Drawable
 
 class ResProvider(private val resources: Resources) : IResProvider {
 
@@ -24,4 +25,5 @@ class ResProvider(private val resources: Resources) : IResProvider {
 
     override fun getInteger(integerRes: Int): Int = resources.getInteger(integerRes)
 
+    override fun getDrawable(drawableRes: Int): Drawable = resources.getDrawable(drawableRes)
 }

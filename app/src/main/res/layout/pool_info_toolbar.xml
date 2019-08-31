@@ -7,7 +7,7 @@
         <variable name="titleVm" type="com.sigmapool.common.viewModels.ITitleViewModel"/>
         <variable name="currencySwitcherVm"
                   type="com.sigmapool.app.screens.poolInfo.viewmodel.ICurrencySwitcherViewModel"/>
-        <variable name="toolbarVm" type="com.sigmapool.app.utils.IBackBtnScreen"/>
+        <variable name="toolbarVm" type="com.sigmapool.app.utils.interfaces.IBackBtnScreen"/>
     </data>
 
 

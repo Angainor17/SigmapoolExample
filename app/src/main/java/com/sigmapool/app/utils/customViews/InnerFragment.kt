@@ -1,11 +1,18 @@
 package com.sigmapool.app.utils.customViews
 
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
-import com.sigmapool.app.utils.IBackBtnScreen
+import com.sigmapool.app.utils.interfaces.IBackBtnScreen
 
 abstract class InnerFragment : Fragment(), IBackBtnScreen {
 
     override fun backBtnClick() {
         activity?.onBackPressed()
+    }
+
+    fun hideKeyBoard() {
+        val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 }

@@ -3,7 +3,7 @@ package com.sigmapool.app.screens.home.coin
 import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
-import com.sigmapool.app.utils.ViewState
+import com.sigmapool.app.utils.interfaces.ViewState
 import com.sigmapool.common.managers.IPoolManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

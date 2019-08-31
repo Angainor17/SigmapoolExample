@@ -1,6 +1,6 @@
 package com.sigmapool.app.screens.news
 
-import com.sigmapool.app.utils.IBackBtnScreen
+import com.sigmapool.app.utils.interfaces.IBackBtnScreen
 
 interface INewsFragmentModel : IBackBtnScreen {
 

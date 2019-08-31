@@ -1,6 +1,6 @@
-package com.sigmapool.app.utils
+package com.sigmapool.app.utils.interfaces
 
-import com.sigmapool.app.utils.ViewState.*
+import com.sigmapool.app.utils.interfaces.ViewState.*
 import com.sigmapool.common.listLibrary.loader.ItemsLoaderState
 import com.sigmapool.common.listLibrary.loader.ItemsLoaderState.*
 

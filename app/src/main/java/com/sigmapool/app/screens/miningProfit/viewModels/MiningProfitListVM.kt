@@ -14,7 +14,7 @@ import com.sigmapool.app.screens.miningProfit.MinerItemMapper
 import com.sigmapool.app.screens.miningProfit.MinerLoader
 import com.sigmapool.app.screens.miningProfit.MiningListAdapter
 import com.sigmapool.app.screens.miningProfit.params.MinerListParams
-import com.sigmapool.app.utils.JsonDataStorage
+import com.sigmapool.app.utils.storages.JsonDataStorage
 import com.sigmapool.common.listLibrary.pagedlist.SimplePagedListViewModel
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 import com.sigmapool.common.managers.IMinerManager

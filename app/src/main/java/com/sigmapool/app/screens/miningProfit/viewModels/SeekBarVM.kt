@@ -2,17 +2,20 @@ package com.sigmapool.app.screens.miningProfit.viewModels
 
 import android.graphics.Color
 import androidx.lifecycle.MutableLiveData
+import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.models.Currency
-import com.sigmapool.app.utils.getColor
-import com.sigmapool.app.utils.getString
+import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.utils.plus
 import com.sigmapool.app.utils.spannableString
 import com.sigmapool.common.viewModels.IIndicatorSeekBarViewModel
+import org.kodein.di.generic.instance
 import java.text.DecimalFormat
 
 
 class SeekBarVM(private val currencyLiveData: MutableLiveData<Currency>) : IIndicatorSeekBarViewModel {
+
+    private val res by kodein.instance<IResProvider>()
 
     val seekBarValueLiveData = MutableLiveData<Float>()
 
@@ -29,9 +32,9 @@ class SeekBarVM(private val currencyLiveData: MutableLiveData<Currency>) : IIndi
 
     fun getSeekText(value: Float?): CharSequence =
         spannableString(
-            getString(R.string.power_cost) + ": " + getString(R.string.kilowatt_hour_prefix) + " ",
+            res.getString(R.string.power_cost) + ": " + res.getString(R.string.kilowatt_hour_prefix) + " ",
             16,
-            getColor(R.color.titleGray),
+            res.getColor(R.color.titleGray),
             GOOGLE_FONT_FAMILY
         ) +
                 spannableString(
@@ -41,9 +44,9 @@ class SeekBarVM(private val currencyLiveData: MutableLiveData<Currency>) : IIndi
                     GOOGLE_FONT_FAMILY
                 ) +
                 spannableString(
-                    "/" + getString(R.string.kilowatt_hour),
+                    "/" + res.getString(R.string.kilowatt_hour),
                     16,
-                    getColor(R.color.titleGray),
+                    res.getColor(R.color.titleGray),
                     GOOGLE_FONT_FAMILY
                 )
 

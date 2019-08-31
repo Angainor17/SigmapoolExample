@@ -1,4 +1,4 @@
-package com.sigmapool.app.utils.slider
+package com.sigmapool.app.utils.customViews.slider
 
 import com.sigmapool.common.models.BlogDto
 import ss.com.bannerslider.adapters.SliderAdapter

@@ -8,13 +8,16 @@ import com.sigmapool.app.R
 import com.sigmapool.app.provider.currency.ICurrencyProvider
 import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.utils.*
+import com.sigmapool.app.utils.interfaces.StateVM
+import com.sigmapool.app.utils.interfaces.ViewState
 import com.sigmapool.common.models.*
 import com.sigmapool.common.utils.FLOAT_PATTERN
 import com.sigmapool.common.utils.INT_PATTERN
 import com.sigmapool.common.utils.format
 import org.kodein.di.generic.instance
 
-class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewModel(), StateVM {
+class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewModel(),
+    StateVM {
 
     private val resProvider by kodein.instance<IResProvider>()
     private val currencyProvider by kodein.instance<ICurrencyProvider>()
