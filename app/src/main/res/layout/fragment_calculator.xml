@@ -23,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/screenBgColor"
+            android:fitsSystemWindows="true"
 
             >
 
@@ -36,7 +37,9 @@
         <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fillViewport="true"
                 android:background="@color/screenBgColor"
+                android:fitsSystemWindows="true"
                 >
 
             <androidx.constraintlayout.widget.ConstraintLayout

@@ -37,6 +37,9 @@
 
             <include
                     layout="@layout/value_postfix_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
 
                     app:inputType="@{InputType.TYPE_CLASS_NUMBER}"
                     app:label="@{@string/hashrate}"
@@ -50,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginBottom="16dp"
 
                     app:clickAction="@{vm.clickAction}"

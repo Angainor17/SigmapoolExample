@@ -1,8 +1,9 @@
 package com.sigmapool.app.utils
 
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.RotateAnimation
 import android.widget.ImageView
-import android.widget.RadioButton
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager.widget.ViewPager
@@ -19,16 +20,6 @@ import com.sigmapool.common.models.BlogDto
 import com.sigmapool.common.utils.px
 import ss.com.bannerslider.Slider
 import ss.com.bannerslider.event.OnSlideClickListener
-
-
-@BindingAdapter("onCheckedInitValue")
-fun radioBtnOnClick(view: RadioButton, value: Boolean) {
-    var isChecked = value
-    view.setOnClickListener {
-        isChecked = !isChecked
-        view.isChecked = isChecked
-    }
-}
 
 @BindingAdapter("app:onNavigationItemSelected")
 fun onNavigationItemSelected(
@@ -94,4 +85,33 @@ fun setImages(slider: Slider, items: ArrayList<BlogDto>?, listener: OnSlideClick
 @BindingAdapter("app:onActivatedChange")
 fun onActivatedChange(view: View, isActivated: Boolean) {
     view.isActivated = isActivated
+}
+
+
+@BindingAdapter("rotateOnClick")
+fun rotateOnClick(view: View, listener: View.OnClickListener) {
+    val animation = view.animation
+    view.setOnClickListener {
+        if (animation == null) {
+            view.startAnimation(createAnimation())
+        } else {
+            animation.cancel()
+            view.animation = null
+        }
+        listener.onClick(view)
+    }
+}
+
+private fun createAnimation(): Animation {
+    val anim = RotateAnimation(
+        0f,
+        360f,
+        Animation.RELATIVE_TO_SELF,
+        0.5f,
+        Animation.RELATIVE_TO_SELF,
+        0.5f
+    )
+    anim.duration = 1400
+
+    return anim
 }
