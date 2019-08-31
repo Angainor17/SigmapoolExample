@@ -10,7 +10,6 @@ import com.sigmapool.common.viewModels.ITitleViewModel
 import org.kodein.di.generic.instance
 
 const val COIN_TAG = "coin"
-const val GOOGLE_FONT_FAMILY = "Google Sans"//FIXME
 
 class MiningProfitVM(val view: IMinerFragmentModel) : ViewModel(), ITitleViewModel, IMiningProfitToolbarVM {
 

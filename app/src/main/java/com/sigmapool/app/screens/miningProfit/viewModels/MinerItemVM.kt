@@ -6,6 +6,7 @@ import com.sigmapool.app.R
 import com.sigmapool.app.provider.currency.ICurrencyProvider
 import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.utils.formatLongValue
+import com.sigmapool.app.utils.formatValueWithPrefix
 import com.sigmapool.app.utils.plus
 import com.sigmapool.app.utils.spannableString
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
@@ -28,8 +29,8 @@ class MinerItemVM(
 
     var btcValue: String = createBtcValueText(0f)
 
-    var revenuePowerCost = ""
-    val shutdownPrice: String = getCurrencyLabel() + " " + miner.shutdownPrice
+    var revenuePowerCost: CharSequence = createRevenuePowerCost(0f)
+    val shutdownPrice: String = getCurrencyLabel() + " " + miner.shutdownPrice.format(FLOAT_PATTERN)
     var profit = ""
     var profitValue = 0f
 
@@ -40,7 +41,19 @@ class MinerItemVM(
     fun initPowerCost(powerCost: Float) {
         profitValue = miner.revenue - powerCost
         profit = (if (profitValue < 0) "-" else "") + getCurrencyLabel() + " " + abs(profitValue).format(FLOAT_PATTERN)
-        revenuePowerCost = getCurrencyLabel() + miner.revenue + " / " + getCurrencyLabel() + powerCost
+        revenuePowerCost = createRevenuePowerCost(powerCost)
+    }
+
+    private fun createRevenuePowerCost(powerCost: Float): CharSequence {
+        return formatValueWithPrefix(
+            miner.revenue.format(FLOAT_PATTERN) + " / ",
+            getCurrencyLabel(),
+            res.getColor(R.color.titleGray)
+        ) + formatValueWithPrefix(
+            powerCost.format(FLOAT_PATTERN),
+            getCurrencyLabel(),
+            res.getColor(R.color.titleGray)
+        )
     }
 
     companion object {
@@ -77,6 +90,5 @@ class MinerItemVM(
 fun String.spannable(color: Int, textSize: Int = 15) = spannableString(
     this,
     textSize,
-    color,
-    GOOGLE_FONT_FAMILY
+    color
 )

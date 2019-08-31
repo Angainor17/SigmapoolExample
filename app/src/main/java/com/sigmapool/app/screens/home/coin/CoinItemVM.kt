@@ -58,16 +58,17 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
         paymentTime.postValue(formatPaymentTime(paymentDto.time))
         payoutScheme.postValue(coinDto.payoutScheme.joinToString("/").toUpperCase())
         profit.postValue(
-            formatValue(
+            formatValueWithPostfix(
                 String.format("%f", profitDailyDto.profit),
-                " " + coinLabel.toUpperCase()
+                " " + coinLabel.toUpperCase(),
+                resProvider.getColor(R.color.titleGray)
             )
         )
         networkHashrate.postValue(formatHashrate(networkDto.networkHashrate.toLong()))
         networkDifficulty.postValue(formatNetworkDifficulty(networkDto))
         block.postValue(networkDto.blockHeight.format(INT_PATTERN))
         nextDifficultyAt.postValue(networkDto.nextDifficultyAt.formatDate())
-        nextDifficulty.postValue(formatValue("7.93", " T"))//FIXME
+        nextDifficulty.postValue(formatValueWithPostfix("7.93", " T", resProvider.getColor(R.color.titleGray)))//FIXME
 
         nextDifficultyChange.postValue("9.54 %")//FIXME
         isNextDifficultyChangeUp.postValue(false)//FIXME
@@ -76,11 +77,13 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
     private fun formatNetworkDifficulty(networkDto: NetworkDto): CharSequence {
         val result = formatLongValue(networkDto.networkDifficulty, FLOAT_PATTERN)
 
-        return formatValue(result.beforeLastChar(), " " + result.lastChar())
+        return formatValueWithPostfix(result.beforeLastChar(), " " + result.lastChar(),
+            resProvider.getColor(R.color.titleGray)
+        )
     }
 
-    private fun formatMinPayment(value: Float): CharSequence = formatValue(
-        value.format(FLOAT_PATTERN) + " ", coinLabel.toUpperCase()
+    private fun formatMinPayment(value: Float): CharSequence = formatValueWithPostfix(
+        value.format(FLOAT_PATTERN) + " ", coinLabel.toUpperCase(), resProvider.getColor(R.color.titleGray)
     )
 
     private fun formatPriceChange(coinDto: CoinDto): String {
@@ -97,17 +100,13 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
     private fun formatHashrate(value: Long): CharSequence {
         val result = formatLongValue(value, FLOAT_PATTERN)
 
-        return formatValue(
+        return formatValueWithPostfix(
             result.beforeLastChar() + " ",
-            result.lastChar() + resProvider.getString(R.string.hashrate_per_second)
+            result.lastChar() + resProvider.getString(R.string.hashrate_per_second),
+            resProvider.getColor(R.color.titleGray)
         )
     }
-
-    private fun formatValue(value: String, postfix: String): CharSequence =
-        spannableString(value) + spannableString(postfix, color = resProvider.getColor(R.color.titleGray))
 }
 
-fun String.lastChar() = substring(length - 1)
-fun String.beforeLastChar() = substring(0, length - 1)
 
 

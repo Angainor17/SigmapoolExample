@@ -34,20 +34,17 @@ class SeekBarVM(private val currencyLiveData: MutableLiveData<Currency>) : IIndi
         spannableString(
             res.getString(R.string.power_cost) + ": " + res.getString(R.string.kilowatt_hour_prefix) + " ",
             16,
-            res.getColor(R.color.titleGray),
-            GOOGLE_FONT_FAMILY
+            res.getColor(R.color.titleGray)
         ) +
                 spannableString(
                     getFormattedValue(value, currencyLiveData.value!!),
                     16,
-                    Color.BLACK,
-                    GOOGLE_FONT_FAMILY
+                    Color.BLACK
                 ) +
                 spannableString(
                     "/" + res.getString(R.string.kilowatt_hour),
                     16,
-                    res.getColor(R.color.titleGray),
-                    GOOGLE_FONT_FAMILY
+                    res.getColor(R.color.titleGray)
                 )
 
     private fun getFormattedValue(value: Float?, currency: Currency): String =

@@ -1,5 +1,6 @@
 package com.sigmapool.app.utils
 
+import android.graphics.Color
 import android.text.SpannableString
 import android.text.TextUtils
 import android.text.style.AbsoluteSizeSpan
@@ -42,4 +43,11 @@ operator fun SpannableString.plus(s: SpannableString) = SpannableString(TextUtil
 fun Date.formatTime(): String = SimpleDateFormat("HH:mm").format(this)
 fun Date.formatDate(): String = SimpleDateFormat("dd.MM.yyyy").format(this)
 
+fun String.lastChar() = substring(length - 1)
+fun String.beforeLastChar() = substring(0, length - 1)
 
+fun formatValueWithPostfix(value: String, postfix: String, postfixColor: Int): SpannableString =
+    spannableString(value, color = Color.BLACK) + spannableString(postfix, color = postfixColor)
+
+fun formatValueWithPrefix(value: String, prefix: String, prefixColor: Int): SpannableString =
+    spannableString(prefix, color = prefixColor) + spannableString(value, color = Color.BLACK)

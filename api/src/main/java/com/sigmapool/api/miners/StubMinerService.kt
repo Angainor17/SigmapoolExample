@@ -1,11 +1,11 @@
 package com.sigmapool.api.miners
 
 import com.sigmapool.api.models.Miner
+import com.sigmapool.api.providers.IApiServiceProvider
 import kotlinx.coroutines.delay
-import retrofit2.Retrofit
 import kotlin.random.Random
 
-internal class StubMinerService(retrofit: Retrofit) : IMinerService {
+internal class StubMinerService(apiProvider: IApiServiceProvider) : IMinerService {
 
     private val items = List(120) {
         Miner(

@@ -91,6 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="@{vm.hashratePower}"
+                    android:textSize="15sp"
                     android:fontFamily="@font/google_sans_medium"
 
                     app:layout_constraintStart_toStartOf="@+id/hashratePowerLabel"
@@ -146,11 +147,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{vm.revenuePowerCost}"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/google_sans_medium"
                         android:layout_marginTop="1dp"
                         android:layout_marginBottom="3dp"
                         android:layout_marginRight="8dp"
-                        android:fontFamily="@font/google_sans_medium"
 
                         tools:text="$20.24 / $2.01"/>
 
@@ -199,6 +200,7 @@
 
                     android:layout_width="0dp"
                     android:orientation="vertical"
+                    android:minWidth="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
