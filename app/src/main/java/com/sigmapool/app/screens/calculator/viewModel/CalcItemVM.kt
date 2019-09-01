@@ -3,16 +3,16 @@ package com.sigmapool.app.screens.calculator.viewModel
 import android.graphics.Color
 import android.text.SpannableString
 import android.view.View
+import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.provider.currency.ICurrencyProvider
-import com.sigmapool.app.utils.interfaces.ViewState
+import com.sigmapool.app.utils.interfaces.ViewState.*
+import com.sigmapool.app.utils.zip2
 import com.sigmapool.common.managers.IPoolManager
 import com.sigmapool.common.models.CoinDto
 import com.sigmapool.common.models.NetworkDto
-import com.sigmapool.common.models.ProfitDailyDto
 import com.sigmapool.common.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -26,43 +26,62 @@ class CalcItemVM(
     private val poolManager by kodein.instance<IPoolManager>()
     private val currencyProvider by kodein.instance<ICurrencyProvider>()
 
-    val viewState = MutableLiveData(ViewState.LOADING)
+    private val converterViewState = MutableLiveData(LOADING)
+    private val generalInfoViewState = MutableLiveData(LOADING)
+
+    val refreshing = zip2(converterViewState, generalInfoViewState)
+    { converterVS, generalVS -> converterVS == LOADING || generalVS == LOADING }
 
     val price = MutableLiveData("~ \$ 368.48")//FIXME
-    val refreshing = map(viewState) { it == ViewState.LOADING }
-
-    val currentPrice = MutableLiveData<CharSequence>(formatCurrentPrice(11224.42f))//FIXME
-    val difficulty = MutableLiveData<CharSequence>(formatDifficulty(793213123123123L))//FIXME
-    val blockReward = MutableLiveData<CharSequence>(formatBlockReward(12.543f))//FIXME
+    val currentPrice = MutableLiveData<CharSequence>(formatCurrentPrice(0f))
+    val difficulty = MutableLiveData<CharSequence>(formatDifficulty(0L))
+    val blockReward = MutableLiveData<CharSequence>(formatBlockReward(0f))
 
     val changeStateAction = View.OnClickListener {
         //TODO implement
     }
 
     fun onRefresh() {
-        viewState.postValue(ViewState.LOADING)
         initValues()
     }
 
     private fun initValues() {
         GlobalScope.launch(Dispatchers.IO) {
-            val coinDto = poolManager.getCoin(coinLabel)
-            val networkDto = poolManager.getNetwork(coinLabel)
-            val profitDailyDto = poolManager.getProfitDaily(coinLabel)
-
-            if (coinDto.success && networkDto.success && profitDailyDto.success) {
-                initViews(coinDto.data, networkDto.data, profitDailyDto.data)
-                viewState.postValue(ViewState.CONTENT)
-            } else {
-                viewState.postValue(ViewState.ERROR)
-            }
+            initGeneralInfo()
+            initConverter()
         }
     }
 
-    private fun initViews(coin: CoinDto?, network: NetworkDto?, profitDaily: ProfitDailyDto?) {
-        currentPrice.postValue(formatCurrentPrice(11224.42f))//FIXME
-        difficulty.postValue(formatDifficulty(793213123123123L))//FIXME
-        blockReward.postValue(formatBlockReward(12.543f))//FIXME
+    private suspend fun initConverter() {
+        converterViewState.postValue(LOADING)
+        val profitDailyDto = poolManager.getProfitDaily(coinLabel)
+
+        if (profitDailyDto.success) {
+            //TODO implement
+            converterViewState.postValue(CONTENT)
+        } else {
+            converterViewState.postValue(ERROR)
+        }
+    }
+
+    private suspend fun initGeneralInfo() {
+        generalInfoViewState.postValue(LOADING)
+
+        val coinDto = poolManager.getCoin(coinLabel)
+        val networkDto = poolManager.getNetwork(coinLabel)
+
+        if (coinDto.success && networkDto.success) {
+            initViews(coinDto.data, networkDto.data)
+            generalInfoViewState.postValue(CONTENT)
+        } else {
+            generalInfoViewState.postValue(ERROR)
+        }
+    }
+
+    private fun initViews(coin: CoinDto?, network: NetworkDto?) {
+        currentPrice.postValue(formatCurrentPrice(coin?.price ?: 0f))
+        difficulty.postValue(formatDifficulty(network?.networkDifficulty ?: 0L))
+        blockReward.postValue(formatBlockReward(network?.blockReward ?: 0f))
     }
 
     private fun formatCurrentPrice(value: Float): SpannableString {
@@ -78,7 +97,7 @@ class CalcItemVM(
 
         return formatValueWithPostfix(
             result.beforeLastChar() + " ",
-            result.lastChar(),
+            if (result.lastChar().isDigitsOnly()) "" else result.lastChar(),
             darkGray()
         )
     }
