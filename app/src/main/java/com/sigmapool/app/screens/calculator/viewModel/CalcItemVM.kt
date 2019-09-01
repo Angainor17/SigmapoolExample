@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.provider.currency.ICurrencyProvider
 import com.sigmapool.app.utils.interfaces.ViewState.*
-import com.sigmapool.app.utils.zip2
+import com.sigmapool.app.utils.liveDataZip
 import com.sigmapool.common.managers.IPoolManager
 import com.sigmapool.common.models.CoinDto
 import com.sigmapool.common.models.NetworkDto
@@ -29,7 +29,7 @@ class CalcItemVM(
     private val converterViewState = MutableLiveData(LOADING)
     private val generalInfoViewState = MutableLiveData(LOADING)
 
-    val refreshing = zip2(converterViewState, generalInfoViewState)
+    val refreshing = liveDataZip(converterViewState, generalInfoViewState)
     { converterVS, generalVS -> converterVS == LOADING || generalVS == LOADING }
 
     val price = MutableLiveData("~ \$ 368.48")//FIXME
@@ -53,7 +53,6 @@ class CalcItemVM(
     }
 
     private suspend fun initConverter() {
-        converterViewState.postValue(LOADING)
         val profitDailyDto = poolManager.getProfitDaily(coinLabel)
 
         if (profitDailyDto.success) {

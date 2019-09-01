@@ -3,7 +3,7 @@ package com.sigmapool.app.utils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 
-fun <T1, T2, R> zip2(
+fun <T1, T2, R> liveDataZip(
     src1: LiveData<T1>,
     src2: LiveData<T2>,
     zipper: (T1, T2) -> R
@@ -40,7 +40,7 @@ fun <T1, T2, R> zip2(
     }
 }
 
-fun <T1, T2, T3, R> zip3(
+fun <T1, T2, T3, R> liveDataZip(
     src1: LiveData<T1>,
     src2: LiveData<T2>,
     src3: LiveData<T3>,

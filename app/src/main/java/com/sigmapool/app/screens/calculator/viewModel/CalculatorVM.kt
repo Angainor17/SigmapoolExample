@@ -8,7 +8,7 @@ import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.screens.calculator.ICalculatorFragmentModel
 import com.sigmapool.app.screens.home.coin.BTC
 import com.sigmapool.app.screens.home.coin.LTC
-import com.sigmapool.app.utils.zip3
+import com.sigmapool.app.utils.liveDataZip
 import com.sigmapool.common.managers.ICalcManager
 import com.sigmapool.common.viewModels.ITitleViewModel
 import kotlinx.coroutines.Dispatchers
@@ -26,7 +26,7 @@ class CalculatorVM(val view: ICalculatorFragmentModel) : ViewModel(), ITitleView
     val info = MutableLiveData("")
     val tabPositionLiveData = MutableLiveData<Int>()
 
-    val refreshing = zip3(btcCalcItem.refreshing, ltcCalcItem.refreshing, refreshingInfo)
+    val refreshing = liveDataZip(btcCalcItem.refreshing, ltcCalcItem.refreshing, refreshingInfo)
     { btcLoading, ltcLoading, infoLoading -> btcLoading || ltcLoading || infoLoading }
 
     val calculatorTabVM = CalculatorTabVM(tabPositionLiveData)
