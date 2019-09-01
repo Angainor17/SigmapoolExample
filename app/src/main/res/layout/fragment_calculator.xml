@@ -2,6 +2,7 @@
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         >
 
     <data>
@@ -32,81 +33,92 @@
                 app:vm="@{vm}"
                 />
 
-        <androidx.core.widget.NestedScrollView
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:layout_width="match_parent"
-                android:scrollbars="none"
                 android:layout_height="wrap_content"
+
+                app:onRefreshListener="@{() -> vm.onRefresh()}"
+                app:refreshing="@{vm.refreshing}"
                 >
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
+                    android:scrollbars="none"
                     android:layout_height="wrap_content"
                     >
 
-                <LinearLayout
-                        android:id="@+id/calc_info"
-
+                <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/gradient_status_bar"
-
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-
                         >
 
-                    <TextView
-                            android:layout_width="match_parent"
-                            android:textAlignment="textStart"
-                            android:singleLine="false"
-                            android:text="@string/calculator_info"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginRight="16dp"
-                            android:fontFamily="@font/google_sans_regular"
-                            android:textColor="@color/white"
-                            android:layout_height="wrap_content"
+                    <LinearLayout
+                            android:id="@+id/calc_info"
 
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/gradient_status_bar"
+
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+
+                            >
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:textAlignment="textStart"
+                                android:singleLine="false"
+                                android:text="@{vm.info}"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginBottom="8dp"
+                                android:layout_marginRight="16dp"
+                                android:fontFamily="@font/google_sans_regular"
+                                android:textColor="@color/white"
+                                android:layout_height="wrap_content"
+
+                                tools:text="@string/calculator_info"
+                                />
+
+                    </LinearLayout>
+
+
+                    <View
+                            android:id="@+id/coloredLine"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="42dp"
+                            android:background="@drawable/gradient_status_bar"
+
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/calc_info"
                             />
 
-                </LinearLayout>
 
+                    <com.sigmapool.app.utils.customViews.FragmentViewPager
+                            android:id="@+id/viewPager"
 
-                <View
-                        android:id="@+id/coloredLine"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="4dp"
 
-                        android:layout_width="match_parent"
-                        android:layout_height="42dp"
-                        android:background="@drawable/gradient_status_bar"
+                            app:viewCalcTabAdapter="@{fragmentManager}"
+                            app:initCalcAdapter="@{vm.calcItems}"
+                            app:onScreenChange="@{vm.tabPositionLiveData}"
+                            app:isWrapHeightEnabled="@{true}"
 
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/calc_info"
-                        />
+                            app:layout_constraintTop_toTopOf="@id/coloredLine"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            />
 
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <com.sigmapool.app.utils.customViews.FragmentViewPager
-                        android:id="@+id/viewPager"
+            </androidx.core.widget.NestedScrollView>
 
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="4dp"
-
-                        app:viewCalcTabAdapter="@{fragmentManager}"
-                        app:initCalcAdapter="@{vm.calcItems}"
-                        app:onScreenChange="@{vm.tabPositionLiveData}"
-                        app:isWrapHeightEnabled="@{true}"
-
-                        app:layout_constraintTop_toTopOf="@id/coloredLine"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.core.widget.NestedScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>
 

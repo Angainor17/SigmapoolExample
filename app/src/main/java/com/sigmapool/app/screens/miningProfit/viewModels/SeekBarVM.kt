@@ -6,8 +6,8 @@ import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.models.Currency
 import com.sigmapool.app.provider.res.IResProvider
-import com.sigmapool.app.utils.plus
-import com.sigmapool.app.utils.spannableString
+import com.sigmapool.common.utils.plus
+import com.sigmapool.common.utils.spannableString
 import com.sigmapool.common.viewModels.IIndicatorSeekBarViewModel
 import org.kodein.di.generic.instance
 import java.text.DecimalFormat

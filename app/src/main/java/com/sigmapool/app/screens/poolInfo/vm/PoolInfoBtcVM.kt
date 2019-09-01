@@ -4,8 +4,8 @@ import android.text.Html
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sigmapool.app.screens.poolInfo.viewmodel.IPoolInfoBtcModel
-import com.sigmapool.app.utils.formatTime
 import com.sigmapool.common.models.*
+import com.sigmapool.common.utils.formatTime
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

@@ -5,15 +5,9 @@ import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.currency.ICurrencyProvider
 import com.sigmapool.app.provider.res.IResProvider
-import com.sigmapool.app.utils.formatLongValue
-import com.sigmapool.app.utils.formatValueWithPrefix
-import com.sigmapool.app.utils.plus
-import com.sigmapool.app.utils.spannableString
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 import com.sigmapool.common.models.MinerDto
-import com.sigmapool.common.utils.FLOAT_PATTERN
-import com.sigmapool.common.utils.INT_PATTERN
-import com.sigmapool.common.utils.format
+import com.sigmapool.common.utils.*
 import org.kodein.di.generic.instance
 import kotlin.math.abs
 

@@ -1,7 +1,7 @@
 package com.sigmapool.app
 
-import com.sigmapool.app.utils.formatLongValue
 import com.sigmapool.common.utils.FLOAT_PATTERN
+import com.sigmapool.common.utils.formatLongValue
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

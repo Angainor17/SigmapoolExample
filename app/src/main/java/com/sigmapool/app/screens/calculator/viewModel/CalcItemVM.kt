@@ -2,20 +2,18 @@ package com.sigmapool.app.screens.calculator.viewModel
 
 import android.graphics.Color
 import android.text.SpannableString
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.provider.currency.ICurrencyProvider
-import com.sigmapool.app.utils.*
 import com.sigmapool.app.utils.interfaces.ViewState
 import com.sigmapool.common.managers.IPoolManager
 import com.sigmapool.common.models.CoinDto
 import com.sigmapool.common.models.NetworkDto
 import com.sigmapool.common.models.ProfitDailyDto
-import com.sigmapool.common.utils.FLOAT_PATTERN
-import com.sigmapool.common.utils.format
+import com.sigmapool.common.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -31,16 +29,18 @@ class CalcItemVM(
     val viewState = MutableLiveData(ViewState.LOADING)
 
     val price = MutableLiveData("~ \$ 368.48")//FIXME
+    val refreshing = map(viewState) { it == ViewState.LOADING }
 
     val currentPrice = MutableLiveData<CharSequence>(formatCurrentPrice(11224.42f))//FIXME
     val difficulty = MutableLiveData<CharSequence>(formatDifficulty(793213123123123L))//FIXME
     val blockReward = MutableLiveData<CharSequence>(formatBlockReward(12.543f))//FIXME
 
-    val clickAction = View.OnClickListener {
-        Log.d("", "")//TODO implement
+    val changeStateAction = View.OnClickListener {
+        //TODO implement
     }
 
-    init {
+    fun onRefresh() {
+        viewState.postValue(ViewState.LOADING)
         initValues()
     }
 

@@ -7,13 +7,10 @@ import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.currency.ICurrencyProvider
 import com.sigmapool.app.provider.res.IResProvider
-import com.sigmapool.app.utils.*
 import com.sigmapool.app.utils.interfaces.StateVM
 import com.sigmapool.app.utils.interfaces.ViewState
 import com.sigmapool.common.models.*
-import com.sigmapool.common.utils.FLOAT_PATTERN
-import com.sigmapool.common.utils.INT_PATTERN
-import com.sigmapool.common.utils.format
+import com.sigmapool.common.utils.*
 import org.kodein.di.generic.instance
 
 class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewModel(),
@@ -46,7 +43,10 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
 
     fun initVMs(coinDto: CoinDto, networkDto: NetworkDto, paymentDto: PaymentDto, profitDailyDto: ProfitDailyDto) {
         coinPrice.postValue(
-            spannableString(currencyProvider.getSymbol(), color = resProvider.getColor(R.color.titleGray)) +
+            spannableString(
+                currencyProvider.getSymbol(),
+                color = resProvider.getColor(R.color.titleGray)
+            ) +
                     spannableString(" " + coinDto.price.toInt().format(INT_PATTERN))
         )
         coinPriceChange.postValue(formatPriceChange(coinDto))
@@ -68,7 +68,13 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
         networkDifficulty.postValue(formatNetworkDifficulty(networkDto))
         block.postValue(networkDto.blockHeight.format(INT_PATTERN))
         nextDifficultyAt.postValue(networkDto.nextDifficultyAt.formatDate())
-        nextDifficulty.postValue(formatValueWithPostfix("7.93", " T", resProvider.getColor(R.color.titleGray)))//FIXME
+        nextDifficulty.postValue(
+            formatValueWithPostfix(
+                "7.93",
+                " T",
+                resProvider.getColor(R.color.titleGray)
+            )
+        )//FIXME
 
         nextDifficultyChange.postValue("9.54 %")//FIXME
         isNextDifficultyChangeUp.postValue(false)//FIXME
@@ -77,7 +83,8 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
     private fun formatNetworkDifficulty(networkDto: NetworkDto): CharSequence {
         val result = formatLongValue(networkDto.networkDifficulty, FLOAT_PATTERN)
 
-        return formatValueWithPostfix(result.beforeLastChar(), " " + result.lastChar(),
+        return formatValueWithPostfix(
+            result.beforeLastChar(), " " + result.lastChar(),
             resProvider.getColor(R.color.titleGray)
         )
     }

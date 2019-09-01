@@ -1,4 +1,4 @@
-package com.sigmapool.app.utils
+package com.sigmapool.common.utils
 
 import android.graphics.Color
 import android.text.SpannableString
@@ -6,8 +6,6 @@ import android.text.TextUtils
 import android.text.style.AbsoluteSizeSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.TypefaceSpan
-import com.sigmapool.common.utils.INT_PATTERN
-import com.sigmapool.common.utils.format
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -47,7 +45,13 @@ fun String.lastChar() = substring(length - 1)
 fun String.beforeLastChar() = substring(0, length - 1)
 
 fun formatValueWithPostfix(value: String, postfix: String, postfixColor: Int): SpannableString =
-    spannableString(value, color = Color.BLACK) + spannableString(postfix, color = postfixColor)
+    spannableString(value, color = Color.BLACK) + spannableString(
+        postfix,
+        color = postfixColor
+    )
 
 fun formatValueWithPrefix(value: String, prefix: String, prefixColor: Int): SpannableString =
-    spannableString(prefix, color = prefixColor) + spannableString(value, color = Color.BLACK)
+    spannableString(
+        prefix,
+        color = prefixColor
+    ) + spannableString(value, color = Color.BLACK)
