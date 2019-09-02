@@ -16,33 +16,58 @@
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp"
             android:layout_marginTop="4dp" app:layout_constraintTop_toBottomOf="@id/backBtn"
             tools:showIn="@layout/pool_info_toolbar"
-    android:background="@drawable/currency_background"
-    android:padding="1dp"
+            android:background="@drawable/currency_background"
+            android:padding="1dp"
     >
-        <TextView
-                android:onClick="@{() -> vm.btcSelect()}"
-                android:set_selected="@{vm.btcSelected}"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:drawableStart="@drawable/bitcoin"
-                android:background="@drawable/currency_background_left"
-                android:text="Bitcoin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/bitcoinRadioButton"
-                android:layout_weight="1" android:textAlignment="center"
+        <LinearLayout android:layout_width="121dp" android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:background="@drawable/currency_background_left"
+                      android:paddingStart="20dp"
+                      android:paddingEnd="20dp"
+                      android:textAlignment="center"
+                      android:onClick="@{() -> vm.btcSelect()}"
+                      android:set_selected="@{vm.btcSelected}">
+            <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:src="@mipmap/ic_btc"
+            />
+            <TextView
+                    android:paddingStart="4dp"
+                    android:text="@string/bitcoin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+            />
+        </LinearLayout>
 
-                />
-        <TextView
-                android:onClick="@{() -> vm.ltcSelect()}"
-                android:set_selected="@{!vm.btcSelected}"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:drawableStart="@drawable/litecoin"
-                android:background="@drawable/currency_background_right"
-                android:text="Litecoin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/litecoinRadioButton"
-                android:layout_weight="1" android:textAlignment="center"/>
+        <LinearLayout android:layout_width="121dp" android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:background="@drawable/currency_background_right"
+                      android:paddingStart="20dp"
+                      android:paddingEnd="20dp"
+                      android:textAlignment="center"
+
+                      android:onClick="@{() -> vm.ltcSelect()}"
+                      android:set_selected="@{!vm.btcSelected}">
+            <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:src="@mipmap/ic_ltc"
+            />
+            <TextView
+
+                    android:paddingStart="4dp"
+                    android:text="@string/litecoin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+            />
+        </LinearLayout>
 
 
     </LinearLayout>
