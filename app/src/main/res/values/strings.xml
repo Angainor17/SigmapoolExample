@@ -11,23 +11,30 @@
     <string name="hashrate_power">Hashrate/Power</string>
     <string name="revenue_power_cost">Revenue/Power Cost</string>
     <string name="shutdown_price">Shutdown Price</string>
-    <string name="btc_caps"
-            translatable="false">BTC</string>
+    <string name="btc_caps">BTC</string>
+    <string name="hashrate_postfix">T</string>
     <string name="power_postfix">W</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="sign_in_api_key">Sign in with API Key</string>
     <string name="or">or</string>
 
     <string name="pool_info">Pool Info</string>
     <string name="fee">Fee</string>
-    <string name="btc"
-            translatable="false">BTC</string>
-    <string name="ltc"
-            translatable="false">LTC</string>
+    <string name="fpps">FPPS</string>
+    <string name="pps">PPS</string>
+    <string name="dailyProfitPerTHs">Daily Profit Per TH/s (FPPS)</string>
+    <string name="btc">BTC</string>
     <string name="paymentTime">Payment Time</string>
     <string name="minimumPayout">Minimum Payout</string>
     <string name="settlementDetails">Settlement Details</string>
     <string name="miningURL">Mining URL</string>
+    <string name="bitcoin">Bitcoin</string>
+    <string name="litecoin">Litecoin</string>
+    <string name="ltc"
+            translatable="false">LTC</string>
+
 
 
     <string name="home_screen_icon_title">Home</string>
