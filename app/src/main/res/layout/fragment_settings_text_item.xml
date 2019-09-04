@@ -19,6 +19,11 @@
                 type="String"
                 />
 
+        <variable
+                name="isTopSeparatorVisible"
+                type="Boolean"
+                />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#d6d6d6"
+                android:visibility="@{isTopSeparatorVisible ? View.VISIBLE : View.GONE}"
 
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"

@@ -42,11 +42,12 @@
                 <include
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="32dp"
+                        android:layout_marginTop="30dp"
                         layout="@layout/fragment_settings_select_item"
 
                         app:label="@{@string/language}"
                         app:value="@{vm.languageLiveData}"
+                        app:isTopSeparatorVisible="@{true}"
                         />
 
                 <include
@@ -54,6 +55,7 @@
 
                         app:label="@{@string/currency}"
                         app:value="@{vm.currencyLiveData}"
+                        app:isTopSeparatorVisible="@{false}"
                         />
 
                 <include
@@ -61,16 +63,18 @@
 
                         app:label="@{@string/push_notification}"
                         app:value="@{vm.pushLiveData}"
+                        app:isTopSeparatorVisible="@{false}"
                         />
 
                 <include
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="18dp"
                         layout="@layout/fragment_settings_select_item"
 
                         app:label="@{@string/payment_scheme}"
                         app:value="@{vm.schemeLiveData}"
+                        app:isTopSeparatorVisible="@{true}"
                         />
 
                 <include
@@ -78,32 +82,36 @@
 
                         app:label="@{@string/limit}"
                         app:value="@{vm.limitLiveData}"
+                        app:isTopSeparatorVisible="@{false}"
                         />
 
                 <include
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="18dp"
                         layout="@layout/fragment_settings_text_item"
 
                         app:label="@{@string/write_review}"
+                        app:isTopSeparatorVisible="@{true}"
                         />
 
                 <include
                         layout="@layout/fragment_settings_text_item"
 
                         app:label="@{@string/mark_app}"
+                        app:isTopSeparatorVisible="@{false}"
                         />
 
                 <include
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="18dp"
                         android:layout_marginBottom="24dp"
 
                         layout="@layout/fragment_settings_center_title"
 
                         app:label="@{@string/exit}"
+                        app:isTopSeparatorVisible="@{true}"
                         />
 
             </LinearLayout>
