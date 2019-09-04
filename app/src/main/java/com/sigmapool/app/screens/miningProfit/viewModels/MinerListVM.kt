@@ -25,8 +25,6 @@ class MinerListVM(
     val loaderState = MutableLiveData<ItemsLoaderState>()
     var isLoading = map(loaderState) { it == ItemsLoaderState.Loading }
 
-    val refreshing = MutableLiveData<Boolean>()
-
     val message = MutableLiveData<String>()
     val items: MutableLiveData<List<MinerItemVM>> = MutableLiveData()
 
@@ -46,12 +44,12 @@ class MinerListVM(
                 if (t.data?.size ?: 0 < pageSize) {
                     isLastPage.postValue(true)
                 }
+                pageNumber++
             } else {
                 loaderState.postValue(ItemsLoaderState.Error)
                 errorMessage.postValue(t.error)
             }
         }
-        pageNumber++
     }
 
     fun onRefresh() {

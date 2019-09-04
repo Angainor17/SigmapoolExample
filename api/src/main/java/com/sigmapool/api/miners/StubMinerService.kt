@@ -3,6 +3,7 @@ package com.sigmapool.api.miners
 import com.sigmapool.api.models.Miner
 import com.sigmapool.api.providers.IApiServiceProvider
 import kotlinx.coroutines.delay
+import kotlin.math.max
 import kotlin.random.Random
 
 internal class StubMinerService(apiProvider: IApiServiceProvider) : IMinerService {
@@ -26,10 +27,13 @@ internal class StubMinerService(apiProvider: IApiServiceProvider) : IMinerServic
 
         delay(5000)
 
-        if (perPage > 120) {
+        if (perPage >= items.size) {
             return items
         }
 
-        return items.slice(IntRange(page, page + perPage - 1))
+        var start = max((page - 1), 0) * perPage
+        if (start != 0) start++
+
+        return items.slice(IntRange(start, start + perPage))
     }
 }
