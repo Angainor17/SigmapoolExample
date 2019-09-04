@@ -32,11 +32,8 @@ class MiningProfitListVM(params: MinerListParams = MinerListParams()) : ViewMode
     private val jsonDataStorage by kodein.instance<JsonDataStorage>()
     private val currencyProvider by kodein.instance<ICurrencyProvider>()
 
-    private val currencyLiveData = MutableLiveData(usdCurrency)
-    private val seekBarVM = SeekBarVM(currencyLiveData)
-    private val minerHeaderVM = MinerHeaderVM(seekBarVM)
-    private val minerBindingHelper = MinerBindingHelper()
-    val minerAdapter = MiningListAdapter(minerHeaderVM, minerBindingHelper)
+    private val seekBarVM = SeekBarVM(MutableLiveData(usdCurrency))
+    val minerAdapter = MiningListAdapter(MinerHeaderVM(seekBarVM), MinerBindingHelper())
 
     private var coinInfo: CoinDto? = null
 
