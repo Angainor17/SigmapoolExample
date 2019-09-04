@@ -84,5 +84,16 @@
     <string name="current_price">Current Price</string>
     <string name="difficulty">Difficulty</string>
     <string name="block_reward">Block Reward</string>
+    <string name="demo">Demo</string>
+    <string name="rus">Русский</string>
+    <string name="language">Язык</string>
+    <string name="currency">Валюта</string>
+    <string name="push_notification">Push-уведомления</string>
+    <string name="payment_scheme">Схема выплат</string>
+    <string name="limit">Порог</string>
+    <string name="write_review">Написать отзыв или предложение</string>
+    <string name="mark_app">Оценить приложение</string>
+    <string name="exit">Выйти</string>
+    <string name="rub">RUB</string>
 
 </resources>

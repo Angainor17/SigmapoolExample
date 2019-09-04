@@ -18,6 +18,7 @@ import com.sigmapool.app.utils.customViews.FragmentViewPager
 import com.sigmapool.app.utils.customViews.slider.MainSliderAdapter
 import com.sigmapool.common.models.BlogDto
 import com.sigmapool.common.utils.px
+import com.suke.widget.SwitchButton
 import ss.com.bannerslider.Slider
 import ss.com.bannerslider.event.OnSlideClickListener
 
@@ -87,7 +88,6 @@ fun onActivatedChange(view: View, isActivated: Boolean) {
     view.isActivated = isActivated
 }
 
-
 @BindingAdapter("rotateOnClick")
 fun rotateOnClick(view: View, listener: View.OnClickListener) {
     val animation = view.animation
@@ -114,4 +114,9 @@ private fun createAnimation(): Animation {
     anim.duration = 1400
 
     return anim
+}
+
+@BindingAdapter("app:onCheckedChange")
+fun onActivatedChange(view: SwitchButton, listener: SwitchButton.OnCheckedChangeListener) {
+    view.setOnCheckedChangeListener(listener)
 }

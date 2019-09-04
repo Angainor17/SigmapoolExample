@@ -1,23 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
->
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
 
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.settings.viewModel.SettingsVM"/>
+
+        <variable
+                name="vm"
+                type="com.sigmapool.app.screens.settings.viewModel.SettingsVM"
+                />
     </data>
+
 
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/screenBgColor"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
             >
 
-        <TextView
-                android:gravity="center_vertical|center_horizontal"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:text="Settings"
+        <include
+                layout="@layout/settings_toolbar"
+
+                app:vm="@{vm.toolbarVm}"
+                />
+
+        <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent"
+                android:background="@color/screenBgColor"
+                >
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    >
+
+                <include
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="32dp"
+                        layout="@layout/fragment_settings_select_item"
+
+                        app:label="@{@string/language}"
+                        app:value="@{vm.languageLiveData}"
+                        />
+
+                <include
+                        layout="@layout/fragment_settings_select_item"
+
+                        app:label="@{@string/currency}"
+                        app:value="@{vm.currencyLiveData}"
+                        />
+
+                <include
+                        layout="@layout/fragment_settings_check_item"
+
+                        app:label="@{@string/push_notification}"
+                        app:value="@{vm.pushLiveData}"
+                        />
+
+                <include
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="24dp"
+                        layout="@layout/fragment_settings_select_item"
+
+                        app:label="@{@string/payment_scheme}"
+                        app:value="@{vm.schemeLiveData}"
+                        />
+
+                <include
+                        layout="@layout/fragment_settings_select_item"
+
+                        app:label="@{@string/limit}"
+                        app:value="@{vm.limitLiveData}"
+                        />
+
+                <include
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="24dp"
+                        layout="@layout/fragment_settings_text_item"
+
+                        app:label="@{@string/write_review}"
+                        />
+
+                <include
+                        layout="@layout/fragment_settings_text_item"
+
+                        app:label="@{@string/mark_app}"
+                        />
+
+                <include
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="24dp"
+
+                        layout="@layout/fragment_settings_center_title"
+
+                        app:label="@{@string/exit}"
+                        />
+
+            </LinearLayout>
+
+        </ScrollView>
 
     </LinearLayout>
 

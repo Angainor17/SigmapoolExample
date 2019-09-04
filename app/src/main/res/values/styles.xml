@@ -118,5 +118,11 @@
         <item name="android:fontFamily">@font/google_sans_bold</item>
     </style>
 
+    <style name="RippleRect">
+        <item name="android:background">@drawable/rect_ripple</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
 
 </resources>

@@ -49,6 +49,10 @@ buildscript {
             core: "com.google.code.gson:gson:$versions.gson"
     ]
 
+    ext.switchButton = [
+            core: "com.github.zcweng:switch-button:0.0.3@aar"
+    ]
+
     ext.support = [
             recyclerView: "com.android.support:recyclerview-v7:$versions.appcompat",
             appcompat   : "com.android.support:appcompat-v7:$versions.appcompat",

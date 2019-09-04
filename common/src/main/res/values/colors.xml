@@ -10,5 +10,6 @@
     <color name="bgGray">#F4F4F4</color>
     <color name="transparent">#00000000</color>
     <color name="blue">#007AFF</color>
+    <color name="ripple_gray">#B6B8B8</color>
 
 </resources>
