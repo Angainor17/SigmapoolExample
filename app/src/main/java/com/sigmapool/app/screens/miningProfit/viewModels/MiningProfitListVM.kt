@@ -70,19 +70,19 @@ class MiningProfitListVM(params: MinerListParams = MinerListParams()) : ViewMode
     }
 
     private fun refreshMinersList() {
-        itemsVM.adapter.notifyItemRangeChanged(1, itemsVM.adapter.itemCount)
+        minerAdapter.notifyItemRangeChanged(1, minerAdapter.itemCount)
     }
 
     private fun setProfitValue(value: Float) {
-        (itemsVM.adapter as MiningListAdapter).initPowerCost(value)
-        itemsVM.adapter.items.forEach {
+        minerAdapter.initPowerCost(value)
+        minerAdapter.items.forEach {
             it.initPowerCost(value)
         }
     }
 
     private fun setCoinValue(value: Float) {
-        (itemsVM.adapter as MiningListAdapter).initCoin(value)
-        itemsVM.adapter.items.forEach {
+        minerAdapter.initCoin(value)
+        minerAdapter.items.forEach {
             it.initCoin(value)
         }
 
