@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
         <variable
                 name="vm"
                 type="com.sigmapool.app.screens.settings.viewModel.SettingsVM"
@@ -114,8 +116,9 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="18dp"
                         android:layout_marginBottom="24dp"
-
+                        android:visibility="@{vm.isLoginLiveData ? View.VISIBLE : View.GONE}"
                         layout="@layout/fragment_settings_center_title"
+
 
                         app:label="@{@string/exit}"
                         app:isTopSeparatorVisible="@{true}"

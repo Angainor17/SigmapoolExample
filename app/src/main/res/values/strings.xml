@@ -95,5 +95,7 @@
     <string name="mark_app">Оценить приложение</string>
     <string name="exit">Выйти</string>
     <string name="rub">RUB</string>
+    <string name="email_via">Email via...</string>
+    <string name="sigmapool_android_app">Sigmapool Android App</string>
 
 </resources>

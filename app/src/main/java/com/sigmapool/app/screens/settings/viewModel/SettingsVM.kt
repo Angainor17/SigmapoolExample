@@ -5,9 +5,12 @@ import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.res.IResProvider
+import com.sigmapool.app.screens.settings.ISettingsView
 import org.kodein.di.generic.instance
 
-class SettingsVM : ViewModel() {
+private const val APP_EMAIL = "angainor17@gmail.com"//FIXME
+
+class SettingsVM(private val view: ISettingsView) : ViewModel() {
 
     private val resProvider by App.kodein.instance<IResProvider>()
 
@@ -22,6 +25,9 @@ class SettingsVM : ViewModel() {
 
     val schemeLiveData = MutableLiveData(SchemeItem("PPS"))//FIXME
     val limitLiveData = MutableLiveData("0.001 BTC")//FIXME
+
+    val isLoginLiveData = MutableLiveData(false)//FIXME
+
 
     fun languageSelect() {
         //TODO implement
@@ -44,11 +50,11 @@ class SettingsVM : ViewModel() {
     }
 
     fun writeReview() {
-        //TODO implement
+        view.sendEmail(APP_EMAIL)
     }
 
     fun markApp() {
-        //TODO implement
+        view.markApp()
     }
 
     fun exit() {

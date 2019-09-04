@@ -14,7 +14,7 @@ class SettingsToolbarVM : ViewModel(), ITitleViewModel {
 
     private val resProvider by kodein.instance<IResProvider>()
 
-    private val titleLiveData = MutableLiveData(resProvider.getString(R.string.demo))
+    val titleLiveData = MutableLiveData(resProvider.getString(R.string.demo))
 
     val coinText = MutableLiveData("BTC")
     val coinIconRes = MutableLiveData(R.mipmap.ic_btc)
