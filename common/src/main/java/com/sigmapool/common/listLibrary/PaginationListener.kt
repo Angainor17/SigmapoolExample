@@ -1,4 +1,4 @@
-package com.sigmapool.app.screens.miningProfit
+package com.sigmapool.common.listLibrary
 
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.LinearLayoutManager

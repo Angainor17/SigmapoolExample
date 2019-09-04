@@ -12,10 +12,10 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.sigmapool.app.screens.miningProfit.PaginationListener
 import com.sigmapool.app.screens.miningProfit.listener.IProfitBtnListener
 import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitListVM
 import com.sigmapool.app.screens.news.vm.NewsListVM
+import com.sigmapool.common.listLibrary.PaginationListener
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 
 @BindingAdapter("setPagedAdapter")

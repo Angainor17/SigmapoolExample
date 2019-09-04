@@ -23,8 +23,7 @@ class MinerListVM(
     var isLastPage = MutableLiveData(false)
     val errorMessage = MutableLiveData<String>()
     val loaderState = MutableLiveData<ItemsLoaderState>()
-    var isLoading = map(loaderState) { it == ItemsLoaderState.Loading }
-
+    val isLoading = map(loaderState) { it == ItemsLoaderState.Loading }
     val message = MutableLiveData<String>()
     val items: MutableLiveData<List<MinerItemVM>> = MutableLiveData()
 
