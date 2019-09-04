@@ -1,6 +1,5 @@
 package com.sigmapool.app.screens.settings.viewModel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App
@@ -14,26 +13,45 @@ class SettingsVM : ViewModel() {
 
     val toolbarVm = SettingsToolbarVM()
 
-    val rusLanguage = LanguageItem(resProvider, R.string.rus)
-    val btcCurrency = CurrencyItem(resProvider, R.string.rub)
+    val rusLanguage = LanguageItem(resProvider, R.string.rus)//FIXME
+    val btcCurrency = CurrencyItem(resProvider, R.string.rub)//FIXME
 
     val languageLiveData = MutableLiveData(rusLanguage)
     val currencyLiveData = MutableLiveData(btcCurrency)
     val pushLiveData = MutableLiveData(false)
 
-    val schemeLiveData = MutableLiveData(SchemeItem("PPS"))
-    val limitLiveData = MutableLiveData("0.001 BTC")
+    val schemeLiveData = MutableLiveData(SchemeItem("PPS"))//FIXME
+    val limitLiveData = MutableLiveData("0.001 BTC")//FIXME
 
+    fun languageSelect() {
+        //TODO implement
+    }
+
+    fun currencySelect() {
+        //TODO implement
+    }
+
+    fun pushSwitch(isChecked: Boolean) {
+        //TODO implement
+    }
+
+    fun schemeSelect() {
+        //TODO implement
+    }
+
+    fun limitSelect() {
+        //TODO implement
+    }
 
     fun writeReview() {
-        Log.d("", "")
+        //TODO implement
     }
 
     fun markApp() {
-        Log.d("", "")
+        //TODO implement
     }
 
     fun exit() {
-        Log.d("", "")
+        //TODO implement
     }
 }

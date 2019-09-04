@@ -48,6 +48,7 @@
                         app:label="@{@string/language}"
                         app:value="@{vm.languageLiveData}"
                         app:isTopSeparatorVisible="@{true}"
+                        app:clickListener="@{v->vm.languageSelect()}"
                         />
 
                 <include
@@ -56,6 +57,7 @@
                         app:label="@{@string/currency}"
                         app:value="@{vm.currencyLiveData}"
                         app:isTopSeparatorVisible="@{false}"
+                        app:clickListener="@{v->vm.currencySelect()}"
                         />
 
                 <include
@@ -64,6 +66,7 @@
                         app:label="@{@string/push_notification}"
                         app:value="@{vm.pushLiveData}"
                         app:isTopSeparatorVisible="@{false}"
+                        app:switchListener="@{(v, checked)->vm.pushSwitch(checked)}"
                         />
 
                 <include
@@ -75,6 +78,7 @@
                         app:label="@{@string/payment_scheme}"
                         app:value="@{vm.schemeLiveData}"
                         app:isTopSeparatorVisible="@{true}"
+                        app:clickListener="@{v->vm.schemeSelect()}"
                         />
 
                 <include
@@ -83,6 +87,7 @@
                         app:label="@{@string/limit}"
                         app:value="@{vm.limitLiveData}"
                         app:isTopSeparatorVisible="@{false}"
+                        app:clickListener="@{v->vm.limitSelect()}"
                         />
 
                 <include
@@ -93,6 +98,7 @@
 
                         app:label="@{@string/write_review}"
                         app:isTopSeparatorVisible="@{true}"
+                        app:clickListener="@{v->vm.writeReview()}"
                         />
 
                 <include
@@ -100,6 +106,7 @@
 
                         app:label="@{@string/mark_app}"
                         app:isTopSeparatorVisible="@{false}"
+                        app:clickListener="@{v->vm.markApp()}"
                         />
 
                 <include
@@ -112,6 +119,7 @@
 
                         app:label="@{@string/exit}"
                         app:isTopSeparatorVisible="@{true}"
+                        app:clickListener="@{v->vm.exit()}"
                         />
 
             </LinearLayout>

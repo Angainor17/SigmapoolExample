@@ -117,6 +117,6 @@ private fun createAnimation(): Animation {
 }
 
 @BindingAdapter("app:onCheckedChange")
-fun onActivatedChange(view: SwitchButton, listener: SwitchButton.OnCheckedChangeListener) {
+fun onCheckedChange(view: SwitchButton, listener: SwitchButton.OnCheckedChangeListener) {
     view.setOnCheckedChangeListener(listener)
 }
