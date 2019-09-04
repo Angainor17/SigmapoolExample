@@ -40,16 +40,6 @@ class MiningProfitListVM(params: MinerListParams = MinerListParams()) : ViewMode
 
     private var coinInfo: CoinDto? = null
 
-    val itemsVM = MinerListVM(
-        MinerItemMapper(currencyProvider),
-        MinerLoader(params, minerManager),
-        minerAdapter
-    )
-
-    init {
-        initCoinValue()
-    }
-
     val seekBarLiveData = Transformations.map(seekBarVM.seekBarValueLiveData) { value ->
         GlobalScope.launch(Dispatchers.Default) {
             val usd = value / 100
@@ -60,6 +50,17 @@ class MiningProfitListVM(params: MinerListParams = MinerListParams()) : ViewMode
             refreshMinersList()
             minerAdapter.setPowerCost(seekBarVM.getSeekText(value))
         }
+        value
+    }
+
+    val itemsVM = MinerListVM(
+        MinerItemMapper(currencyProvider),
+        MinerLoader(params, minerManager),
+        minerAdapter
+    )
+
+    init {
+        initCoinValue()
     }
 
     private fun setCoin(coin: CoinDto) {
@@ -73,12 +74,14 @@ class MiningProfitListVM(params: MinerListParams = MinerListParams()) : ViewMode
     }
 
     private fun setProfitValue(value: Float) {
+        (itemsVM.adapter as MiningListAdapter).initPowerCost(value)
         itemsVM.adapter.items.forEach {
             it.initPowerCost(value)
         }
     }
 
     private fun setCoinValue(value: Float) {
+        (itemsVM.adapter as MiningListAdapter).initCoin(value)
         itemsVM.adapter.items.forEach {
             it.initCoin(value)
         }

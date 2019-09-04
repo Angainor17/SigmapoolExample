@@ -15,7 +15,7 @@ abstract class SimpleAdapter<T : BaseItemViewModel>(val itemLayoutProvider: IIte
 
     override fun getItemCount(): Int = items.size
 
-    fun getItem(i: Int) = items[i]
+    open fun getItem(i: Int) = items[i]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(

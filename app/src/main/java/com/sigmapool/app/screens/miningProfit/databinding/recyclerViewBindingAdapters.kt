@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.sigmapool.app.screens.miningProfit.MiningListAdapter
 import com.sigmapool.app.screens.miningProfit.listener.IProfitBtnListener
 import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitListVM
 import com.sigmapool.app.screens.news.vm.NewsListVM
@@ -23,22 +24,23 @@ fun setPagedAdapter(view: RecyclerView, vm: MiningProfitListVM) {
     val linearLayoutManager = LinearLayoutManager(view.context)
     view.layoutManager = linearLayoutManager
 
-    view.adapter = vm.itemsVM.adapter
-    val activity = view.context as AppCompatActivity
+    val itemsVM = vm.itemsVM
+    view.adapter = itemsVM.adapter
 
     view.addOnScrollListener(object : PaginationListener(linearLayoutManager) {
         override fun loadMoreItems() {
-            vm.itemsVM.loadMoreItems()
+            itemsVM.loadMoreItems()
         }
 
-        override fun isLastPage(): Boolean = vm.itemsVM.isLastPage.value ?: false
-        override fun isLoading(): Boolean = vm.itemsVM.isLoading.value ?: true
+        override fun isLastPage(): Boolean = itemsVM.isLastPage.value ?: false
+        override fun isLoading(): Boolean = itemsVM.isLoading.value ?: true
         override fun headerCount(): Int = 1
     })
 
-    vm.itemsVM.items.observe(activity, Observer {
-        vm.itemsVM.adapter.items.addAll(it)
-        vm.itemsVM.adapter.notifyDataSetChanged()
+    val adapter = itemsVM.adapter as MiningListAdapter
+    itemsVM.items.observe(view.context as AppCompatActivity, Observer {
+        adapter.addItems(it)
+        adapter.notifyItemRangeChanged(1, adapter.items.size)
     })
 }
 

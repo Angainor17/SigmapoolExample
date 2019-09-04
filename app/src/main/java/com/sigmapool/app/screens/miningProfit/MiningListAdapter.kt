@@ -18,13 +18,38 @@ class MiningListAdapter(
 ) :
     SimpleAdapter<MinerItemVM>(itemLayoutProvider) {
 
+    private var powerCost: Float = 0f
+    private var coin: Float = 0f
+
     var maxItemsCount: Int = -1
     private var powerCostTv: TextView? = null
     var coinInfo: CoinDto? = null
 
+    fun addItems(newItems: List<MinerItemVM>) {
+        newItems.forEach {
+            it.initCoin(coin)
+            it.initPowerCost(powerCost)
+        }
+        items.addAll(newItems)
+    }
 
     fun setPowerCost(text: CharSequence) {
         powerCostTv?.text = text
+    }
+
+    fun initPowerCost(value: Float) {
+        powerCost = value
+    }
+
+    fun initCoin(value: Float) {
+        coin = value
+    }
+
+    override fun getItem(i: Int): MinerItemVM {
+        val item = super.getItem(i)
+        item.profitValue
+
+        return item
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

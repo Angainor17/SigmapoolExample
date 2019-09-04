@@ -23,9 +23,10 @@ class HomeMinerVM : ViewModel(), IProfitBtnListener, StateVM {
     override val viewState = map(miningProfitVM.itemsVM.loaderState, ItemsLoaderState::mapToViwState)
 
     override fun onProfitBtnSelected(isUpSort: Boolean) {
-        miningProfitVM.itemsVM.adapter.items.sortByDescending {
+        val adapter = miningProfitVM.itemsVM.adapter
+        adapter.items.sortByDescending {
             (if (isUpSort) 1 else -1) * it.profitValue
         }
-        miningProfitVM.itemsVM.adapter.notifyDataSetChanged()
+        adapter.notifyItemRangeChanged(1, adapter.items.size)
     }
 }

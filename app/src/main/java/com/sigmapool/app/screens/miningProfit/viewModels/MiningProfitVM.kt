@@ -22,11 +22,11 @@ class MiningProfitVM(val view: IMinerFragmentModel) : ViewModel(), ITitleViewMod
     }
 
     override fun onProfitBtnSelected(isUpSort: Boolean) {
-        listVM.itemsVM.adapter.items.sortByDescending {
+        val adapter = listVM.itemsVM.adapter
+        adapter.items.sortByDescending {
             (if (isUpSort) 1 else -1) * it.profitValue
         }
-
-        listVM.itemsVM.adapter.notifyDataSetChanged()
+        adapter.notifyItemRangeChanged(1, adapter.items.size)
     }
 
     override fun getTitle() = MutableLiveData(res.getString(R.string.mining_profit))

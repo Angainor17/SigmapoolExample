@@ -8,7 +8,7 @@ import kotlin.random.Random
 
 internal class StubMinerService(apiProvider: IApiServiceProvider) : IMinerService {
 
-    private val items = List(120) {
+    private val items = List(50) {
         Miner(
             it.toLong(),
             TitleModel("Antminer S$it Pro", "", ""),
@@ -21,19 +21,19 @@ internal class StubMinerService(apiProvider: IApiServiceProvider) : IMinerServic
     }
 
     override suspend fun getMiners(page: Int, perPage: Int): List<Miner> {
-        if (page >= items.size) {
-            return emptyList()
-        }
-
         delay(5000)
 
-        if (perPage >= items.size) {
-            return items
+        try {
+            if (perPage >= items.size) return items
+
+            var start = max((page - 1), 0) * perPage
+            if (start != 0) start++
+
+            if (start > items.size) return emptyList()
+
+            return items.slice(IntRange(start, start + perPage))
+        } catch (e: Exception) {
+            return emptyList()
         }
-
-        var start = max((page - 1), 0) * perPage
-        if (start != 0) start++
-
-        return items.slice(IntRange(start, start + perPage))
     }
 }

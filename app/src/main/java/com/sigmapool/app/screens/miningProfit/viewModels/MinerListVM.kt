@@ -54,7 +54,7 @@ class MinerListVM(
     fun onRefresh() {
         isLastPage.postValue(false)
         adapter.items.clear()
-        adapter.notifyDataSetChanged()
+        adapter.notifyItemRangeChanged(1, adapter.items.size)
 
         pageNumber = 0
         loadMoreItems()
