@@ -26,6 +26,10 @@ internal class StubMinerService(apiProvider: IApiServiceProvider) : IMinerServic
 
         delay(5000)
 
+        if (perPage > 120) {
+            return items
+        }
+
         return items.slice(IntRange(page, page + perPage - 1))
     }
 }

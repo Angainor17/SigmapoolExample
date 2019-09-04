@@ -98,8 +98,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{postfix}"
-                        android:layout_marginLeft="24dp"
-                        android:layout_marginRight="24dp"
+                        android:layout_marginLeft="8dp"
+                        android:singleLine="true"
+                        android:layout_marginRight="8dp"
                         android:fontFamily="@font/google_sans_medium"
                         android:textColor="@color/white"
 

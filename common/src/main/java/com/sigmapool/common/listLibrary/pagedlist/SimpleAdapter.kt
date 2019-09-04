@@ -4,15 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.paging.PagedList
-import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sigmapool.common.listLibrary.IItemBindingHelper
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
-import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModelDiffCallback
 
-open class SimplePagedAdapter(private val itemLayoutProvider: IItemBindingHelper) :
-    PagedListAdapter<BaseItemViewModel, SimplePagedAdapter.ViewHolder>(BaseItemViewModelDiffCallback()) {
+abstract class SimpleAdapter<T : BaseItemViewModel>(val itemLayoutProvider: IItemBindingHelper) :
+    RecyclerView.Adapter<SimpleAdapter.ViewHolder>() {
+
+    val items = ArrayList<T>()
+
+    override fun getItemCount(): Int = items.size
+
+    fun getItem(i: Int) = items[i]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -24,22 +27,6 @@ open class SimplePagedAdapter(private val itemLayoutProvider: IItemBindingHelper
                 false
             )
         )
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return getItem(position)?.itemViewType ?: super.getItemViewType(position)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        getItem(position)?.let {
-            holder.bind(it)
-        }
-    }
-
-    override fun onCurrentListChanged(currentList: PagedList<BaseItemViewModel>?) {
-        if (currentList != null) {
-            notifyDataSetChanged()
-        }
     }
 
     class ViewHolder(

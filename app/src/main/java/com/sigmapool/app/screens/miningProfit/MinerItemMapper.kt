@@ -7,7 +7,6 @@ import com.sigmapool.common.models.MinerDto
 
 class MinerItemMapper(private val currencyProvider: ICurrencyProvider) : SimpleMapper<MinerDto, MinerItemVM>() {
 
-    override fun map(input: MinerDto): MinerItemVM =
-        MinerItemVM(currencyProvider, input)
+    override fun map(input: MinerDto): MinerItemVM = MinerItemVM(currencyProvider, input)
 
 }

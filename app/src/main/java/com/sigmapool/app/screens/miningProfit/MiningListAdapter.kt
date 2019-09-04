@@ -4,34 +4,24 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.sigmapool.app.R
 import com.sigmapool.app.screens.miningProfit.viewModels.MinerHeaderVM
 import com.sigmapool.app.screens.miningProfit.viewModels.MinerItemVM
 import com.sigmapool.common.listLibrary.IItemBindingHelper
-import com.sigmapool.common.listLibrary.pagedlist.SimplePagedAdapter
+import com.sigmapool.common.listLibrary.pagedlist.SimpleAdapter
 import com.sigmapool.common.models.CoinDto
-
+import kotlin.math.min
 
 class MiningListAdapter(
     private val minerHeaderVM: MinerHeaderVM,
     itemLayoutProvider: IItemBindingHelper
 ) :
-    SimplePagedAdapter(itemLayoutProvider) {
+    SimpleAdapter<MinerItemVM>(itemLayoutProvider) {
 
+    var maxItemsCount: Int = -1
     private var powerCostTv: TextView? = null
     var coinInfo: CoinDto? = null
 
-    init {
-        registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
-            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-                super.onItemRangeInserted(positionStart, itemCount)
-                if (positionStart == 0) {
-                    linearLayoutManager?.scrollToPosition(0)
-                }
-            }
-        })
-    }
 
     fun setPowerCost(text: CharSequence) {
         powerCostTv?.text = text
@@ -49,8 +39,15 @@ class MiningListAdapter(
                 )
             )
         }
-
-        return super.onCreateViewHolder(parent, viewType)
+        return ViewHolder(
+            itemLayoutProvider.getBindingFunction(viewType),
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                itemLayoutProvider.getLayoutId(viewType),
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemId(position: Int): Long {
@@ -59,12 +56,18 @@ class MiningListAdapter(
         return position.toLong()
     }
 
-    override fun getItemCount(): Int = super.getItemCount() + 1
+    override fun getItemCount(): Int {
+        return if (maxItemsCount > 0) {
+            min(maxItemsCount, items.size) + 1
+        } else {
+            items.size + 1
+        }
+    }
 
     override fun getItemViewType(position: Int): Int {
         if (position == 0) return MINER_LIST_HEADER
 
-        return getItem(position - 1)?.itemViewType ?: super.getItemViewType(position)
+        return getItem(position - 1).itemViewType
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -74,9 +77,9 @@ class MiningListAdapter(
             return
         }
 
-        getItem(position - 1)?.let {
+        getItem(position - 1).let {
             coinInfo.let { coin ->
-                (it as MinerItemVM).initCoin(coin?.price ?: 0f)
+                it.initCoin(coin?.price ?: 0f)
             }
 
             holder.bind(it)

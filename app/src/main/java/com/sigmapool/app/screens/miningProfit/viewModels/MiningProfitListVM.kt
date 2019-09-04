@@ -15,8 +15,6 @@ import com.sigmapool.app.screens.miningProfit.MinerLoader
 import com.sigmapool.app.screens.miningProfit.MiningListAdapter
 import com.sigmapool.app.screens.miningProfit.params.MinerListParams
 import com.sigmapool.app.utils.storages.JsonDataStorage
-import com.sigmapool.common.listLibrary.pagedlist.SimplePagedListViewModel
-import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 import com.sigmapool.common.managers.IMinerManager
 import com.sigmapool.common.managers.IPoolManager
 import com.sigmapool.common.models.CoinDto
@@ -38,20 +36,17 @@ class MiningProfitListVM(params: MinerListParams = MinerListParams()) : ViewMode
     private val seekBarVM = SeekBarVM(currencyLiveData)
     private val minerHeaderVM = MinerHeaderVM(seekBarVM)
     private val minerBindingHelper = MinerBindingHelper()
-    private val minerAdapter = MiningListAdapter(minerHeaderVM, minerBindingHelper)
+    val minerAdapter = MiningListAdapter(minerHeaderVM, minerBindingHelper)
 
     private var coinInfo: CoinDto? = null
 
-    val itemsVM: SimplePagedListViewModel<BaseItemViewModel, Any>
+    val itemsVM = MinerListVM(
+        MinerItemMapper(currencyProvider),
+        MinerLoader(params, minerManager),
+        minerAdapter
+    )
 
     init {
-        itemsVM = SimplePagedListViewModel(
-            MinerItemMapper(currencyProvider),
-            MinerLoader(params, minerManager),
-            minerBindingHelper,
-            minerAdapter
-        ) as SimplePagedListViewModel<BaseItemViewModel, Any>
-
         initCoinValue()
     }
 
@@ -74,18 +69,18 @@ class MiningProfitListVM(params: MinerListParams = MinerListParams()) : ViewMode
     }
 
     private fun refreshMinersList() {
-        itemsVM.pagedRecyclerAdapter.notifyItemRangeChanged(1, itemsVM.pagedRecyclerAdapter.itemCount)
+        itemsVM.adapter.notifyItemRangeChanged(1, itemsVM.adapter.itemCount)
     }
 
     private fun setProfitValue(value: Float) {
-        itemsVM.pagedRecyclerAdapter.currentList?.forEach {
-            (it as MinerItemVM).initPowerCost(value)
+        itemsVM.adapter.items.forEach {
+            it.initPowerCost(value)
         }
     }
 
     private fun setCoinValue(value: Float) {
-        itemsVM.pagedRecyclerAdapter.currentList?.forEach {
-            (it as MinerItemVM).initCoin(value)
+        itemsVM.adapter.items.forEach {
+            it.initCoin(value)
         }
 
         GlobalScope.launch(Dispatchers.Main) {

@@ -10,7 +10,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
-class SimpleDataSource<ItemDto, ItemViewModel : BaseItemViewModel>(
+class SimplePagedDataSource<ItemDto, ItemViewModel : BaseItemViewModel>(
     private val query: String = "",
     val loaderState: MutableLiveData<ItemsLoaderState>,
     private val loader: IItemsLoader<ItemDto>,

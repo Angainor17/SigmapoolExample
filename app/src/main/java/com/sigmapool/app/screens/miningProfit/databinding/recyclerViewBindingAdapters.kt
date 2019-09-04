@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.sigmapool.app.screens.miningProfit.PaginationListener
 import com.sigmapool.app.screens.miningProfit.listener.IProfitBtnListener
 import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitListVM
 import com.sigmapool.app.screens.news.vm.NewsListVM
@@ -21,15 +22,24 @@ import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 fun setPagedAdapter(view: RecyclerView, vm: MiningProfitListVM) {
     val linearLayoutManager = LinearLayoutManager(view.context)
     view.layoutManager = linearLayoutManager
-    vm.itemsVM.pagedRecyclerAdapter.linearLayoutManager = linearLayoutManager
-    view.adapter = vm.itemsVM.pagedRecyclerAdapter
+
+    view.adapter = vm.itemsVM.adapter
     val activity = view.context as AppCompatActivity
 
-    vm.itemsVM.items.observe(activity,
-        Observer<PagedList<BaseItemViewModel>?> { t ->
-            vm.itemsVM.pagedRecyclerAdapter.submitList(t)
+    view.addOnScrollListener(object : PaginationListener(linearLayoutManager) {
+        override fun loadMoreItems() {
+            vm.itemsVM.loadMoreItems()
         }
-    )
+
+        override fun isLastPage(): Boolean = vm.itemsVM.isLastPage.value ?: false
+        override fun isLoading(): Boolean = vm.itemsVM.isLoading.value ?: true
+        override fun headerCount(): Int = 1
+    })
+
+    vm.itemsVM.items.observe(activity, Observer {
+        vm.itemsVM.adapter.items.addAll(it)
+        vm.itemsVM.adapter.notifyDataSetChanged()
+    })
 }
 
 @BindingAdapter("setNewsAdapter")
@@ -46,9 +56,10 @@ fun setNewsAdapter(view: RecyclerView, vm: NewsListVM) {
 
 @BindingAdapter("app:onProfitClickAction")
 fun onClickBasicAction(view: Button, listener: IProfitBtnListener?) {
-    val isProfit = false
+    var isProfit = false
     view.setOnClickListener {
         it.isActivated = !it.isActivated
+        isProfit = !isProfit
         listener?.onProfitBtnSelected(isProfit)
     }
 }

@@ -1,14 +1,12 @@
 package com.sigmapool.common.listLibrary.pagedlist
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.sigmapool.common.listLibrary.IItemBindingHelper
-import com.sigmapool.common.listLibrary.datasource.SimpleDateSourceFactory
 import com.sigmapool.common.listLibrary.datasource.SimpleMapper
-
+import com.sigmapool.common.listLibrary.datasource.SimplePagedDateSourceFactory
 import com.sigmapool.common.listLibrary.loader.IItemsLoader
 import com.sigmapool.common.listLibrary.loader.ItemsLoaderState
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
@@ -21,9 +19,7 @@ class SimplePagedListViewModel<ItemViewModel : BaseItemViewModel, ItemDto>(
     itemPerPage: Int = 20
 ) {
 
-    val dataSourceFactory = SimpleDateSourceFactory(loader, mapper)
-
-    private val query = MutableLiveData<String>()
+    val dataSourceFactory = SimplePagedDateSourceFactory(loader, mapper)
 
     val refreshing: LiveData<LiveData<Boolean>> = Transformations.map(dataSourceFactory.source) { dataSource ->
         Transformations.map(dataSource.loaderState) { loaderState ->
@@ -34,11 +30,6 @@ class SimplePagedListViewModel<ItemViewModel : BaseItemViewModel, ItemDto>(
 
     val message: LiveData<LiveData<String>> = Transformations.map(dataSourceFactory.source) { dataSource ->
         dataSource.errorMessage
-    }
-
-    private fun onQueryChanged(query: String) {
-        dataSourceFactory.query = query
-        items.value?.dataSource?.invalidate()
     }
 
     fun onRefresh() {
@@ -52,9 +43,5 @@ class SimplePagedListViewModel<ItemViewModel : BaseItemViewModel, ItemDto>(
             .setEnablePlaceholders(false)
             .build()
     ).build()
-
-    init {
-        query.observeForever { onQueryChanged(it) }
-    }
 }
 
