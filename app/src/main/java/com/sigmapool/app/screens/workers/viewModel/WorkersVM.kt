@@ -14,9 +14,9 @@ class WorkersVM : ViewModel() {
     val screenPositionLiveData = MutableLiveData(0)
 
     val toolbarVm = CoinToolbarVM()
-    val tabVm = WorkersTabVM(screenPositionLiveData)
-
     private val coinProvider = toolbarVm.coinProvider()
+
+    val tabVm = WorkersTabVM(coinProvider,screenPositionLiveData)
 
     private val onlineList = WorkersListVM(coinProvider, WorkerListParams(status = ONLINE_STATUS))
     private val offlineList = WorkersListVM(coinProvider, WorkerListParams(status = OFFLINE_STATUS))
