@@ -27,7 +27,6 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginRight="16dp"
-
                 android:layout_marginLeft="16dp"
 
                 app:cardBackgroundColor="@color/white"
@@ -37,8 +36,10 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:background="@drawable/worker_bg"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/worker_bg_ripple"
+                    android:clickable="true"
+                    android:focusable="true"
 
                     app:onActivatedChange="@{vm.isOnline}"
                     >

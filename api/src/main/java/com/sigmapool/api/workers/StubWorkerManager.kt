@@ -16,7 +16,7 @@ internal class StubWorkerManager(serviceProvider: IApiServiceProvider) : IWorker
         status: String
     ): ManagerResult<ArrayList<WorkerDto>> {
 
-        delay(2500)
+        delay(1000)
 
         val list = List(perPage) {
             WorkerDto(
