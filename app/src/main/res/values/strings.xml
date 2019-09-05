@@ -24,6 +24,7 @@
     <string name="pps">PPS</string>
     <string name="dailyProfitPerTHs">Daily Profit Per TH/s (FPPS)</string>
     <string name="btc">BTC</string>
+    <string name="ltc">LTC</string>
     <string name="paymentTime">Payment Time</string>
     <string name="minimumPayout">Minimum Payout</string>
     <string name="settlementDetails">Settlement Details</string>

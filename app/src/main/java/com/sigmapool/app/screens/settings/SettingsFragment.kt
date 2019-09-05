@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.sigmapool.app.R
 import com.sigmapool.app.databinding.FragmentSettingsBinding
 import com.sigmapool.app.screens.settings.viewModel.SettingsVM
-import com.sigmapool.app.utils.customViews.UpdateFragment
+import com.sigmapool.app.utils.customViews.fragment.UpdateFragment
 
 class SettingsFragment : UpdateFragment(), ISettingsView {
 

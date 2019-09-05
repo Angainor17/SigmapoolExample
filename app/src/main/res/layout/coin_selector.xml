@@ -21,10 +21,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
             android:layout_height="wrap_content"
-            android:background="@drawable/coin_selector_drawable"
             >
 
         <ImageView
@@ -60,21 +57,7 @@
                 app:layout_constraintStart_toEndOf="@+id/icon"
 
                 tools:text="@string/btc"
-                />
-
-        <ImageView
-                android:id="@+id/triangle"
-
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:src="@drawable/triangle_down_violet"
-                android:layout_marginEnd="6dp"
-                android:layout_marginStart="8dp"
-
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/text"
                 />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

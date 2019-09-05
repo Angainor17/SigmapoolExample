@@ -1,4 +1,4 @@
-package com.sigmapool.app.utils.customViews
+package com.sigmapool.app.utils.customViews.viewPager
 
 import androidx.lifecycle.MutableLiveData
 import com.sigmapool.app.screens.calculator.viewModel.CalcTabItemVM

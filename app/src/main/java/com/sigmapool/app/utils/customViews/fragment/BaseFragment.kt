@@ -1,4 +1,4 @@
-package com.sigmapool.app.utils.customViews
+package com.sigmapool.app.utils.customViews.fragment
 
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding

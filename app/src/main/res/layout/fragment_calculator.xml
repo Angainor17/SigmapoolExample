@@ -97,7 +97,7 @@
                             />
 
 
-                    <com.sigmapool.app.utils.customViews.FragmentViewPager
+                    <com.sigmapool.app.utils.customViews.viewPager.FragmentViewPager
                             android:id="@+id/viewPager"
 
                             android:layout_width="match_parent"

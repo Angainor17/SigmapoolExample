@@ -35,7 +35,7 @@
                 android:layout_height="match_parent">
             <!-- TODO: disable swipe -->
 
-            <com.sigmapool.app.utils.customViews.SwipeFreeViewPager
+            <com.sigmapool.app.utils.customViews.viewPager.SwipeFreeViewPager
                     android:btc_selected="@{vm.btcSelected}"
                     android:id="@+id/pager"
                     android:layout_width="match_parent"

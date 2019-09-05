@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.sigmapool.app.databinding.FragmentMinigProfitBinding
 import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitVM
-import com.sigmapool.app.utils.customViews.InnerFragment
+import com.sigmapool.app.utils.customViews.fragment.InnerFragment
 
 class MiningProfitFragment : InnerFragment(), IMinerFragmentModel {
 

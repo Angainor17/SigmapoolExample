@@ -8,7 +8,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.utils.customViews.AbstractCustomTabView"
+                type="com.sigmapool.app.utils.customViews.viewPager.AbstractCustomTabView"
                 />
     </data>
 

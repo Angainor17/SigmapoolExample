@@ -8,7 +8,7 @@ import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.coin.ICoinProvider
 import com.sigmapool.app.provider.res.IResProvider
-import com.sigmapool.app.screens.home.coin.BTC
+import com.sigmapool.app.screens.home.coin.CoinVm
 import com.sigmapool.app.screens.login.data.AUTH_KEY
 import com.sigmapool.app.utils.storages.JsonDataStorage
 import com.sigmapool.common.models.AuthDto
@@ -21,10 +21,12 @@ class CoinToolbarVM : ViewModel(), ITitleViewModel, ICoinProvider {
     private val resProvider by kodein.instance<IResProvider>()
     private val jsonDataStorage: JsonDataStorage by kodein.instance()
 
-    val titleLiveData = MutableLiveData(resProvider.getString(R.string.demo))
+    private val ltcCoin = CoinVm(resProvider.getString(R.string.ltc), R.mipmap.ic_ltc)
+    private val btcCoin = CoinVm(resProvider.getString(R.string.btc), R.mipmap.ic_btc)
+    private var selectedCoin = btcCoin
+    val coins = arrayListOf(btcCoin, ltcCoin)
 
-    val coinText = MutableLiveData(BTC.toUpperCase())
-    val coinIconRes = MutableLiveData(R.mipmap.ic_btc)//FIXME
+    val titleLiveData = MutableLiveData(resProvider.getString(R.string.demo))
 
     private var listener: ((String) -> Unit)? = null
 
@@ -32,9 +34,7 @@ class CoinToolbarVM : ViewModel(), ITitleViewModel, ICoinProvider {
         initTitle()
     }
 
-    override fun getLabel(): String {
-        return coinText.value ?: ""
-    }
+    override fun getLabel(): String = selectedCoin.text
 
     override fun addChangeListener(listener: (String) -> Unit) {
         this.listener = listener
@@ -49,8 +49,9 @@ class CoinToolbarVM : ViewModel(), ITitleViewModel, ICoinProvider {
         }
     }
 
-    fun onCoinSelected(coin: String) {
-        listener?.invoke(coin)
+    fun onCoinSelected(coin: CoinVm) {
+        selectedCoin = coin
+        listener?.invoke(coin.text)
     }
 
     override fun getTitle(): LiveData<String> = titleLiveData

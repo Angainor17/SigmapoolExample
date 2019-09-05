@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.sigmapool.app.databinding.FragmentCalculatorBinding
 import com.sigmapool.app.screens.calculator.viewModel.CalculatorVM
-import com.sigmapool.app.utils.customViews.InnerFragment
+import com.sigmapool.app.utils.customViews.fragment.InnerFragment
 
 class CalculatorFragment : InnerFragment(), ICalculatorFragmentModel {
 

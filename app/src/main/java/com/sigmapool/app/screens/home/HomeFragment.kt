@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import com.sigmapool.app.databinding.FragmentHomeBinding
 import com.sigmapool.app.navigation.showScreen
 import com.sigmapool.app.screens.home.viewModel.HomeVM
-import com.sigmapool.app.utils.customViews.UpdateFragment
+import com.sigmapool.app.utils.customViews.fragment.UpdateFragment
 
 
 class HomeFragment : UpdateFragment() {

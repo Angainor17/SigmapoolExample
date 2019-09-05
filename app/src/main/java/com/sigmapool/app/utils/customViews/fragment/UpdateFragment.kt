@@ -1,4 +1,4 @@
-package com.sigmapool.app.utils.customViews
+package com.sigmapool.app.utils.customViews.fragment
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel

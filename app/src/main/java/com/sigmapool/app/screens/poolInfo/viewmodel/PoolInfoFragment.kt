@@ -12,8 +12,8 @@ import com.sigmapool.app.databinding.FragmentPoolInfoBinding
 import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.screens.poolInfo.adapters.PoolInfoFragmentPagerAdapter
 import com.sigmapool.app.screens.poolInfo.vm.PoolInfoVM
-import com.sigmapool.app.utils.customViews.InnerFragment
-import com.sigmapool.app.utils.customViews.SwipeFreeViewPager
+import com.sigmapool.app.utils.customViews.fragment.InnerFragment
+import com.sigmapool.app.utils.customViews.viewPager.SwipeFreeViewPager
 import org.kodein.di.generic.instance
 
 class PoolInfoFragment : InnerFragment(), IPoolInfoModel {

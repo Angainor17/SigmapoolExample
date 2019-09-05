@@ -24,7 +24,7 @@
             android:background="#EFF3F7"
             >
 
-        <com.sigmapool.app.utils.customViews.FragmentViewPager
+        <com.sigmapool.app.utils.customViews.viewPager.FragmentViewPager
                 android:id="@+id/pager"
 
                 android:layout_height="wrap_content"

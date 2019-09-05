@@ -3,7 +3,9 @@ package com.sigmapool.app.utils.databindings
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
+import android.widget.AdapterView
 import android.widget.ImageView
+import android.widget.Spinner
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager.widget.ViewPager
@@ -14,15 +16,18 @@ import com.sigmapool.app.screens.calculator.adapter.CalcTabAdapter
 import com.sigmapool.app.screens.calculator.viewModel.CalcItemVM
 import com.sigmapool.app.screens.home.adapter.CoinViewPagerAdapter
 import com.sigmapool.app.screens.home.coin.CoinsVM
+import com.sigmapool.app.screens.settings.viewModel.CoinToolbarVM
 import com.sigmapool.app.screens.workers.adapter.WorkerViewPagerAdapter
 import com.sigmapool.app.screens.workers.viewModel.WorkersVM
-import com.sigmapool.app.utils.customViews.FragmentViewPager
 import com.sigmapool.app.utils.customViews.slider.MainSliderAdapter
+import com.sigmapool.app.utils.customViews.spinner.CustomAdapter
+import com.sigmapool.app.utils.customViews.viewPager.FragmentViewPager
 import com.sigmapool.common.models.BlogDto
 import com.sigmapool.common.utils.px
 import com.suke.widget.SwitchButton
 import ss.com.bannerslider.Slider
 import ss.com.bannerslider.event.OnSlideClickListener
+
 
 @BindingAdapter("app:onNavigationItemSelected")
 fun onNavigationItemSelected(
@@ -126,4 +131,18 @@ private fun createAnimation(): Animation {
 @BindingAdapter("app:onCheckedChange")
 fun onCheckedChange(view: SwitchButton, listener: SwitchButton.OnCheckedChangeListener) {
     view.setOnCheckedChangeListener(listener)
+}
+
+@BindingAdapter("bind:initCoinSpinner")
+fun initCoinSpinner(spinner: Spinner, vm: CoinToolbarVM) {
+    val adapter = CustomAdapter(spinner.context, vm.coins)
+    spinner.adapter = adapter
+
+    spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            vm.onCoinSelected(vm.coins[position])
+        }
+
+        override fun onNothingSelected(parent: AdapterView<*>?) = Unit
+    }
 }

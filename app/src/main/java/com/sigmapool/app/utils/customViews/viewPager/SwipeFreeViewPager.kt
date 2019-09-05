@@ -1,4 +1,4 @@
-package com.sigmapool.app.utils.customViews
+package com.sigmapool.app.utils.customViews.viewPager
 
 import android.content.Context
 import android.util.AttributeSet

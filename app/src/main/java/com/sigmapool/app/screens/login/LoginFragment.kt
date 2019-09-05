@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.sigmapool.app.databinding.FragmentLoginBinding
 import com.sigmapool.app.screens.login.viewModel.LoginVM
-import com.sigmapool.app.utils.customViews.InnerFragment
+import com.sigmapool.app.utils.customViews.fragment.InnerFragment
 
 class LoginFragment : InnerFragment(), ILoginFragmentModel {
 
