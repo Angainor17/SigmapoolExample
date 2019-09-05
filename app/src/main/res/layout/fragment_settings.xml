@@ -23,7 +23,7 @@
             >
 
         <include
-                layout="@layout/settings_toolbar"
+                layout="@layout/coin_toolbar"
 
                 app:vm="@{vm.toolbarVm}"
                 />

@@ -10,7 +10,7 @@ import com.sigmapool.common.viewModels.ITitleViewModel
 import org.kodein.di.generic.instance
 
 
-class SettingsToolbarVM : ViewModel(), ITitleViewModel {
+class CoinToolbarVM : ViewModel(), ITitleViewModel {
 
     private val resProvider by kodein.instance<IResProvider>()
 

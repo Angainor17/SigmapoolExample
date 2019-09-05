@@ -14,7 +14,7 @@ class SettingsVM(private val view: ISettingsView) : ViewModel() {
 
     private val resProvider by App.kodein.instance<IResProvider>()
 
-    val toolbarVm = SettingsToolbarVM()
+    val toolbarVm = CoinToolbarVM()
 
     val rusLanguage = LanguageItem(resProvider, R.string.rus)//FIXME
     val btcCurrency = CurrencyItem(resProvider, R.string.rub)//FIXME
