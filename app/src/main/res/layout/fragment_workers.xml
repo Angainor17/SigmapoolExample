@@ -5,18 +5,30 @@
         >
 
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.workers.viewModel.WorkersVM"/>
+
+        <variable
+                name="vm"
+                type="com.sigmapool.app.screens.workers.viewModel.WorkersVM"
+                />
     </data>
 
     <LinearLayout
             android:layout_width="match_parent"
             android:background="@color/screenBgColor"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
         <include
                 layout="@layout/coin_toolbar"
 
                 app:vm="@{vm.toolbarVm}"
+                />
+
+
+        <include
+                layout="@layout/fragment_workers_tab"
+
+                app:vm="@{vm}"
                 />
 
     </LinearLayout>

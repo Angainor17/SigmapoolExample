@@ -8,7 +8,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.login.viewModel.LoginViewModel"
+                type="com.sigmapool.app.screens.login.viewModel.LoginVM"
                 />
     </data>
 

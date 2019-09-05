@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
 
-class LoginViewModel(private val view: ILoginFragmentModel) : ViewModel() {
+class LoginVM(private val view: ILoginFragmentModel) : ViewModel() {
 
     private val loginManager: ILoginManager by kodein.instance()
     private val jsonDataStorage: JsonDataStorage by kodein.instance()
