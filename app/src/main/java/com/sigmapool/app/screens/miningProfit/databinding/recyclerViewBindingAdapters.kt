@@ -80,9 +80,9 @@ fun goneIfValueNotBlank(view: View, value: String?) {
 fun htmlText(view: TextView, value: String?) {
     Linkify.addLinks(view, Linkify.WEB_URLS)
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        view.text = Html.fromHtml(value, Html.FROM_HTML_MODE_COMPACT)
+    view.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        Html.fromHtml(value, Html.FROM_HTML_MODE_COMPACT)
     } else {
-        view.text = Html.fromHtml(value)
+        Html.fromHtml(value)
     }
 }
