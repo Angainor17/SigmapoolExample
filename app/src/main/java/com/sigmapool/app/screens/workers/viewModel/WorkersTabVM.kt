@@ -41,7 +41,7 @@ class WorkersTabVM(
 
     fun initTabValues() {
         GlobalScope.launch(Dispatchers.IO) {
-            val result = workerManager.getStatus(coinProvider.getLabel())
+            val result = workerManager.getStatus(coinProvider.getLabel().toLowerCase())
 
             if (result.success) {
                 initTab(result.data?.online ?: 0, result.data?.total ?: 0)

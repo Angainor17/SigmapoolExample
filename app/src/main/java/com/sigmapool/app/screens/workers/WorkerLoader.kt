@@ -14,13 +14,13 @@ class WorkerLoader(
     private val coinProvider: ICoinProvider
 ) : IItemsLoader<WorkerDto> {
 
-    val workerManager by kodein.instance<IWorkersManager>()
+    private val workerManager by kodein.instance<IWorkersManager>()
 
     override suspend fun load(query: String, offset: Int, limit: Int): LoaderResult<List<WorkerDto>> {
         if (offset % limit != 0) return LoaderResult(ArrayList())
 
         val result = workerManager.getWorkers(
-            coinProvider.getLabel(),
+            coinProvider.getLabel().toLowerCase(),
             (offset / params.perPage) + 1,
             params.perPage,
             params.status

@@ -14,9 +14,9 @@ class WorkersVM : ViewModel() {
     val screenPositionLiveData = MutableLiveData(0)
 
     val toolbarVm = CoinToolbarVM()
-    private val coinProvider = toolbarVm.coinProvider()
+    private val coinProvider = toolbarVm.coinProvider
 
-    val tabVm = WorkersTabVM(coinProvider,screenPositionLiveData)
+    val tabVm = WorkersTabVM(coinProvider, screenPositionLiveData)
 
     private val onlineList = WorkersListVM(coinProvider, WorkerListParams(status = ONLINE_STATUS))
     private val offlineList = WorkersListVM(coinProvider, WorkerListParams(status = OFFLINE_STATUS))
@@ -24,4 +24,14 @@ class WorkersVM : ViewModel() {
 
     fun getWorkerLists(): ArrayList<WorkersListVM> = arrayListOf(onlineList, offlineList, allList)
 
+    init {
+        coinProvider.addOnChangeListener { refreshAll() }
+    }
+
+    private fun refreshAll() {
+        tabVm.initTabValues()
+        getWorkerLists().forEach {
+            it.itemsVM.onRefresh()
+        }
+    }
 }

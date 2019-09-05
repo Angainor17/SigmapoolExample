@@ -135,14 +135,14 @@ fun onCheckedChange(view: SwitchButton, listener: SwitchButton.OnCheckedChangeLi
 
 @BindingAdapter("bind:initCoinSpinner")
 fun initCoinSpinner(spinner: Spinner, vm: CoinToolbarVM) {
-    val adapter = CustomAdapter(spinner.context, vm.coins)
-    spinner.adapter = adapter
-
+    val adapter = CustomAdapter(spinner.context, vm.coinProvider.coins)
     spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            vm.onCoinSelected(vm.coins[position])
+            vm.coinProvider.onCoinSelected(vm.coinProvider.coins[position])
         }
 
         override fun onNothingSelected(parent: AdapterView<*>?) = Unit
     }
+    spinner.adapter = adapter
+
 }

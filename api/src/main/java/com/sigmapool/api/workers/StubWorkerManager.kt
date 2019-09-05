@@ -30,8 +30,8 @@ internal class StubWorkerManager(serviceProvider: IApiServiceProvider) : IWorker
     }
 
     override suspend fun getStatus(coin: String): ManagerResult<WorkersStatusDto> {
-        delay(2500)
+        delay(1500)
 
-        return ManagerResult(data = WorkersStatusDto(1000,7))
+        return ManagerResult(data = WorkersStatusDto( if (coin == "btc") 1000 else 200, if (coin == "btc") 123 else 17))
     }
 }
