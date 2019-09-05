@@ -4,7 +4,6 @@ import android.os.Build
 import android.text.Html
 import android.text.util.Linkify
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
@@ -57,12 +56,26 @@ fun setNewsAdapter(view: RecyclerView, vm: NewsListVM) {
 }
 
 @BindingAdapter("app:onProfitClickAction")
-fun onClickBasicAction(view: Button, listener: IProfitBtnListener?) {
+fun onClickBasicAction(view: View, listener: IProfitBtnListener?) {
     var isProfit = false
     view.setOnClickListener {
         it.isActivated = !it.isActivated
         isProfit = !isProfit
         listener?.onProfitBtnSelected(isProfit)
+    }
+}
+
+@BindingAdapter("app:onClickAction", "app:disabledView", requireAll = false)
+fun onClickBasicAction(view: View, listener: View.OnClickListener?, disabledView: List<View?>?) {
+    view.setOnClickListener {
+        if (!it.isActivated) {
+            it.isActivated = !it.isActivated
+            listener?.onClick(view)
+
+            disabledView?.forEach { it ->
+                it?.isActivated = false
+            }
+        }
     }
 }
 

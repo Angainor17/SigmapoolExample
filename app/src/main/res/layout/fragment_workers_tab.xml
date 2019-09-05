@@ -7,15 +7,19 @@
 
     <data>
 
+        <import type="kotlin.collections.CollectionsKt"/>
+
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.workers.viewModel.WorkersVM"
+                type="com.sigmapool.app.screens.workers.viewModel.WorkersTabVM"
                 />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
+
             android:background="@drawable/gradient_status_bar"
             >
 
@@ -24,13 +28,21 @@
 
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="8dp"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/workers_tab_bg_ripple"
+
+                app:onClickAction="@{v->vm.onlineTabSelected()}"
+                app:onActivatedChange="@{true}"
+                app:disabledView="@{CollectionsKt.arrayListOf(offlineContainer,allContainer)}"
 
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/offlineContainer"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintHorizontal_weight="1"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 >
 
@@ -46,6 +58,8 @@
 
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintEnd_toStartOf="@+id/onlineValue"
                     />
 
             <TextView
@@ -56,6 +70,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:layout_marginStart="4dp"
+                    android:text="@{vm.onlineCount}"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/onlineLabel"
@@ -73,6 +88,8 @@
                     android:fontFamily="@font/google_sans_regular"
                     android:layout_marginEnd="8dp"
                     android:layout_marginTop="8dp"
+                    android:text="@{vm.onlineHashrate}"
+                    android:textSize="13dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginBottom="8dp"
 
@@ -93,6 +110,13 @@
                 android:layout_height="0dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/workers_tab_bg_ripple"
+
+                app:onClickAction="@{v->vm.offlineTabSelected()}"
+                app:onActivatedChange="@{false}"
+                app:disabledView="@{CollectionsKt.arrayListOf(onlineContainer,allContainer)}"
 
                 app:layout_constraintBottom_toBottomOf="@+id/onlineContainer"
                 app:layout_constraintStart_toEndOf="@+id/onlineContainer"
@@ -111,9 +135,11 @@
                     android:layout_marginStart="8dp"
 
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/offlineValue"
+                    android:layout_marginEnd="4dp"
                     />
 
             <TextView
@@ -125,6 +151,7 @@
                     android:textColor="#FF6262"
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="8dp"
+                    android:text="@{vm.offlineCount}"
 
                     app:layout_constraintStart_toEndOf="@+id/offlineLabel"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -141,13 +168,20 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/workers_tab_bg_ripple"
+
+                app:onClickAction="@{v->vm.allTabSelected()}"
+                app:onActivatedChange="@{false}"
+                app:disabledView="@{CollectionsKt.arrayListOf(onlineContainer,offlineContainer)}"
 
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/offlineContainer"
                 app:layout_constraintBottom_toBottomOf="@+id/onlineContainer"
                 app:layout_constraintHorizontal_weight="1"
+                android:layout_marginStart="8dp"
                 >
 
             <TextView
@@ -158,12 +192,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/all"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="4dp"
 
+                    app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/allValue"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     />
 
             <TextView
@@ -173,26 +210,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@{vm.totalCount}"
 
                     app:layout_constraintBaseline_toBaselineOf="@+id/allLabel"
-                    app:layout_constraintLeft_toRightOf="@id/allLabel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/allLabel"
 
                     tools:text="40"
-                    android:layout_marginEnd="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginLeft="4dp"
                     />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
                 android:id="@+id/leftSeparator"
-
-                android:layout_width="1dp"
+                style="@style/VerticalTabSeparator"
                 android:layout_height="0dp"
-                android:background="@drawable/vertical_separator"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
 
                 app:layout_constraintEnd_toStartOf="@+id/offlineContainer"
                 app:layout_constraintStart_toEndOf="@+id/onlineContainer"
@@ -202,12 +236,8 @@
 
         <View
                 android:id="@+id/rightSeparator"
-
-                android:layout_width="1dp"
+                style="@style/VerticalTabSeparator"
                 android:layout_height="0dp"
-                android:background="@drawable/vertical_separator"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
 
                 app:layout_constraintEnd_toStartOf="@+id/allContainer"
                 app:layout_constraintStart_toEndOf="@+id/offlineContainer"
