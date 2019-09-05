@@ -10,7 +10,7 @@ import retrofit2.http.POST
 interface LoginApi {
 
     @FormUrlEncoded
-    @POST("api/v2/btc/signin")
+    @POST("api/v2/signin")
     suspend fun login(
         @Field("email") login: String,
         @Field("password") password: String

@@ -6,4 +6,7 @@
     <color name="menu_gray">#A1A1A1</color>
     <color name="home_bg_color">#EFF3F7</color>
     <color name="separator_color">#C2E6E9EC</color>
+
+    <color name="worker_separator_color">#61E0E0E0</color>
+    <color name="red_worker_separator_color">#61FFB7BF</color>
 </resources>

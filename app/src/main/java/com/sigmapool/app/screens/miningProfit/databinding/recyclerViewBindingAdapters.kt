@@ -15,6 +15,7 @@ import com.sigmapool.app.screens.miningProfit.MiningListAdapter
 import com.sigmapool.app.screens.miningProfit.listener.IProfitBtnListener
 import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitListVM
 import com.sigmapool.app.screens.news.vm.NewsListVM
+import com.sigmapool.app.screens.workers.viewModel.WorkersListVM
 import com.sigmapool.common.listLibrary.PaginationListener
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 
@@ -45,6 +46,18 @@ fun setPagedAdapter(view: RecyclerView, vm: MiningProfitListVM) {
 
 @BindingAdapter("setNewsAdapter")
 fun setNewsAdapter(view: RecyclerView, vm: NewsListVM) {
+    view.adapter = vm.itemsVM.pagedRecyclerAdapter
+
+    val activity = view.context as AppCompatActivity
+    vm.itemsVM.items.observe(activity,
+        Observer<PagedList<BaseItemViewModel>?> { t ->
+            vm.itemsVM.pagedRecyclerAdapter.submitList(t)
+        }
+    )
+}
+
+@BindingAdapter("setWorkersAdapter")
+fun setWorkersAdapter(view: RecyclerView, vm: WorkersListVM) {
     view.adapter = vm.itemsVM.pagedRecyclerAdapter
 
     val activity = view.context as AppCompatActivity

@@ -22,6 +22,7 @@ class NewsListVM(params: NewsListParams = NewsListParams()) : ViewModel(), State
     private val newsManager by kodein.instance<INewsManager>()
     private val langProvider by kodein.instance<ILanguageProvider>()
     private val resProvider by kodein.instance<IResProvider>()
+
     val itemsVM: SimplePagedListViewModel<BaseItemViewModel, Any> = SimplePagedListViewModel(
         NewsItemMapper(resProvider),
         NewsLoader(params.apply { lang = langProvider.getLangShortName() }, newsManager),

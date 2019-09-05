@@ -12,7 +12,7 @@ class ServiceProvider(headerMapper: ArrayList<HeaderMapper>) : IApiServiceProvid
     override fun <T> create(service: Class<T>): T = retrofit.create(service)
 
     private val retrofit = createRetrofit(
-        "http://$BASE_URL/",
+        "https://$BASE_URL/",
         headerMapper
     )
 }

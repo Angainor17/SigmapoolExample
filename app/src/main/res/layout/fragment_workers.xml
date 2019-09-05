@@ -10,6 +10,12 @@
                 name="vm"
                 type="com.sigmapool.app.screens.workers.viewModel.WorkersVM"
                 />
+
+
+        <variable
+                name="fragmentManager"
+                type="androidx.fragment.app.FragmentManager"
+                />
     </data>
 
     <LinearLayout
@@ -31,6 +37,23 @@
 
                 app:vm="@{vm.tabVm}"
                 />
+
+
+        <com.sigmapool.app.utils.customViews.FragmentViewPager
+                android:id="@+id/pager"
+
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="@null"
+
+                app:isWrapHeightEnabled="@{false}"
+                app:isPagingEnabled="@{false}"
+                app:onScreenChange="@{vm.screenPositionLiveData}"
+
+                app:initWorkerAdapter="@{vm}"
+                app:fragmentManager="@{fragmentManager}"
+                />
+
 
     </LinearLayout>
 

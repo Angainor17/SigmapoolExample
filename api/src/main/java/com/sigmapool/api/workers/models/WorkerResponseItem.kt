@@ -1,4 +1,4 @@
-package com.sigmapool.api.workers
+package com.sigmapool.api.workers.models
 
 class WorkerResponseItem(
     val title: String,

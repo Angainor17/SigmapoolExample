@@ -17,6 +17,7 @@ import org.kodein.di.generic.singleton
 val managersModule = Kodein.Module("ManagersModule") {
     import(serviceModule)
 
+    bind<IWorkersManager>() with singleton { StubWorkerManager(instance()) }
     bind<IBlogManager>() with singleton { BlogManager(instance()) }
     bind<IPoolManager>() with singleton { PoolManager(instance()) }
     bind<IMinerManager>() with singleton { MinerManager(instance()) }
@@ -24,5 +25,4 @@ val managersModule = Kodein.Module("ManagersModule") {
     bind<INewsManager>() with singleton { NewsManager(instance()) }
     bind<IPoolInfoManager>() with singleton { PoolInfoManager(instance()) }
     bind<ICalcManager>() with singleton { CalcManager(instance()) }
-    bind<IWorkersManager>() with singleton { StubWorkerManager(instance()) }
 }

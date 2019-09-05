@@ -1,10 +1,9 @@
 package com.sigmapool.app.screens.workers.viewModel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class WorkersTabVM : ViewModel() {
+class WorkersTabVM(private val screenPositionLiveData: MutableLiveData<Int>) : ViewModel() {
 
     val onlineHashrate = MutableLiveData("0 TH/s")
 
@@ -13,17 +12,14 @@ class WorkersTabVM : ViewModel() {
     val totalCount = MutableLiveData("0")
 
     fun onlineTabSelected() {
-        Log.d("", "")
-        //TODO
+        screenPositionLiveData.postValue(0)
     }
 
     fun offlineTabSelected() {
-        Log.d("", "")
-        //TODO
+        screenPositionLiveData.postValue(1)
     }
 
     fun allTabSelected() {
-        Log.d("", "")
-        //TODO
+        screenPositionLiveData.postValue(2)
     }
 }

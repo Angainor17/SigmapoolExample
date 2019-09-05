@@ -47,7 +47,9 @@ class LoginVM(private val view: ILoginFragmentModel) : ViewModel() {
     }
 
     private fun exit() {
-        view.backBtnClick()
+        GlobalScope.launch(Dispatchers.Main) {
+            view.backBtnClick()
+        }
     }
 
     private fun clearEditTextFocus(it: View) {

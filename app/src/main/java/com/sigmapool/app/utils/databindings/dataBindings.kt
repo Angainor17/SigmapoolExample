@@ -14,6 +14,8 @@ import com.sigmapool.app.screens.calculator.adapter.CalcTabAdapter
 import com.sigmapool.app.screens.calculator.viewModel.CalcItemVM
 import com.sigmapool.app.screens.home.adapter.CoinViewPagerAdapter
 import com.sigmapool.app.screens.home.coin.CoinsVM
+import com.sigmapool.app.screens.workers.adapter.WorkerViewPagerAdapter
+import com.sigmapool.app.screens.workers.viewModel.WorkersVM
 import com.sigmapool.app.utils.customViews.FragmentViewPager
 import com.sigmapool.app.utils.customViews.slider.MainSliderAdapter
 import com.sigmapool.common.models.BlogDto
@@ -34,6 +36,11 @@ fun onNavigationItemSelected(
 fun initCoinAdapter(view: ViewPager, vm: CoinsVM, fragmentManager: FragmentManager) {
     view.pageMargin = 20.px
     view.adapter = CoinViewPagerAdapter(vm.getCoins(), fragmentManager)
+}
+
+@BindingAdapter("app:initWorkerAdapter", "app:fragmentManager", requireAll = true)
+fun initWorkerAdapter(view: ViewPager, vm: WorkersVM, fragmentManager: FragmentManager) {
+    view.adapter = WorkerViewPagerAdapter(vm.getWorkerLists(), fragmentManager)
 }
 
 @BindingAdapter("app:viewPagerAdapter")

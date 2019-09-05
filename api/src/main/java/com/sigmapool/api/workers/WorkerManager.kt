@@ -4,6 +4,7 @@ import com.sigmapool.api.providers.IApiServiceProvider
 import com.sigmapool.common.managers.IWorkersManager
 import com.sigmapool.common.models.ManagerResult
 import com.sigmapool.common.models.WorkerDto
+import com.sigmapool.common.models.WorkersStatusDto
 
 internal class WorkerManager(serviceProvider: IApiServiceProvider) : IWorkersManager {
 
@@ -25,6 +26,15 @@ internal class WorkerManager(serviceProvider: IApiServiceProvider) : IWorkersMan
                 )
             }
             ))
+        } catch (e: Throwable) {
+            ManagerResult(error = e.message)
+        }
+    }
+
+    override suspend fun getStatus(coin: String): ManagerResult<WorkersStatusDto> {
+        return try {
+            val response = api.getStatus(coin).payload!!
+            ManagerResult(WorkersStatusDto(response.total, response.online))
         } catch (e: Throwable) {
             ManagerResult(error = e.message)
         }

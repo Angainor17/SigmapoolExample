@@ -5,19 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.sigmapool.app.databinding.FragmentWorkersBinding
-import com.sigmapool.app.screens.workers.viewModel.WorkersVM
+import com.sigmapool.app.databinding.FragmentWorkersListBinding
+import com.sigmapool.app.screens.workers.viewModel.WorkersListVM
 
-
-class WorkersFragment : Fragment() {
+class WorkersListFragment(private val vm : WorkersListVM) : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding = FragmentWorkersBinding.inflate(inflater, container, false)
-        val vm = WorkersVM()
+        val binding = FragmentWorkersListBinding.inflate(inflater, container, false)
         binding.vm = vm
-
         binding.lifecycleOwner = this
-        binding.fragmentManager = childFragmentManager
 
         return binding.root
     }
