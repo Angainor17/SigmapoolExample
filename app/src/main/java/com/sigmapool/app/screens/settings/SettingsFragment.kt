@@ -6,19 +6,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.sigmapool.app.R
 import com.sigmapool.app.databinding.FragmentSettingsBinding
 import com.sigmapool.app.screens.settings.viewModel.SettingsVM
+import com.sigmapool.app.utils.customViews.UpdateFragment
 
-class SettingsFragment : Fragment(), ISettingsView {
+class SettingsFragment : UpdateFragment(), ISettingsView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val vm = SettingsVM(this)
         binding.vm = vm
+        setUpVm(vm, binding)
 
-        binding.lifecycleOwner = this
         return binding.root
     }
 

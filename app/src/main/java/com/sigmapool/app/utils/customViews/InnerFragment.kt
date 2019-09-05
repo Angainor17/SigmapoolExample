@@ -2,10 +2,9 @@ package com.sigmapool.app.utils.customViews
 
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
-import androidx.fragment.app.Fragment
 import com.sigmapool.app.utils.interfaces.IBackBtnScreen
 
-abstract class InnerFragment : Fragment(), IBackBtnScreen {
+abstract class InnerFragment : BaseFragment(), IBackBtnScreen {
 
     override fun backBtnClick() {
         activity?.onBackPressed()

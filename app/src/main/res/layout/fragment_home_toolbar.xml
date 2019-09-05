@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/layout">
+        android:id="@+id/layout"
+        >
 
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.home.viewModel.HomeVM"/>
+
+        <import type="android.view.View"/>
+
+        <variable
+                name="vm"
+                type="com.sigmapool.app.screens.home.viewModel.HomeVM"
+                />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/gradient_status_bar"
-    >
+            >
 
 
         <ImageView
@@ -43,7 +51,7 @@
                 app:layout_constraintStart_toEndOf="@+id/sigmapoolIcon"
                 app:layout_constraintTop_toTopOf="@+id/sigmapoolIcon"
                 app:layout_constraintBottom_toBottomOf="@+id/sigmapoolIcon"
-        />
+                />
 
         <Button
                 android:id="@+id/registerBtn"
@@ -51,16 +59,15 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="@string/registration"
-
                 android:onClick="@{v->vm.register()}"
                 android:layout_marginEnd="8dp"
+                android:visibility="@{vm.isLogin ? View.INVISIBLE : View.VISIBLE}"
 
                 app:layout_constraintEnd_toStartOf="@+id/vertical_line"
                 app:layout_constraintTop_toTopOf="@+id/enterBtn"
                 app:layout_constraintBottom_toBottomOf="@+id/enterBtn"
-        />
+                />
 
         <Button
                 android:id="@+id/enterBtn"
@@ -70,13 +77,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/enter"
                 android:layout_marginEnd="8dp"
-
                 android:onClick="@{v->vm.login()}"
+                android:visibility="@{vm.isLogin ? View.INVISIBLE : View.VISIBLE}"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/sigmapoolWord"
                 app:layout_constraintBottom_toBottomOf="@+id/sigmapoolWord"
-        />
+                />
 
         <View
                 android:id="@+id/vertical_line"
@@ -85,11 +92,12 @@
                 android:layout_height="0dp"
                 android:background="@color/white"
                 android:layout_marginEnd="8dp"
+                android:visibility="@{vm.isLogin ? View.INVISIBLE : View.VISIBLE}"
 
                 app:layout_constraintTop_toTopOf="@+id/enterBtn"
                 app:layout_constraintBottom_toBottomOf="@+id/enterBtn"
                 app:layout_constraintEnd_toStartOf="@+id/enterBtn"
-        />
+                />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

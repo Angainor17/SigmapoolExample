@@ -11,9 +11,10 @@ import androidx.lifecycle.Observer
 import com.sigmapool.app.databinding.FragmentHomeBinding
 import com.sigmapool.app.navigation.showScreen
 import com.sigmapool.app.screens.home.viewModel.HomeVM
+import com.sigmapool.app.utils.customViews.UpdateFragment
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : UpdateFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -25,7 +26,7 @@ class HomeFragment : Fragment() {
         binding.vm = vm
         vm.minersVM.miningProfitVM.seekBarLiveData.observe(this, Observer {})
         binding.fragmentManager = childFragmentManager
-        binding.lifecycleOwner = this
+        setUpVm(vm, binding)
 
         return binding.root
     }

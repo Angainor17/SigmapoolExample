@@ -1,12 +1,11 @@
 package com.sigmapool.app.screens.login.viewModel
 
 import android.view.View
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.screens.login.ILoginFragmentModel
 import com.sigmapool.app.screens.login.data.AUTH_KEY
 import com.sigmapool.app.utils.storages.JsonDataStorage
+import com.sigmapool.app.utils.vm.ErrorHandleVm
 import com.sigmapool.common.managers.ILoginManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,14 +14,12 @@ import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
 
-class LoginVM(private val view: ILoginFragmentModel) : ViewModel() {
+class LoginVM(private val view: ILoginFragmentModel) : ErrorHandleVm() {
 
     private val loginManager: ILoginManager by kodein.instance()
     private val jsonDataStorage: JsonDataStorage by kodein.instance()
 
     private val uiScope = CoroutineScope(Dispatchers.Main)
-
-    val errorLiveData = MutableLiveData<String>()
 
     fun hideKeyBoard(): View.OnClickListener = View.OnClickListener {
         view.hideKeyBoard()

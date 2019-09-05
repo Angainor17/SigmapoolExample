@@ -22,7 +22,7 @@ fun createRetrofit(baseUrl: String, headerMappers: ArrayList<HeaderMapper>): Ret
 /*** Получение Interceptor логирования запросов в сеть */
 fun getHttpLoggingInterceptor(): HttpLoggingInterceptor {
     val logging = HttpLoggingInterceptor()
-    logging.level = if(BuildConfig.DEBUG){ HttpLoggingInterceptor.Level.BODY}
+    logging.level = if(BuildConfig.DEBUG){ HttpLoggingInterceptor.Level.HEADERS}
     else HttpLoggingInterceptor.Level.BASIC
     return logging
 }

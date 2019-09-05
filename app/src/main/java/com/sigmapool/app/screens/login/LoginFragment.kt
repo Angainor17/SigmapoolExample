@@ -4,9 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast.LENGTH_SHORT
-import android.widget.Toast.makeText
-import androidx.lifecycle.Observer
 import com.sigmapool.app.databinding.FragmentLoginBinding
 import com.sigmapool.app.screens.login.viewModel.LoginVM
 import com.sigmapool.app.utils.customViews.InnerFragment
@@ -17,14 +14,8 @@ class LoginFragment : InnerFragment(), ILoginFragmentModel {
         val binding = FragmentLoginBinding.inflate(inflater, container, false)
         val vm = LoginVM(this)
         binding.vm = vm
-        binding.lifecycleOwner = this
-        vm.errorLiveData.observe(this, Observer {
-            toast(it)
-        })
-        return binding.root
-    }
+        setUpVm(vm, binding)
 
-    private fun toast(text: String) {
-        makeText(context, text, LENGTH_SHORT).show()
+        return binding.root
     }
 }
