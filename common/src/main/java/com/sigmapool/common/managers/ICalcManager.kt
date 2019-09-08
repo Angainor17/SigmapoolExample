@@ -4,5 +4,5 @@ import com.sigmapool.common.models.CalcDto
 import com.sigmapool.common.models.ManagerResult
 
 interface ICalcManager {
-    suspend fun getCalcInfo(): ManagerResult<CalcDto>
+    suspend fun getCalcInfo(lang: String): ManagerResult<CalcDto>
 }

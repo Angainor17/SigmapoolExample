@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Sigmapool</string>
+    <string name="app_name"
+            translatable="false">Sigmapool</string>
     <string name="profit">Profit</string>
     <string name="mining_profit">Mining Profit</string>
     <string name="power_cost">Power Cost</string>
@@ -10,96 +11,98 @@
     <string name="hashrate_power">Hashrate/Power</string>
     <string name="revenue_power_cost">Revenue/Power Cost</string>
     <string name="shutdown_price">Shutdown Price</string>
-    <string name="btc_caps">BTC</string>
+    <string name="btc_caps"
+            translatable="false">BTC</string>
     <string name="power_postfix">W</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
-    <string name="remember_me">Remember me</string>
-    <string name="sign_in_api_key">Sign in with API Key</string>
     <string name="or">or</string>
 
     <string name="pool_info">Pool Info</string>
     <string name="fee">Fee</string>
-    <string name="fpps">FPPS</string>
-    <string name="pps">PPS</string>
-    <string name="dailyProfitPerTHs">Daily Profit Per TH/s (FPPS)</string>
-    <string name="btc">BTC</string>
-    <string name="ltc">LTC</string>
+    <string name="btc"
+            translatable="false">BTC</string>
+    <string name="ltc"
+            translatable="false">LTC</string>
     <string name="paymentTime">Payment Time</string>
     <string name="minimumPayout">Minimum Payout</string>
     <string name="settlementDetails">Settlement Details</string>
     <string name="miningURL">Mining URL</string>
 
 
-    <string name="home_screen_icon_title">Главная</string>
-    <string name="dashboard_screen_icon_title">Дашборд</string>
-    <string name="workers_screen_icon_title">Воркеры</string>
-    <string name="earnings_screen_icon_title">Начисления</string>
-    <string name="settings_screen_icon_title">Настройки</string>
-    <string name="registration">Регистрация</string>
-    <string name="enter">Вход</string>
+    <string name="home_screen_icon_title">Home</string>
+    <string name="dashboard_screen_icon_title">Dashboard</string>
+    <string name="workers_screen_icon_title">Workers</string>
+    <string name="earnings_screen_icon_title">Earnings</string>
+    <string name="settings_screen_icon_title">Settings</string>
+    <string name="registration">Register</string>
+    <string name="enter">Login</string>
     <string name="calculator">Calculator</string>
     <string name="news">News</string>
-    <string name="pool_hashrate">Хешрейт пула</string>
-    <string name="worker_count">Количество воркеров</string>
-    <string name="min_payment">Мин. выплата</string>
-    <string name="payment_time">Время выплат (UTC)</string>
-    <string name="payoutScheme">Схема выплат</string>
-    <string name="profitLabel">Доходность (24ч)</string>
+    <string name="pool_hashrate">Pool hashrate</string>
+    <string name="worker_count">Workers count</string>
+    <string name="min_payment">Min payment</string>
+    <string name="payment_time">Payment time (UTC)</string>
+    <string name="payoutScheme">Payout Scheme</string>
+    <string name="profitLabel">Profit (24h)</string>
 
     <string name="hashrate_per_second">H/s</string>
-    <string name="network_hashrate">Хешрейт сети</string>
+    <string name="network_hashrate">Network hashrate</string>
     <string name="network_difficulty">Сложность сети</string>
-    <string name="current_block">Текущий блок</string>
-    <string name="difficulty_change_date">Дата изм. сложности</string>
-    <string name="next_difficulty_label">Следующая прогнозируемая сложность</string>
-    <string name="profit_of_mining">Доходность майнинга</string>
+    <string name="current_block">Current block</string>
+    <string name="difficulty_change_date">Difficulty change date</string>
+    <string name="next_difficulty_label">Next projected difficulty</string>
+    <string name="profit_of_mining">Maining Profit</string>
     <string name="last_news">Last News</string>
-    <string name="calculator_info">The estimated FPPS revenue includes the daily estimated FPPS payout plus the transaction fee from the previous day. This should be used as a reference only as the actual income may differ.</string>
     <string name="litecoin">Litecoin</string>
     <string name="bitcoin">Bitcoin</string>
-    <string name="general_characteristic">Общие характеристики</string>
+    <string name="general_characteristic">Other params</string>
 
     <string-array name="months">
-        <item>января</item>
-        <item>февраля</item>
-        <item>марта</item>
-        <item>апреля</item>
-        <item>мая</item>
-        <item>июня</item>
-        <item>июля</item>
-        <item>августа</item>
-        <item>сентября</item>
-        <item>октября</item>
-        <item>ноября</item>
-        <item>декабря</item>
+        <item>january</item>
+        <item>february</item>
+        <item>march</item>
+        <item>april</item>
+        <item>may</item>
+        <item>june</item>
+        <item>july</item>
+        <item>august</item>
+        <item>september</item>
+        <item>october</item>
+        <item>november</item>
+        <item>december</item>
     </string-array>
 
     <string name="hashrate">Hashrate</string>
     <string name="thashs_per_second">Thash/s</string>
     <string name="btc_per_day">BTC/day</string>
 
-    <string name="init_decimal_number">0.0</string>
-    <string name="init_integer_number">0</string>
+    <string name="init_decimal_number"
+            translatable="false">0.0</string>
+    <string name="init_integer_number"
+            translatable="false">0</string>
 
     <string name="current_price">Current Price</string>
     <string name="difficulty">Difficulty</string>
     <string name="block_reward">Block Reward</string>
     <string name="demo">Demo</string>
-    <string name="rus">Русский</string>
-    <string name="language">Язык</string>
-    <string name="currency">Валюта</string>
-    <string name="push_notification">Push-уведомления</string>
-    <string name="payment_scheme">Схема выплат</string>
-    <string name="limit">Порог</string>
-    <string name="write_review">Написать отзыв или предложение</string>
-    <string name="mark_app">Оценить приложение</string>
-    <string name="exit">Выйти</string>
-    <string name="rub">RUB</string>
-    <string name="email_via">Email via...</string>
+    <string name="rus">Russian</string>
+    <string name="language">Language</string>
+    <string name="currency">Currency</string>
+    <string name="push_notification">Push-notifications</string>
+    <string name="payment_scheme">Payment scheme</string>
+    <string name="limit">Limit</string>
+    <string name="write_review">Write a review or suggestion</string>
+    <string name="mark_app">Star app</string>
+    <string name="exit">Exit</string>
+    <string name="rub"
+            translatable="false">RUB</string>
+    <string name="email_via">Email via…</string>
     <string name="sigmapool_android_app">Sigmapool Android App</string>
     <string name="online">Online</string>
     <string name="offline">Offline</string>
     <string name="all">All</string>
+    <string name="dailyProfitPerTHs">Daily Profit Per TH/s (FPPS)</string>
+    <string name="english">English</string>
 
 </resources>

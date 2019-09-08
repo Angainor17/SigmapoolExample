@@ -51,7 +51,7 @@
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:text="@string/fpps"/>
+                        android:text="FPPS"/>
 
                 <TextView
                         android:id="@+id/ppsValues"
@@ -60,7 +60,7 @@
                         android:layout_width="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_below="@+id/fppsValue"
-                        android:text="@string/pps"/>
+                        android:text="PPS"/>
 
                 <TextView
                         style="@style/ItemValue"

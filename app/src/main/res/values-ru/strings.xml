@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="profit">Прибыль</string>
+    <string name="mining_profit">Доходность</string>
+    <string name="power_cost">Стоимость электр</string>
+    <string name="kilowatt_hour">Квч</string>
+    <string name="kilowatt_hour_prefix">P</string>
+    <string name="hashrate_power">Хэшрейт/Мощность</string>
+    <string name="revenue_power_cost">Доход/Электр.</string>
+    <string name="shutdown_price">Убыточная цена</string>
+    <string name="power_postfix">В</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="or">или</string>
+
+    <string name="pool_info">Информация о пуле</string>
+    <string name="fee">Fee</string>
+    <string name="dailyProfitPerTHs">Daily Profit Per TH/s (FPPS)</string>
+    <string name="paymentTime">Время выплат</string>
+    <string name="minimumPayout">Минимальная выплата</string>
+    <string name="settlementDetails">Информация о выплатах</string>
+    <string name="miningURL">Mining URL</string>
+
+
+    <string name="home_screen_icon_title">Главная</string>
+    <string name="dashboard_screen_icon_title">Дашборд</string>
+    <string name="workers_screen_icon_title">Воркеры</string>
+    <string name="earnings_screen_icon_title">Начисления</string>
+    <string name="settings_screen_icon_title">Настройки</string>
+    <string name="registration">Регистрация</string>
+    <string name="enter">Вход</string>
+    <string name="calculator">Калькулятор</string>
+    <string name="news">Новости</string>
+    <string name="pool_hashrate">Хешрейт пула</string>
+    <string name="worker_count">Количество воркеров</string>
+    <string name="min_payment">Мин. выплата</string>
+    <string name="payment_time">Время выплат (UTC)</string>
+    <string name="payoutScheme">Схема выплат</string>
+    <string name="profitLabel">Доходность (24ч)</string>
+
+    <string name="hashrate_per_second">H/с</string>
+    <string name="network_hashrate">Хешрейт сети</string>
+    <string name="network_difficulty">Сложность сети</string>
+    <string name="current_block">Текущий блок</string>
+    <string name="difficulty_change_date">Дата изм. сложности</string>
+    <string name="next_difficulty_label">Следующая прогнозируемая сложность</string>
+    <string name="profit_of_mining">Доходность майнинга</string>
+    <string name="last_news">Последние новости</string>
+    <string name="litecoin">Litecoin</string>
+    <string name="bitcoin">Bitcoin</string>
+    <string name="general_characteristic">Общие характеристики</string>
+
+    <string-array name="months">
+        <item>января</item>
+        <item>февраля</item>
+        <item>марта</item>
+        <item>апреля</item>
+        <item>мая</item>
+        <item>июня</item>
+        <item>июля</item>
+        <item>августа</item>
+        <item>сентября</item>
+        <item>октября</item>
+        <item>ноября</item>
+        <item>декабря</item>
+    </string-array>
+
+    <string name="hashrate">Хешрейт</string>
+    <string name="thashs_per_second">Thash/s</string>
+    <string name="btc_per_day">BTC/день</string>
+
+    <string name="current_price">Текущая цена</string>
+    <string name="difficulty">Сложность</string>
+    <string name="block_reward">Награда за блок</string>
+    <string name="demo">Демо</string>
+    <string name="rus">Русский</string>
+    <string name="language">Язык</string>
+    <string name="currency">Валюта</string>
+    <string name="push_notification">Push-уведомления</string>
+    <string name="payment_scheme">Схема выплат</string>
+    <string name="limit">Порог</string>
+    <string name="write_review">Написать отзыв или предложение</string>
+    <string name="mark_app">Оценить приложение</string>
+    <string name="exit">Выйти</string>
+    <string name="email_via">Отправить с помощью…</string>
+    <string name="sigmapool_android_app">Sigmapool Android App</string>
+    <string name="online">Онлайн</string>
+    <string name="offline">Офлайн</string>
+    <string name="all">Все</string>
+    <string name="english">Английский</string>
+
+</resources>
