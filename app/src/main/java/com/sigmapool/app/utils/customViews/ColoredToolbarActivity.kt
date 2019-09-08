@@ -7,14 +7,18 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
+import com.sigmapool.app.provider.lang.ILocaleProvider
 import com.sigmapool.app.provider.res.IResProvider
 import org.kodein.di.generic.instance
 
 abstract class ColoredToolbarActivity : AppCompatActivity() {
 
     private val res by kodein.instance<IResProvider>()
+    private val langProvider by kodein.instance<ILocaleProvider>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        langProvider.setUpLocale(this)
+
         super.onCreate(savedInstanceState)
         setStatusBarGradient()
     }

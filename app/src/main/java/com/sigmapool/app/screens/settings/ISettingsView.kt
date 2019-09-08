@@ -6,4 +6,5 @@ interface ISettingsView {
 
     fun markApp()
 
+    fun recreate()
 }

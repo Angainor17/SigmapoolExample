@@ -11,7 +11,11 @@ class WorkerViewPagerAdapter(
     fragmentManager: FragmentManager
 ) : FragmentPagerAdapter(fragmentManager) {
 
-    private val fragment = items.map { WorkersListFragment(it) }
+    private val fragment = items.map {
+        val fragment = WorkersListFragment()
+        fragment.vm = it
+        fragment
+    }
 
     override fun getItem(position: Int): Fragment = fragment[position]
 

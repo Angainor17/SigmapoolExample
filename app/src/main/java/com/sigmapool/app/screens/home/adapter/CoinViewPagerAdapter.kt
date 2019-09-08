@@ -11,7 +11,11 @@ class CoinViewPagerAdapter(
     fragmentManager: FragmentManager
 ) : FragmentPagerAdapter(fragmentManager) {
 
-    private val fragment = items.map { CoinFragment(it) }
+    private val fragment = items.map {
+        val fragment = CoinFragment()
+        fragment.vm = it
+        fragment
+    }
 
     override fun getItem(position: Int): Fragment = fragment[position]
 

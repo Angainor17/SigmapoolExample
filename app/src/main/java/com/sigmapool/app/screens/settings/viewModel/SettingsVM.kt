@@ -1,9 +1,11 @@
 package com.sigmapool.app.screens.settings.viewModel
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
+import com.sigmapool.app.provider.lang.ILocaleProvider
 import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.screens.login.data.AUTH_KEY
 import com.sigmapool.app.screens.settings.ISettingsView
@@ -18,21 +20,25 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
-private const val APP_EMAIL = "angainor17@gmail.com"//FIXME
+private const val APP_EMAIL = "angainor@gmail.com"//FIXME
 
 class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScreenVm {
 
     private val resProvider by kodein.instance<IResProvider>()
     private val jsonDataStorage by kodein.instance<JsonDataStorage>()
+    private val langProvider by kodein.instance<ILocaleProvider>()
     private val loginManager by kodein.instance<ILoginManager>()
+    private val context by kodein.instance<Context>()
 
     val toolbarVm = CoinToolbarVM()
 
-    val rusLanguage = LanguageItem(resProvider, R.string.rus)//FIXME
-    val btcCurrency = CurrencyItem(resProvider, R.string.rub)//FIXME
 
-    val languageLiveData = MutableLiveData(rusLanguage)
-    val currencyLiveData = MutableLiveData(btcCurrency)
+    private var selectedLang = langProvider.getLocale()
+
+    private val rubCurrency = CurrencyItem(resProvider, R.string.rub)
+
+    val languageLiveData = MutableLiveData(resProvider.getString(selectedLang.labelResId))
+    val currencyLiveData = MutableLiveData(rubCurrency)
     val pushLiveData = MutableLiveData(false)
 
     val schemeLiveData = MutableLiveData(SchemeItem("PPS"))//FIXME
@@ -45,7 +51,17 @@ class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScre
     }
 
     fun languageSelect() {
-        //TODO implement
+        val locales = langProvider.getAllLocales()
+        val currentLocale = langProvider.getLocale()
+
+        if (locales[0].locale == currentLocale.locale) {
+            langProvider.setLocale(locales[1])
+        } else {
+            langProvider.setLocale(locales[0])
+        }
+
+        langProvider.setUpLocale(context)
+        view.recreate()
     }
 
     fun currencySelect() {

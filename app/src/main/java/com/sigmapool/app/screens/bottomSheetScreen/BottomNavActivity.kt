@@ -10,7 +10,7 @@ import com.sigmapool.app.utils.customViews.ColoredToolbarActivity
 class BottomNavActivity : ColoredToolbarActivity(), IBottomSheetScreen {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        super.onCreate(null)
         val binding: ActivityBottomNavBinding = DataBindingUtil.setContentView(this, R.layout.activity_bottom_nav)
         val vm = BottomNavVM(this)
 

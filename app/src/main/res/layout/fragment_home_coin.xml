@@ -25,7 +25,7 @@
             >
 
         <com.sigmapool.app.utils.customViews.viewPager.FragmentViewPager
-                android:id="@+id/pager"
+                android:id="@+id/coinPager"
 
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                app:pager="@{(pager)}"
+                app:pager="@{(coinPager)}"
                 app:tabBackground="@drawable/tab_selector"
                 app:tabGravity="center"
                 app:tabIndicatorHeight="0dp"

@@ -22,6 +22,10 @@ class SettingsFragment : UpdateFragment(), ISettingsView {
         return binding.root
     }
 
+    override fun recreate() {
+        activity?.recreate()
+    }
+
     override fun sendEmail(email: String) {
         val intent = Intent(Intent.ACTION_SENDTO)
         intent.data = Uri.parse("mailto:")

@@ -16,10 +16,11 @@ import com.sigmapool.app.utils.customViews.fragment.UpdateFragment
 
 class HomeFragment : UpdateFragment() {
 
+    val vm = HomeVM()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        val vm = HomeVM()
         vm.urlLiveData.observe(this, Observer { openUrlInBrowser(it) })
         vm.fragmentLiveData.observe(this, Observer { openFragment(it) })
 

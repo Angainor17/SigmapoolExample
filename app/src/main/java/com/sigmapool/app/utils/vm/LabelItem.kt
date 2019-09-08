@@ -1,4 +1,4 @@
-package com.sigmapool.app.screens.settings.viewModel
+package com.sigmapool.app.utils.vm
 
 import androidx.annotation.StringRes
 import com.sigmapool.app.provider.res.IResProvider

@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 
 open class FragmentViewPager : ViewPager {
@@ -25,10 +26,12 @@ open class FragmentViewPager : ViewPager {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
-        if(!isWrapHeightEnabled) return
+        if (!isWrapHeightEnabled) return
 
-        val adapter = adapter as FragmentPagerAdapter
-        val currentView = adapter.getItem(0).view
+        val currentView = if (adapter is FragmentPagerAdapter)
+            (adapter as FragmentPagerAdapter).getItem(0).view else {
+            (adapter as FragmentStatePagerAdapter).getItem(0).view
+        }
 
         if (currentView != null) {
             currentView.measure(widthMeasureSpec, heightMeasureSpec)

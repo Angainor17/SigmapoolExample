@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
+import com.sigmapool.app.provider.lang.ILocaleProvider
 import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.screens.calculator.ICalculatorFragmentModel
 import com.sigmapool.app.screens.home.coin.BTC
@@ -33,6 +34,7 @@ class CalculatorVM(val view: ICalculatorFragmentModel) : ViewModel(), ITitleView
 
     private val resProvider by kodein.instance<IResProvider>()
     private val calcManager by kodein.instance<ICalcManager>()
+    private val localeProvider by kodein.instance<ILocaleProvider>()
 
     override fun getTitle() = MutableLiveData(resProvider.getString(R.string.calculator))
 
@@ -49,7 +51,7 @@ class CalculatorVM(val view: ICalculatorFragmentModel) : ViewModel(), ITitleView
         refreshingInfo.postValue(true)
 
         GlobalScope.launch(Dispatchers.IO) {
-            val result = calcManager.getCalcInfo()
+            val result = calcManager.getCalcInfo(localeProvider.getLocale().locale)
             info.postValue(result.data?.calculatorText ?: "")
             refreshingInfo.postValue(false)
         }

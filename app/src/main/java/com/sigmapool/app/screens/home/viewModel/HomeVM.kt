@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import com.sigmapool.app.App.Companion.kodein
-import com.sigmapool.app.provider.lang.ILanguageProvider
+import com.sigmapool.app.provider.lang.ILocaleProvider
 import com.sigmapool.app.screens.home.coin.CoinsVM
 import com.sigmapool.app.screens.login.LoginFragment
 import com.sigmapool.app.screens.login.data.AUTH_KEY
@@ -31,7 +31,7 @@ private const val NEWS_PER_PAGE = 3
 class HomeVM : ViewModel(), OnSlideClickListener, IUpdateScreenVm {
 
     private val blogManager by kodein.instance<IBlogManager>()
-    private val langProvider by kodein.instance<ILanguageProvider>()
+    private val langProvider by kodein.instance<ILocaleProvider>()
     private val storage by kodein.instance<JsonDataStorage>()
 
     val isLogin = MutableLiveData<Boolean>()
@@ -69,7 +69,7 @@ class HomeVM : ViewModel(), OnSlideClickListener, IUpdateScreenVm {
 
     private fun initBlogBanner() {
         GlobalScope.launch(Dispatchers.IO) {
-            val coin = blogManager.getBlogs(BLOG_INIT_PAGE, BLOG_PER_PAGE, langProvider.getLangShortName())
+            val coin = blogManager.getBlogs(BLOG_INIT_PAGE, BLOG_PER_PAGE, langProvider.getLocale().locale)
             if (coin.success) {
                 blogImages.postValue(coin.data ?: ArrayList())
             } else {

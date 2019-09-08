@@ -39,22 +39,26 @@ fun onNavigationItemSelected(
 
 @BindingAdapter("app:initCoinAdapter", "app:fragmentManager", requireAll = true)
 fun initCoinAdapter(view: ViewPager, vm: CoinsVM, fragmentManager: FragmentManager) {
+    view.offscreenPageLimit = 2
     view.pageMargin = 20.px
     view.adapter = CoinViewPagerAdapter(vm.getCoins(), fragmentManager)
 }
 
 @BindingAdapter("app:initWorkerAdapter", "app:fragmentManager", requireAll = true)
 fun initWorkerAdapter(view: ViewPager, vm: WorkersVM, fragmentManager: FragmentManager) {
+    view.offscreenPageLimit = 4
     view.adapter = WorkerViewPagerAdapter(vm.getWorkerLists(), fragmentManager)
 }
 
 @BindingAdapter("app:viewPagerAdapter")
 fun viewPagerAdapter(view: FragmentViewPager, fragmentManager: FragmentManager) {
+    view.offscreenPageLimit = 5
     view.adapter = ViewPagerAdapter(fragmentManager)
 }
 
 @BindingAdapter("app:initCalcAdapter", "app:viewCalcTabAdapter")
 fun viewCalcTabAdapter(view: FragmentViewPager, items: ArrayList<CalcItemVM>, fragmentManager: FragmentManager) {
+    view.offscreenPageLimit = 2
     view.adapter = CalcTabAdapter(items, fragmentManager)
 }
 
