@@ -12,6 +12,7 @@ class WorkerBindingHelper : IItemBindingHelper {
     override fun getLayoutId(itemType: Int): Int {
         return when (itemType) {
             WorkersListItemVM.itemType -> R.layout.item_view_worker
+            WorkersListItemVM.headerItemType -> R.layout.worker_list_header_item
             else -> throw UnsupportedOperationException()
         }
     }
@@ -19,6 +20,7 @@ class WorkerBindingHelper : IItemBindingHelper {
     override fun getBindingFunction(itemType: Int): (db: ViewDataBinding, vm: BaseItemViewModel) -> Unit {
         return when (itemType) {
             WorkersListItemVM.itemType -> ::postBinding
+            WorkersListItemVM.headerItemType -> ::postBinding
             else -> throw UnsupportedOperationException()
         }
     }

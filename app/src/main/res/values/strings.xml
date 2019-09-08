@@ -104,5 +104,8 @@
     <string name="all">All</string>
     <string name="dailyProfitPerTHs">Daily Profit Per TH/s (FPPS)</string>
     <string name="english">English</string>
+    <string name="name">Name</string>
+    <string name="current">Current</string>
+    <string name="hashrate24h">Hashrate 24h</string>
 
 </resources>

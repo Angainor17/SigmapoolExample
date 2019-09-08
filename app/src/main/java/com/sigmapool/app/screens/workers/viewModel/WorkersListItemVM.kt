@@ -21,6 +21,7 @@ class WorkersListItemVM(
 
     companion object {
         val itemType = WorkersListItemVM::class.hashCode()
+        val headerItemType = -1
     }
 
     override val itemViewType: Int = itemType

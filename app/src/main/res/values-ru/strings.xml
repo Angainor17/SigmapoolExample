@@ -89,5 +89,8 @@
     <string name="offline">Офлайн</string>
     <string name="all">Все</string>
     <string name="english">Английский</string>
+    <string name="name">Имя</string>
+    <string name="current">Текущий</string>
+    <string name="hashrate24h">Хэшрейт за 24ч</string>
 
 </resources>
