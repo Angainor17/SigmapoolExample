@@ -1,12 +1,14 @@
 package com.sigmapool.api.miners
 
+import android.content.Context
+import com.sigmapool.api.R
+import com.sigmapool.api.hasConnection
 import com.sigmapool.api.models.Miner
-import com.sigmapool.api.providers.IApiServiceProvider
 import kotlinx.coroutines.delay
 import kotlin.math.max
 import kotlin.random.Random
 
-internal class StubMinerService(apiProvider: IApiServiceProvider) : IMinerService {
+internal class StubMinerService(val context: Context) : IMinerService {
 
     private val items = List(50) {
         Miner(
@@ -22,6 +24,10 @@ internal class StubMinerService(apiProvider: IApiServiceProvider) : IMinerServic
 
     override suspend fun getMiners(page: Int, perPage: Int): List<Miner> {
         delay(5000)
+
+        if (!hasConnection(context)) {
+            throw Exception(context.getString(R.string.no_connection))
+        }
 
         try {
             if (perPage >= items.size) return items

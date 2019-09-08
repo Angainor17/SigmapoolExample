@@ -5,11 +5,14 @@ import com.sigmapool.api.R
 import com.sigmapool.api.hasConnection
 import com.sigmapool.common.managers.IPoolManager
 import com.sigmapool.common.models.*
+import kotlinx.coroutines.delay
 import java.util.*
 
 internal class StubPoolManager(private val context: Context) : IPoolManager {
 
     override suspend fun getCoin(coin: String): ManagerResult<CoinDto> {
+        delay(10000)
+
         if (!hasConnection(context)) {
             return ManagerResult(error = context.getString(R.string.no_connection))
         }
@@ -20,6 +23,8 @@ internal class StubPoolManager(private val context: Context) : IPoolManager {
     }
 
     override suspend fun getPayment(coin: String): ManagerResult<PaymentDto> {
+        delay(10000)
+
         if (!hasConnection(context)) {
             return ManagerResult(error = context.getString(R.string.no_connection))
         }
@@ -30,6 +35,8 @@ internal class StubPoolManager(private val context: Context) : IPoolManager {
     }
 
     override suspend fun getNetwork(coin: String): ManagerResult<NetworkDto> {
+        delay(5000)
+
         if (!hasConnection(context)) {
             return ManagerResult(error = context.getString(R.string.no_connection))
         }
@@ -47,12 +54,14 @@ internal class StubPoolManager(private val context: Context) : IPoolManager {
     }
 
     override suspend fun getProfitDaily(coin: String): ManagerResult<ProfitDailyDto> {
+        delay(5000)
+
         if (!hasConnection(context)) {
             return ManagerResult(error = context.getString(R.string.no_connection))
         }
 
         return ManagerResult(
-            ProfitDailyDto(17.10f)
+            ProfitDailyDto(17.1f)
         )
     }
 }

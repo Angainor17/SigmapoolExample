@@ -6,10 +6,13 @@ import com.sigmapool.api.hasConnection
 import com.sigmapool.common.managers.IBlogManager
 import com.sigmapool.common.models.BlogDto
 import com.sigmapool.common.models.ManagerResult
+import kotlinx.coroutines.delay
 
 internal class StubBlogManager(val context: Context) : IBlogManager {
 
     override suspend fun getBlogs(page: Int, perPage: Int, lang: String): ManagerResult<ArrayList<BlogDto>> {
+        delay(3000)
+
         if (!hasConnection(context)) {
             return ManagerResult(error = context.getString(R.string.no_connection))
         }
