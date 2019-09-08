@@ -9,8 +9,8 @@ internal class CalcManager(serviceProvider: IApiServiceProvider) : ICalcManager 
 
     val api = serviceProvider.create(CalcApi::class.java)
 
-    override suspend fun getCalcInfo(): ManagerResult<CalcDto> = try {
-        ManagerResult(CalcDto(api.getCalcInfo().payload?.calculatorText ?: ""))
+    override suspend fun getCalcInfo(lang: String): ManagerResult<CalcDto> = try {
+        ManagerResult(CalcDto(api.getCalcInfo(lang).payload?.calculatorText ?: ""))
     } catch (e: Throwable) {
         ManagerResult(error = e.message)
     }
