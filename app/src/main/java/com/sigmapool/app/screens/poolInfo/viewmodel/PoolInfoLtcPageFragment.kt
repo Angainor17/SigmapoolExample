@@ -9,12 +9,14 @@ import androidx.fragment.app.Fragment
 import com.sigmapool.app.App
 import com.sigmapool.app.R
 import com.sigmapool.app.databinding.PoolInfoLtcPageFragmentBinding
+import com.sigmapool.app.screens.poolInfo.model.IPoolInfoLtcModel
 import com.sigmapool.common.managers.IPoolInfoManager
 import com.sigmapool.common.models.*
 import org.kodein.di.generic.instance
 
 
-class PoolInfoLtcPageFragment: Fragment(), IPoolInfoLtcModel{
+class PoolInfoLtcPageFragment: Fragment(),
+    IPoolInfoLtcModel {
 
     override suspend fun getSettlementDetails(coin: String): ManagerResult<SettlementDetailsDto> {
         return btcPoolInfoManager.getSettlementDetails(coin)

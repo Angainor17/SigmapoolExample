@@ -8,12 +8,14 @@ import androidx.fragment.app.Fragment
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.databinding.PoolInfoBtcPageFragmentBinding
+import com.sigmapool.app.screens.poolInfo.model.IPoolInfoBtcModel
 import com.sigmapool.common.managers.IPoolInfoManager
 import com.sigmapool.common.models.*
 import org.kodein.di.generic.instance
 
 
-class PoolInfoBtcPageFragment: Fragment(), IPoolInfoBtcModel{
+class PoolInfoBtcPageFragment: Fragment(),
+    IPoolInfoBtcModel {
 
     override suspend fun getSettlementDetails(coin: String): ManagerResult<SettlementDetailsDto> {
         return btcPoolInfoManager.getSettlementDetails(coin)

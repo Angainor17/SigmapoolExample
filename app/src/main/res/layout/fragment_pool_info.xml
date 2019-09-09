@@ -3,7 +3,7 @@
 >
 
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.poolInfo.vm.PoolInfoVM"/>
+        <variable name="vm" type="com.sigmapool.app.screens.poolInfo.viewmodel.PoolInfoViewModel"/>
         <variable name="toolbarVm" type="com.sigmapool.app.utils.interfaces.IBackBtnScreen"/>
     </data>
 

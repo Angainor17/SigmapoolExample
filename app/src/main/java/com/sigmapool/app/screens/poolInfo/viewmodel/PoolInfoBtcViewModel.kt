@@ -3,6 +3,7 @@ package com.sigmapool.app.screens.poolInfo.viewmodel
 import android.text.Html
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sigmapool.app.screens.poolInfo.model.IPoolInfoBtcModel
 import com.sigmapool.common.models.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -11,7 +12,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class PoolInfoLtcViewModel(model: IPoolInfoLtcModel) : ViewModel(){
+class PoolInfoBtcViewModel(model: IPoolInfoBtcModel) : ViewModel(){
+    val fpps = MutableLiveData<String>()
     val pps  = MutableLiveData<String>()
     val dailyProfit = MutableLiveData<String>()
     val paymentTime = MutableLiveData<String>()
@@ -21,16 +23,17 @@ class PoolInfoLtcViewModel(model: IPoolInfoLtcModel) : ViewModel(){
 
     init {
         GlobalScope.launch(Dispatchers.Default) {
-            handlePoolInfoData(model.getLtcPoolInfo())
-            handleDailyProfitData(model.getDailyProfit("ltc")) // TODO: dehardcode "ltc" String
-            handlePaymentData(model.getPayment("ltc")) // TODO: dehardcode "ltc" String
-            handleSettlementDetailsData(model.getSettlementDetails("ltc")) // TODO: you know what to do with that "ltc" String
+            handlePoolInfoData(model.getBtcPoolInfo())
+            handleDailyProfitData(model.getDailyProfit("btc")) // TODO: dehardcode "btc" String
+            handlePaymentData(model.getPayment("btc")) // TODO: dehardcode "btc" String
+            handleSettlementDetailsData(model.getSettlementDetails("btc")) // TODO: you know what to do with that "btc" String
         }
     }
 
-    fun handlePoolInfoData(poolInfoLtcDto: ManagerResult<PoolInfoLtcDto>) = GlobalScope.launch (Dispatchers.Main) {
-        if(poolInfoLtcDto.success){
-            val info = poolInfoLtcDto.data
+    fun handlePoolInfoData(poolInfoBtcDto: ManagerResult<PoolInfoBtcDto>) = GlobalScope.launch (Dispatchers.Main) {
+        if(poolInfoBtcDto.success){
+            val info = poolInfoBtcDto.data
+            fpps.postValue(info?.feeFpps.toString())
             pps.postValue(info?.feePps.toString())
 
             var stratumUrl = ""
@@ -63,8 +66,8 @@ class PoolInfoLtcViewModel(model: IPoolInfoLtcModel) : ViewModel(){
             val outputDataFormat = SimpleDateFormat("HH:mm")
 
             inputDataFormat.timeZone = TimeZone.getTimeZone("UTC")
-            val fromDate = data?.time?.from
-            val toDate   = data?.time?.to
+            val fromDate = (data?.time?.from)?:Date()
+            val toDate   = (data?.time?.to)?: Date()
 
             val fromStr = outputDataFormat.format(fromDate)
             val toStr = outputDataFormat.format(toDate)

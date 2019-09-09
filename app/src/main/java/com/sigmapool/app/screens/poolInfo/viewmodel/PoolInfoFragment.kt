@@ -11,7 +11,7 @@ import com.sigmapool.app.R
 import com.sigmapool.app.databinding.FragmentPoolInfoBinding
 import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.screens.poolInfo.adapters.PoolInfoFragmentPagerAdapter
-import com.sigmapool.app.screens.poolInfo.vm.PoolInfoVM
+import com.sigmapool.app.screens.poolInfo.model.IPoolInfoModel
 import com.sigmapool.app.utils.customViews.fragment.InnerFragment
 import com.sigmapool.app.utils.customViews.viewPager.SwipeFreeViewPager
 import org.kodein.di.generic.instance
@@ -25,7 +25,7 @@ class PoolInfoFragment : InnerFragment(), IPoolInfoModel {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentPoolInfoBinding.inflate(inflater, container, false)
-        binding.vm = PoolInfoVM(this)
+        binding.vm = PoolInfoViewModel(this)
         binding.toolbarVm = this
         binding.lifecycleOwner = this
         return binding.root
