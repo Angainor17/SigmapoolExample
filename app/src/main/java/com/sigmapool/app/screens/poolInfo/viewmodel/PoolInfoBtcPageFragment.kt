@@ -1,22 +1,21 @@
 package com.sigmapool.app.screens.poolInfo.viewmodel
 
 import android.os.Bundle
-import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.databinding.PoolInfoBtcPageFragmentBinding
-import com.sigmapool.app.screens.poolInfo.vm.PoolInfoBtcVM
+import com.sigmapool.app.screens.poolInfo.model.IPoolInfoBtcModel
 import com.sigmapool.common.managers.IPoolInfoManager
 import com.sigmapool.common.models.*
 import org.kodein.di.generic.instance
 
 
-class PoolInfoBtcPageFragment: Fragment(), IPoolInfoBtcModel{
+class PoolInfoBtcPageFragment: Fragment(),
+    IPoolInfoBtcModel {
 
     override suspend fun getSettlementDetails(coin: String): ManagerResult<SettlementDetailsDto> {
         return btcPoolInfoManager.getSettlementDetails(coin)
@@ -48,15 +47,16 @@ class PoolInfoBtcPageFragment: Fragment(), IPoolInfoBtcModel{
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view:View = inflater.inflate(R.layout.pool_info_btc_page_fragment, null)
         val binding = PoolInfoBtcPageFragmentBinding.inflate(inflater, container, false)
-        binding.vm = PoolInfoBtcVM(this)
+        binding.vm = PoolInfoBtcViewModel(this)
         binding.lifecycleOwner = this
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val urlsTextView: TextView = view.findViewById(R.id.urlsTextView)
-        urlsTextView.movementMethod = LinkMovementMethod.getInstance()
+//        val urlsTextView: TextView = view.findViewById(R.id.btcUrlsTextView)
+        // urlsTextView.movementMethod = LinkMovementMethod.getInstance() //TODO: unblock, if you want to get away
+        // TODO: with binding adapter bind that field with xml for cleaning findViewById() call
     }
 
     companion object {

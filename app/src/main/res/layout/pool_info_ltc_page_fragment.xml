@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
 >
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.poolInfo.vm.PoolInfoLtcVM"/>
+        <variable name="vm" type="com.sigmapool.app.screens.poolInfo.viewmodel.PoolInfoLtcViewModel"/>
     </data>
 
-    <!-- TODO:scrollView -> LinearLayout orientation vertical -> relative layout - alignParentStart-Below/End-Top-->
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -17,13 +16,13 @@
             android:background="#E5E5E5"
             android:fillViewport="true">
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8dp"
-                android:elevation="2dp"
-                android:background="@drawable/currency_background">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:elevation="2dp"
+            android:background="@drawable/currency_background">
 
         <RelativeLayout
                 android:layout_width="wrap_content"
@@ -42,8 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_alignParentEnd="true"
-
-                    android:text="PPS">
+                    android:text="@string/pps">
             </TextView>
             <TextView
                     style="@style/ItemValue"
@@ -51,8 +49,9 @@
                     android:layout_width="wrap_content"
 
                     android:layout_toLeftOf="@id/ppsValues"
-
-                    android:text="@{vm.pps}">
+                    android:text="@{vm.pps}"
+                    tools:text="0%"
+                    android:layout_marginEnd="4dp">
             </TextView>
         </RelativeLayout>
 
@@ -73,7 +72,9 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_toLeftOf="@id/profitUnits"
-                    android:text="TextView5">
+                    android:text="@{vm.dailyProfit}"
+                    tools:text="0.00003750"
+                    android:layout_marginEnd="4dp">
             </TextView>
             <TextView
                     android:id="@+id/profitUnits"
@@ -100,7 +101,8 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="TextView7">
+                    android:text="@{vm.paymentTime}"
+                    tools:text="19:00-22:00">
             </TextView>
 
 
@@ -123,7 +125,9 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_toLeftOf="@id/minimumPayoutUnits"
-                    android:text="TextView8">
+                    android:text="@{vm.paymentMin}"
+                    tools:text="0.001"
+                    android:layout_marginEnd="4dp">
             </TextView>
             <TextView
                     android:id="@+id/minimumPayoutUnits"
@@ -155,7 +159,8 @@
                     style="@style/ItemValue"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Lorem ipsum lorem ipsum lorem ipsum long long long lorem ipsum, as long as possible ">
+                    android:text="@{vm.settlementDetails}"
+                    tools:text="Settlement is proceeded at UTC 0:30 for yesterday's mining profit. The payment will be delayed in cases of no wallet address, address modification in last 72 hours and balance not reaching minimum payment threshold.">
             </TextView>
         </LinearLayout>
 
@@ -172,10 +177,13 @@
                     android:text="@string/miningURL">
             </TextView>
             <TextView
-
+                    android:id="@+id/ltcUrlsTextView"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="There is lack a lot of URLs">
+                    android:text="@{vm.stratumURLs}"
+                    android:textColorLink="#081EEA"
+                    android:linksClickable="true"
+                    tools:text="stratum+tcp://eu2.ltc.sigmapool.com:3333\nstratum+tcp://eu3.ltc.sigmapool.com:3333\nstratum+tcp://eu4.ltc.sigmapool.com:3333">
             </TextView>
         </LinearLayout>
     </LinearLayout>

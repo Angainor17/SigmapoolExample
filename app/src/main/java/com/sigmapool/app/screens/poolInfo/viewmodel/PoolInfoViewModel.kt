@@ -1,4 +1,4 @@
-package com.sigmapool.app.screens.poolInfo.vm
+package com.sigmapool.app.screens.poolInfo.viewmodel
 
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
@@ -6,13 +6,12 @@ import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.res.IResProvider
-import com.sigmapool.app.screens.poolInfo.viewmodel.ICurrencySwitcherViewModel
-import com.sigmapool.app.screens.poolInfo.viewmodel.IPoolInfoModel
+import com.sigmapool.app.screens.poolInfo.model.IPoolInfoModel
 import com.sigmapool.common.viewModels.ITitleViewModel
 import org.kodein.di.generic.instance
 
 
-class PoolInfoVM(val model: IPoolInfoModel) : ViewModel(), ITitleViewModel, ICurrencySwitcherViewModel {
+class PoolInfoViewModel(val model: IPoolInfoModel) : ViewModel(), ITitleViewModel, ICurrencySwitcherViewModel {
 
     private val res by kodein.instance<IResProvider>()
 
