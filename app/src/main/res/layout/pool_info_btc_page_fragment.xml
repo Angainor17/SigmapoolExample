@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
 >
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.poolInfo.vm.PoolInfoBtcVM"/>
+        <variable name="vm" type="com.sigmapool.app.screens.poolInfo.viewmodel.PoolInfoBtcViewModel"/>
     </data>
 
     <!-- TODO:scrollView -> LinearLayout orientation vertical -> relative layout - alignParentStart-Below/End-Top-->

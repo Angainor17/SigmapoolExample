@@ -1,4 +1,4 @@
-package com.sigmapool.app.screens.poolInfo.viewmodel
+package com.sigmapool.app.screens.poolInfo.model
 
 import com.sigmapool.common.models.ManagerResult
 import com.sigmapool.common.models.PoolInfoLtcDto
