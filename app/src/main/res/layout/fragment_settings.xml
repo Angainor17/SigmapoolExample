@@ -48,9 +48,9 @@
                         layout="@layout/fragment_settings_select_item"
 
                         app:label="@{@string/language}"
-                        app:value="@{vm.languageLiveData}"
+                        app:value="@{vm.localeLiveData}"
                         app:isTopSeparatorVisible="@{true}"
-                        app:clickListener="@{v->vm.languageSelect()}"
+                        app:clickListener="@{v->vm.localeSelect()}"
                         />
 
                 <include

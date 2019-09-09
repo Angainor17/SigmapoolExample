@@ -2,6 +2,8 @@ package com.sigmapool.app.screens.settings.viewModel
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
+import com.commit451.modalbottomsheetdialogfragment.ModalBottomSheetDialogFragment
+import com.commit451.modalbottomsheetdialogfragment.Option
 import com.google.gson.Gson
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
@@ -22,7 +24,13 @@ import org.kodein.di.generic.instance
 
 private const val APP_EMAIL = "angainor@gmail.com"//FIXME
 
-class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScreenVm {
+private const val LOCALE_TAG = "locale"
+private const val CURRENCY_TAG = "currency"
+
+private const val PUSH_ENABLE = "push_notification"
+
+class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScreenVm,
+    ModalBottomSheetDialogFragment.Listener {
 
     private val resProvider by kodein.instance<IResProvider>()
     private val jsonDataStorage by kodein.instance<JsonDataStorage>()
@@ -36,10 +44,11 @@ class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScre
     private var selectedLang = langProvider.getLocale()
 
     private val rubCurrency = CurrencyItem(resProvider, R.string.rub)
+    private val usdCurrency = CurrencyItem(resProvider, R.string.usd)
 
-    val languageLiveData = MutableLiveData(resProvider.getString(selectedLang.labelResId))
+    val localeLiveData = MutableLiveData(resProvider.getString(selectedLang.labelResId))
     val currencyLiveData = MutableLiveData(rubCurrency)
-    val pushLiveData = MutableLiveData(false)
+    val pushLiveData = MutableLiveData(getPushEnable())
 
     val schemeLiveData = MutableLiveData(SchemeItem("PPS"))//FIXME
     val limitLiveData = MutableLiveData("0.001 BTC")//FIXME
@@ -50,26 +59,32 @@ class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScre
         refreshAuth()
     }
 
-    fun languageSelect() {
-        val locales = langProvider.getAllLocales()
-        val currentLocale = langProvider.getLocale()
-
-        if (locales[0].locale == currentLocale.locale) {
-            langProvider.setLocale(locales[1])
-        } else {
-            langProvider.setLocale(locales[0])
+    override fun onModalOptionSelected(tag: String?, option: Option) {
+        if (tag == LOCALE_TAG) {
+            changeLocale(option)
         }
 
-        langProvider.setUpLocale(context)
-        view.recreate()
+        if (tag == CURRENCY_TAG) {
+            changeCurrency(option)
+        }
+    }
+
+    fun localeSelect() {
+        ModalBottomSheetDialogFragment.Builder()
+            .add(R.menu.locale_menu)
+            .header(resProvider.getString(R.string.switch_language))
+            .show(view.fragmentManager(), LOCALE_TAG)
     }
 
     fun currencySelect() {
-        //TODO implement
+        ModalBottomSheetDialogFragment.Builder()
+            .add(R.menu.currency_menu)
+            .header(resProvider.getString(R.string.switch_currency))
+            .show(view.fragmentManager(), CURRENCY_TAG)
     }
 
     fun pushSwitch(isChecked: Boolean) {
-        //TODO implement
+        jsonDataStorage.put(PUSH_ENABLE, isChecked)
     }
 
     fun schemeSelect() {
@@ -101,6 +116,28 @@ class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScre
             }
         }
     }
+
+    private fun changeCurrency(option: Option) {
+        val selectedCurrency = if (option.id == R.id.currency_rub) rubCurrency else usdCurrency
+
+        currencyLiveData.postValue(selectedCurrency)
+    }
+
+    private fun changeLocale(option: Option) {
+        val locales = langProvider.getAllLocales()
+
+        val selectedLocale = locales[if (option.id == R.id.locale_rus) 0 else 1]
+        val currentLocale = langProvider.getLocale()
+
+        if (currentLocale == selectedLocale) return
+
+        langProvider.setLocale(locales[if (locales[0].locale == currentLocale.locale) 1 else 0])
+        langProvider.setUpLocale(context)
+
+        view.recreate()
+    }
+
+    private fun getPushEnable(): Boolean = jsonDataStorage.get(PUSH_ENABLE)
 
     private fun refreshAuth() {
         val authDto = Gson().fromJson(jsonDataStorage.getJson(AUTH_KEY), AuthDto::class.java)

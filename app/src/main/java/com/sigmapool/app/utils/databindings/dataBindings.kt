@@ -137,6 +137,11 @@ fun onCheckedChange(view: SwitchButton, listener: SwitchButton.OnCheckedChangeLi
     view.setOnCheckedChangeListener(listener)
 }
 
+@BindingAdapter("app:value")
+fun onCheckedChange(view: SwitchButton, isChecked: Boolean) {
+    view.isChecked = isChecked
+}
+
 @BindingAdapter("bind:initCoinSpinner")
 fun initCoinSpinner(spinner: Spinner, vm: CoinToolbarVM) {
     val adapter = CustomAdapter(spinner.context, vm.coinProvider.coins)

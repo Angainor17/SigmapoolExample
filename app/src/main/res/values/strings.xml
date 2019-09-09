@@ -107,5 +107,9 @@
     <string name="name">Name</string>
     <string name="current">Current</string>
     <string name="hashrate24h">Hashrate 24h</string>
+    <string name="switch_language">Switch Language</string>
+    <string name="switch_currency">Switch Currency</string>
+    <string name="usd"
+            translatable="false">USD</string>
 
 </resources>

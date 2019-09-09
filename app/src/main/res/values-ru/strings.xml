@@ -92,5 +92,7 @@
     <string name="name">Имя</string>
     <string name="current">Текущий</string>
     <string name="hashrate24h">Хэшрейт за 24ч</string>
+    <string name="switch_language">Выберите язык</string>
+    <string name="switch_currency">Выберите валюту</string>
 
 </resources>

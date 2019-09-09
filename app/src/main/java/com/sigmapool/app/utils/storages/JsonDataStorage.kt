@@ -13,6 +13,12 @@ class JsonDataStorage(context: Context) {
         sharedPreferences.edit().putString(key, Gson().toJson(data)).apply()
     }
 
+    fun put(key: String, data: Boolean) {
+        sharedPreferences.edit().putBoolean(key, data).apply()
+    }
+
+    fun get(key: String) = sharedPreferences.getBoolean(key, false)
+
     fun getJson(key: String, default: String = ""): String? = try {
         sharedPreferences.getString(key, "")
     } catch (e: Exception) {

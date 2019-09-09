@@ -6,16 +6,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
+import com.commit451.modalbottomsheetdialogfragment.ModalBottomSheetDialogFragment
+import com.commit451.modalbottomsheetdialogfragment.Option
 import com.sigmapool.app.R
 import com.sigmapool.app.databinding.FragmentSettingsBinding
 import com.sigmapool.app.screens.settings.viewModel.SettingsVM
 import com.sigmapool.app.utils.customViews.fragment.UpdateFragment
 
-class SettingsFragment : UpdateFragment(), ISettingsView {
+class SettingsFragment : UpdateFragment(), ISettingsView, ModalBottomSheetDialogFragment.Listener {
+
+    val vm = SettingsVM(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentSettingsBinding.inflate(inflater, container, false)
-        val vm = SettingsVM(this)
+
         binding.vm = vm
         setUpVm(vm, binding)
 
@@ -34,6 +39,12 @@ class SettingsFragment : UpdateFragment(), ISettingsView {
 
         startActivity(Intent.createChooser(intent, getString(R.string.email_via)))
     }
+
+    override fun onModalOptionSelected(tag: String?, option: Option) {
+        vm.onModalOptionSelected(tag, option)
+    }
+
+    override fun fragmentManager(): FragmentManager = childFragmentManager
 
     override fun markApp() {
         val appPackageName = activity!!.packageName

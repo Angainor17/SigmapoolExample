@@ -29,10 +29,10 @@ android {
 }
 
 dependencies {
-
     implementation project(path: ':api')
     implementation project(path: ':common')
 
+    implementation modalBottomSheetDialog.core
     implementation bannerslider.core
     implementation switchButton.core
 
