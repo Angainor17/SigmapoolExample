@@ -14,6 +14,7 @@ class LoginFragment : InnerFragment(), ILoginFragmentModel {
         val binding = FragmentLoginBinding.inflate(inflater, container, false)
         val vm = LoginVM(this)
         binding.vm = vm
+        binding.toolbarVm = this
         setUpVm(vm, binding)
 
         return binding.root
