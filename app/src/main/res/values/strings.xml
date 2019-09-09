@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name"
-            translatable="false">Sigmapool</string>
+    <string name="app_name">Sigmapool</string>
     <string name="profit">Profit</string>
     <string name="mining_profit">Mining Profit</string>
     <string name="power_cost">Power Cost</string>
@@ -19,12 +18,10 @@
     <string name="remember_me">Remember me</string>
     <string name="sign_in_api_key">Sign in with API Key</string>
     <string name="or">or</string>
-
     <string name="pool_info">Pool Info</string>
     <string name="fee">Fee</string>
     <string name="fpps">FPPS</string>
     <string name="pps">PPS</string>
-    <string name="dailyProfitPerTHs">Daily Profit Per TH/s (FPPS)</string>
     <string name="btc">BTC</string>
     <string name="paymentTime">Payment Time</string>
     <string name="minimumPayout">Minimum Payout</string>
@@ -61,8 +58,6 @@
     <string name="next_difficulty_label">Next projected difficulty</string>
     <string name="profit_of_mining">Maining Profit</string>
     <string name="last_news">Last News</string>
-    <string name="litecoin">Litecoin</string>
-    <string name="bitcoin">Bitcoin</string>
     <string name="general_characteristic">Other params</string>
 
     <string-array name="months">

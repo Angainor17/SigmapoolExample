@@ -63,8 +63,8 @@ class PoolInfoLtcViewModel(model: IPoolInfoLtcModel) : ViewModel(){
             val outputDataFormat = SimpleDateFormat("HH:mm")
 
             inputDataFormat.timeZone = TimeZone.getTimeZone("UTC")
-            val fromDate = inputDataFormat.parse(data?.time?.from)
-            val toDate   = inputDataFormat.parse(data?.time?.to)
+            val fromDate = data?.time?.from
+            val toDate   = data?.time?.to
 
             val fromStr = outputDataFormat.format(fromDate)
             val toStr = outputDataFormat.format(toDate)

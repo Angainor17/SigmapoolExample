@@ -25,7 +25,7 @@ internal class PoolInfoManager(serviceProvider: IApiServiceProvider) : IPoolInfo
             val paymentTime = this.poolInfoService.getPayment(coin).payload!!
 
             val paymentTimeDto = PaymentDto(
-                PaymentTime(paymentTime.time.from, paymentTime.time.to),
+                TimeIntervalDto(paymentTime.time.from, paymentTime.time.to),
                 paymentTime.min
             )
 
@@ -35,7 +35,7 @@ internal class PoolInfoManager(serviceProvider: IApiServiceProvider) : IPoolInfo
 
     private val poolInfoService = serviceProvider.create(PoolInfoApi::class.java)
 
-        // There is two functions get*tcPoolInfo b/c they returns different classes
+    // There is two functions get*tcPoolInfo b/c they returns different classes
     override suspend fun getBtcPoolInfo(): ManagerResult<PoolInfoBtcDto> {
         return wrapManagerResult {
 
