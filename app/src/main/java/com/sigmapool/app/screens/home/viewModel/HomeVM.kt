@@ -53,7 +53,7 @@ class HomeVM : ViewModel(), OnSlideClickListener, IUpdateScreenVm {
     }
 
     override fun onSlideClick(position: Int) {
-        if (position >= blogImages.value?.size ?: 0) return
+        if (position >= blogImages.value?.size ?: 0 || position < 0) return
 
         val item = blogImages.value?.get(position)
         urlLiveData.postValue(item?.url)
