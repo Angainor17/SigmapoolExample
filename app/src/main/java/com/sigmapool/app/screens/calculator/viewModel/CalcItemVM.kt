@@ -7,7 +7,9 @@ import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
+import com.sigmapool.app.R
 import com.sigmapool.app.provider.currency.ICurrencyProvider
+import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.utils.interfaces.ViewState.*
 import com.sigmapool.app.utils.liveDataZip
 import com.sigmapool.common.managers.IPoolManager
@@ -23,6 +25,7 @@ class CalcItemVM(
     private val coinLabel: String
 ) : ViewModel() {
 
+    private val res by kodein.instance<IResProvider>()
     private val poolManager by kodein.instance<IPoolManager>()
     private val currencyProvider by kodein.instance<ICurrencyProvider>()
 
@@ -37,9 +40,10 @@ class CalcItemVM(
     val difficulty = MutableLiveData<CharSequence>(formatDifficulty(0L))
     val blockReward = MutableLiveData<CharSequence>(formatBlockReward(0f))
 
-    val changeStateAction = View.OnClickListener {
-        //TODO implement
-    }
+    val topLine = CalcValueVM(res.getString(R.string.hashrate), res.getString(R.string.thashs_per_second), "0")
+    val bottomLine = CalcValueVM(res.getString(R.string.profit), res.getString(R.string.btc_per_day), "0.0", "~ \$ 368.48")
+
+    val changeStateAction = View.OnClickListener { switchCalcValueLines() }
 
     fun onRefresh() {
         initValues()
@@ -50,6 +54,23 @@ class CalcItemVM(
             initGeneralInfo()
             initConverter()
         }
+    }
+
+    private fun switchCalcValueLines() {
+        val label = topLine.label.value
+        val postfix = topLine.postfix.value
+        val value = topLine.value.value
+        val price = topLine.price.value
+
+        topLine.label.postValue(bottomLine.label.value)
+        topLine.postfix.postValue(bottomLine.postfix.value)
+        topLine.value.postValue(bottomLine.value.value)
+        topLine.price.postValue(bottomLine.price.value)
+
+        bottomLine.label.postValue(label)
+        bottomLine.postfix.postValue(postfix)
+        bottomLine.value.postValue(value)
+        bottomLine.price.postValue(price)
     }
 
     private suspend fun initConverter() {

@@ -78,7 +78,7 @@
                                 android:textColor="@color/white"
                                 android:layout_height="wrap_content"
 
-                                tools:text="@string/calculator_info"
+                                tools:text="Test text"
                                 />
 
                     </LinearLayout>

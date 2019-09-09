@@ -78,11 +78,6 @@
     <string name="thashs_per_second">Thash/s</string>
     <string name="btc_per_day">BTC/day</string>
 
-    <string name="init_decimal_number"
-            translatable="false">0.0</string>
-    <string name="init_integer_number"
-            translatable="false">0</string>
-
     <string name="current_price">Current Price</string>
     <string name="difficulty">Difficulty</string>
     <string name="block_reward">Block Reward</string>

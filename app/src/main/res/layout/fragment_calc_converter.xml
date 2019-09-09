@@ -2,7 +2,6 @@
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         >
 
     <data>
@@ -42,11 +41,8 @@
                     android:layout_marginTop="20dp"
 
                     app:inputType="@{InputType.TYPE_CLASS_NUMBER}"
-                    app:label="@{@string/hashrate}"
-                    app:postfix="@{@string/thashs_per_second}"
-                    app:value="@{@string/init_integer_number}"
+                    app:vm="@{vm.topLine}"
                     />
-
 
             <include
                     layout="@layout/change_btn"
@@ -62,22 +58,8 @@
             <include
                     layout="@layout/value_postfix_view"
 
-                    app:inputType="@{InputType.TYPE_CLASS_NUMBER}"
-                    app:label="@{@string/profit}"
-                    app:postfix="@{@string/btc_per_day}"
-                    app:value="@{@string/init_decimal_number}"
-                    />
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginBottom="24dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/google_sans_regular"
-                    android:textColor="@color/titleGray"
-                    android:text="@{vm.price}"
-
-                    tools:text="~ $ 368.48"
+                    app:inputType="@{-1}"
+                    app:vm="@{vm.bottomLine}"
                     />
 
         </LinearLayout>

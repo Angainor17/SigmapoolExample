@@ -97,6 +97,11 @@ fun goneIfValueBlank(view: View, value: String?) {
     view.visibility = if (value.isNullOrEmpty()) View.GONE else View.VISIBLE
 }
 
+@BindingAdapter("invisibleIfBlank")
+fun invisibleIfBlank(view: View, value: String?) {
+    view.visibility = if (value.isNullOrEmpty()) View.INVISIBLE else View.VISIBLE
+}
+
 @BindingAdapter("goneIfNotBlank")
 fun goneIfValueNotBlank(view: View, value: String?) {
     view.visibility = if (value.isNullOrEmpty()) View.VISIBLE else View.GONE
