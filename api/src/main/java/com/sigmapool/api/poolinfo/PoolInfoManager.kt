@@ -1,7 +1,6 @@
 package com.sigmapool.api.poolinfo
 
 import com.sigmapool.api.providers.IApiServiceProvider
-import com.sigmapool.api.wrapManagerResult
 import com.sigmapool.common.managers.IPoolInfoManager
 import com.sigmapool.common.models.*
 
@@ -81,3 +80,5 @@ internal class PoolInfoManager(serviceProvider: IApiServiceProvider) : IPoolInfo
         }
     }
 }
+
+
