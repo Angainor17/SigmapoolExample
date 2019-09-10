@@ -11,6 +11,7 @@ import com.sigmapool.app.screens.login.LoginFragment
 import com.sigmapool.app.screens.login.data.AUTH_KEY
 import com.sigmapool.app.screens.news.params.NewsListParams
 import com.sigmapool.app.screens.news.vm.NewsListVM
+import com.sigmapool.app.utils.interfaces.IBrowserVm
 import com.sigmapool.app.utils.interfaces.IUpdateScreenVm
 import com.sigmapool.app.utils.storages.JsonDataStorage
 import com.sigmapool.common.managers.IBlogManager
@@ -28,21 +29,23 @@ private const val BLOG_INIT_PAGE = 1
 private const val BLOG_PER_PAGE = 20
 private const val NEWS_PER_PAGE = 3
 
-class HomeVM : ViewModel(), OnSlideClickListener, IUpdateScreenVm {
+class HomeVM : ViewModel(), OnSlideClickListener, IUpdateScreenVm, IBrowserVm {
 
     private val blogManager by kodein.instance<IBlogManager>()
     private val langProvider by kodein.instance<ILocaleProvider>()
     private val storage by kodein.instance<JsonDataStorage>()
 
     val isLogin = MutableLiveData<Boolean>()
-    val urlLiveData = MutableLiveData<String>()
+
     val fragmentLiveData = MutableLiveData<Class<out Fragment>>()
     val blogImages = MutableLiveData<ArrayList<BlogDto>>()
-
     val homeMenuVM = HomeMenuVM(fragmentLiveData)
+
     val coinsVM = CoinsVM()
     val minersVM = HomeMinerVM()
     val newsVM = NewsListVM(NewsListParams(NEWS_PER_PAGE))
+
+    override val urlLiveData = newsVM.urlLiveData
 
     init {
         initBlogBanner()
@@ -53,9 +56,10 @@ class HomeVM : ViewModel(), OnSlideClickListener, IUpdateScreenVm {
     }
 
     override fun onSlideClick(position: Int) {
-        if (position >= blogImages.value?.size ?: 0 || position < 0) return
+        val updatedPosition = if (position < 0) 0 else position
+        if (updatedPosition >= blogImages.value?.size ?: 0 || updatedPosition < 0) return
 
-        val item = blogImages.value?.get(position)
+        val item = blogImages.value?.get(updatedPosition)
         urlLiveData.postValue(item?.url)
     }
 
@@ -69,7 +73,8 @@ class HomeVM : ViewModel(), OnSlideClickListener, IUpdateScreenVm {
 
     private fun initBlogBanner() {
         GlobalScope.launch(Dispatchers.IO) {
-            val coin = blogManager.getBlogs(BLOG_INIT_PAGE, BLOG_PER_PAGE, langProvider.getLocale().locale)
+            val coin =
+                blogManager.getBlogs(BLOG_INIT_PAGE, BLOG_PER_PAGE, langProvider.getLocale().locale)
             if (coin.success) {
                 blogImages.postValue(coin.data ?: ArrayList())
             } else {

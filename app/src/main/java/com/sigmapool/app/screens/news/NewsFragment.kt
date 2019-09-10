@@ -14,7 +14,8 @@ class NewsFragment : InnerFragment(), INewsFragmentModel {
         val binding = FragmentNewsBinding.inflate(inflater, container, false)
         val vm = NewsVM(this)
         binding.vm = vm
-        binding.lifecycleOwner = this
+
+        setUpVm(vm, binding)
 
         return binding.root
     }

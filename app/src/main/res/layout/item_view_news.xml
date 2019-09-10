@@ -15,17 +15,19 @@
 
     <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
             android:layout_height="wrap_content"
+            android:onClick="@{v->vm.clickAction.invoke()}"
+            android:orientation="vertical"
             >
 
         <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="10dp"
+                android:onClick="@{v->vm.clickAction.invoke()}"
 
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="6dp"
@@ -34,24 +36,25 @@
 
             <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
+                    android:onClick="@{v->vm.clickAction.invoke()}"
                     >
 
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="false"
                         android:layout_marginTop="10dp"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/google_sans_bold"
-                        android:textSize="17dp"
-
-                        app:htmlText="@{vm.title}"
                         android:autoLink="web"
+                        android:fontFamily="@font/google_sans_bold"
                         android:linksClickable="true"
+                        android:singleLine="false"
+                        android:onClick="@{v->vm.clickAction.invoke()}"
+                        android:textColor="@color/black"
+                        android:textSize="17dp"
+                        app:htmlText="@{vm.title}"
 
                         tools:text="Stockpoint.io: уникальное предложение для криптовалютных трейдеро"
                         />
@@ -59,14 +62,15 @@
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:autoLink="web"
+                        android:fontFamily="@font/google_sans_regular"
+                        android:linksClickable="true"
                         android:singleLine="false"
                         android:textColor="#333333"
                         android:textSize="13dp"
-                        android:fontFamily="@font/google_sans_regular"
-                        android:layout_marginTop="7dp"
+                        android:onClick="@{v->vm.clickAction.invoke()}"
                         app:htmlText="@{vm.text}"
-                        android:autoLink="web"
-                        android:linksClickable="true"
 
                         tools:text="Криптобиржа Stockpoint.io завоевывает своими преимуществами все больше симпатий клиентов. В мире трейдинговых площадок глаза разбегаются: какую выбрать?"
                         />
@@ -74,13 +78,14 @@
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="false"
-                        android:textColor="@color/titleGray"
-                        android:textSize="13dp"
-                        android:fontFamily="@font/google_sans_regular"
                         android:layout_marginTop="9dp"
                         android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/google_sans_regular"
+                        android:singleLine="false"
                         android:text="@{vm.dateString}"
+                        android:textColor="@color/titleGray"
+                        android:textSize="13dp"
+                        android:onClick="@{v->vm.clickAction.invoke()}"
 
                         tools:text="2 мая, 12:33"
                         />

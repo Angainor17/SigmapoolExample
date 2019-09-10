@@ -2,18 +2,28 @@ package com.sigmapool.app.screens.news.vm
 
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.res.IResProvider
+import com.sigmapool.app.utils.interfaces.IBrowserVm
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 import com.sigmapool.common.models.NewsDto
 import java.text.DateFormatSymbols
 import java.text.SimpleDateFormat
 import java.util.*
 
-class NewsItemVM(private val resProvider: IResProvider, newsDto: NewsDto) : BaseItemViewModel {
+class NewsItemVM(
+    private val resProvider: IResProvider,
+    newsDto: NewsDto,
+    private val browserVm: IBrowserVm
+) : BaseItemViewModel {
 
+    val url = newsDto.url
     val title: String = newsDto.title
     val text: String = newsDto.brief
     private val date: Date = newsDto.publishedAt
     val dateString = date.formatDate()
+
+    var clickAction = {
+        browserVm.urlLiveData.postValue(url)
+    }
 
     companion object {
         val itemType = NewsItemVM::class.hashCode()

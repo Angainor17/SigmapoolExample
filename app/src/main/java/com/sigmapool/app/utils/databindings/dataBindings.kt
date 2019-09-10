@@ -94,8 +94,8 @@ fun setImages(slider: Slider, items: ArrayList<BlogDto>?, listener: OnSlideClick
         slider.setAdapter(adapter)
         if (adapter != null) {
             slider.setInterval(10000)
+            slider.setOnSlideClickListener(listener)
         }
-        slider.setOnSlideClickListener(listener)
     }
 }
 

@@ -1,7 +1,5 @@
 package com.sigmapool.app.screens.home
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,15 +11,17 @@ import com.sigmapool.app.navigation.showScreen
 import com.sigmapool.app.screens.home.viewModel.HomeVM
 import com.sigmapool.app.utils.customViews.fragment.UpdateFragment
 
-
 class HomeFragment : UpdateFragment() {
 
     val vm = HomeVM()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        vm.urlLiveData.observe(this, Observer { openUrlInBrowser(it) })
         vm.fragmentLiveData.observe(this, Observer { openFragment(it) })
 
         binding.vm = vm
@@ -30,13 +30,6 @@ class HomeFragment : UpdateFragment() {
         setUpVm(vm, binding)
 
         return binding.root
-    }
-
-    private fun openUrlInBrowser(url: String) {
-        if (url.isEmpty()) return
-
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        startActivity(browserIntent)
     }
 
     private fun openFragment(fragmentClass: Class<out Fragment>) {

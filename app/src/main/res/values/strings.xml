@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name"            translatable="false">Sigmapool</string>
+    <string name="app_name"
+            translatable="false">Sigmapool</string>
     <string name="profit">Profit</string>
     <string name="mining_profit">Mining Profit</string>
     <string name="power_cost">Power Cost</string>
@@ -10,21 +11,23 @@
     <string name="hashrate_power">Hashrate/Power</string>
     <string name="revenue_power_cost">Revenue/Power Cost</string>
     <string name="shutdown_price">Shutdown Price</string>
-    <string name="btc_caps" translatable="false">BTC</string>
+    <string name="btc_caps"
+            translatable="false">BTC</string>
     <string name="power_postfix">W</string>
-    <string name="hashrate_postfix">T</string>
-    <string name="login">Login</string>
+    <string name="login">Sign in</string>
     <string name="password">Password</string>
-    <string name="remember_me">Remember me</string>
-    <string name="sign_in_api_key">Sign in with API Key</string>
     <string name="or">or</string>
 
     <string name="pool_info">Pool Info</string>
     <string name="fee">Fee</string>
-    <string name="fpps">FPPS</string>
-    <string name="pps">PPS</string>
-    <string name="btc" translatable="false">BTC</string>
-    <string name="ltc" translatable="false">LTC</string>
+    <string name="fpps"
+            translatable="false">FPPS</string>
+    <string name="pps"
+            translatable="false">PPS</string>
+    <string name="btc"
+            translatable="false">BTC</string>
+    <string name="ltc"
+            translatable="false">LTC</string>
     <string name="paymentTime">Payment Time</string>
     <string name="minimumPayout">Minimum Payout</string>
     <string name="settlementDetails">Settlement Details</string>
@@ -36,8 +39,8 @@
     <string name="workers_screen_icon_title">Workers</string>
     <string name="earnings_screen_icon_title">Earnings</string>
     <string name="settings_screen_icon_title">Settings</string>
-    <string name="registration">Register</string>
-    <string name="enter">Login</string>
+    <string name="registration">Sign Up</string>
+    <string name="enter">Sign In</string>
     <string name="calculator">Calculator</string>
     <string name="news">News</string>
     <string name="pool_hashrate">Pool hashrate</string>
