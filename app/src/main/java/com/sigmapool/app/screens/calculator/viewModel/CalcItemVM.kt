@@ -125,15 +125,20 @@ class CalcItemVM(
                 (value / it.profit) / coef
             }
 
-            bottomLine.value.postValue(
-                calculatedValue.format(if (isHashrateToProfit) FLOAT_PATTERN else INT_PATTERN)
-            )
+            bottomLine.value.postValue(formatFloat(calculatedValue))
 
             updatePrice(
                 if (isHashrateToProfit) bottomLine else topLine,
                 if (isHashrateToProfit) calculatedValue else value
             )
         }
+    }
+
+    private fun formatFloat(calculatedValue: Float): String {
+        var result = String.format("%f", calculatedValue).trimEnd('0')
+        if (result.last() == '.') result += "0"
+
+        return result
     }
 
     private fun updatePrice(vm: CalcValueVM, calculatedValue: Float) {
