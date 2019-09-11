@@ -78,8 +78,9 @@
     </string-array>
 
     <string name="hashrate">Hashrate</string>
-    <string name="thashs_per_second">Thash/s</string>
-    <string name="btc_per_day">BTC/day</string>
+    <string name="t_hashs_per_sec">Thash/s</string>
+    <string name="m_hashs_per_sec">Mhash/s</string>
+    <string name="per_day">/day</string>
 
     <string name="current_price">Current Price</string>
     <string name="difficulty">Difficulty</string>

@@ -4,7 +4,7 @@ import android.graphics.Color
 import androidx.lifecycle.MutableLiveData
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
-import com.sigmapool.app.models.Currency
+import com.sigmapool.app.provider.currency.models.CurrencyParams
 import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.common.utils.plus
 import com.sigmapool.common.utils.spannableString
@@ -13,21 +13,29 @@ import org.kodein.di.generic.instance
 import java.text.DecimalFormat
 
 
-class SeekBarVM(private val currencyLiveData: MutableLiveData<Currency>) : IIndicatorSeekBarViewModel {
+class SeekBarVM(private val currencyParamsLiveData: MutableLiveData<CurrencyParams>) :
+    IIndicatorSeekBarViewModel {
 
     private val res by kodein.instance<IResProvider>()
 
     val seekBarValueLiveData = MutableLiveData<Float>()
 
-    override fun getStartRange() = currencyLiveData.value?.scaleFrom ?: 1
-    override fun getEndRange() = currencyLiveData.value?.scaleTo ?: 12
-    override fun getInitValue() = currencyLiveData.value?.initValue ?: 1
-    override fun getStep() = currencyLiveData.value?.step ?: 0
+    override fun getStartRange() = currencyParamsLiveData.value?.scaleFrom ?: 1
+    override fun getEndRange() = currencyParamsLiveData.value?.scaleTo ?: 12
+    override fun getInitValue() = currencyParamsLiveData.value?.initValue ?: 1
+    override fun getStep() = currencyParamsLiveData.value?.step ?: 0
     override fun getDisplayedValue() = getSeekText(getInitValue().toFloat())
-    override fun getArrayRes() = currencyLiveData.value?.stringArrayRes ?: R.array.array_first_and_last_1_12
+    override fun getArrayRes() =
+        currencyParamsLiveData.value?.stringArrayRes ?: R.array.array_first_and_last_1_12
 
     override fun onChange(value: Float) {
-        seekBarValueLiveData.postValue(value)
+        val updatedValue = updateValue(value)
+        seekBarValueLiveData.postValue(updatedValue)
+    }
+
+    private fun updateValue(value: Float): Float {
+        val step = currencyParamsLiveData.value?.step ?: 0
+        return if (step > 0) value else value / 100
     }
 
     fun getSeekText(value: Float?): CharSequence =
@@ -37,7 +45,7 @@ class SeekBarVM(private val currencyLiveData: MutableLiveData<Currency>) : IIndi
             res.getColor(R.color.titleGray)
         ) +
                 spannableString(
-                    getFormattedValue(value, currencyLiveData.value!!),
+                    getFormattedValue(value ?: 0f, currencyParamsLiveData.value!!),
                     16,
                     Color.BLACK
                 ) +
@@ -47,6 +55,11 @@ class SeekBarVM(private val currencyLiveData: MutableLiveData<Currency>) : IIndi
                     res.getColor(R.color.titleGray)
                 )
 
-    private fun getFormattedValue(value: Float?, currency: Currency): String =
-        DecimalFormat("####0" + (if (currency.step > 0) "." else "") + "0".repeat(currency.step)).format(value)
+    private fun getFormattedValue(value: Float?, currencyParams: CurrencyParams): String {
+        val pattern =
+            "####0" + (if (currencyParams.numbersAfterPoint > 0) "." else "") + "0".repeat(
+                currencyParams.numbersAfterPoint
+            )
+        return DecimalFormat(pattern).format(value)
+    }
 }

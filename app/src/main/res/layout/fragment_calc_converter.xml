@@ -40,7 +40,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
 
-                    app:inputType="@{InputType.TYPE_CLASS_NUMBER}"
+                    app:textWatcher="@{vm}"
+                    app:inputType="@{InputType.TYPE_NUMBER_FLAG_DECIMAL}"
                     app:vm="@{vm.topLine}"
                     />
 

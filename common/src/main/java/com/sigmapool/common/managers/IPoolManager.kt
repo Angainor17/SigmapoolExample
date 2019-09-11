@@ -11,4 +11,6 @@ interface IPoolManager {
     suspend fun getNetwork(coin: String): ManagerResult<NetworkDto>
 
     suspend fun getProfitDaily(coin: String): ManagerResult<ProfitDailyDto>
+
+    suspend fun getCurrency(coin: String): ManagerResult<CurrencyDto>
 }

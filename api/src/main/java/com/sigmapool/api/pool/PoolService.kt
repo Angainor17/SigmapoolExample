@@ -1,9 +1,6 @@
 package com.sigmapool.api.pool
 
-import com.sigmapool.api.pool.models.CoinResponse
-import com.sigmapool.api.pool.models.NetworkResponse
-import com.sigmapool.api.pool.models.PaymentResponse
-import com.sigmapool.api.pool.models.ProfitDailyResponse
+import com.sigmapool.api.pool.models.*
 import com.sigmapool.api.providers.IApiServiceProvider
 
 internal class PoolService(apiProvider: IApiServiceProvider) : IPoolService {
@@ -17,4 +14,6 @@ internal class PoolService(apiProvider: IApiServiceProvider) : IPoolService {
     override suspend fun getNetwork(coin: String): NetworkResponse = api.getNetwork(coin).payload!!
 
     override suspend fun getProfitDaily(coin: String): ProfitDailyResponse = api.getProfitDaily(coin).payload!!
+
+    override suspend fun getCurrency(coin: String): CurrencyResponse = api.getCurrency(coin).payload!!
 }

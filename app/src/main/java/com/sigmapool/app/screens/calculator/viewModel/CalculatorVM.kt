@@ -7,6 +7,7 @@ import com.sigmapool.app.R
 import com.sigmapool.app.provider.lang.ILocaleProvider
 import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.screens.calculator.ICalculatorFragmentModel
+import com.sigmapool.app.screens.calculator.params.CalcItemParams
 import com.sigmapool.app.screens.home.coin.BTC
 import com.sigmapool.app.screens.home.coin.LTC
 import com.sigmapool.app.utils.liveDataZip
@@ -19,8 +20,8 @@ import org.kodein.di.generic.instance
 
 class CalculatorVM(val view: ICalculatorFragmentModel) : ViewModel(), ITitleViewModel {
 
-    private val btcCalcItem = CalcItemVM(BTC)
-    private val ltcCalcItem = CalcItemVM(LTC)
+    private val btcCalcItem = CalcItemVM(CalcItemParams(BTC, R.string.t_hashs_per_sec, 1000000000000L))
+    private val ltcCalcItem = CalcItemVM(CalcItemParams(LTC, R.string.m_hashs_per_sec, 1000000L))
     private val refreshingInfo = MutableLiveData(false)
 
     val calcItems = arrayListOf(btcCalcItem, ltcCalcItem)

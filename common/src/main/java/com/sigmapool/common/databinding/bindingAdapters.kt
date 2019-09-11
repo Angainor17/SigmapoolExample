@@ -7,14 +7,6 @@ import com.warkiz.widget.IndicatorSeekBar
 import com.warkiz.widget.OnSeekChangeListener
 import com.warkiz.widget.SeekParams
 
-@BindingAdapter("app:isb_min")
-fun setSeekBarMinRange(view: IndicatorSeekBar, liveData: Int?) {
-    liveData?.let {
-        view.min = it.toFloat()
-        view.setProgress(it.toFloat())
-    }
-}
-
 @BindingAdapter("app:isb_max")
 fun setSeekBarMaxRange(view: IndicatorSeekBar, liveData: Int?) {
     liveData?.let {
@@ -36,8 +28,12 @@ fun setSeekBarStringArray(view: IndicatorSeekBar, liveData: Int?) {
     }
 }
 
-@BindingAdapter("app:changeListener")
-fun setSeekBarChangeListener(view: IndicatorSeekBar, action: OnSeekValueChangeListener?) {
+@BindingAdapter("app:changeListener", "app:isb_min", requireAll = true)
+fun setSeekBarChangeListener(
+    view: IndicatorSeekBar,
+    action: OnSeekValueChangeListener?,
+    value: Int?
+) {
     view.onSeekChangeListener = object : OnSeekChangeListener {
         override fun onSeeking(seekParams: SeekParams?) {
             seekParams?.progressFloat?.let { action?.onChange(it) }
@@ -50,6 +46,12 @@ fun setSeekBarChangeListener(view: IndicatorSeekBar, action: OnSeekValueChangeLi
         override fun onStopTrackingTouch(seekBar: IndicatorSeekBar?) {
 
         }
+    }
+
+    value?.let {
+        view.min = it.toFloat()
+        view.setProgress(it.toFloat())
+        action?.onChange(it.toFloat())
     }
 }
 

@@ -7,6 +7,9 @@ import com.commit451.modalbottomsheetdialogfragment.Option
 import com.google.gson.Gson
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
+import com.sigmapool.app.provider.currency.ICurrencyProvider
+import com.sigmapool.app.provider.currency.models.rubCurrency
+import com.sigmapool.app.provider.currency.models.usdCurrency
 import com.sigmapool.app.provider.lang.ILocaleProvider
 import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.screens.login.data.AUTH_KEY
@@ -35,19 +38,17 @@ class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScre
     private val resProvider by kodein.instance<IResProvider>()
     private val jsonDataStorage by kodein.instance<JsonDataStorage>()
     private val langProvider by kodein.instance<ILocaleProvider>()
+    private val currencyProvider by kodein.instance<ICurrencyProvider>()
     private val loginManager by kodein.instance<ILoginManager>()
     private val context by kodein.instance<Context>()
 
     val toolbarVm = CoinToolbarVM()
 
-
     private var selectedLang = langProvider.getLocale()
 
-    private val rubCurrency = CurrencyItem(resProvider, R.string.rub)
-    private val usdCurrency = CurrencyItem(resProvider, R.string.usd)
-
     val localeLiveData = MutableLiveData(resProvider.getString(selectedLang.labelResId))
-    val currencyLiveData = MutableLiveData(rubCurrency)
+    val currencyLiveData =
+        MutableLiveData(resProvider.getString(currencyProvider.getCurrency().labelResId))
     val pushLiveData = MutableLiveData(getPushEnable())
 
     val schemeLiveData = MutableLiveData(SchemeItem("PPS"))//FIXME
@@ -120,7 +121,9 @@ class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScre
     private fun changeCurrency(option: Option) {
         val selectedCurrency = if (option.id == R.id.currency_rub) rubCurrency else usdCurrency
 
-        currencyLiveData.postValue(selectedCurrency)
+        currencyProvider.setCurrency(selectedCurrency)
+        currencyLiveData.postValue(resProvider.getString(selectedCurrency.labelResId))
+        view.recreate()
     }
 
     private fun changeLocale(option: Option) {

@@ -24,9 +24,9 @@ class MinerItemVM(
     var btcValue: String = createBtcValueText(0f)
 
     var revenuePowerCost: CharSequence = createRevenuePowerCost(0f)
-    val shutdownPrice: String = getCurrencyLabel() + " " + miner.shutdownPrice.format(FLOAT_PATTERN)
+    val shutdownPrice: String = getCurrencyLabel() + " " + miner.shutdownPrice.toCurrency().format(FLOAT_PATTERN)
     var profit = ""
-    var profitValue = 0f
+    var profitValue = 1f
 
     init {
         initPowerCost(1f)
@@ -34,7 +34,10 @@ class MinerItemVM(
 
     fun initPowerCost(powerCost: Float) {
         profitValue = miner.revenue - powerCost
-        profit = (if (profitValue < 0) "-" else "") + getCurrencyLabel() + " " + abs(profitValue).format(FLOAT_PATTERN)
+        profit =
+            (if (profitValue < 0) "-" else "") + getCurrencyLabel() + " " + abs(profitValue).format(
+                FLOAT_PATTERN
+            )
         revenuePowerCost = createRevenuePowerCost(powerCost)
     }
 
@@ -54,7 +57,7 @@ class MinerItemVM(
         val itemType = MinerItemVM::class.hashCode()
     }
 
-    private fun getCurrencyLabel(): String = currencyProvider.getSymbol().toString()
+    private fun getCurrencyLabel(): String = currencyProvider.getSymbol()
 
     override val itemViewType: Int = itemType
 
@@ -65,7 +68,8 @@ class MinerItemVM(
     }
 
     private fun createBtcValueText(value: Float) =
-        res.getString(R.string.btc_caps) + " - " + getCurrencyLabel() + " " + value.format(INT_PATTERN)
+        res.getString(R.string.btc_caps) + " - " + getCurrencyLabel() + " " +
+                value.toCurrency().format(INT_PATTERN)
 
     private fun createHashratePower(miner: MinerDto): CharSequence {
         val hashrate = formatLongValue(miner.hashrate)
@@ -79,6 +83,8 @@ class MinerItemVM(
     fun initCoin(value: Float) {
         btcValue = createBtcValueText(value)
     }
+
+    private fun Float.toCurrency(): Float = currencyProvider.fromUsdToCurrency(this)
 }
 
 fun String.spannable(color: Int, textSize: Int = 15) = spannableString(

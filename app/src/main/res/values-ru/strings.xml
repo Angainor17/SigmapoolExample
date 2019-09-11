@@ -67,8 +67,9 @@
     </string-array>
 
     <string name="hashrate">Хешрейт</string>
-    <string name="thashs_per_second">Thash/s</string>
-    <string name="btc_per_day">BTC/день</string>
+    <string name="t_hashs_per_sec">Thash/с</string>
+    <string name="m_hashs_per_sec">Mhash/с</string>
+    <string name="per_day">/день</string>
 
     <string name="current_price">Текущая цена</string>
     <string name="difficulty">Сложность</string>

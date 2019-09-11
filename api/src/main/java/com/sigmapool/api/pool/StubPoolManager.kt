@@ -64,4 +64,21 @@ internal class StubPoolManager(private val context: Context) : IPoolManager {
             ProfitDailyDto(17.1f)
         )
     }
+
+    override suspend fun getCurrency(coin: String): ManagerResult<CurrencyDto> {
+        delay(5000)
+
+        if (!hasConnection(context)) {
+            return ManagerResult(error = context.getString(R.string.no_connection))
+        }
+
+        return ManagerResult(
+            CurrencyDto(
+                10045.8883708f,
+                657170.8749637865f,
+                71453.36007732405f,
+                9097.556508596479f
+            )
+        )
+    }
 }

@@ -41,13 +41,22 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
     val nextDifficultyChange = MutableLiveData<String>()
     val isNextDifficultyChangeUp = MutableLiveData<Boolean>()
 
-    fun initVMs(coinDto: CoinDto, networkDto: NetworkDto, paymentDto: PaymentDto, profitDailyDto: ProfitDailyDto) {
+    fun initVMs(
+        coinDto: CoinDto,
+        networkDto: NetworkDto,
+        paymentDto: PaymentDto,
+        profitDailyDto: ProfitDailyDto
+    ) {
         coinPrice.postValue(
             spannableString(
                 currencyProvider.getSymbol(),
                 color = resProvider.getColor(R.color.titleGray)
             ) +
-                    spannableString(" " + coinDto.price.toInt().format(INT_PATTERN))
+                    spannableString(
+                        " " + currencyProvider.fromUsdToCurrency(coinDto.price).toInt().format(
+                            INT_PATTERN
+                        )
+                    )
         )
         coinPriceChange.postValue(formatPriceChange(coinDto))
         isCoinPriceUp.postValue(coinDto.previousPrice < coinDto.price)
@@ -90,7 +99,9 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
     }
 
     private fun formatMinPayment(value: Float): CharSequence = formatValueWithPostfix(
-        value.format(FLOAT_PATTERN) + " ", coinLabel.toUpperCase(), resProvider.getColor(R.color.titleGray)
+        value.format(FLOAT_PATTERN) + " ",
+        coinLabel.toUpperCase(),
+        resProvider.getColor(R.color.titleGray)
     )
 
     private fun formatPriceChange(coinDto: CoinDto): String {

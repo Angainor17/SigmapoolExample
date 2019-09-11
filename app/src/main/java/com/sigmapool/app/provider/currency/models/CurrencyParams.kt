@@ -1,11 +1,12 @@
-package com.sigmapool.app.models
+package com.sigmapool.app.provider.currency.models
 
 import androidx.annotation.ArrayRes
 
-class Currency(
+class CurrencyParams(
     val scaleFrom: Int,
     val scaleTo: Int,
     val initValue: Int,
     @ArrayRes val stringArrayRes: Int,
-    val step: Int // symbols after point
+    val step: Int,
+    val numbersAfterPoint: Int
 )

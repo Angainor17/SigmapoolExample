@@ -1,9 +1,6 @@
 package com.sigmapool.api.pool
 
-import com.sigmapool.api.pool.models.CoinResponse
-import com.sigmapool.api.pool.models.NetworkResponse
-import com.sigmapool.api.pool.models.PaymentResponse
-import com.sigmapool.api.pool.models.ProfitDailyResponse
+import com.sigmapool.api.pool.models.*
 
 internal interface IPoolService {
 
@@ -11,6 +8,6 @@ internal interface IPoolService {
     suspend fun getPayment(coin: String): PaymentResponse
     suspend fun getNetwork(coin: String): NetworkResponse
     suspend fun getProfitDaily(coin: String): ProfitDailyResponse
-
+    suspend fun getCurrency(coin: String): CurrencyResponse
 }
 

@@ -54,4 +54,18 @@ internal class PoolManager(private val service: IPoolService) : IPoolManager {
     } catch (e: Throwable) {
         ManagerResult(error = e.message)
     }
+
+    override suspend fun getCurrency(coin: String): ManagerResult<CurrencyDto> = try {
+        val response = service.getCurrency(coin)
+        ManagerResult(
+            CurrencyDto(
+                response.usd,
+                response.rub,
+                response.cny,
+                response.eur
+            )
+        )
+    } catch (e: Throwable) {
+        ManagerResult(error = e.message)
+    }
 }
