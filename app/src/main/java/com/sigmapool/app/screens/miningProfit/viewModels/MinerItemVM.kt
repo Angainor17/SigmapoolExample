@@ -26,14 +26,14 @@ class MinerItemVM(
     var revenuePowerCost: CharSequence = createRevenuePowerCost(0f)
     val shutdownPrice: String = getCurrencyLabel() + " " + miner.shutdownPrice.toCurrency().format(FLOAT_PATTERN)
     var profit = ""
-    var profitValue = 1f
+    var profitValue = 0f
 
     init {
         initPowerCost(1f)
     }
 
     fun initPowerCost(powerCost: Float) {
-        profitValue = miner.revenue - powerCost
+        profitValue = miner.revenue.toCurrency() - powerCost
         profit =
             (if (profitValue < 0) "-" else "") + getCurrencyLabel() + " " + abs(profitValue).format(
                 FLOAT_PATTERN
@@ -43,7 +43,7 @@ class MinerItemVM(
 
     private fun createRevenuePowerCost(powerCost: Float): CharSequence {
         return formatValueWithPrefix(
-            miner.revenue.format(FLOAT_PATTERN) + " / ",
+            miner.revenue.toCurrency().format(FLOAT_PATTERN) + " / ",
             getCurrencyLabel(),
             res.getColor(R.color.titleGray)
         ) + formatValueWithPrefix(
