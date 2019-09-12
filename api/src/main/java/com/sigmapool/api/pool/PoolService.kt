@@ -22,4 +22,7 @@ internal class PoolService(apiProvider: IApiServiceProvider) : IPoolService {
         api.setScheme(coin, scheme).payload!!
 
     override suspend fun getThreshold(coin: String) = api.getThreshold(coin).payload!!
+
+    override suspend fun setThreshold(coin: String, threshold: Float) =
+        api.setThreshold(coin, threshold).payload!!
 }

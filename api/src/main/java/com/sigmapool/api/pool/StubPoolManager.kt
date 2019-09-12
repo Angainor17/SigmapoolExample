@@ -100,4 +100,13 @@ internal class StubPoolManager(private val context: Context) : IPoolManager {
         }
         return ManagerResult((ThresholdDto(0.02f)))
     }
+
+    override suspend fun setThreshold(coin: String, threshold: Float): ManagerResult<ThresholdDto> {
+        delay(1500)
+
+        if (!hasConnection(context)) {
+            return ManagerResult(error = context.getString(R.string.no_connection))
+        }
+        return ManagerResult((ThresholdDto(0.02f)))
+    }
 }

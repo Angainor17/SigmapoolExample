@@ -12,6 +12,7 @@ internal interface IPoolService {
     suspend fun getScheme(coin: String): SchemeResponse
     suspend fun setScheme(coin: String, scheme: String): SchemeResponse
     suspend fun getThreshold(coin: String): ThresholdResponse
+    suspend fun setThreshold(coin: String, threshold: Float): ThresholdResponse
 
 }
 

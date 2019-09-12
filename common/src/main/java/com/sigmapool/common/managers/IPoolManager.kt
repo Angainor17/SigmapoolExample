@@ -20,4 +20,6 @@ interface IPoolManager {
 
     suspend fun getThreshold(coin: String): ManagerResult<ThresholdDto>
 
+    suspend fun setThreshold(coin: String, threshold: Float): ManagerResult<ThresholdDto>
+
 }
