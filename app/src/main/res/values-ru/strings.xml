@@ -99,5 +99,6 @@
     <string name="yesterday_earnings">Вчерашнйи заработок</string>
     <string name="paid">Оплачено</string>
     <string name="balance">Баланс</string>
+    <string name="switch_scheme">Выберите схему оплаты</string>
 
 </resources>

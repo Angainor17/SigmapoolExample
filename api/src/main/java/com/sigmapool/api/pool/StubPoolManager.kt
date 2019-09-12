@@ -13,9 +13,7 @@ internal class StubPoolManager(private val context: Context) : IPoolManager {
     override suspend fun getCoin(coin: String): ManagerResult<CoinDto> {
         delay(10000)
 
-        if (!hasConnection(context)) {
-            return ManagerResult(error = context.getString(R.string.no_connection))
-        }
+        if (!hasConnection(context)) return ManagerResult(error = context.getString(R.string.no_connection))
 
         return ManagerResult(
             CoinDto(123123123123123, 12, arrayListOf("PPS", "PTS"), 11432f, 11000f)
@@ -25,9 +23,7 @@ internal class StubPoolManager(private val context: Context) : IPoolManager {
     override suspend fun getPayment(coin: String): ManagerResult<PaymentDto> {
         delay(10000)
 
-        if (!hasConnection(context)) {
-            return ManagerResult(error = context.getString(R.string.no_connection))
-        }
+        if (!hasConnection(context)) return ManagerResult(error = context.getString(R.string.no_connection))
 
         return ManagerResult(
             PaymentDto(TimeIntervalDto(Date(Date().time - 3 * 60 * 60 * 1000), Date()), 0.01f)
@@ -57,9 +53,7 @@ internal class StubPoolManager(private val context: Context) : IPoolManager {
     override suspend fun getProfitDaily(coin: String): ManagerResult<ProfitDailyDto> {
         delay(5000)
 
-        if (!hasConnection(context)) {
-            return ManagerResult(error = context.getString(R.string.no_connection))
-        }
+        if (!hasConnection(context)) return ManagerResult(error = context.getString(R.string.no_connection))
 
         return ManagerResult(
             ProfitDailyDto(17.1f)
@@ -69,9 +63,7 @@ internal class StubPoolManager(private val context: Context) : IPoolManager {
     override suspend fun getCurrency(coin: String): ManagerResult<CurrencyDto> {
         delay(5000)
 
-        if (!hasConnection(context)) {
-            return ManagerResult(error = context.getString(R.string.no_connection))
-        }
+        if (!hasConnection(context)) return ManagerResult(error = context.getString(R.string.no_connection))
 
         return ManagerResult(
             CurrencyDto(
@@ -81,5 +73,22 @@ internal class StubPoolManager(private val context: Context) : IPoolManager {
                 9097.556508596479f
             )
         )
+    }
+
+    override suspend fun getScheme(coin: String): ManagerResult<SchemeDto> {
+        delay(1500)
+
+        if (!hasConnection(context)) return ManagerResult(error = context.getString(R.string.no_connection))
+
+        return ManagerResult((SchemeDto("PPS")))
+    }
+
+    override suspend fun setScheme(coin: String, scheme: String): ManagerResult<SchemeDto> {
+        delay(1500)
+
+        if (!hasConnection(context)) {
+            return ManagerResult(error = context.getString(R.string.no_connection))
+        }
+        return ManagerResult((SchemeDto(scheme)))
     }
 }

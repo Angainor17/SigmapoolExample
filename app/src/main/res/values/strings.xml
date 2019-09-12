@@ -115,5 +115,6 @@
     <string name="yesterday_earnings">Yesterday Earnings</string>
     <string name="paid">Paid</string>
     <string name="balance">Balance</string>
+    <string name="switch_scheme">Switch payment scheme</string>
 
 </resources>

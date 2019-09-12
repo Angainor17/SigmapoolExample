@@ -29,6 +29,7 @@ private const val APP_EMAIL = "angainor@gmail.com"//FIXME
 
 private const val LOCALE_TAG = "locale"
 private const val CURRENCY_TAG = "currency"
+const val PAYOUT_SCHEME_TAG = "scheme"
 
 private const val PUSH_ENABLE = "push_notification"
 
@@ -43,6 +44,7 @@ class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScre
     private val context by kodein.instance<Context>()
 
     val toolbarVm = CoinToolbarVM()
+    val settingsSchemeVM = SettingsSchemeVM(toolbarVm.coinProvider, view)
 
     private var selectedLang = langProvider.getLocale()
 
@@ -50,24 +52,23 @@ class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScre
     val currencyLiveData =
         MutableLiveData(resProvider.getString(currencyProvider.getCurrency().labelResId))
     val pushLiveData = MutableLiveData(getPushEnable())
-
-    val schemeLiveData = MutableLiveData(SchemeItem("PPS"))//FIXME
     val limitLiveData = MutableLiveData("0.001 BTC")//FIXME
-
     val isLoginLiveData = MutableLiveData(false)
+
+    init {
+        toolbarVm.coinProvider.addOnChangeListener {
+            settingsSchemeVM.refresh()
+        }
+    }
 
     override fun update() {
         refreshAuth()
     }
 
     override fun onModalOptionSelected(tag: String?, option: Option) {
-        if (tag == LOCALE_TAG) {
-            changeLocale(option)
-        }
-
-        if (tag == CURRENCY_TAG) {
-            changeCurrency(option)
-        }
+        if (tag == LOCALE_TAG) changeLocale(option)
+        if (tag == CURRENCY_TAG) changeCurrency(option)
+        if (tag == PAYOUT_SCHEME_TAG) settingsSchemeVM.setScheme(option.title.toString())
     }
 
     fun localeSelect() {
@@ -88,10 +89,6 @@ class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScre
         jsonDataStorage.put(PUSH_ENABLE, isChecked)
     }
 
-    fun schemeSelect() {
-        //TODO implement
-    }
-
     fun limitSelect() {
         //TODO implement
     }
@@ -110,7 +107,7 @@ class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScre
             if (result.success) {
                 logoutAction()
             } else {
-                if ((result.error?:"").contains("HTTP")) {
+                if ((result.error ?: "").contains("HTTP")) {
                     logoutAction()
                     return@launch
                 }
@@ -125,6 +122,14 @@ class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScre
     private fun logoutAction() {
         jsonDataStorage.put(AUTH_KEY, null)
         update()
+    }
+
+    private fun changeScheme(option: Option) {
+//        val selectedCurrency = if (option.id == R.id.currency_rub) rubCurrency else usdCurrency
+//
+//        currencyProvider.setCurrency(selectedCurrency)
+//        currencyLiveData.postValue(resProvider.getString(selectedCurrency.labelResId))
+//        view.recreate()
     }
 
     private fun changeCurrency(option: Option) {

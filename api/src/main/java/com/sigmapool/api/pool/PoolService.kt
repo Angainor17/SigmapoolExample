@@ -1,19 +1,23 @@
 package com.sigmapool.api.pool
 
-import com.sigmapool.api.pool.models.*
 import com.sigmapool.api.providers.IApiServiceProvider
 
 internal class PoolService(apiProvider: IApiServiceProvider) : IPoolService {
 
     private val api = apiProvider.create(PoolApi::class.java)
 
-    override suspend fun getCoin(coin: String): CoinResponse = api.getCoin(coin).payload!!
+    override suspend fun getCoin(coin: String) = api.getCoin(coin).payload!!
 
-    override suspend fun getPayment(coin: String): PaymentResponse = api.getPayment(coin).payload!!
+    override suspend fun getPayment(coin: String) = api.getPayment(coin).payload!!
 
-    override suspend fun getNetwork(coin: String): NetworkResponse = api.getNetwork(coin).payload!!
+    override suspend fun getNetwork(coin: String) = api.getNetwork(coin).payload!!
 
-    override suspend fun getProfitDaily(coin: String): ProfitDailyResponse = api.getProfitDaily(coin).payload!!
+    override suspend fun getProfitDaily(coin: String) = api.getProfitDaily(coin).payload!!
 
-    override suspend fun getCurrency(coin: String): CurrencyResponse = api.getCurrency(coin).payload!!
+    override suspend fun getCurrency(coin: String) = api.getCurrency(coin).payload!!
+
+    override suspend fun getScheme(coin: String) = api.getScheme(coin).payload!!
+
+    override suspend fun setScheme(coin: String, scheme: String) =
+        api.setScheme(coin, scheme).payload!!
 }

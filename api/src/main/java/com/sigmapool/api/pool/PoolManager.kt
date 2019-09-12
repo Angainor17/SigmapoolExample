@@ -69,4 +69,16 @@ internal class PoolManager(private val service: IPoolService) : IPoolManager {
     } catch (e: Throwable) {
         ManagerResult(error = e.message)
     }
+
+    override suspend fun getScheme(coin: String): ManagerResult<SchemeDto> = try {
+        ManagerResult(SchemeDto(service.getScheme(coin).scheme))
+    } catch (e: Throwable) {
+        ManagerResult(error = e.message)
+    }
+
+    override suspend fun setScheme(coin: String, scheme: String): ManagerResult<SchemeDto> = try {
+        ManagerResult(SchemeDto(service.setScheme(coin, scheme).scheme))
+    } catch (e: Throwable) {
+        ManagerResult(error = e.message)
+    }
 }
