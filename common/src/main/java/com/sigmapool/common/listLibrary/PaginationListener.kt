@@ -3,13 +3,19 @@ package com.sigmapool.common.listLibrary
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
-abstract class PaginationListener(private val layoutManager: LinearLayoutManager) : RecyclerView.OnScrollListener() {
+abstract class PaginationListener(
+    private val swipeRefreshLayout: SwipeRefreshLayout?,
+    private val layoutManager: LinearLayoutManager
+) : RecyclerView.OnScrollListener() {
 
     private val PAGE_SIZE = 20
 
     override fun onScrolled(@NonNull recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
+
+        swipeRefreshLayout?.isEnabled = layoutManager.findFirstCompletelyVisibleItemPosition() == 0
 
         val visibleItemCount = layoutManager.childCount - headerCount()
         val totalItemCount = layoutManager.itemCount - headerCount()

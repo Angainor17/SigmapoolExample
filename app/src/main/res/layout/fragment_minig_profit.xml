@@ -26,6 +26,7 @@
                 />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRefresh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -42,6 +43,8 @@
 
                 <include
                         layout="@layout/mining_profit_list"
+
+                        app:swipeRefresh="@{swipeRefresh}"
                         app:vm="@{vm.listVM}"
                         />
 

@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.sigmapool.app.screens.miningProfit.MiningListAdapter
 import com.sigmapool.app.screens.miningProfit.listener.IProfitBtnListener
 import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitListVM
@@ -19,15 +20,15 @@ import com.sigmapool.app.screens.workers.viewModel.WorkersListVM
 import com.sigmapool.common.listLibrary.PaginationListener
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 
-@BindingAdapter("setMinersAdapter")
-fun setMinersAdapter(view: RecyclerView, vm: MiningProfitListVM) {
+@BindingAdapter("setMinersAdapter", "swipeRefresh")
+fun setMinersAdapter(view: RecyclerView, vm: MiningProfitListVM, swipeRefreshLayout: SwipeRefreshLayout?) {
     val linearLayoutManager = LinearLayoutManager(view.context)
     view.layoutManager = linearLayoutManager
 
     val itemsVM = vm.itemsVM
     view.adapter = itemsVM.adapter
 
-    view.addOnScrollListener(object : PaginationListener(linearLayoutManager) {
+    view.addOnScrollListener(object : PaginationListener(swipeRefreshLayout,linearLayoutManager) {
         override fun loadMoreItems() {
             itemsVM.loadMoreItems()
         }
