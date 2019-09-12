@@ -45,7 +45,7 @@ class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScre
 
     val toolbarVm = CoinToolbarVM()
     val settingsSchemeVM = SettingsSchemeVM(toolbarVm.coinProvider, view)
-    val settingsThresholdVm = SettingsThresholdVm(toolbarVm.coinProvider)
+    val settingsThresholdVm = SettingsThresholdVm(toolbarVm.coinProvider,view)
 
     private var selectedLang = langProvider.getLocale()
 

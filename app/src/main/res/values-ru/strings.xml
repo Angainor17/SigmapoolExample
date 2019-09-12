@@ -100,5 +100,8 @@
     <string name="paid">Оплачено</string>
     <string name="balance">Баланс</string>
     <string name="switch_scheme">Выберите схему оплаты</string>
+    <string name="submit">Подтвердить</string>
+    <string name="cancel">Отменить</string>
+    <string name="enter_threshold">Введите пороговое значение</string>
 
 </resources>

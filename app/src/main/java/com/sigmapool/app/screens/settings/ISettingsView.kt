@@ -1,5 +1,6 @@
 package com.sigmapool.app.screens.settings
 
+import android.content.Context
 import androidx.fragment.app.FragmentManager
 
 interface ISettingsView {
@@ -11,4 +12,6 @@ interface ISettingsView {
     fun recreate()
 
     fun fragmentManager(): FragmentManager
+
+    fun context(): Context
 }

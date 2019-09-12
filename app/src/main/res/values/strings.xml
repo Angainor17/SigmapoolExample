@@ -116,5 +116,8 @@
     <string name="paid">Paid</string>
     <string name="balance">Balance</string>
     <string name="switch_scheme">Switch payment scheme</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter_threshold">Enter threshold</string>
 
 </resources>

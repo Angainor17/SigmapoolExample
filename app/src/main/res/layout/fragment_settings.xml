@@ -89,7 +89,7 @@
                         app:label="@{@string/limit}"
                         app:value="@{vm.settingsThresholdVm.thresholdLiveData}"
                         app:isTopSeparatorVisible="@{false}"
-                        app:clickListener="@{v->vm.settingsThresholdVm.thresholdSelect()}"
+                        app:clickListener="@{v->vm.settingsThresholdVm.thresholdClick()}"
                         />
 
                 <include

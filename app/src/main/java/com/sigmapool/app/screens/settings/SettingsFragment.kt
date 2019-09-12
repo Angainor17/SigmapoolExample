@@ -1,5 +1,6 @@
 package com.sigmapool.app.screens.settings
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -30,6 +31,8 @@ class SettingsFragment : UpdateFragment(), ISettingsView, ModalBottomSheetDialog
     override fun recreate() {
         activity?.recreate()
     }
+
+    override fun context(): Context = context!!
 
     override fun sendEmail(email: String) {
         val intent = Intent(Intent.ACTION_SENDTO)
