@@ -18,5 +18,6 @@ interface IPoolManager {
 
     suspend fun setScheme(coin: String, scheme: String): ManagerResult<SchemeDto>
 
+    suspend fun getThreshold(coin: String): ManagerResult<ThresholdDto>
 
 }

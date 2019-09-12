@@ -81,4 +81,10 @@ internal class PoolManager(private val service: IPoolService) : IPoolManager {
     } catch (e: Throwable) {
         ManagerResult(error = e.message)
     }
+
+    override suspend fun getThreshold(coin: String): ManagerResult<ThresholdDto> = try {
+        ManagerResult(ThresholdDto(service.getThreshold(coin).threshold))
+    } catch (e: Throwable) {
+        ManagerResult(error = e.message)
+    }
 }

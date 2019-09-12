@@ -11,5 +11,7 @@ internal interface IPoolService {
     suspend fun getCurrency(coin: String): CurrencyResponse
     suspend fun getScheme(coin: String): SchemeResponse
     suspend fun setScheme(coin: String, scheme: String): SchemeResponse
+    suspend fun getThreshold(coin: String): ThresholdResponse
+
 }
 

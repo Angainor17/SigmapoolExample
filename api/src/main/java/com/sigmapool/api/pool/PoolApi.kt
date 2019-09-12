@@ -44,4 +44,9 @@ internal interface PoolApi {
         @Path("coin") coin: String,
         @Field("scheme") scheme: String
     ): PayloadModel<SchemeResponse>
+
+    @GET("api/v2/{coin}/user/settings/payout/threshold")
+    suspend fun getThreshold(
+        @Path("coin") coin: String
+    ): PayloadModel<ThresholdResponse>
 }
