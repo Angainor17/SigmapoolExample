@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
+import com.sigmapool.app.R
 import com.sigmapool.app.screens.bottomSheetScreen.ViewPagerAdapter
 import com.sigmapool.app.screens.calculator.adapter.CalcTabAdapter
 import com.sigmapool.app.screens.calculator.viewModel.CalcItemVM
@@ -24,6 +25,7 @@ import com.sigmapool.app.utils.customViews.spinner.CustomAdapter
 import com.sigmapool.app.utils.customViews.viewPager.FragmentViewPager
 import com.sigmapool.common.models.BlogDto
 import com.sigmapool.common.utils.px
+import com.squareup.picasso.Picasso
 import com.suke.widget.SwitchButton
 import ss.com.bannerslider.Slider
 import ss.com.bannerslider.event.OnSlideClickListener
@@ -57,7 +59,11 @@ fun viewPagerAdapter(view: FragmentViewPager, fragmentManager: FragmentManager) 
 }
 
 @BindingAdapter("app:initCalcAdapter", "app:viewCalcTabAdapter")
-fun viewCalcTabAdapter(view: FragmentViewPager, items: ArrayList<CalcItemVM>, fragmentManager: FragmentManager) {
+fun viewCalcTabAdapter(
+    view: FragmentViewPager,
+    items: ArrayList<CalcItemVM>,
+    fragmentManager: FragmentManager
+) {
     view.offscreenPageLimit = 2
     view.adapter = CalcTabAdapter(items, fragmentManager)
 }
@@ -85,6 +91,14 @@ fun isWrapHeightEnabled(view: FragmentViewPager, isWrapHeightEnabled: Boolean) {
 @BindingAdapter("bind:pager")
 fun bindViewPagerTabs(view: TabLayout, pagerView: ViewPager) {
     view.setupWithViewPager(pagerView, true)
+}
+
+@BindingAdapter("app:loadMinerIcon")
+fun loadMinerIcon(view: ImageView, url: String) {
+    Picasso.get().load(url)
+        .placeholder(R.mipmap.ic_ant)
+        .error(R.mipmap.ic_ant)
+        .into(view)
 }
 
 @BindingAdapter("app:setImages", "app:onImageClick", requireAll = true)

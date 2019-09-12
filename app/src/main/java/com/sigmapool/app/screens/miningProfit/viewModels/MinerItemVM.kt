@@ -19,12 +19,14 @@ class MinerItemVM(
     private val res by kodein.instance<IResProvider>()
 
     val name: String = miner.title
+    val imageUrl: String = miner.image
     val hashratePower: CharSequence = createHashratePower(miner)
 
     var btcValue: String = createBtcValueText(0f)
 
     var revenuePowerCost: CharSequence = createRevenuePowerCost(0f)
-    val shutdownPrice: String = getCurrencyLabel() + " " + miner.shutdownPrice.toCurrency().format(FLOAT_PATTERN)
+    val shutdownPrice: String =
+        getCurrencyLabel() + " " + miner.shutdownPrice.toCurrency().format(FLOAT_PATTERN)
     var profit = ""
     var profitValue = 0f
 

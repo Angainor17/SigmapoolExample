@@ -6,6 +6,7 @@ internal data class Miner(
     val id: Long,
     val title: TitleModel,
     val coin: String,
+    val image: String,
     val hashrate: Long,
     val power: Int,
     val revenue: Float,

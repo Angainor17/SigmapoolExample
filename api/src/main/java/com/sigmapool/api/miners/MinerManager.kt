@@ -1,5 +1,6 @@
 package com.sigmapool.api.miners
 
+import com.sigmapool.api.BASE_URL
 import com.sigmapool.common.managers.IMinerManager
 import com.sigmapool.common.models.ManagerResult
 import com.sigmapool.common.models.MinerDto
@@ -15,6 +16,7 @@ internal class MinerManager(private val minerService: IMinerService) : IMinerMan
                         it.id,
                         it.title.en,
                         it.coin,
+                        "https://$BASE_URL" + it.image,
                         it.hashrate,
                         it.power,
                         it.revenue,

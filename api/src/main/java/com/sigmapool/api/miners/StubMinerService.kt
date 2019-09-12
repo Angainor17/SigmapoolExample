@@ -15,6 +15,7 @@ internal class StubMinerService(val context: Context) : IMinerService {
             it.toLong(),
             TitleModel("Antminer S$it Pro", "", ""),
             "btc",
+            "/uploads/miner/2e2be0a091fa05f8becc3f9c526ce3df.jpg",
             10000000000000,
             2500 + it,
             20f + it + Random.nextInt(0, 10) + (Random.nextInt(0, 10) / 100),
