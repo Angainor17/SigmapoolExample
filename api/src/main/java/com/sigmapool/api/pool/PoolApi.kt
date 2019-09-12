@@ -2,10 +2,7 @@ package com.sigmapool.api.pool
 
 import com.sigmapool.api.models.PayloadModel
 import com.sigmapool.api.pool.models.*
-import retrofit2.http.Field
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 internal interface PoolApi {
 
@@ -51,6 +48,7 @@ internal interface PoolApi {
         @Path("coin") coin: String
     ): PayloadModel<ThresholdResponse>
 
+    @FormUrlEncoded
     @POST("api/v2/{coin}/user/settings/payout/threshold")
     suspend fun setThreshold(
         @Path("coin") coin: String,

@@ -26,8 +26,13 @@ class SettingsThresholdVm(
         initValue()
     }
 
-    fun thresholdSelect() {
-        //TODO
+    fun thresholdSelect(value: String) {
+        val coin = coinProvider.getLabel()
+        thresholdLiveData.postValue(value.toFloat().trimZeroEnd() + " " + coin.toUpperCase())
+
+        GlobalScope.launch(Dispatchers.IO) {
+            poolManager.setThreshold(coin, value.toFloat())
+        }
     }
 
     private fun initValue() {
