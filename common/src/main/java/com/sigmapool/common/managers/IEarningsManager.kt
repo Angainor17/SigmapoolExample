@@ -10,7 +10,6 @@ interface IEarningsManager {
 
     suspend fun balance(coin: String): ManagerResult<BalanceDto>
 
-    suspend fun payments(coin: String): ManagerResult<ArrayList<PaymentItemDto>>
-
+    suspend fun payments(coin: String, page: Int): ManagerResult<ArrayList<PaymentItemDto>>
 
 }

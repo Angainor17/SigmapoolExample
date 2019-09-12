@@ -2,6 +2,8 @@ package com.sigmapool.api.earnings
 
 import com.sigmapool.common.managers.IEarningsManager
 import com.sigmapool.common.models.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 internal class EarningsManager(private val service: IEarningsService) : IEarningsManager {
 
@@ -19,7 +21,6 @@ internal class EarningsManager(private val service: IEarningsService) : IEarning
         ManagerResult(error = e.message)
     }
 
-
     override suspend fun balance(coin: String): ManagerResult<BalanceDto> = try {
         val response = service.balance(coin)
         ManagerResult(BalanceDto(response.balance))
@@ -27,16 +28,20 @@ internal class EarningsManager(private val service: IEarningsService) : IEarning
         ManagerResult(error = e.message)
     }
 
-
-    override suspend fun payments(coin: String): ManagerResult<ArrayList<PaymentItemDto>> = try {
-        val response = service.payments(coin)
+    override suspend fun payments(
+        coin: String,
+        page: Int
+    ): ManagerResult<ArrayList<PaymentItemDto>> = try {
+        val response = service.payments(coin, page)
 
         ManagerResult(ArrayList(response.map {
             PaymentItemDto(
-                it.date,
+                Date(it.date ?: Date().time),
                 it.amount,
                 it.bonus,
-                it.diff
+                it.diff,
+                it.transaction,
+                it.type
             )
         }))
     } catch (e: Throwable) {

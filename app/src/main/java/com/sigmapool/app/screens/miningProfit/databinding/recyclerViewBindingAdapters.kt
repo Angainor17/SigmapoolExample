@@ -12,23 +12,36 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.sigmapool.app.screens.miningProfit.MiningListAdapter
+import com.sigmapool.app.screens.earnings.viewModel.EarningsVM
 import com.sigmapool.app.screens.miningProfit.listener.IProfitBtnListener
 import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitListVM
 import com.sigmapool.app.screens.news.vm.NewsListVM
 import com.sigmapool.app.screens.workers.viewModel.WorkersListVM
+import com.sigmapool.common.listLibrary.HeaderListVM
 import com.sigmapool.common.listLibrary.PaginationListener
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 
 @BindingAdapter("setMinersAdapter", "swipeRefresh")
-fun setMinersAdapter(view: RecyclerView, vm: MiningProfitListVM, swipeRefreshLayout: SwipeRefreshLayout?) {
+fun setMinersAdapter(
+    view: RecyclerView,
+    vm: MiningProfitListVM,
+    swipeRefreshLayout: SwipeRefreshLayout?
+) {
+    initHeaderList(view, vm.itemsVM, swipeRefreshLayout)
+}
+
+private fun <DtoItem, ItemVm : BaseItemViewModel> initHeaderList(
+    view: RecyclerView,
+    itemsVM: HeaderListVM<DtoItem, ItemVm>,
+    swipeRefreshLayout: SwipeRefreshLayout?
+) {
     val linearLayoutManager = LinearLayoutManager(view.context)
     view.layoutManager = linearLayoutManager
 
-    val itemsVM = vm.itemsVM
+
     view.adapter = itemsVM.adapter
 
-    view.addOnScrollListener(object : PaginationListener(swipeRefreshLayout,linearLayoutManager) {
+    view.addOnScrollListener(object : PaginationListener(swipeRefreshLayout, linearLayoutManager) {
         override fun loadMoreItems() {
             itemsVM.loadMoreItems()
         }
@@ -38,11 +51,20 @@ fun setMinersAdapter(view: RecyclerView, vm: MiningProfitListVM, swipeRefreshLay
         override fun headerCount(): Int = 1
     })
 
-    val adapter = itemsVM.adapter as MiningListAdapter
+    val adapter = itemsVM.adapter
     itemsVM.items.observe(view.context as AppCompatActivity, Observer {
         adapter.addItems(it)
         adapter.notifyItemRangeChanged(1, adapter.items.size)
     })
+}
+
+@BindingAdapter("setEarningsAdapter", "swipeRefresh")
+fun setEarningsAdapter(
+    view: RecyclerView,
+    vm: EarningsVM,
+    swipeRefreshLayout: SwipeRefreshLayout?
+) {
+    initHeaderList(view, vm.itemsVM, swipeRefreshLayout)
 }
 
 @BindingAdapter("setNewsAdapter")

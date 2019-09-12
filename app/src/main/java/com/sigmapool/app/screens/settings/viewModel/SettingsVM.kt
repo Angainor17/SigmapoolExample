@@ -108,14 +108,23 @@ class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScre
         GlobalScope.launch(Dispatchers.Default) {
             val result = loginManager.logout()
             if (result.success) {
-                jsonDataStorage.put(AUTH_KEY, null)
-                update()
+                logoutAction()
             } else {
+                if ((result.error?:"").contains("HTTP")) {
+                    logoutAction()
+                    return@launch
+                }
+
                 CoroutineScope(Dispatchers.Main).launch {
                     errorLiveData.value = result.error
                 }
             }
         }
+    }
+
+    private fun logoutAction() {
+        jsonDataStorage.put(AUTH_KEY, null)
+        update()
     }
 
     private fun changeCurrency(option: Option) {

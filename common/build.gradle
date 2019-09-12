@@ -33,6 +33,7 @@ dependencies {
 
     implementation gson.core
 
+    implementation androidx.liveData
     implementation androidx.appcompat
     implementation androidx.paging
     implementation androidx.pagingKtx

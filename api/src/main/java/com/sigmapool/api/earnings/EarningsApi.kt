@@ -7,6 +7,7 @@ import com.sigmapool.api.earnings.models.TotalPaidResponse
 import com.sigmapool.api.models.PayloadModel
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 internal interface EarningsApi {
 
@@ -27,7 +28,8 @@ internal interface EarningsApi {
 
     @GET("api/v2/{coin}/user/payments")
     suspend fun payments(
-        @Path("coin") coin: String
+        @Path("coin") coin: String,
+        @Query("page") page: Int
     ): PayloadModel<PaymentListResponse>
 
 }

@@ -12,5 +12,6 @@ internal class EarningsService(apiProvider: IApiServiceProvider) : IEarningsServ
 
     override suspend fun balance(coin: String) = api.balance(coin).payload!!
 
-    override suspend fun payments(coin: String) = api.payments(coin).payload!!.payments
+    override suspend fun payments(coin: String, page: Int) =
+        api.payments(coin, page).payload!!.payments
 }

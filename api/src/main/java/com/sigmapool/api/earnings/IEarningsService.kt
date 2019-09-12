@@ -13,6 +13,6 @@ internal interface IEarningsService {
 
     suspend fun balance(coin: String): BalanceResponse
 
-    suspend fun payments(coin: String): ArrayList<PaymentItemResponse>
+    suspend fun payments(coin: String, page: Int): ArrayList<PaymentItemResponse>
 }
 

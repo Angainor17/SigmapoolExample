@@ -25,7 +25,7 @@ class MiningListAdapter(
     private var powerCostTv: TextView? = null
     var coinInfo: CoinDto? = null
 
-    fun addItems(newItems: List<MinerItemVM>) {
+    override fun addItems(newItems: List<MinerItemVM>) {
         newItems.forEach {
             it.initCoin(coin)
             it.initPowerCost(powerCost)
