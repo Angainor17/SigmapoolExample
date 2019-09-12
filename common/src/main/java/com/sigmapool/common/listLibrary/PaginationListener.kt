@@ -6,11 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 abstract class PaginationListener(
+    private val pageSize: Int,
     private val swipeRefreshLayout: SwipeRefreshLayout?,
     private val layoutManager: LinearLayoutManager
 ) : RecyclerView.OnScrollListener() {
-
-    private val PAGE_SIZE = 20
 
     override fun onScrolled(@NonNull recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
@@ -24,7 +23,7 @@ abstract class PaginationListener(
         if (!isLoading() && !isLastPage()) {
             if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
                 && firstVisibleItemPosition >= 0
-                && totalItemCount >= PAGE_SIZE
+                && totalItemCount >= pageSize
             ) {
                 loadMoreItems()
             }

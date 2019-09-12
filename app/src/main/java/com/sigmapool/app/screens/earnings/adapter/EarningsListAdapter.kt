@@ -16,7 +16,6 @@ class EarningsListAdapter(
 ) :
     SimpleAdapter<EarningsItemVM>(itemLayoutProvider) {
 
-
     override fun addItems(newItems: List<EarningsItemVM>) {
         items.addAll(newItems)
         notifyItemRangeChanged(1, newItems.size)
@@ -45,18 +44,15 @@ class EarningsListAdapter(
         )
     }
 
-    override fun getItemId(position: Int): Long {
-        if (position == 0) return -1L
-
-        return position.toLong()
-    }
+    override fun getItemId(position: Int): Long =
+        if (position == 0) -1L else if (position == 1) -2L else position.toLong()
 
     override fun getItemCount(): Int = items.size + 1
 
-    override fun getItemViewType(position: Int): Int {
-        if (position == 0) return EARNINGS_LIST_HEADER
-
-        return getItem(position - 1).itemViewType
+    override fun getItemViewType(position: Int): Int = when (position) {
+        0 -> -1
+        1 -> EarningsItemVM.firstItemType
+        else -> getItem(position - 1).itemViewType
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

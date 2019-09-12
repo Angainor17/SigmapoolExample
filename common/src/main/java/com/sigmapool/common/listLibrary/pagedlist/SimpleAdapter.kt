@@ -17,7 +17,6 @@ abstract class SimpleAdapter<T : BaseItemViewModel>(val itemLayoutProvider: IIte
 
     open fun addItems(newItems: List<T>) {
         items.addAll(newItems)
-        notifyDataSetChanged()
     }
 
     open fun getItem(i: Int) = items[i]

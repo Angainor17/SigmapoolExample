@@ -40,9 +40,19 @@ operator fun SpannableString.plus(s: SpannableString) = SpannableString(TextUtil
 
 fun Date.formatTime(): String = SimpleDateFormat("HH:mm").format(this)
 fun Date.formatDate(): String = SimpleDateFormat("dd.MM.yyyy").format(this)
+fun Date.formatDashDate(): String = SimpleDateFormat("yyyy-MM-dd").format(this)
 
 fun String.lastChar() = substring(length - 1)
 fun String.beforeLastChar() = substring(0, length - 1)
+
+fun Float.trimZeroEnd() = String.format("%f", this).trimZeroEnd()
+fun Long.trimZeroEnd() = String.format("%f", this).trimZeroEnd()
+
+fun String.trimZeroEnd(): String {
+    var result = this.trimEnd('0')
+    if (result.last() == '.') result += "0"
+    return result
+}
 
 fun formatValueWithPostfix(value: String, postfix: String, postfixColor: Int): SpannableString =
     spannableString(value, color = Color.BLACK) + spannableString(

@@ -2,6 +2,7 @@
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         >
 
     <data>
@@ -27,9 +28,96 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/black"
+                android:layout_height="wrap_content"
                 >
+
+            <TextView
+                    android:id="@+id/date"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/google_sans_medium"
+                    android:text="@{vm.date}"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    tools:text="2019-07-11"
+                    />
+
+            <TextView
+                    android:id="@+id/scheme"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="24dp"
+                    android:fontFamily="@font/google_sans_medium"
+                    android:text="@{vm.scheme}"
+                    android:textColor="#6A6A6A"
+                    android:textSize="13dp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/date"
+                    app:layout_constraintTop_toBottomOf="@+id/date"
+
+                    tools:text="PPS"
+                    />
+
+            <TextView
+                    android:id="@+id/status"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/google_sans_medium"
+                    android:text="@{vm.status}"
+                    android:textColor="@{vm.statusTextColor}"
+                    android:textSize="13dp"
+
+                    app:layout_constraintBaseline_toBaselineOf="@+id/scheme"
+                    app:layout_constraintEnd_toEndOf="@+id/coin"
+
+                    tools:text="Saved to Balance"
+                    />
+
+            <TextView
+                    android:id="@+id/coin"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/google_sans_medium"
+                    android:text="@{vm.coin}"
+                    android:textColor="#6A6A6A"
+                    android:textSize="17dp"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    tools:text="BTC"
+                    />
+
+            <TextView
+                    android:id="@+id/coinValue"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:fontFamily="@font/google_sans_medium"
+                    android:text="@{vm.coinValue}"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+
+                    app:layout_constraintBaseline_toBaselineOf="@+id/coin"
+                    app:layout_constraintEnd_toStartOf="@+id/coin"
+
+                    tools:text="1.23969563"
+                    />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

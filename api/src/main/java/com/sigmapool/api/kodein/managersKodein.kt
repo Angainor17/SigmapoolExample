@@ -2,7 +2,7 @@ package com.sigmapool.api.kodein
 
 import com.sigmapool.api.blog.BlogManager
 import com.sigmapool.api.calculator.CalcManager
-import com.sigmapool.api.earnings.EarningsManager
+import com.sigmapool.api.earnings.StubEarningsManager
 import com.sigmapool.api.login.LoginManager
 import com.sigmapool.api.miners.MinerManager
 import com.sigmapool.api.news.NewsManager
@@ -27,5 +27,5 @@ val managersModule = Kodein.Module("ManagersModule") {
     bind<INewsManager>() with singleton { NewsManager(instance()) }
     bind<IPoolInfoManager>() with singleton { PoolInfoManager(instance()) }
     bind<ICalcManager>() with singleton { CalcManager(instance()) }
-    bind<IEarningsManager>() with singleton { EarningsManager(instance()) }
+    bind<IEarningsManager>() with singleton { StubEarningsManager(instance()) }
 }

@@ -4,10 +4,10 @@ import java.util.*
 
 class PaymentItemDto(
 
-    val date: Date?,
-    val amount: Float?,
+    val date: Date,
+    val amount: Float,
     val bonus: Int?,
-    val diff: Long?,
+    val diff: Long,
     val transaction: String?,
     val type: String?
 

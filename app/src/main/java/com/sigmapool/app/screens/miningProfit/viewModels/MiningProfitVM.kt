@@ -9,7 +9,7 @@ import com.sigmapool.app.screens.miningProfit.IMinerFragmentModel
 import com.sigmapool.common.viewModels.ITitleViewModel
 import org.kodein.di.generic.instance
 
-const val COIN_TAG = "coin"
+const val COIN_TAG = "coinValue"
 
 class MiningProfitVM(val view: IMinerFragmentModel) : ViewModel(), ITitleViewModel, IMiningProfitToolbarVM {
 

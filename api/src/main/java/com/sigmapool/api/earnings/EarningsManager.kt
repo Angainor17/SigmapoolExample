@@ -37,9 +37,9 @@ internal class EarningsManager(private val service: IEarningsService) : IEarning
         ManagerResult(ArrayList(response.map {
             PaymentItemDto(
                 Date(it.date ?: Date().time),
-                it.amount,
+                it.amount ?: 0f,
                 it.bonus,
-                it.diff,
+                it.diff ?: 0L,
                 it.transaction,
                 it.type
             )

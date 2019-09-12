@@ -96,5 +96,8 @@
     <string name="switch_language">Выберите язык</string>
     <string name="switch_currency">Выберите валюту</string>
     <string name="wrong_sign_in_data">Неправильный логин или пароль</string>
+    <string name="yesterday_earnings">Вчерашнйи заработок</string>
+    <string name="paid">Оплачено</string>
+    <string name="balance">Баланс</string>
 
 </resources>

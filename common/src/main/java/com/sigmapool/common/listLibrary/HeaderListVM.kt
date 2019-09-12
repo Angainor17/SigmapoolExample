@@ -20,6 +20,8 @@ abstract class HeaderListVM<DtoItem, ItemVm : BaseItemViewModel>(
 
     var pageNumber = 0
 
+    var onRefreshListener: (() -> Unit)? = null
+
     var isLastPage = MutableLiveData(false)
     val errorMessage = MutableLiveData<String>()
     val loaderState = MutableLiveData<ItemsLoaderState>()
@@ -40,7 +42,7 @@ abstract class HeaderListVM<DtoItem, ItemVm : BaseItemViewModel>(
                 items.postValue(mapper.map(t.data!!))
                 loaderState.postValue(ItemsLoaderState.Idle)
 
-                if (t.data?.size ?: 0 < pageSize) {
+                if (t.data.size < pageSize) {
                     isLastPage.postValue(true)
                 }
                 pageNumber++
@@ -58,6 +60,7 @@ abstract class HeaderListVM<DtoItem, ItemVm : BaseItemViewModel>(
 
         pageNumber = 0
         loadMoreItems()
+        onRefreshListener?.invoke()
     }
 }
 

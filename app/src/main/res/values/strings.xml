@@ -112,5 +112,8 @@
     <string name="usd"
             translatable="false">USD</string>
     <string name="wrong_sign_in_data">Wrong login or password</string>
+    <string name="yesterday_earnings">Yesterday Earnings</string>
+    <string name="paid">Paid</string>
+    <string name="balance">Balance</string>
 
 </resources>

@@ -3,6 +3,7 @@ package com.sigmapool.app.screens.miningProfit.databinding
 import android.os.Build
 import android.text.Html
 import android.text.util.Linkify
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -12,8 +13,10 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.sigmapool.app.screens.earnings.params.EARNINGS_PAGE_SIZE
 import com.sigmapool.app.screens.earnings.viewModel.EarningsVM
 import com.sigmapool.app.screens.miningProfit.listener.IProfitBtnListener
+import com.sigmapool.app.screens.miningProfit.params.MINER_PAGE_SIZE
 import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitListVM
 import com.sigmapool.app.screens.news.vm.NewsListVM
 import com.sigmapool.app.screens.workers.viewModel.WorkersListVM
@@ -27,23 +30,24 @@ fun setMinersAdapter(
     vm: MiningProfitListVM,
     swipeRefreshLayout: SwipeRefreshLayout?
 ) {
-    initHeaderList(view, vm.itemsVM, swipeRefreshLayout)
+    initHeaderList(view, vm.itemsVM, swipeRefreshLayout, MINER_PAGE_SIZE)
 }
 
 private fun <DtoItem, ItemVm : BaseItemViewModel> initHeaderList(
     view: RecyclerView,
     itemsVM: HeaderListVM<DtoItem, ItemVm>,
-    swipeRefreshLayout: SwipeRefreshLayout?
+    swipeRefreshLayout: SwipeRefreshLayout?,
+    pageSize:Int
+
 ) {
     val linearLayoutManager = LinearLayoutManager(view.context)
     view.layoutManager = linearLayoutManager
-
-
     view.adapter = itemsVM.adapter
 
-    view.addOnScrollListener(object : PaginationListener(swipeRefreshLayout, linearLayoutManager) {
+    view.addOnScrollListener(object : PaginationListener(pageSize,swipeRefreshLayout, linearLayoutManager) {
         override fun loadMoreItems() {
             itemsVM.loadMoreItems()
+            Log.d("voronin", "loadMoreItems")
         }
 
         override fun isLastPage(): Boolean = itemsVM.isLastPage.value ?: false
@@ -64,7 +68,7 @@ fun setEarningsAdapter(
     vm: EarningsVM,
     swipeRefreshLayout: SwipeRefreshLayout?
 ) {
-    initHeaderList(view, vm.itemsVM, swipeRefreshLayout)
+    initHeaderList(view, vm.itemsVM, swipeRefreshLayout, EARNINGS_PAGE_SIZE)
 }
 
 @BindingAdapter("setNewsAdapter")
