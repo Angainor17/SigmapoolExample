@@ -117,12 +117,11 @@ class CalcItemVM(
             } catch (e: Exception) {
                 0f
             }
-            val coef = params.hashrateCoefficient
 
             val calculatedValue = if (isHashrateToProfit) {
-                coef * value * it.profit
+                value * it.profit
             } else {
-                (value / it.profit) / coef
+                value / it.profit
             }
 
             bottomLine.value.postValue(formatFloat(calculatedValue))

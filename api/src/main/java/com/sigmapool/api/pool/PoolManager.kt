@@ -40,6 +40,7 @@ internal class PoolManager(private val service: IPoolService) : IPoolManager {
                 response.blockTime,
                 response.networkHashrate,
                 response.networkDifficulty,
+                response.nextDifficulty,
                 response.blockHeight,
                 response.nextDifficultyAt
             )

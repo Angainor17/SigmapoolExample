@@ -58,7 +58,12 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
                         )
                     )
         )
-        coinPriceChange.postValue(formatPriceChange(coinDto))
+        coinPriceChange.postValue(
+            formatPercent(
+                coinDto.previousPrice,
+                coinDto.price
+            )
+        )
         isCoinPriceUp.postValue(coinDto.previousPrice < coinDto.price)
 
         poolHashrate.postValue(formatHashrate(coinDto.poolHashrate))
@@ -74,23 +79,21 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
             )
         )
         networkHashrate.postValue(formatHashrate(networkDto.networkHashrate.toLong()))
-        networkDifficulty.postValue(formatNetworkDifficulty(networkDto))
+        networkDifficulty.postValue(formatDifficulty(networkDto.networkDifficulty))
         block.postValue(networkDto.blockHeight.format(INT_PATTERN))
         nextDifficultyAt.postValue(networkDto.nextDifficultyAt.formatDate())
-        nextDifficulty.postValue(
-            formatValueWithPostfix(
-                "7.93",
-                " T",
-                resProvider.getColor(R.color.titleGray)
+        nextDifficulty.postValue(formatDifficulty(networkDto.nextDifficulty))
+        nextDifficultyChange.postValue(
+            formatPercent(
+                networkDto.networkDifficulty.toFloat(),
+                networkDto.nextDifficulty.toFloat()
             )
-        )//FIXME
-
-        nextDifficultyChange.postValue("9.54 %")//FIXME
-        isNextDifficultyChangeUp.postValue(false)//FIXME
+        )
+        isNextDifficultyChangeUp.postValue(networkDto.nextDifficulty > networkDto.networkDifficulty)
     }
 
-    private fun formatNetworkDifficulty(networkDto: NetworkDto): CharSequence {
-        val result = formatLongValue(networkDto.networkDifficulty, FLOAT_PATTERN)
+    private fun formatDifficulty(value: Long): CharSequence {
+        val result = formatLongValue(value, FLOAT_PATTERN)
 
         return formatValueWithPostfix(
             result.beforeLastChar(), " " + result.lastChar(),
@@ -104,8 +107,8 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
         resProvider.getColor(R.color.titleGray)
     )
 
-    private fun formatPriceChange(coinDto: CoinDto): String {
-        var percent = (((coinDto.price - coinDto.previousPrice) / coinDto.previousPrice) * 100)
+    private fun formatPercent(prev: Float, now: Float): String {
+        var percent = (((now - prev) / prev) * 100)
         if (percent < -1) percent = -percent
 
         return percent.format(FLOAT_PATTERN) + "%"

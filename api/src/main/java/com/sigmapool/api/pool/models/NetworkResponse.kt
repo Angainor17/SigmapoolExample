@@ -7,6 +7,7 @@ class NetworkResponse(
     val blockTime: Int,
     val networkHashrate: Float,
     val networkDifficulty: Long,
+    val nextDifficulty: Long,
     val blockHeight: Int,
     val nextDifficultyAt: Date
 )
