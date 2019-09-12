@@ -87,9 +87,9 @@
                         layout="@layout/fragment_settings_select_item"
 
                         app:label="@{@string/limit}"
-                        app:value="@{vm.limitLiveData}"
+                        app:value="@{vm.settingsThresholdVm.thresholdLiveData}"
                         app:isTopSeparatorVisible="@{false}"
-                        app:clickListener="@{v->vm.limitSelect()}"
+                        app:clickListener="@{v->vm.settingsThresholdVm.thresholdSelect()}"
                         />
 
                 <include

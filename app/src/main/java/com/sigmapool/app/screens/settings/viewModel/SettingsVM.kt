@@ -45,6 +45,7 @@ class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScre
 
     val toolbarVm = CoinToolbarVM()
     val settingsSchemeVM = SettingsSchemeVM(toolbarVm.coinProvider, view)
+    val settingsThresholdVm = SettingsThresholdVm(toolbarVm.coinProvider)
 
     private var selectedLang = langProvider.getLocale()
 
@@ -52,12 +53,13 @@ class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScre
     val currencyLiveData =
         MutableLiveData(resProvider.getString(currencyProvider.getCurrency().labelResId))
     val pushLiveData = MutableLiveData(getPushEnable())
-    val limitLiveData = MutableLiveData("0.001 BTC")//FIXME
+
     val isLoginLiveData = MutableLiveData(false)
 
     init {
         toolbarVm.coinProvider.addOnChangeListener {
             settingsSchemeVM.refresh()
+            settingsThresholdVm.refresh()
         }
     }
 
@@ -87,10 +89,6 @@ class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScre
 
     fun pushSwitch(isChecked: Boolean) {
         jsonDataStorage.put(PUSH_ENABLE, isChecked)
-    }
-
-    fun limitSelect() {
-        //TODO implement
     }
 
     fun writeReview() {
