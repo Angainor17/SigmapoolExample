@@ -1,0 +1,33 @@
+package com.sigmapool.api.earnings
+
+import com.sigmapool.api.earnings.models.BalanceResponse
+import com.sigmapool.api.earnings.models.EarningsResponse
+import com.sigmapool.api.earnings.models.PaymentListResponse
+import com.sigmapool.api.earnings.models.TotalPaidResponse
+import com.sigmapool.api.models.PayloadModel
+import retrofit2.http.GET
+import retrofit2.http.Path
+
+internal interface EarningsApi {
+
+    @GET("api/v2/{coin}/user/earnings/daily")
+    suspend fun earningsDaily(
+        @Path("coin") coin: String
+    ): PayloadModel<EarningsResponse>
+
+    @GET("api/v2/{coin}/user/total-paid")
+    suspend fun totalPaid(
+        @Path("coin") coin: String
+    ): PayloadModel<TotalPaidResponse>
+
+    @GET("api/v2/{coin}/user/balance")
+    suspend fun balance(
+        @Path("coin") coin: String
+    ): PayloadModel<BalanceResponse>
+
+    @GET("api/v2/{coin}/user/payments")
+    suspend fun payments(
+        @Path("coin") coin: String
+    ): PayloadModel<PaymentListResponse>
+
+}

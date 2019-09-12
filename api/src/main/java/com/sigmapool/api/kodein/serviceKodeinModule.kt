@@ -2,6 +2,8 @@ package com.sigmapool.api.kodein
 
 import com.sigmapool.api.blog.BlogService
 import com.sigmapool.api.blog.IBlogService
+import com.sigmapool.api.earnings.EarningsService
+import com.sigmapool.api.earnings.IEarningsService
 import com.sigmapool.api.miners.IMinerService
 import com.sigmapool.api.miners.MinerService
 import com.sigmapool.api.news.INewsService
@@ -23,4 +25,5 @@ internal val serviceModule = Module("ServiceModule") {
     bind<IPoolService>() with singleton { PoolService(instance()) }
     bind<IMinerService>() with singleton { MinerService(instance()) }
     bind<INewsService>() with singleton { NewsService(instance()) }
+    bind<IEarningsService>() with singleton { EarningsService(instance()) }
 }
