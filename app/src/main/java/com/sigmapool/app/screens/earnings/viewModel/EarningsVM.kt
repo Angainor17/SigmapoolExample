@@ -42,16 +42,28 @@ class EarningsVM : ViewModel(), IUpdateScreenVm {
     )
 
     init {
+        initListStatus(coinProvider.getLabel())
+
         coinProvider.addOnChangeListener {
             params.coin = it
             Handler().postDelayed({
                 headerVm.refresh()
             }, 500)
 
+            initListStatus(params.coin)
             itemsVM.onRefresh()
         }
 
         headerVm.onRefreshListener = this::refreshHeader
+    }
+
+    private fun initListStatus(coin: String) {
+        GlobalScope.launch(Dispatchers.IO) {
+            val result = earningsManager.getLastPayment(coin)
+            if (result.success) {
+                adapter.lastPaymentDate = result.data?.date
+            }
+        }
     }
 
     private fun refreshHeader() {

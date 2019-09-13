@@ -1,9 +1,6 @@
 package com.sigmapool.api.earnings
 
-import com.sigmapool.api.earnings.models.BalanceResponse
-import com.sigmapool.api.earnings.models.EarningsResponse
-import com.sigmapool.api.earnings.models.PaymentItemResponse
-import com.sigmapool.api.earnings.models.TotalPaidResponse
+import com.sigmapool.api.earnings.models.*
 
 internal interface IEarningsService {
 
@@ -14,5 +11,7 @@ internal interface IEarningsService {
     suspend fun balance(coin: String): BalanceResponse
 
     suspend fun payments(coin: String, page: Int): ArrayList<PaymentItemResponse>
+
+    suspend fun getLastPayment(coin: String): LastPaymentResponse
 }
 

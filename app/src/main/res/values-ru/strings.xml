@@ -103,5 +103,6 @@
     <string name="submit">Подтвердить</string>
     <string name="cancel">Отменить</string>
     <string name="enter_threshold">Введите пороговое значение</string>
+    <string name="saved_to_balance">Положен на счёт</string>
 
 </resources>

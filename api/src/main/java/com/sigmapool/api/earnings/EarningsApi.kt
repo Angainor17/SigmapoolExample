@@ -1,9 +1,6 @@
 package com.sigmapool.api.earnings
 
-import com.sigmapool.api.earnings.models.BalanceResponse
-import com.sigmapool.api.earnings.models.EarningsResponse
-import com.sigmapool.api.earnings.models.PaymentListResponse
-import com.sigmapool.api.earnings.models.TotalPaidResponse
+import com.sigmapool.api.earnings.models.*
 import com.sigmapool.api.models.PayloadModel
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -32,4 +29,8 @@ internal interface EarningsApi {
         @Query("page") page: Int
     ): PayloadModel<PaymentListResponse>
 
+    @GET("api/v2/{coin}/user/last-payment")
+    suspend fun getLastPayment(
+        @Path("coin") coin: String
+    ): PayloadModel<LastPaymentResponse>
 }

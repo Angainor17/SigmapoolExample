@@ -31,7 +31,6 @@ internal interface PoolApi {
         @Path("coin") coin: String
     ): PayloadModel<CurrencyResponse>
 
-
     @GET("api/v2/{coin}/user/settings/payout/scheme")
     suspend fun getScheme(
         @Path("coin") coin: String

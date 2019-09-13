@@ -9,6 +9,7 @@ import com.sigmapool.app.screens.earnings.viewModel.EarningsHeaderVM
 import com.sigmapool.app.screens.earnings.viewModel.EarningsItemVM
 import com.sigmapool.common.listLibrary.IItemBindingHelper
 import com.sigmapool.common.listLibrary.pagedlist.SimpleAdapter
+import java.util.*
 
 class EarningsListAdapter(
     private val headerVM: EarningsHeaderVM,
@@ -16,9 +17,24 @@ class EarningsListAdapter(
 ) :
     SimpleAdapter<EarningsItemVM>(itemLayoutProvider) {
 
+    var lastPaymentDate: Date? = null
+        set(value) {
+            field = value
+            initLastPayment(value)
+            notifyItemRangeChanged(1, items.size)
+        }
+
     override fun addItems(newItems: List<EarningsItemVM>) {
         items.addAll(newItems)
+        initLastPayment(lastPaymentDate)
+
         notifyItemRangeChanged(1, newItems.size)
+    }
+
+    private fun initLastPayment(value: Date?) {
+        items.forEach {
+            it.lastPaymentDate = value
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

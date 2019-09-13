@@ -47,4 +47,10 @@ internal class EarningsManager(private val service: IEarningsService) : IEarning
     } catch (e: Throwable) {
         ManagerResult(error = e.message)
     }
+
+    override suspend fun getLastPayment(coin: String): ManagerResult<LastPaymentDto> = try {
+        ManagerResult(LastPaymentDto(service.getLastPayment(coin).date))
+    } catch (e: Throwable) {
+        ManagerResult(error = e.message)
+    }
 }

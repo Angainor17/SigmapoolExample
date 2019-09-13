@@ -14,4 +14,6 @@ internal class EarningsService(apiProvider: IApiServiceProvider) : IEarningsServ
 
     override suspend fun payments(coin: String, page: Int) =
         api.payments(coin, page).payload!!.payments
+
+    override suspend fun getLastPayment(coin: String) = api.getLastPayment(coin).payload!!
 }

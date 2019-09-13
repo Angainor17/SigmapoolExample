@@ -12,4 +12,5 @@ interface IEarningsManager {
 
     suspend fun payments(coin: String, page: Int): ManagerResult<ArrayList<PaymentItemDto>>
 
+    suspend fun getLastPayment(coin: String): ManagerResult<LastPaymentDto>
 }

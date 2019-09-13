@@ -119,5 +119,6 @@
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
     <string name="enter_threshold">Enter threshold</string>
+    <string name="saved_to_balance">Saved to Balance</string>
 
 </resources>

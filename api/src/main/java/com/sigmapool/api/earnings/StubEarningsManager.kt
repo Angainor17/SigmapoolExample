@@ -18,9 +18,7 @@ internal class StubEarningsManager(private val context: Context) : IEarningsMana
             return ManagerResult(error = context.getString(R.string.no_connection))
         }
 
-        return ManagerResult(
-            EarningsDto(42)
-        )
+        return ManagerResult(EarningsDto(42))
     }
 
     override suspend fun totalPaid(coin: String): ManagerResult<TotalPaidDto> {
@@ -30,9 +28,7 @@ internal class StubEarningsManager(private val context: Context) : IEarningsMana
             return ManagerResult(error = context.getString(R.string.no_connection))
         }
 
-        return ManagerResult(
-            TotalPaidDto(43342f)
-        )
+        return ManagerResult(TotalPaidDto(43342f))
     }
 
     override suspend fun balance(coin: String): ManagerResult<BalanceDto> {
@@ -42,9 +38,7 @@ internal class StubEarningsManager(private val context: Context) : IEarningsMana
             return ManagerResult(error = context.getString(R.string.no_connection))
         }
 
-        return ManagerResult(
-            BalanceDto(123123f)
-        )
+        return ManagerResult(BalanceDto(123123f))
     }
 
     override suspend fun payments(
@@ -60,7 +54,7 @@ internal class StubEarningsManager(private val context: Context) : IEarningsMana
         return ManagerResult(
             ArrayList(List(15) {
                 PaymentItemDto(
-                    Date(),
+                    Date(Date().time - it * 2L * 24 * 60 * 60 * 1000),
                     100.123123f + it,
                     it,
                     1000000000L * it,
@@ -69,5 +63,14 @@ internal class StubEarningsManager(private val context: Context) : IEarningsMana
                 )
             })
         )
+    }
+
+    override suspend fun getLastPayment(coin: String): ManagerResult<LastPaymentDto> {
+        delay(1500)
+
+        if (!hasConnection(context)) {
+            return ManagerResult(error = context.getString(R.string.no_connection))
+        }
+        return ManagerResult((LastPaymentDto(Date(Date().time - 5L * 24 * 60 * 60 * 1000))))
     }
 }
