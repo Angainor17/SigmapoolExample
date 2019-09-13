@@ -91,7 +91,7 @@
     <string name="currency">Currency</string>
     <string name="push_notification">Push-notifications</string>
     <string name="payment_scheme">Payment scheme</string>
-    <string name="limit">Limit</string>
+    <string name="threshold">Threshold</string>
     <string name="write_review">Write a review or suggestion</string>
     <string name="mark_app">Star app</string>
     <string name="exit">Exit</string>

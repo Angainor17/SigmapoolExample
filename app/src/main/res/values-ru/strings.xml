@@ -80,7 +80,7 @@
     <string name="currency">Валюта</string>
     <string name="push_notification">Push-уведомления</string>
     <string name="payment_scheme">Схема выплат</string>
-    <string name="limit">Порог</string>
+    <string name="threshold">Порог</string>
     <string name="write_review">Написать отзыв или предложение</string>
     <string name="mark_app">Оценить приложение</string>
     <string name="exit">Выйти</string>
