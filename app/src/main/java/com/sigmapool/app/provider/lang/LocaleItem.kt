@@ -3,6 +3,6 @@ package com.sigmapool.app.provider.lang
 import androidx.annotation.StringRes
 
 data class LocaleItem(
-    @StringRes val labelResId: Int,
+    @StringRes var labelResId: Int,
     val locale: String
 )

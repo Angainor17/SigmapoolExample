@@ -9,13 +9,15 @@ import org.kodein.di.generic.instance
 import java.util.*
 
 const val LANGUAGE_KEY = "locale"
+const val RU_LOCALE = "ru"
+const val EN_LOCALE = "en"
 
 class LocaleProvider : ILocaleProvider {
 
     private val jsonDataStorage by kodein.instance<JsonDataStorage>()
 
-    private val rusLang = LocaleItem(R.string.rus, "ru")
-    private val enLang = LocaleItem(R.string.english, "en")
+    private val rusLang = LocaleItem(R.string.rus, RU_LOCALE)
+    private val enLang = LocaleItem(R.string.english, EN_LOCALE)
 
     private val defaultLocale = enLang
 
@@ -43,5 +45,13 @@ class LocaleProvider : ILocaleProvider {
         jsonDataStorage.put(LANGUAGE_KEY, locale)
     }
 
-    private fun getFromStorage() = Gson().fromJson(jsonDataStorage.getJson(LANGUAGE_KEY), LocaleItem::class.java)
+    private fun getFromStorage(): LocaleItem? {
+        val locale = Gson().fromJson(jsonDataStorage.getJson(LANGUAGE_KEY), LocaleItem::class.java)
+        locale?.labelResId = when (locale.locale) {
+            RU_LOCALE -> R.string.rus
+            EN_LOCALE -> R.string.english
+            else -> R.string.english
+        }
+        return locale
+    }
 }

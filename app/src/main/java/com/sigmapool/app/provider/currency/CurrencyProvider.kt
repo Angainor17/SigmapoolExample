@@ -2,10 +2,8 @@ package com.sigmapool.app.provider.currency
 
 import com.google.gson.Gson
 import com.sigmapool.app.App.Companion.kodein
-import com.sigmapool.app.provider.currency.models.AppCurrency
-import com.sigmapool.app.provider.currency.models.currencies
-import com.sigmapool.app.provider.currency.models.rubCurrency
-import com.sigmapool.app.provider.currency.models.usdCurrency
+import com.sigmapool.app.R
+import com.sigmapool.app.provider.currency.models.*
 import com.sigmapool.app.screens.home.coin.BTC
 import com.sigmapool.app.screens.home.coin.LTC
 import com.sigmapool.app.utils.storages.JsonDataStorage
@@ -49,8 +47,6 @@ class CurrencyProvider : ICurrencyProvider {
     override fun fromCoinToCurrency(coin: String, coinValue: Float): Float {
         initValues()
 
-        val sds = getCurrencyPrice(currencies[coin]!!)
-        val asdasdasd123123123 = coinValue / getCurrencyPrice(currencies[coin]!!)
         return coinValue * getCurrencyPrice(currencies[coin]!!)
     }
 
@@ -83,7 +79,15 @@ class CurrencyProvider : ICurrencyProvider {
 
     private fun getCurrencyFromStorage(): AppCurrency? = try {
         val json = jsonDataStorage.getJson(CURRENCY_KEY, "")
-        Gson().fromJson(json, AppCurrency::class.java)
+        val appCurrency = Gson().fromJson(json, AppCurrency::class.java)
+
+        appCurrency?.labelResId = when (appCurrency.code) {
+            RUB_CODE -> R.string.rub
+            USD_CODE -> R.string.usd
+            else -> R.string.usd
+        }
+
+        appCurrency
     } catch (e: Exception) {
         null
     }

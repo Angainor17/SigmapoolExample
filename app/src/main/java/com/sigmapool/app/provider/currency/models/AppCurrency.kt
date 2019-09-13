@@ -3,7 +3,8 @@ package com.sigmapool.app.provider.currency.models
 import androidx.annotation.StringRes
 
 data class AppCurrency(
-    @StringRes val labelResId: Int,
+    @StringRes var labelResId: Int,
     val symbol: String,
+    val code: String,
     val params: CurrencyParams
 )

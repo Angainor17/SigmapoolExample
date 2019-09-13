@@ -6,9 +6,13 @@ import com.sigmapool.app.screens.home.coin.BTC
 import com.sigmapool.app.screens.home.coin.LTC
 import com.sigmapool.common.models.CurrencyDto
 
+const val RUB_CODE = "rub"
+const val USD_CODE = "usd"
+
 val rubCurrency = AppCurrency(
     R.string.rub,
     Html.fromHtml(" &#x20bd").toString(),
+    RUB_CODE,
     CurrencyParams(
         1,
         6,
@@ -22,6 +26,7 @@ val rubCurrency = AppCurrency(
 val usdCurrency = AppCurrency(
     R.string.usd,
     "$",
+    USD_CODE,
     CurrencyParams(
         1,
         12,
