@@ -104,5 +104,8 @@
     <string name="cancel">Отменить</string>
     <string name="enter_threshold">Введите пороговое значение</string>
     <string name="saved_to_balance">Положен на счёт</string>
+    <string name="avg_hashrate">Avg.Hashrate</string>
+    <string name="earned_last_24h">Earned Last 24h</string>
+    <string name="workers">Workers</string>
 
 </resources>

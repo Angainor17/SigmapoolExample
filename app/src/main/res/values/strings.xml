@@ -120,5 +120,8 @@
     <string name="cancel">Cancel</string>
     <string name="enter_threshold">Enter threshold</string>
     <string name="saved_to_balance">Saved to Balance</string>
+    <string name="avg_hashrate">Avg.Hashrate</string>
+    <string name="earned_last_24h">Earned Last 24h</string>
+    <string name="workers">Workers</string>
 
 </resources>

@@ -165,4 +165,35 @@
 
     </style>
 
+    <style name="DashBoardChartInfoTitleStyle">
+        <item name="android:fontFamily">@font/google_sans_regular</item>
+        <item name="android:textColor">@color/titleGray</item>
+        <item name="android:textSize">14dp</item>
+    </style>
+
+    <style name="DashboardChartInfoValueStyle">
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:fontFamily">@font/google_sans_bold</item>
+        <item name="android:textColor">#543eac</item>
+        <item name="android:textSize">17dp</item>
+    </style>
+
+    <style name="DashboardChartInfoPostfixStyle">
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:textColor">#646464</item>
+        <item name="android:fontFamily">@font/google_sans_regular</item>
+        <item name="android:textSize">17dp</item>
+    </style>
+
+    <style name="DashboardChartInfoPrefixStyle">
+        <item name="android:textColor">#646464</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:fontFamily">@font/google_sans_regular</item>
+    </style>
+
+    <style name="MySwitchCompat" parent="Widget.AppCompat.CompoundButton.Switch">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
 </resources>
