@@ -10,8 +10,8 @@ android {
         applicationId "com.sigmapool.app"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 5
-        versionName "1.0.4"
+        versionCode 6
+        versionName "1.0.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -26,11 +26,17 @@ android {
     dataBinding {
         enabled true
     }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
     implementation project(path: ':api')
     implementation project(path: ':common')
+    implementation 'com.sha.kamel:multi-toggle-button:1.8.3@aar'
 
     implementation modalBottomSheetDialog.core
     implementation bannerslider.core

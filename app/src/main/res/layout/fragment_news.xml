@@ -28,6 +28,8 @@
 
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRefresh"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -48,6 +50,7 @@
 
                         layout="@layout/fragment_news_list"
                         app:vm="@{vm.listVM}"
+                        app:swipeRefresh="@{swipeRefresh}"
                         />
 
                 <TextView

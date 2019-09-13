@@ -11,6 +11,10 @@
                 type="com.sigmapool.app.screens.news.vm.NewsListVM"
                 />
 
+        <variable
+                name="swipeRefresh"
+                type="androidx.swiperefreshlayout.widget.SwipeRefreshLayout"
+                />
     </data>
 
     <LinearLayout
@@ -22,9 +26,10 @@
         <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
 
+                app:swipeRefresh="@{swipeRefresh}"
                 app:setNewsAdapter="@{vm}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 />
 
     </LinearLayout>

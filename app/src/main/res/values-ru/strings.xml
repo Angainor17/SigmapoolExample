@@ -108,4 +108,9 @@
     <string name="earned_last_24h">Earned Last 24h</string>
     <string name="workers">Workers</string>
 
+    <string-array name="hour_day">
+        <item>1ч</item>
+        <item>1д</item>
+    </string-array>
+
 </resources>

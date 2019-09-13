@@ -42,8 +42,8 @@ internal class StubPoolManager(private val context: Context) : IPoolManager {
                 1231f,
                 12,
                 7777777777777.32f,
-                666666666666666L,
-                555555555555555L,
+                666666666666666f,
+                555555555555555f,
                 123,
                 Date()
             )

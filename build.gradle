@@ -113,7 +113,7 @@ allprojects {
         jcenter()
 
         maven { url "https://jitpack.io" }
-
+        maven { url "https://dl.bintray.com/shabankamel/android" }
     }
 }
 

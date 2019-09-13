@@ -158,7 +158,7 @@ class CalcItemVM(
 
     private fun initViews(coin: CoinDto?, network: NetworkDto?) {
         currentPrice.postValue(formatCurrentPrice(coin?.price ?: 0f))
-        difficulty.postValue(formatDifficulty(network?.networkDifficulty ?: 0L))
+        difficulty.postValue(formatDifficulty(network?.networkDifficulty?.toLong() ?: 0L))
         blockReward.postValue(formatBlockReward(network?.blockReward ?: 0f))
     }
 

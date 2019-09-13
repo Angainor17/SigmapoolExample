@@ -79,14 +79,14 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
             )
         )
         networkHashrate.postValue(formatHashrate(networkDto.networkHashrate.toLong()))
-        networkDifficulty.postValue(formatDifficulty(networkDto.networkDifficulty))
+        networkDifficulty.postValue(formatDifficulty(networkDto.networkDifficulty.toLong()))
         block.postValue(networkDto.blockHeight.format(INT_PATTERN))
         nextDifficultyAt.postValue(networkDto.nextDifficultyAt.formatDate())
-        nextDifficulty.postValue(formatDifficulty(networkDto.nextDifficulty))
+        nextDifficulty.postValue(formatDifficulty(networkDto.nextDifficulty.toLong()))
         nextDifficultyChange.postValue(
             formatPercent(
-                networkDto.networkDifficulty.toFloat(),
-                networkDto.nextDifficulty.toFloat()
+                networkDto.networkDifficulty,
+                networkDto.nextDifficulty
             )
         )
         isNextDifficultyChangeUp.postValue(networkDto.nextDifficulty > networkDto.networkDifficulty)

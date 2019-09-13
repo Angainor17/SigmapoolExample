@@ -47,7 +47,7 @@
             <include
                     layout="@layout/fragment_news_list"
                     app:vm="@{vm}"
-
+                    app:swipeRefresh="@{null}"
                     />
 
             <include

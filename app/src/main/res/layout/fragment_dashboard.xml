@@ -57,14 +57,21 @@
                             app:vm="@{vm.dashboardChartInfoVM}"
                             />
 
-<!--                    <com.sigmapool.app.utils.customViews.SwitchCompatEx-->
-<!--                            android:layout_width="wrap_content"-->
+<!--                    <com.sha.kamel.multitogglebutton.MultiToggleButton-->
+<!--                            android:id="@+id/mtb"-->
+<!--                            android:layout_width="match_parent"-->
 <!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_gravity="center"-->
-<!--                            android:minHeight="40dp"-->
-<!--                            android:textOff="M"-->
-<!--                            android:textOn="F"-->
-<!--                            app:switchMinWidth="100dp" />-->
+<!--                            android:layout_marginTop="10dp"-->
+
+<!--                            app:labels="@array/hour_day"-->
+<!--                            app:mtbScrollable="false"-->
+<!--                            app:mtbRoundedCorners="true"-->
+<!--                            app:mtbPressedColor="@color/black"-->
+<!--                            app:mtbUnpressedColor="@color/white"-->
+<!--                            app:mtbColorPressedText="@color/green"-->
+<!--                            app:mtbColorUnpressedText="@color/titleGray"-->
+<!--                            app:mtbCornerRadius="8dp"-->
+<!--                            />-->
 
                 </LinearLayout>
 

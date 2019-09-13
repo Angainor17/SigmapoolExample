@@ -37,14 +37,15 @@ private fun <DtoItem, ItemVm : BaseItemViewModel> initHeaderList(
     view: RecyclerView,
     itemsVM: HeaderListVM<DtoItem, ItemVm>,
     swipeRefreshLayout: SwipeRefreshLayout?,
-    pageSize:Int
+    pageSize: Int
 
 ) {
     val linearLayoutManager = LinearLayoutManager(view.context)
     view.layoutManager = linearLayoutManager
     view.adapter = itemsVM.adapter
 
-    view.addOnScrollListener(object : PaginationListener(pageSize,swipeRefreshLayout, linearLayoutManager) {
+    view.addOnScrollListener(object :
+        PaginationListener(pageSize, swipeRefreshLayout, linearLayoutManager) {
         override fun loadMoreItems() {
             itemsVM.loadMoreItems()
             Log.d("voronin", "loadMoreItems")
@@ -71,10 +72,19 @@ fun setEarningsAdapter(
     initHeaderList(view, vm.itemsVM, swipeRefreshLayout, EARNINGS_PAGE_SIZE)
 }
 
-@BindingAdapter("setNewsAdapter")
-fun setNewsAdapter(view: RecyclerView, vm: NewsListVM) {
+@BindingAdapter("setNewsAdapter", "swipeRefresh")
+fun setNewsAdapter(view: RecyclerView, vm: NewsListVM, swipeRefreshLayout: SwipeRefreshLayout?) {
+    val linearLayoutManager = LinearLayoutManager(view.context)
+    view.layoutManager = linearLayoutManager
     view.adapter = vm.itemsVM.pagedRecyclerAdapter
 
+    view.addOnScrollListener(object :
+        PaginationListener(20, swipeRefreshLayout, linearLayoutManager) {
+        override fun loadMoreItems() = Unit
+        override fun isLastPage(): Boolean = false
+        override fun isLoading(): Boolean = false
+        override fun headerCount(): Int = 1
+    })
     val activity = view.context as AppCompatActivity
     vm.itemsVM.items.observe(activity,
         Observer<PagedList<BaseItemViewModel>?> { t ->
