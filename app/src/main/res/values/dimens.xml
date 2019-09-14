@@ -2,7 +2,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="tab_corner_radius">4dp</dimen>
 
-    <dimen name="design_bottom_navigation_text_size" tools:override="true">12sp</dimen>
-    <dimen name="design_bottom_navigation_active_text_size" tools:override="true">11sp</dimen>
+    <dimen name="design_bottom_navigation_text_size"
+            tools:override="true">12sp
+    </dimen>
+    <dimen name="design_bottom_navigation_active_text_size"
+            tools:override="true">11sp
+    </dimen>
+
+    <dimen name="custom_switcher_radius">16dp</dimen>
 
 </resources>

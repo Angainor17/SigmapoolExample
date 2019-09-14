@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        >
+
+    <data>
+
+        <variable
+                name="vm"
+                type="com.sigmapool.app.utils.customViews.CustomSwitchVm"
+                />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            tools:layout_width="200dp"
+            >
+
+        <LinearLayout
+                android:id="@+id/leftContainer"
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+
+                android:background="@drawable/custom_switcher_left_bg"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="@{v->vm.leftClick()}"
+                android:orientation="vertical"
+                app:onActivatedChange="@{vm.leftActivated}"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/rightContainer"
+
+                >
+
+            <TextView
+                    style="@style/SwitcherTextStyle"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{v->vm.leftClick()}"
+                    android:text="@{vm.leftText}"
+                    android:clickable="true"
+                    android:focusable="true"
+
+                    app:onActivatedChange="@{vm.leftActivated}"
+
+                    tools:text="1h"
+                    />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/rightContainer"
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:onClick="@{v->vm.rightClick()}"
+                android:orientation="vertical"
+                android:gravity="center_vertical|center_horizontal"
+                app:onActivatedChange="@{vm.rightActivated}"
+                android:background="@drawable/custom_switcher_bg"
+
+                app:layout_constraintStart_toEndOf="@id/leftContainer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                tools:text="1d"
+                >
+
+            <TextView
+                    style="@style/SwitcherTextStyle"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{v->vm.rightClick()}"
+                    android:text="@{vm.rightText}"
+
+                    app:onActivatedChange="@{vm.rightActivated}"
+
+                    tools:text="1h"
+                    />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

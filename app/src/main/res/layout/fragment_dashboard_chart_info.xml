@@ -16,12 +16,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
             android:background="@color/screenBgColor"
             >
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/gradient_status_bar"
 
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -35,6 +37,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="6dp"
                 android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
 
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="6dp"
@@ -48,6 +51,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     >
 
                 <TextView
@@ -61,7 +65,7 @@
                         android:layout_marginEnd="4dp"
                         android:text="@string/avg_hashrate"
 
-                        app:layout_constraintEnd_toStartOf="@+id/switch_toggle"
+                        app:layout_constraintEnd_toStartOf="@+id/view_switch"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         />
@@ -87,9 +91,9 @@
 
                 <include
                         android:id="@+id/view_switch"
-                        layout="@layout/custom_switch"
 
-                        android:layout_width="wrap_content"
+                        layout="@layout/custom_switcher"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
                         app:layout_constraintBottom_toBottomOf="@+id/avg_hashrate_label"
@@ -97,7 +101,7 @@
                         app:layout_constraintStart_toEndOf="@+id/avg_hashrate_label"
                         app:layout_constraintTop_toTopOf="@+id/avg_hashrate_label"
 
-                        android:layout_marginEnd="8dp"
+                        app:vm="@{vm.customSwitchVm}"
                         />
 
                 <TextView
