@@ -16,6 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/custom_switcher_bg"
 
             tools:layout_width="200dp"
             >
@@ -30,28 +31,28 @@
                 android:gravity="center_vertical|center_horizontal"
                 android:onClick="@{v->vm.leftClick()}"
                 android:orientation="vertical"
-                app:onActivatedChange="@{vm.leftActivated}"
+                app:layout_constraintBottom_toBottomOf="parent"
 
+                app:layout_constraintEnd_toStartOf="@id/rightContainer"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/rightContainer"
-
+                app:layout_constraintHorizontal_weight="1"
+                app:onActivatedChange="@{vm.leftActivated}"
                 >
 
             <TextView
                     style="@style/SwitcherTextStyle"
 
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="@{v->vm.leftClick()}"
-                    android:text="@{vm.leftText}"
                     android:clickable="true"
                     android:focusable="true"
+                    android:onClick="@{v->vm.leftClick()}"
+                    android:text="@{vm.leftText}"
 
                     app:onActivatedChange="@{vm.leftActivated}"
 
-                    tools:text="1h"
+                    tools:text="@string/twenty_four_hour"
                     />
 
         </LinearLayout>
@@ -61,24 +62,27 @@
 
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:background="@drawable/custom_switcher_bg"
+                android:duplicateParentState="false"
+                android:gravity="center_vertical|center_horizontal"
                 android:onClick="@{v->vm.rightClick()}"
                 android:orientation="vertical"
-                android:gravity="center_vertical|center_horizontal"
-                app:onActivatedChange="@{vm.rightActivated}"
-                android:background="@drawable/custom_switcher_bg"
 
-                app:layout_constraintStart_toEndOf="@id/leftContainer"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/leftContainer"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:onActivatedChange="@{vm.rightActivated}"
 
-                tools:text="1d"
+                tools:text="24d"
                 >
 
             <TextView
                     style="@style/SwitcherTextStyle"
 
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+
                     android:layout_height="wrap_content"
                     android:onClick="@{v->vm.rightClick()}"
                     android:text="@{vm.rightText}"

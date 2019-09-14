@@ -126,5 +126,6 @@
 
     <string name="one_hour">1h</string>
     <string name="one_day">1d</string>
+    <string name="twenty_four_hour">24h</string>
 
 </resources>

@@ -16,8 +16,8 @@ class DashboardChartInfoVM(
     private val resProvider by kodein.instance<IResProvider>()
 
     val customSwitchVm = CustomSwitchVm(
-        resProvider.getString(R.string.one_hour),
-        resProvider.getString(R.string.one_day)
+        resProvider.getString(R.string.one_day),
+        resProvider.getString(R.string.twenty_four_hour)
     )
 
     val coin = MutableLiveData<String>(coinProvider.getLabel().toUpperCase())

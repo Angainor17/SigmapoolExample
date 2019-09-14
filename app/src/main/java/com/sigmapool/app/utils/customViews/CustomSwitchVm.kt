@@ -8,6 +8,8 @@ class CustomSwitchVm(
     val rightText: String = ""
 ) : ViewModel() {
 
+    var clickListener: OnSwitchSelected? = null
+
     val leftActivated = MutableLiveData(false)
     val rightActivated = MutableLiveData(true)
 
@@ -15,6 +17,8 @@ class CustomSwitchVm(
         if (!rightActivated.value!!) {
             leftActivated.postValue(false)
             rightActivated.postValue(true)
+
+            clickListener?.onSelected(false)
         }
     }
 
@@ -22,6 +26,12 @@ class CustomSwitchVm(
         if (!leftActivated.value!!) {
             rightActivated.postValue(false)
             leftActivated.postValue(true)
+
+            clickListener?.onSelected(true)
         }
     }
+}
+
+interface OnSwitchSelected {
+    fun onSelected(leftSelected: Boolean)
 }

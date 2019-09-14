@@ -109,6 +109,7 @@
     <string name="workers">Workers</string>
 
     <string name="one_hour">1ч</string>
+    <string name="twenty_four_hour">24ч</string>
     <string name="one_day">1д</string>
 
 </resources>

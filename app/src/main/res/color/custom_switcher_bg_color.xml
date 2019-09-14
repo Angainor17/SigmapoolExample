@@ -7,4 +7,6 @@
     <item android:color="@color/switcher_unselected"
             android:state_activated="false" />
 
+    <item android:color="@color/switcher_unselected" />
+
 </selector>
