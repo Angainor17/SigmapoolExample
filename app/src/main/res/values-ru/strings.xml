@@ -12,7 +12,6 @@
     <string name="power_postfix">В</string>
     <string name="login">Логин</string>
     <string name="password">Пароль</string>
-    <string name="or">или</string>
 
     <string name="pool_info">Информация о пуле</string>
     <string name="fee">Fee</string>
@@ -108,7 +107,6 @@
     <string name="earned_last_24h">Earned Last 24h</string>
     <string name="workers">Workers</string>
 
-    <string name="one_hour">1ч</string>
     <string name="twenty_four_hour">24ч</string>
     <string name="one_day">1д</string>
 

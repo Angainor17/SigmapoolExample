@@ -16,12 +16,9 @@
     <string name="power_postfix">W</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
-    <string name="or">or</string>
 
     <string name="pool_info">Pool Info</string>
     <string name="fee">Fee</string>
-    <string name="fpps"
-            translatable="false">FPPS</string>
     <string name="pps"
             translatable="false">PPS</string>
     <string name="btc"
@@ -124,7 +121,6 @@
     <string name="earned_last_24h">Earned Last 24h</string>
     <string name="workers">Workers</string>
 
-    <string name="one_hour">1h</string>
     <string name="one_day">1d</string>
     <string name="twenty_four_hour">24h</string>
 
