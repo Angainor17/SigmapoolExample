@@ -123,5 +123,6 @@
 
     <string name="one_day">1d</string>
     <string name="twenty_four_hour">24h</string>
+    <string name="subaccounts">Subaccounts</string>
 
 </resources>

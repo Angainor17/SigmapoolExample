@@ -7,10 +7,11 @@ import com.sigmapool.app.screens.settings.viewModel.CoinToolbarVM
 class DashboardVM : ViewModel() {
 
     val toolbarVm = CoinToolbarVM()
+    val coinProvider = toolbarVm.coinProvider
 
-    val dashboardChartVM = DashboardChartVM(toolbarVm.coinProvider)
-    val dashboardChartInfoVM = DashboardChartInfoVM(toolbarVm.coinProvider)
-    val dashboardSubaccountsVM = DashboardSubaccountsVM()
+    val dashboardChartVM = DashboardChartVM(coinProvider)
+    val dashboardChartInfoVM = DashboardChartInfoVM(coinProvider)
+    val dashboardSubaccountsVM = DashboardSubAccountsVM(coinProvider)
     val dashboardEarningsVM = DashboardEarningsVM()
     val dashboardNetworkStatusVM = DashboardNetworkStatusVM()
 

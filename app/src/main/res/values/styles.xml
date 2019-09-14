@@ -165,7 +165,7 @@
     <style name="DashboardChartInfoValueStyle">
         <item name="android:layout_marginTop">12dp</item>
         <item name="android:fontFamily">@font/google_sans_bold</item>
-        <item name="android:textColor">#543eac</item>
+        <item name="android:textColor">@color/violet_text</item>
         <item name="android:textSize">17dp</item>
     </style>
 

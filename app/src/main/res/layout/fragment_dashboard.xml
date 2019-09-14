@@ -57,6 +57,12 @@
                             app:vm="@{vm.dashboardChartInfoVM}"
                             />
 
+                    <include
+                            layout="@layout/fragment_dashboard_subaccounts"
+
+                            app:vm="@{vm.dashboardSubaccountsVM}"
+                            />
+
                 </LinearLayout>
 
             </ScrollView>

@@ -22,14 +22,14 @@ class DashboardChartInfoVM(
 
     val coin = MutableLiveData<String>(coinProvider.getLabel().toUpperCase())
 
-    val avgHashrateValue = MutableLiveData<String>("156.25")
-    val avgHashratePostfix = MutableLiveData<String>("PH/s")
+    val avgHashrateValue = MutableLiveData<String>("156.25")//FIXME
+    val avgHashratePostfix = MutableLiveData<String>("PH/s")//FIXME
 
-    val earnedLastValue = MutableLiveData<String>("0.04357")
+    val earnedLastValue = MutableLiveData<String>("0.04357")//FIXME
 
-    val balanceValue = MutableLiveData<String>("0.04357")
+    val balanceValue = MutableLiveData<String>("0.04357")//FIXME
 
-    val onlineWorker = MutableLiveData<String>("135")
-    val allWorker = MutableLiveData<String>("145")
+    val onlineWorker = MutableLiveData<String>("135")//FIXME
+    val allWorker = MutableLiveData<String>("145")//FIXME
 
 }
