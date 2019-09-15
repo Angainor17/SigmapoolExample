@@ -62,7 +62,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="4dp"
-                        android:fontFamily="@font/google_sans_medium"
+                        android:fontFamily="@font/google_sans_bold"
                         android:text="@{vm.coinValueLiveData}"
                         android:textColor="@color/violet_text"
                         android:textSize="15dp"
