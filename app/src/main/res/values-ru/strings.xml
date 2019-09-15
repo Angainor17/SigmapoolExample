@@ -111,4 +111,9 @@
     <string name="one_day">1д</string>
     <string name="subaccounts">Subaccounts</string>
 
+    <string name="total_amount_paid">Выплачено за все время</string>
+    <string name="last_payment_time">Последняя выплата</string>
+    <string name="withdrawal_address">Адрес выплат</string>
+    <string name="estimated_profit">Доходность</string>
+
 </resources>

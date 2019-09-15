@@ -13,5 +13,6 @@
     <color name="switcher_selected">#634cbb</color>
     <color name="switcher_unselected">#b4a8de</color>
     <color name="violet_text">#543eac</color>
+    <color name="listTitleColor">#6A6A6A</color>
 
 </resources>

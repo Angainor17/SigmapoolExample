@@ -68,7 +68,7 @@
                         android:layout_marginBottom="24dp"
                         android:fontFamily="@font/google_sans_medium"
                         android:text="@{vm.scheme}"
-                        android:textColor="#6A6A6A"
+                        android:textColor="@color/listTitleColor"
                         android:textSize="13dp"
 
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -103,7 +103,7 @@
                         android:layout_marginEnd="16dp"
                         android:fontFamily="@font/google_sans_medium"
                         android:text="@{vm.coin}"
-                        android:textColor="#6A6A6A"
+                        android:textColor="@color/listTitleColor"
                         android:textSize="17dp"
 
                         app:layout_constraintEnd_toEndOf="parent"

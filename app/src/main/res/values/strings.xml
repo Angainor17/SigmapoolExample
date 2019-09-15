@@ -53,7 +53,7 @@
     <string name="current_block">Current block</string>
     <string name="difficulty_change_date">Difficulty change date</string>
     <string name="next_difficulty_label">Next projected difficulty</string>
-    <string name="profit_of_mining">Maining Profit</string>
+    <string name="profit_of_mining">Mining Profit</string>
     <string name="last_news">Last News</string>
     <string name="litecoin">Litecoin</string>
     <string name="bitcoin">Bitcoin</string>
@@ -124,5 +124,10 @@
     <string name="one_day">1d</string>
     <string name="twenty_four_hour">24h</string>
     <string name="subaccounts">Subaccounts</string>
+
+    <string name="total_amount_paid">Total Amount Paid</string>
+    <string name="last_payment_time">Last Payment Time</string>
+    <string name="withdrawal_address">Withdrawal Address</string>
+    <string name="estimated_profit">Estimated Profit</string>
 
 </resources>

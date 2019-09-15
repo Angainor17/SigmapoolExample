@@ -12,7 +12,7 @@ class DashboardVM : ViewModel() {
     val dashboardChartVM = DashboardChartVM(coinProvider)
     val dashboardChartInfoVM = DashboardChartInfoVM(coinProvider)
     val dashboardSubaccountsVM = DashboardSubAccountsVM(coinProvider)
-    val dashboardEarningsVM = DashboardEarningsVM()
+    val dashboardEarningsVM = DashboardEarningsVM(coinProvider)
     val dashboardNetworkStatusVM = DashboardNetworkStatusVM()
 
     val isLoading = MutableLiveData(false)
