@@ -14,4 +14,23 @@ class DashboardSubAccountsVM(
 
     val isDropdownOpen = MutableLiveData(false)//FIXME
 
+    val listItems = MutableLiveData<ArrayList<SubAccountItemVM>>()
+
+
+    init {
+        listItems.postValue(//FIXME
+            ArrayList(List(3) {
+                SubAccountItemVM(
+                    "Name $it",
+                    "$it H/s",
+                    "$it,0",
+                    coinProvider.getLabel()
+                )
+            })
+        )
+    }
+
+    fun onHeaderClick() {
+        isDropdownOpen.postValue(!(isDropdownOpen.value ?: false))
+    }
 }

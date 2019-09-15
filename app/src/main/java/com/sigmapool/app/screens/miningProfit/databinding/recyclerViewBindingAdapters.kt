@@ -9,10 +9,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.sigmapool.app.screens.dashboard.adapters.SubAccountsAdapter
+import com.sigmapool.app.screens.dashboard.viewModel.DashboardSubAccountsVM
 import com.sigmapool.app.screens.earnings.params.EARNINGS_PAGE_SIZE
 import com.sigmapool.app.screens.earnings.viewModel.EarningsVM
 import com.sigmapool.app.screens.miningProfit.listener.IProfitBtnListener
@@ -31,6 +34,19 @@ fun setMinersAdapter(
     swipeRefreshLayout: SwipeRefreshLayout?
 ) {
     initHeaderList(view, vm.itemsVM, swipeRefreshLayout, MINER_PAGE_SIZE)
+}
+
+@BindingAdapter("app:subAccountsAdapter")
+fun subAccountsAdapter(
+    view: RecyclerView,
+    vm: DashboardSubAccountsVM
+) {
+    val adapter = SubAccountsAdapter()
+    view.adapter = adapter
+
+    vm.listItems.observe(view.context as AppCompatActivity) {
+        adapter.addItems(it)
+    }
 }
 
 private fun <DtoItem, ItemVm : BaseItemViewModel> initHeaderList(

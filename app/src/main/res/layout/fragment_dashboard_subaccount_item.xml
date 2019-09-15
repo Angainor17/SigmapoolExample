@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        >
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="topSeparatorVisible"
+                type="Boolean"
+                />
+
+        <variable
+                name="vm"
+                type="com.sigmapool.app.screens.dashboard.viewModel.SubAccountItemVM"
+                />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/screenBgColor"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+        <TextView
+                android:id="@+id/coinValue"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:fontFamily="@font/google_sans_medium"
+                android:text="@{vm.coinValue}"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+
+                app:layout_constraintBaseline_toBaselineOf="@+id/coinLabel"
+                app:layout_constraintEnd_toStartOf="@+id/coinLabel"
+
+                tools:text="6,5"
+                />
+
+        <TextView
+                android:id="@+id/coinLabel"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/google_sans_regular"
+                android:text="@{vm.coin}"
+                android:textColor="@color/titleGray"
+                android:textSize="15dp"
+
+                app:layout_constraintBaseline_toBaselineOf="@+id/name"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                tools:text="BTC"
+                />
+
+        <TextView
+                android:id="@+id/hashrate"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/google_sans_regular"
+                android:text="@{vm.hashrate}"
+                android:textColor="@color/titleGray"
+                android:textSize="13dp"
+
+                app:layout_constraintBaseline_toBaselineOf="@+id/name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.47"
+                app:layout_constraintStart_toStartOf="parent"
+
+                tools:text="13298 H/s"
+                />
+
+        <TextView
+                android:id="@+id/name"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/google_sans_bold"
+                android:text="@{vm.name}"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                tools:text="divny01"
+                />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
