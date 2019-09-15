@@ -129,5 +129,11 @@
     <string name="last_payment_time">Last Payment Time</string>
     <string name="withdrawal_address">Withdrawal Address</string>
     <string name="estimated_profit">Estimated Profit</string>
+    <string name="network_status">Network status</string>
+
+
+    <string name="block_time">Block Time</string>
+    <string name="price">Price</string>
+
 
 </resources>

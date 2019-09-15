@@ -39,7 +39,7 @@
     <string name="profitLabel">Доходность (24ч)</string>
 
     <string name="hashrate_per_second">H/с</string>
-    <string name="network_hashrate">Хешрейт сети</string>
+    <string name="network_hashrate">Хэшрейт сети</string>
     <string name="network_difficulty">Сложность сети</string>
     <string name="current_block">Текущий блок</string>
     <string name="difficulty_change_date">Дата изм. сложности</string>
@@ -115,5 +115,9 @@
     <string name="last_payment_time">Последняя выплата</string>
     <string name="withdrawal_address">Адрес выплат</string>
     <string name="estimated_profit">Доходность</string>
+    <string name="network_status">Статус сети</string>
+
+    <string name="block_time">Время блока</string>
+    <string name="price">Цена</string>
 
 </resources>

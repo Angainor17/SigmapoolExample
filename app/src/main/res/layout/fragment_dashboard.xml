@@ -69,6 +69,13 @@
                             app:vm="@{vm.dashboardEarningsVM}"
                             />
 
+
+                    <include
+                            layout="@layout/fragment_dashboard_network"
+
+                            app:vm="@{vm.dashboardNetworkStatusVM}"
+                            />
+
                 </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>

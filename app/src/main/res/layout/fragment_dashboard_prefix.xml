@@ -20,7 +20,7 @@
                 />
 
         <variable
-                name="postfix"
+                name="prefix"
                 type="String"
                 />
 
@@ -71,40 +71,43 @@
 
 
         <TextView
-                android:id="@+id/value"
+                android:id="@+id/prefix"
 
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="4dp"
-                android:fontFamily="@font/google_sans_medium"
-                android:text="@{value}"
-                android:textColor="@color/black"
+                android:fontFamily="@font/google_sans_regular"
+                android:text="@{prefix}"
+                android:textColor="#888888"
+
                 android:textSize="16dp"
 
-                app:layout_constraintBaseline_toBaselineOf="@+id/valuePostfix"
-                app:layout_constraintEnd_toStartOf="@+id/valuePostfix"
+                app:layout_constraintBaseline_toBaselineOf="@+id/value"
+                app:layout_constraintEnd_toStartOf="@+id/value"
 
-                tools:text="1124.42"
+                tools:text="$"
                 />
 
         <TextView
-                android:id="@+id/valuePostfix"
+                android:id="@+id/value"
 
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:textColor="@color/black"
                 android:layout_marginBottom="8dp"
-                android:fontFamily="@font/google_sans_regular"
-                android:text="@{postfix}"
-                android:textColor="#888888"
+                android:fontFamily="@font/google_sans_medium"
+
+                android:text="@{value}"
+
                 android:textSize="16dp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
 
-                tools:text="BTC"
+                tools:text="11 546"
                 />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
