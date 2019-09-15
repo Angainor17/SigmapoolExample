@@ -103,13 +103,13 @@
     <string name="cancel">Отменить</string>
     <string name="enter_threshold">Введите пороговое значение</string>
     <string name="saved_to_balance">Положен на счёт</string>
-    <string name="avg_hashrate">Avg.Hashrate</string>
-    <string name="earned_last_24h">Earned Last 24h</string>
-    <string name="workers">Workers</string>
+    <string name="avg_hashrate">Ср. Хэшрейт</string>
+    <string name="earned_last_24h">Начислено за 24ч</string>
+    <string name="workers">Воркеры</string>
 
     <string name="twenty_four_hour">24ч</string>
     <string name="one_day">1д</string>
-    <string name="subaccounts">Subaccounts</string>
+    <string name="subaccounts">Субаккаунты</string>
 
     <string name="total_amount_paid">Выплачено за все время</string>
     <string name="last_payment_time">Последняя выплата</string>
