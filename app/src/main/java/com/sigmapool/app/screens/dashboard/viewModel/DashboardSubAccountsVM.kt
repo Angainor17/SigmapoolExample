@@ -28,25 +28,24 @@ class DashboardSubAccountsVM(
         initSubAccounts(ArrayList())
     }
 
-    fun initSubAccounts(data: ArrayList<SubAccountDto>?) {
-        if (data != null) {
-            listItems.postValue(
-                ArrayList(data.map {
-                    SubAccountItemVM(
-                        it.name,
-                        getHashrate(it.hashrate),
-                        it.balance.trimZeroEnd(),
-                        coinProvider.getLabel().toUpperCase()
-                    )
-                })
-            )
-            val hashrate = data.sumByDouble { it.hashrate.toDouble() }.toFloat()
-            val balance = data.sumByDouble { it.balance.toDouble() }.toFloat()
+    fun initSubAccounts(data: ArrayList<SubAccountDto>) {
+        listItems.postValue(
+            ArrayList(data.map {
+                SubAccountItemVM(
+                    it.name,
+                    getHashrate(it.hashrate),
+                    it.balance.trimZeroEnd(),
+                    coinProvider.getLabel().toUpperCase()
+                )
+            })
+        )
+        val hashrate = data.sumByDouble { it.hashrate.toDouble() }.toFloat()
+        val balance = data.sumByDouble { it.balance.toDouble() }.toFloat()
 
-            hashrateLiveData.postValue(getHashrate(hashrate))
-            coinValueLiveData.postValue(balance.trimZeroEnd())
-            coinLiveData.postValue(coinProvider.getLabel().toUpperCase())
-        }
+        hashrateLiveData.postValue(getHashrate(hashrate))
+        coinValueLiveData.postValue(balance.trimZeroEnd())
+
+        coinLiveData.postValue(coinProvider.getLabel().toUpperCase())
     }
 
     fun onHeaderClick() {
@@ -55,4 +54,10 @@ class DashboardSubAccountsVM(
 
     private fun getHashrate(hashrate: Float) =
         "" + hashrate.toInt() + " " + res.getString(R.string.hashrate_per_second)
+
+    fun refreshCoin() {
+        hashrateLiveData.postValue(getHashrate(0f))
+        coinValueLiveData.postValue(0f.trimZeroEnd())
+        coinLiveData.postValue(coinProvider.getLabel().toUpperCase())
+    }
 }

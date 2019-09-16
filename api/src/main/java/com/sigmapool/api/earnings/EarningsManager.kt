@@ -61,7 +61,7 @@ internal class EarningsManager(private val service: IEarningsService) : IEarning
     }
 
     override suspend fun getAddress(coin: String): ManagerResult<AddressDto> = try {
-        ManagerResult(AddressDto(service.address(coin).address))
+        ManagerResult(AddressDto(service.address(coin).address ?: ""))
     } catch (e: Throwable) {
         ManagerResult(error = e.message)
     }

@@ -45,7 +45,7 @@ class DashboardVM : ViewModel() {
     private fun refreshAllData() {
         isLoading.postValue(true)
 
-        val coin = coinProvider.getLabel()
+        val coin = coinProvider.getLabel().toLowerCase()
         mainJob = GlobalScope.launch(Dispatchers.IO) {
             val chartDeferred = async(Dispatchers.IO) { initChartInfo(coin) }
             val subAccountsDeferred = async(Dispatchers.IO) { initSubAccounts(coin) }
@@ -125,8 +125,9 @@ class DashboardVM : ViewModel() {
 
     private suspend fun initSubAccounts(coin: String) {
         val result = dashboardManager.subaccounts(coin)
+        dashboardSubaccountsVM.refreshCoin()
         if (result.success) {
-            dashboardSubaccountsVM.initSubAccounts(result.data)
+            result.data?.let { dashboardSubaccountsVM.initSubAccounts(it) }
         }
     }
 
