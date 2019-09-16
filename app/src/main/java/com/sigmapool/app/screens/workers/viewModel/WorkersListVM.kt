@@ -21,10 +21,11 @@ class WorkersListVM(
     private val resProvider by kodein.instance<IResProvider>()
 
     private val bindingHelper = WorkerBindingHelper()
+    val loader = WorkerLoader(params, coinProvider)
 
     val itemsVM: SimplePagedListViewModel<BaseItemViewModel, Any> = SimplePagedListViewModel(
         WorkerItemMapper(resProvider),
-        WorkerLoader(params, coinProvider),
+        loader,
         bindingHelper,
         WorkerListAdapter(bindingHelper)
     ) as SimplePagedListViewModel<BaseItemViewModel, Any>

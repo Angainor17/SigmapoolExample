@@ -1,10 +1,18 @@
 package com.sigmapool.app.screens.workers.viewModel
 
+import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
+import com.sigmapool.app.R
 import com.sigmapool.app.provider.coin.ICoinProvider
+import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.common.managers.IWorkersManager
+import com.sigmapool.common.models.WorkerDto
+import com.sigmapool.common.utils.INT_PATTERN
+import com.sigmapool.common.utils.beforeLastChar
+import com.sigmapool.common.utils.formatLongValue
+import com.sigmapool.common.utils.lastChar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -16,12 +24,24 @@ class WorkersTabVM(
 ) : ViewModel() {
 
     private val workerManager by kodein.instance<IWorkersManager>()
+    private val res by kodein.instance<IResProvider>()
 
-    val onlineHashrate = MutableLiveData("0 H/s")
+    val onlineHashrate = MutableLiveData("0 " + res.getString(R.string.hashrate_per_second))
 
     val onlineCount = MutableLiveData("0")
     val offlineCount = MutableLiveData("0")
     val totalCount = MutableLiveData("0")
+
+    fun initOnlineHashrate(list: ArrayList<WorkerDto>) {
+        val hashrateSum = list.sumByDouble { it.hashrate.toDouble() }.toFloat()
+
+        val result = formatLongValue(hashrateSum.toLong(), INT_PATTERN)
+
+        onlineHashrate.postValue(
+            result.beforeLastChar() + " " + if (result.lastChar().isDigitsOnly()) "" else result.lastChar() +
+                    res.getString(R.string.hashrate_per_second)
+        )
+    }
 
     init {
         initTabValues()

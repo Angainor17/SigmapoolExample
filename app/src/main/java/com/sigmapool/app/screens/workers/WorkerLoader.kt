@@ -16,8 +16,20 @@ class WorkerLoader(
 
     private val workerManager by kodein.instance<IWorkersManager>()
 
-    override suspend fun load(query: String, offset: Int, limit: Int): LoaderResult<List<WorkerDto>> {
+    var changeListener: ((ArrayList<WorkerDto>?) -> Unit)? = null
+
+    val items = ArrayList<WorkerDto>()
+
+    override suspend fun load(
+        query: String,
+        offset: Int,
+        limit: Int
+    ): LoaderResult<List<WorkerDto>> {
         if (offset % limit != 0) return LoaderResult(ArrayList())
+
+        if (offset == 0) {
+            items.clear()
+        }
 
         val result = workerManager.getWorkers(
             coinProvider.getLabel().toLowerCase(),
@@ -27,9 +39,18 @@ class WorkerLoader(
         )
 
         return if (result.success) {
+            refreshFullList(result.data)
             LoaderResult(result.data)
         } else {
             LoaderResult(error = result.error)
+        }
+    }
+
+    private fun refreshFullList(result: ArrayList<WorkerDto>?) {
+        result.let {
+            it?.forEach { items.add(it) }
+
+            changeListener?.invoke(items)
         }
     }
 }

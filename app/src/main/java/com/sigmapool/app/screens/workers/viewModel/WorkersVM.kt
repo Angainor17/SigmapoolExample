@@ -26,6 +26,10 @@ class WorkersVM : ViewModel() {
 
     init {
         coinProvider.addOnChangeListener { refreshAll() }
+
+        onlineList.loader.changeListener = {
+            it?.let { it1 -> tabVm.initOnlineHashrate(it1) }
+        }
     }
 
     private fun refreshAll() {
