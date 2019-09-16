@@ -13,6 +13,8 @@ import com.sigmapool.common.models.NetworkDto
 import com.sigmapool.common.utils.*
 import org.kodein.di.generic.instance
 
+const val SECONDS_IN_MINUTE = 60
+
 class DashboardNetworkStatusVM(
     private val coinProvider: ICoinProvider
 ) : ViewModel() {
@@ -26,7 +28,7 @@ class DashboardNetworkStatusVM(
     val difficulty = MutableLiveData(0.format(INT_PATTERN))
 
     val blockTime = MutableLiveData("")
-    val blockTimePostfix = MutableLiveData(res.getString(R.string.minute))
+    val blockTimePostfix = MutableLiveData(res.getString(R.string.second))
 
     val pricePrefix = MutableLiveData(currencyProvider.getSymbol())
     val price = MutableLiveData(0f.format(INT_PATTERN))
@@ -38,7 +40,13 @@ class DashboardNetworkStatusVM(
         blockReward.postValue(network.blockReward.trimZeroEnd())
         blockRewardPostfix.postValue(coinProvider.getLabel())
 
-        blockTime.postValue("" + network.blockTime)
+        if (network.blockTime < SECONDS_IN_MINUTE) {
+            blockTime.postValue("" + network.blockTime)
+            blockTimePostfix.postValue(res.getString(R.string.second))
+        } else {
+            blockTime.postValue("" + network.blockTime / SECONDS_IN_MINUTE)
+            blockTimePostfix.postValue(res.getString(R.string.minute))
+        }
 
         val hashrateValue = formatLongValue(network.networkHashrate.toLong(), FLOAT_PATTERN)
 

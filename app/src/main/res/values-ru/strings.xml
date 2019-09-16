@@ -121,5 +121,6 @@
     <string name="block_time">Время блока</string>
     <string name="price">Цена</string>
     <string name="minute">мин</string>
+    <string name="second">сек</string>
 
 </resources>

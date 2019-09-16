@@ -136,6 +136,7 @@
     <string name="block_time">Block Time</string>
     <string name="price">Price</string>
     <string name="minute">min</string>
+    <string name="second">sec</string>
 
 
 </resources>
