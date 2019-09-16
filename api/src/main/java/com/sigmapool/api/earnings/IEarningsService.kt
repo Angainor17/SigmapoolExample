@@ -13,5 +13,9 @@ internal interface IEarningsService {
     suspend fun payments(coin: String, page: Int): ArrayList<PaymentItemResponse>
 
     suspend fun getLastPayment(coin: String): LastPaymentResponse
+
+    suspend fun getEstimatedProfit(coin: String): EstimatedProfitResponse
+
+    suspend fun address(coin: String): AddressResponse
 }
 

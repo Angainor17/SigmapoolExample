@@ -1,5 +1,5 @@
 package com.sigmapool.api.earnings.models
 
 internal class EarningsResponse(
-    val earnings: Int
+    val earnings: Float
 )

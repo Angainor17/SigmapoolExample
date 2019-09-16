@@ -2,6 +2,6 @@ package com.sigmapool.api.dashboard.models
 
 internal class SubaccountsResponse(
 
-    val subaccounts: ArrayList<SubaccountItemResponse>
+    val subAccounts: ArrayList<SubAccountItemResponse>
 
 )

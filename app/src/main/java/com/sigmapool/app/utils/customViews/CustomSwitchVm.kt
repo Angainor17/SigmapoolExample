@@ -10,8 +10,8 @@ class CustomSwitchVm(
 
     var clickListener: OnSwitchSelected? = null
 
-    val leftActivated = MutableLiveData(false)
-    val rightActivated = MutableLiveData(true)
+    val leftActivated = MutableLiveData(true)
+    val rightActivated = MutableLiveData(false)
 
     fun rightClick() {
         if (!rightActivated.value!!) {

@@ -11,13 +11,36 @@ class DashboardEarningsVM(
     private val coinProvider: ICoinProvider
 ) : ViewModel() {
 
-    val balance = MutableLiveData<String>(formatCoin(0.04357f))//FIXME
-    val totalAmountPaid = MutableLiveData<String>(formatCoin(73.0373f))//FIXME
-    val lastPaymentTime = MutableLiveData<String>(Date().formatDashDate())//FIXME
-    val withdrawalAddress = MutableLiveData<String>("e589572cd637eeaa91bce24a878f431a")//FIXME
-    val estimatedProfit = MutableLiveData<String>(formatCoin(0.007465f))//FIXME
+    val balance = MutableLiveData<String>(formatCoin(0.0f))
+    val totalAmountPaid = MutableLiveData<String>(formatCoin(0.0f))
+    val lastPaymentTime = MutableLiveData<String>("")
+    val withdrawalAddress = MutableLiveData<String>("")
+    val estimatedProfit = MutableLiveData<String>(formatCoin(0.0f))
 
     val coin = MutableLiveData<String>(coinProvider.getLabel())
+
+    fun initBalance(value: Float) {
+        balance.postValue(formatCoin(value))
+        coin.postValue(coinProvider.getLabel())
+    }
+
+    fun initTotalAmountPaid(value: Float) {
+        totalAmountPaid.postValue(formatCoin(value))
+        coin.postValue(coinProvider.getLabel())
+    }
+
+    fun initLastPaymentTime(date: Date) {
+        lastPaymentTime.postValue(date.formatDashDate())
+    }
+
+    fun initWithdrawalAddress(address: String) {
+        withdrawalAddress.postValue(address)
+    }
+
+    fun initEstimatedProfit(value: Float) {
+        estimatedProfit.postValue(formatCoin(value))
+        coin.postValue(coinProvider.getLabel())
+    }
 
     private fun formatCoin(value: Float) = value.trimZeroEnd()
 }

@@ -33,4 +33,14 @@ internal interface EarningsApi {
     suspend fun getLastPayment(
         @Path("coin") coin: String
     ): PayloadModel<LastPaymentResponse>
+
+    @GET("api/v2/{coin}/user/estimated-profit")
+    suspend fun getEstimatedProfit(
+        @Path("coin") coin: String
+    ): PayloadModel<EstimatedProfitResponse>
+
+    @GET("api/v2/{coin}/user/address")
+    suspend fun address(
+        @Path("coin") coin: String
+    ): PayloadModel<AddressResponse>
 }

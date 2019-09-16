@@ -16,4 +16,8 @@ internal class EarningsService(apiProvider: IApiServiceProvider) : IEarningsServ
         api.payments(coin, page).payload!!.payments
 
     override suspend fun getLastPayment(coin: String) = api.getLastPayment(coin).payload!!
+
+    override suspend fun getEstimatedProfit(coin: String) = api.getEstimatedProfit(coin).payload!!
+
+    override suspend fun address(coin: String) = api.address(coin).payload!!
 }

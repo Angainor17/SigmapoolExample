@@ -2,35 +2,57 @@ package com.sigmapool.app.screens.dashboard.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sigmapool.app.App.Companion.kodein
+import com.sigmapool.app.R
 import com.sigmapool.app.provider.coin.ICoinProvider
+import com.sigmapool.app.provider.res.IResProvider
+import com.sigmapool.common.models.SubAccountDto
+import com.sigmapool.common.utils.trimZeroEnd
+import org.kodein.di.generic.instance
 
 class DashboardSubAccountsVM(
     private val coinProvider: ICoinProvider
 ) : ViewModel() {
 
-    val coinLiveData = MutableLiveData(coinProvider.getLabel().toUpperCase())//FIXME
-    val coinValueLiveData = MutableLiveData("6,5")//FIXME
-    val hashrateLiveData = MutableLiveData("13298 H/s")//FIXME
+    private val res by kodein.instance<IResProvider>()
 
-    val isDropdownOpen = MutableLiveData(false)//FIXME
+    val coinLiveData = MutableLiveData(coinProvider.getLabel().toUpperCase())
+    val coinValueLiveData = MutableLiveData(0f.trimZeroEnd())
+    val hashrateLiveData = MutableLiveData(getHashrate(0f))
+
+    val isDropdownOpen = MutableLiveData(false)
 
     val listItems = MutableLiveData<ArrayList<SubAccountItemVM>>()
 
-
     init {
-        listItems.postValue(//FIXME
-            ArrayList(List(3) {
-                SubAccountItemVM(
-                    "Name $it",
-                    "$it H/s",
-                    "$it,0",
-                    coinProvider.getLabel()
-                )
-            })
-        )
+        initSubAccounts(ArrayList())
+    }
+
+    fun initSubAccounts(data: ArrayList<SubAccountDto>?) {
+        if (data != null) {
+            listItems.postValue(
+                ArrayList(data.map {
+                    SubAccountItemVM(
+                        it.name,
+                        getHashrate(it.hashrate),
+                        it.balance.trimZeroEnd(),
+                        coinProvider.getLabel().toUpperCase()
+                    )
+                })
+            )
+            val hashrate = data.sumByDouble { it.hashrate.toDouble() }.toFloat()
+            val balance = data.sumByDouble { it.balance.toDouble() }.toFloat()
+
+            hashrateLiveData.postValue(getHashrate(hashrate))
+            coinValueLiveData.postValue(balance.trimZeroEnd())
+            coinLiveData.postValue(coinProvider.getLabel().toUpperCase())
+        }
     }
 
     fun onHeaderClick() {
         isDropdownOpen.postValue(!(isDropdownOpen.value ?: false))
     }
+
+    private fun getHashrate(hashrate: Float) =
+        "" + hashrate.toInt() + " " + res.getString(R.string.hashrate_per_second)
 }

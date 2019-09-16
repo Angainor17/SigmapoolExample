@@ -123,6 +123,7 @@
 
     <string name="one_day">1d</string>
     <string name="twenty_four_hour">24h</string>
+    <string name="one_hour">1h</string>
     <string name="subaccounts">Subaccounts</string>
 
     <string name="total_amount_paid">Total Amount Paid</string>
@@ -134,6 +135,7 @@
 
     <string name="block_time">Block Time</string>
     <string name="price">Price</string>
+    <string name="minute">min</string>
 
 
 </resources>

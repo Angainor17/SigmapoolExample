@@ -170,7 +170,7 @@
     </style>
 
     <style name="DashboardChartInfoPostfixStyle">
-        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginStart">4dp</item>
         <item name="android:textColor">#646464</item>
         <item name="android:fontFamily">@font/google_sans_regular</item>
         <item name="android:textSize">17dp</item>

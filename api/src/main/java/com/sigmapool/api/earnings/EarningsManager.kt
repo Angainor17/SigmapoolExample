@@ -53,4 +53,16 @@ internal class EarningsManager(private val service: IEarningsService) : IEarning
     } catch (e: Throwable) {
         ManagerResult(error = e.message)
     }
+
+    override suspend fun getEstimatedProfit(coin: String): ManagerResult<EstimatedProfitDto> = try {
+        ManagerResult(EstimatedProfitDto(service.getEstimatedProfit(coin).estimatedProfit))
+    } catch (e: Throwable) {
+        ManagerResult(error = e.message)
+    }
+
+    override suspend fun getAddress(coin: String): ManagerResult<AddressDto> = try {
+        ManagerResult(AddressDto(service.address(coin).address))
+    } catch (e: Throwable) {
+        ManagerResult(error = e.message)
+    }
 }

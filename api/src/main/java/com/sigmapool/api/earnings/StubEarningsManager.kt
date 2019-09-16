@@ -18,7 +18,7 @@ internal class StubEarningsManager(private val context: Context) : IEarningsMana
             return ManagerResult(error = context.getString(R.string.no_connection))
         }
 
-        return ManagerResult(EarningsDto(42))
+        return ManagerResult(EarningsDto(42f))
     }
 
     override suspend fun totalPaid(coin: String): ManagerResult<TotalPaidDto> {
@@ -72,5 +72,23 @@ internal class StubEarningsManager(private val context: Context) : IEarningsMana
             return ManagerResult(error = context.getString(R.string.no_connection))
         }
         return ManagerResult((LastPaymentDto(Date(Date().time - 5L * 24 * 60 * 60 * 1000))))
+    }
+
+    override suspend fun getEstimatedProfit(coin: String): ManagerResult<EstimatedProfitDto> {
+        delay(1500)
+
+        if (!hasConnection(context)) {
+            return ManagerResult(error = context.getString(R.string.no_connection))
+        }
+        return ManagerResult(EstimatedProfitDto(1710f))
+    }
+
+    override suspend fun getAddress(coin: String): ManagerResult<AddressDto> {
+        delay(1500)
+
+        if (!hasConnection(context)) {
+            return ManagerResult(error = context.getString(R.string.no_connection))
+        }
+        return ManagerResult(AddressDto("1LK1kzAvNuoiqkyqr3G8v55krE71ZpBEU"))
     }
 }

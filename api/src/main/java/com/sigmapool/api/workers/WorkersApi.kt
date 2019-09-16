@@ -17,7 +17,7 @@ internal interface WorkersApi {
         @Query("status") status: String
     ): PayloadModel<ArrayList<WorkerResponseItem>>
 
-    @GET("api/v2/{coin}/status")
+    @GET("api/v2/{coin}/workers/status")
     suspend fun getStatus(
         @Path("coin") coin: String
     ): PayloadModel<WorkerStatusResponse>
