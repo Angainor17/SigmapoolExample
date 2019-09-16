@@ -12,7 +12,7 @@ import kotlin.collections.ArrayList
 internal class StubEarningsManager(private val context: Context) : IEarningsManager {
 
     override suspend fun earningsDaily(coin: String): ManagerResult<EarningsDto> {
-        delay(10000)
+        delay(1000)
 
         if (!hasConnection(context)) {
             return ManagerResult(error = context.getString(R.string.no_connection))
@@ -22,7 +22,7 @@ internal class StubEarningsManager(private val context: Context) : IEarningsMana
     }
 
     override suspend fun totalPaid(coin: String): ManagerResult<TotalPaidDto> {
-        delay(10000)
+        delay(1000)
 
         if (!hasConnection(context)) {
             return ManagerResult(error = context.getString(R.string.no_connection))
@@ -32,7 +32,7 @@ internal class StubEarningsManager(private val context: Context) : IEarningsMana
     }
 
     override suspend fun balance(coin: String): ManagerResult<BalanceDto> {
-        delay(10000)
+        delay(1000)
 
         if (!hasConnection(context)) {
             return ManagerResult(error = context.getString(R.string.no_connection))
