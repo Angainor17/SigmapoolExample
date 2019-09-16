@@ -50,7 +50,7 @@ fun Long.trimZeroEnd() = String.format("%f", this).trimZeroEnd()
 
 fun String.trimZeroEnd(): String {
     var result = this.trimEnd('0')
-    if (result.last() == '.') result += "0"
+    if (result.last() == '.' || result.last() == ',') result += "0"
     return result
 }
 

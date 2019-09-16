@@ -1,5 +1,6 @@
 package com.sigmapool.app.screens.login
 
+import android.app.Activity.RESULT_OK
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,11 @@ import com.sigmapool.app.utils.customViews.fragment.InnerFragment
 
 class LoginFragment : InnerFragment(), ILoginFragmentModel {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val binding = FragmentLoginBinding.inflate(inflater, container, false)
         val vm = LoginVM(this)
         binding.vm = vm
@@ -18,5 +23,9 @@ class LoginFragment : InnerFragment(), ILoginFragmentModel {
         setUpVm(vm, binding)
 
         return binding.root
+    }
+
+    override fun setSuccess() {
+        activity?.setResult(RESULT_OK)
     }
 }

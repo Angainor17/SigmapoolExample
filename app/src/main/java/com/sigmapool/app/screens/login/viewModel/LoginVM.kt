@@ -36,6 +36,7 @@ class LoginVM(private val view: ILoginFragmentModel) : ErrorHandleVm() {
                 val result = loginManager.login(login, password)
                 if (result.success) {
                     jsonDataStorage.put(AUTH_KEY, result.data)
+                    view.setSuccess()
                     exit()
                 } else {
                     uiScope.launch {

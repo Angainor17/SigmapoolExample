@@ -1,5 +1,7 @@
 package com.sigmapool.app.screens.bottomSheetScreen
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.sigmapool.app.R
@@ -11,11 +13,20 @@ class BottomNavActivity : ColoredToolbarActivity(), IBottomSheetScreen {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(null)
-        val binding: ActivityBottomNavBinding = DataBindingUtil.setContentView(this, R.layout.activity_bottom_nav)
+        val binding: ActivityBottomNavBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_bottom_nav)
         val vm = BottomNavVM(this)
 
         binding.lifecycleOwner = this
         binding.vm = vm
         binding.fragmentManager = supportFragmentManager
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK) {
+            recreate()
+        }
     }
 }

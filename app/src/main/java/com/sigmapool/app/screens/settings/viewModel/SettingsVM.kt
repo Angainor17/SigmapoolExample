@@ -119,15 +119,7 @@ class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScre
 
     private fun logoutAction() {
         jsonDataStorage.put(AUTH_KEY, null)
-        update()
-    }
-
-    private fun changeScheme(option: Option) {
-//        val selectedCurrency = if (option.id == R.id.currency_rub) rubCurrency else usdCurrency
-//
-//        currencyProvider.setCurrency(selectedCurrency)
-//        currencyLiveData.postValue(resProvider.getString(selectedCurrency.labelResId))
-//        view.recreate()
+        view.recreate()
     }
 
     private fun changeCurrency(option: Option) {

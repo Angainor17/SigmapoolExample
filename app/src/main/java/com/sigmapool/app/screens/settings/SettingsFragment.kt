@@ -14,12 +14,19 @@ import com.sigmapool.app.R
 import com.sigmapool.app.databinding.FragmentSettingsBinding
 import com.sigmapool.app.screens.settings.viewModel.SettingsVM
 import com.sigmapool.app.utils.customViews.fragment.UpdateFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class SettingsFragment : UpdateFragment(), ISettingsView, ModalBottomSheetDialogFragment.Listener {
 
     val vm = SettingsVM(this)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
         binding.vm = vm
@@ -29,7 +36,9 @@ class SettingsFragment : UpdateFragment(), ISettingsView, ModalBottomSheetDialog
     }
 
     override fun recreate() {
-        activity?.recreate()
+        GlobalScope.launch(Dispatchers.Main) {
+            activity?.recreate()
+        }
     }
 
     override fun context(): Context = context!!
@@ -52,7 +61,12 @@ class SettingsFragment : UpdateFragment(), ISettingsView, ModalBottomSheetDialog
     override fun markApp() {
         val appPackageName = activity!!.packageName
         try {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$appPackageName")))
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("market://details?id=$appPackageName")
+                )
+            )
         } catch (e: Exception) {
             startActivity(
                 Intent(

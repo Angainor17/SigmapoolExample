@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.sigmapool.app.databinding.FragmentHomeBinding
@@ -33,6 +34,6 @@ class HomeFragment : UpdateFragment() {
     }
 
     private fun openFragment(fragmentClass: Class<out Fragment>) {
-        showScreen(context!!, fragmentClass)
+        showScreen(activity!! as AppCompatActivity, fragmentClass)
     }
 }
