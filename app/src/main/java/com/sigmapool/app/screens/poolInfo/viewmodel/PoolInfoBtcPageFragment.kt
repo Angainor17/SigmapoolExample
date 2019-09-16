@@ -8,17 +8,20 @@ import androidx.fragment.app.Fragment
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.databinding.PoolInfoBtcPageFragmentBinding
+import com.sigmapool.app.provider.lang.ILocaleProvider
 import com.sigmapool.app.screens.poolInfo.model.IPoolInfoBtcModel
 import com.sigmapool.common.managers.IPoolInfoManager
 import com.sigmapool.common.models.*
 import org.kodein.di.generic.instance
 
 
-class PoolInfoBtcPageFragment: Fragment(),
+class PoolInfoBtcPageFragment : Fragment(),
     IPoolInfoBtcModel {
 
+    private val localeProvider by kodein.instance<ILocaleProvider>()
+
     override suspend fun getSettlementDetails(coin: String): ManagerResult<SettlementDetailsDto> {
-        return btcPoolInfoManager.getSettlementDetails(coin)
+        return btcPoolInfoManager.getSettlementDetails(coin, localeProvider.getLocale().locale)
     }
 
     override suspend fun getPayment(coin: String): ManagerResult<PaymentDto> {
@@ -28,7 +31,7 @@ class PoolInfoBtcPageFragment: Fragment(),
     //TODO: refactor
     private val btcPoolInfoManager by kodein.instance<IPoolInfoManager>()
 
-    override suspend fun getDailyProfit(coin:String): ManagerResult<DailyProfitDto> {
+    override suspend fun getDailyProfit(coin: String): ManagerResult<DailyProfitDto> {
         return btcPoolInfoManager.getDailyProfit(coin)
     }
 
@@ -44,8 +47,12 @@ class PoolInfoBtcPageFragment: Fragment(),
 
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view:View = inflater.inflate(R.layout.pool_info_btc_page_fragment, null)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view: View = inflater.inflate(R.layout.pool_info_btc_page_fragment, null)
         val binding = PoolInfoBtcPageFragmentBinding.inflate(inflater, container, false)
         binding.vm = PoolInfoBtcViewModel(this)
         binding.lifecycleOwner = this
@@ -61,7 +68,7 @@ class PoolInfoBtcPageFragment: Fragment(),
 
     companion object {
         val ARGUMENT_PAGE_NUMBER: String = "arg_page_number"
-        fun newInstance(page: Int): Fragment{
+        fun newInstance(page: Int): Fragment {
             val pageFragment = PoolInfoBtcPageFragment()
             val arguments = Bundle()
             arguments.putInt(ARGUMENT_PAGE_NUMBER, page)

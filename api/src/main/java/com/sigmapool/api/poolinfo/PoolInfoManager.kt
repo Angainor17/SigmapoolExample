@@ -7,9 +7,12 @@ import com.sigmapool.common.models.*
 
 internal class PoolInfoManager(serviceProvider: IApiServiceProvider) : IPoolInfoManager {
 
-    override suspend fun getSettlementDetails(coin: String): ManagerResult<SettlementDetailsDto> {
+    override suspend fun getSettlementDetails(
+        coin: String,
+        lang: String
+    ): ManagerResult<SettlementDetailsDto> {
         return wrapManagerResult {
-            val settlementDetails = this.poolInfoService.getSettlementDetails(coin).payload!!
+            val settlementDetails = this.poolInfoService.getSettlementDetails(coin, lang).payload!!
 
             val settlementDetailsDto = SettlementDetailsDto(
                 settlementDetails.settlementDetailsText
@@ -52,9 +55,10 @@ internal class PoolInfoManager(serviceProvider: IApiServiceProvider) : IPoolInfo
         }
     }
 
-    override suspend fun getDailyProfit(coin:String): ManagerResult<DailyProfitDto> {
+    override suspend fun getDailyProfit(coin: String): ManagerResult<DailyProfitDto> {
         return wrapManagerResult {
-            val dailyProfit = this.poolInfoService.getDailyProfit(coin).payload!! // TODO: dehardcode "btc" string
+            val dailyProfit =
+                this.poolInfoService.getDailyProfit(coin).payload!! // TODO: dehardcode "btc" string
 
             val dailyProfitDto = DailyProfitDto(
                 dailyProfit.profit
