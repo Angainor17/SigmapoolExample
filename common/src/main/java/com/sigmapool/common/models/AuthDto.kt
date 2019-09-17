@@ -8,6 +8,6 @@ data class AuthDto(
 
     val email: String,
 
-    val accessToken: String
+    var accessToken: String
 
 )

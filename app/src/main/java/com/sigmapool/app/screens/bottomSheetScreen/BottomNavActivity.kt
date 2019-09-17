@@ -8,6 +8,9 @@ import com.sigmapool.app.R
 import com.sigmapool.app.databinding.ActivityBottomNavBinding
 import com.sigmapool.app.screens.bottomSheetScreen.viewModel.BottomNavVM
 import com.sigmapool.app.utils.customViews.ColoredToolbarActivity
+import com.sigmapool.app.utils.eventBus.LogoutEvent
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class BottomNavActivity : ColoredToolbarActivity(), IBottomSheetScreen {
 
@@ -20,6 +23,11 @@ class BottomNavActivity : ColoredToolbarActivity(), IBottomSheetScreen {
         binding.lifecycleOwner = this
         binding.vm = vm
         binding.fragmentManager = supportFragmentManager
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun logoutEvent(event: LogoutEvent) {
+        recreate()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

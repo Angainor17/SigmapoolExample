@@ -1,5 +1,7 @@
 package com.sigmapool.api.retrofit
 
+import okhttp3.Response
+
 /*** Добавление к запросу Header с заданными параметрами*/
 abstract class HeaderMapper {
 
@@ -10,4 +12,6 @@ abstract class HeaderMapper {
     fun isValueValid(): Boolean = !getValue().isNullOrEmpty()
 
     abstract fun getValue(): String
+
+    open fun responseProceed(response: Response) = Unit
 }

@@ -19,7 +19,13 @@ class HeaderInterceptor(private val headerMappers: ArrayList<HeaderMapper>) : In
             }
         }
 
-        return chain.proceed(request)
+        val result = chain.proceed(request)
+
+        for (headerMapper in headerMappers) {
+            headerMapper.responseProceed(result)
+        }
+
+        return result
     }
 
     /*** Обновление Header у запросов к API */
