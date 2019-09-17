@@ -6,7 +6,7 @@
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
                 name="vm"
@@ -14,121 +14,132 @@
                 />
     </data>
 
-
-    <LinearLayout
+    <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-
+            android:layout_height="match_parent"
             >
 
-        <include
-                layout="@layout/coin_toolbar"
-
-                app:vm="@{vm.toolbarVm}"
-                />
-
-        <ScrollView
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/screenBgColor"
+                android:orientation="vertical"
+
                 >
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
+            <include
+                    layout="@layout/coin_toolbar"
 
+                    app:vm="@{vm.toolbarVm}"
+                    />
+
+            <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/screenBgColor"
                     >
 
-                <include
-                        android:layout_height="wrap_content"
+                <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_marginTop="30dp"
-                        layout="@layout/fragment_settings_select_item"
-
-                        app:label="@{@string/language}"
-                        app:value="@{vm.localeLiveData}"
-                        app:isTopSeparatorVisible="@{true}"
-                        app:clickListener="@{v->vm.localeSelect()}"
-                        />
-
-                <include
-                        layout="@layout/fragment_settings_select_item"
-
-                        app:label="@{@string/currency}"
-                        app:value="@{vm.currencyLiveData}"
-                        app:isTopSeparatorVisible="@{false}"
-                        app:clickListener="@{v->vm.currencySelect()}"
-                        />
-
-                <include
-                        layout="@layout/fragment_settings_check_item"
-
-                        app:label="@{@string/push_notification}"
-                        app:value="@{vm.pushLiveData}"
-                        app:isTopSeparatorVisible="@{false}"
-                        app:switchListener="@{(v, checked)->vm.pushSwitch(checked)}"
-                        />
-
-                <include
                         android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="18dp"
-                        layout="@layout/fragment_settings_select_item"
+                        android:orientation="vertical"
 
-                        app:label="@{@string/payment_scheme}"
-                        app:value="@{vm.settingsSchemeVM.schemeLiveData}"
-                        app:isTopSeparatorVisible="@{true}"
-                        app:clickListener="@{v->vm.settingsSchemeVM.showDialog()}"
-                        />
+                        >
 
-                <include
-                        layout="@layout/fragment_settings_select_item"
+                    <include
+                            layout="@layout/fragment_settings_select_item"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
 
-                        app:label="@{@string/threshold}"
-                        app:value="@{vm.settingsThresholdVm.thresholdLiveData}"
-                        app:isTopSeparatorVisible="@{false}"
-                        app:clickListener="@{v->vm.settingsThresholdVm.thresholdClick()}"
-                        />
+                            app:clickListener="@{v->vm.localeSelect()}"
+                            app:isTopSeparatorVisible="@{true}"
+                            app:label="@{@string/language}"
+                            app:value="@{vm.localeLiveData}"
+                            />
 
-                <include
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="18dp"
-                        layout="@layout/fragment_settings_text_item"
+                    <include
+                            layout="@layout/fragment_settings_select_item"
 
-                        app:label="@{@string/write_review}"
-                        app:isTopSeparatorVisible="@{true}"
-                        app:clickListener="@{v->vm.writeReview()}"
-                        />
+                            app:clickListener="@{v->vm.currencySelect()}"
+                            app:isTopSeparatorVisible="@{false}"
+                            app:label="@{@string/currency}"
+                            app:value="@{vm.currencyLiveData}"
+                            />
 
-                <include
-                        layout="@layout/fragment_settings_text_item"
+                    <include
+                            layout="@layout/fragment_settings_check_item"
 
-                        app:label="@{@string/mark_app}"
-                        app:isTopSeparatorVisible="@{false}"
-                        app:clickListener="@{v->vm.markApp()}"
-                        />
+                            app:isTopSeparatorVisible="@{false}"
+                            app:label="@{@string/push_notification}"
+                            app:switchListener="@{(v, checked)->vm.pushSwitch(checked)}"
+                            app:value="@{vm.pushLiveData}"
+                            />
 
-                <include
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginBottom="24dp"
-                        android:visibility="@{vm.isLoginLiveData ? View.VISIBLE : View.GONE}"
-                        layout="@layout/fragment_settings_center_title"
+                    <include
+                            layout="@layout/fragment_settings_select_item"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+
+                            app:clickListener="@{v->vm.settingsSchemeVM.showDialog()}"
+                            app:isTopSeparatorVisible="@{true}"
+                            app:label="@{@string/payment_scheme}"
+                            app:value="@{vm.settingsSchemeVM.schemeLiveData}"
+                            />
+
+                    <include
+                            layout="@layout/fragment_settings_select_item"
+
+                            app:clickListener="@{v->vm.settingsThresholdVm.thresholdClick()}"
+                            app:isTopSeparatorVisible="@{false}"
+                            app:label="@{@string/threshold}"
+                            app:value="@{vm.settingsThresholdVm.thresholdLiveData}"
+                            />
+
+                    <include
+                            layout="@layout/fragment_settings_text_item"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+
+                            app:clickListener="@{v->vm.writeReview()}"
+                            app:isTopSeparatorVisible="@{true}"
+                            app:label="@{@string/write_review}"
+                            />
+
+                    <include
+                            layout="@layout/fragment_settings_text_item"
+
+                            app:clickListener="@{v->vm.markApp()}"
+                            app:isTopSeparatorVisible="@{false}"
+                            app:label="@{@string/mark_app}"
+                            />
+
+                    <include
+                            layout="@layout/fragment_settings_center_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+                            android:layout_marginBottom="24dp"
+                            android:visibility="@{vm.isLoginLiveData ? View.VISIBLE : View.GONE}"
 
 
-                        app:label="@{@string/exit}"
-                        app:isTopSeparatorVisible="@{true}"
-                        app:clickListener="@{v->vm.exit()}"
-                        />
+                            app:clickListener="@{v->vm.exit()}"
+                            app:isTopSeparatorVisible="@{true}"
+                            app:label="@{@string/exit}"
+                            />
 
-            </LinearLayout>
+                </LinearLayout>
 
-        </ScrollView>
+            </ScrollView>
 
-    </LinearLayout>
+        </LinearLayout>
+
+        <include
+                layout="@layout/observer_mode"
+                app:isVisible="@{vm.isObserverMode}"
+                />
+
+    </FrameLayout>
 
 </layout>

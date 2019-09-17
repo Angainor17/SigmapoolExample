@@ -137,6 +137,7 @@
     <string name="price">Price</string>
     <string name="minute">min</string>
     <string name="second">sec</string>
+    <string name="observer_mode_text">You are in the observer mode,\nstart mining after logging in!</string>
 
 
 </resources>

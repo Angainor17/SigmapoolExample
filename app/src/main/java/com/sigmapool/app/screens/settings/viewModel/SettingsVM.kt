@@ -16,7 +16,7 @@ import com.sigmapool.app.screens.login.data.AUTH_KEY
 import com.sigmapool.app.screens.settings.ISettingsView
 import com.sigmapool.app.utils.interfaces.IUpdateScreenVm
 import com.sigmapool.app.utils.storages.JsonDataStorage
-import com.sigmapool.app.utils.vm.ErrorHandleVm
+import com.sigmapool.app.utils.vm.AuthVm
 import com.sigmapool.common.managers.ILoginManager
 import com.sigmapool.common.models.AuthDto
 import kotlinx.coroutines.CoroutineScope
@@ -33,7 +33,7 @@ const val PAYOUT_SCHEME_TAG = "scheme"
 
 private const val PUSH_ENABLE = "push_notification"
 
-class SettingsVM(private val view: ISettingsView) : ErrorHandleVm(), IUpdateScreenVm,
+class SettingsVM(private val view: ISettingsView) : AuthVm(), IUpdateScreenVm,
     ModalBottomSheetDialogFragment.Listener {
 
     private val resProvider by kodein.instance<IResProvider>()

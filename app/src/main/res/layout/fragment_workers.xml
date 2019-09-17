@@ -18,43 +18,55 @@
                 />
     </data>
 
-    <LinearLayout
+    <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/screenBgColor"
-            android:orientation="vertical"
             >
 
-        <include
-                layout="@layout/coin_toolbar"
-
-                app:vm="@{vm.toolbarVm}"
-                />
-
-
-        <include
-                layout="@layout/fragment_workers_tab"
-
-                app:vm="@{vm.tabVm}"
-                />
-
-
-        <com.sigmapool.app.utils.customViews.viewPager.FragmentViewPager
-                android:id="@+id/pager"
-
-                android:layout_height="wrap_content"
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:background="@null"
+                android:layout_height="match_parent"
+                android:background="@color/screenBgColor"
+                android:orientation="vertical"
+                >
 
-                app:isWrapHeightEnabled="@{false}"
-                app:isPagingEnabled="@{false}"
-                app:onScreenChange="@{vm.screenPositionLiveData}"
+            <include
+                    layout="@layout/coin_toolbar"
 
-                app:initWorkerAdapter="@{vm}"
-                app:fragmentManager="@{fragmentManager}"
+                    app:vm="@{vm.toolbarVm}"
+                    />
+
+
+            <include
+                    layout="@layout/fragment_workers_tab"
+
+                    app:vm="@{vm.tabVm}"
+                    />
+
+
+            <com.sigmapool.app.utils.customViews.viewPager.FragmentViewPager
+                    android:id="@+id/pager"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+
+                    app:fragmentManager="@{fragmentManager}"
+                    app:initWorkerAdapter="@{vm}"
+                    app:isPagingEnabled="@{false}"
+
+                    app:isWrapHeightEnabled="@{false}"
+                    app:onScreenChange="@{vm.screenPositionLiveData}"
+                    />
+
+
+        </LinearLayout>
+
+        <include
+                layout="@layout/observer_mode"
+                app:isVisible="@{vm.isObserverMode}"
                 />
 
-
-    </LinearLayout>
+    </FrameLayout>
 
 </layout>

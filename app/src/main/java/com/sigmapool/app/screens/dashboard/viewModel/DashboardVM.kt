@@ -1,9 +1,9 @@
 package com.sigmapool.app.screens.dashboard.viewModel
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.screens.settings.viewModel.CoinToolbarVM
+import com.sigmapool.app.utils.vm.AuthVm
 import com.sigmapool.common.managers.IDashboardManager
 import com.sigmapool.common.managers.IEarningsManager
 import com.sigmapool.common.managers.IPoolManager
@@ -11,7 +11,7 @@ import com.sigmapool.common.managers.IWorkersManager
 import kotlinx.coroutines.*
 import org.kodein.di.generic.instance
 
-class DashboardVM : ViewModel() {
+class DashboardVM : AuthVm() {
 
     private val dashboardManager by kodein.instance<IDashboardManager>()
     private val earningsManager by kodein.instance<IEarningsManager>()

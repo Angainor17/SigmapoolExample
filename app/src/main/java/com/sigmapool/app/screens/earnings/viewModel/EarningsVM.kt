@@ -1,7 +1,6 @@
 package com.sigmapool.app.screens.earnings.viewModel
 
 import android.os.Handler
-import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
@@ -15,6 +14,7 @@ import com.sigmapool.app.screens.login.data.AUTH_KEY
 import com.sigmapool.app.screens.settings.viewModel.CoinToolbarVM
 import com.sigmapool.app.utils.interfaces.IUpdateScreenVm
 import com.sigmapool.app.utils.storages.JsonDataStorage
+import com.sigmapool.app.utils.vm.AuthVm
 import com.sigmapool.common.managers.IEarningsManager
 import com.sigmapool.common.models.AuthDto
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +22,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
-class EarningsVM : ViewModel(), IUpdateScreenVm {
+class EarningsVM : AuthVm(), IUpdateScreenVm {
 
     private val earningsManager by kodein.instance<IEarningsManager>()
     private val resProvider by kodein.instance<IResProvider>()

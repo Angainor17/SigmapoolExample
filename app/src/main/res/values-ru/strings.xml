@@ -122,5 +122,6 @@
     <string name="price">Цена</string>
     <string name="minute">мин</string>
     <string name="second">сек</string>
+    <string name="observer_mode_text">Вы находитесь в режиме наблюдения,\nавторизуйтесь, чтобы начать майнить.</string>
 
 </resources>

@@ -12,76 +12,88 @@
                 />
     </data>
 
-    <LinearLayout
+    <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             >
 
-        <include
-                layout="@layout/coin_toolbar"
-
-                app:vm="@{vm.toolbarVm}"
-                />
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                app:onRefreshListener="@{() -> vm.onRefresh()}"
-                app:refreshing="@{vm.isLoading}"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
                 >
 
-            <androidx.core.widget.NestedScrollView
+            <include
+                    layout="@layout/coin_toolbar"
+
+                    app:vm="@{vm.toolbarVm}"
+                    />
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/screenBgColor"
+
+                    app:onRefreshListener="@{() -> vm.onRefresh()}"
+                    app:refreshing="@{vm.isLoading}"
                     >
 
-                <LinearLayout
+                <androidx.core.widget.NestedScrollView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
-                        android:orientation="vertical"
+                        android:background="@color/screenBgColor"
                         >
 
-                    <include
-                            layout="@layout/fragment_dashboard_chart"
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
 
-                            app:vm="@{vm.dashboardChartVM}"
-                            />
+                            android:orientation="vertical"
+                            >
 
-                    <include
-                            layout="@layout/fragment_dashboard_chart_info"
+                        <include
+                                layout="@layout/fragment_dashboard_chart"
 
-                            app:vm="@{vm.dashboardChartInfoVM}"
-                            />
+                                app:vm="@{vm.dashboardChartVM}"
+                                />
 
-                    <include
-                            layout="@layout/fragment_dashboard_subaccounts"
+                        <include
+                                layout="@layout/fragment_dashboard_chart_info"
 
-                            app:vm="@{vm.dashboardSubaccountsVM}"
-                            />
+                                app:vm="@{vm.dashboardChartInfoVM}"
+                                />
 
-                    <include
-                            layout="@layout/fragment_dashboard_earnings"
+                        <include
+                                layout="@layout/fragment_dashboard_subaccounts"
 
-                            app:vm="@{vm.dashboardEarningsVM}"
-                            />
+                                app:vm="@{vm.dashboardSubaccountsVM}"
+                                />
+
+                        <include
+                                layout="@layout/fragment_dashboard_earnings"
+
+                                app:vm="@{vm.dashboardEarningsVM}"
+                                />
 
 
-                    <include
-                            layout="@layout/fragment_dashboard_network"
+                        <include
+                                layout="@layout/fragment_dashboard_network"
 
-                            app:vm="@{vm.dashboardNetworkStatusVM}"
-                            />
+                                app:vm="@{vm.dashboardNetworkStatusVM}"
+                                />
 
-                </LinearLayout>
+                    </LinearLayout>
 
-            </androidx.core.widget.NestedScrollView>
+                </androidx.core.widget.NestedScrollView>
 
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    </LinearLayout>
+        </LinearLayout>
+
+        <include
+                layout="@layout/observer_mode"
+                app:isVisible="@{vm.isObserverMode}"
+                />
+
+    </FrameLayout>
 
 </layout>

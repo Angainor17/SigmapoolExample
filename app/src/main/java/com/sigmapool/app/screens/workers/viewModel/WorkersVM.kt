@@ -1,15 +1,15 @@
 package com.sigmapool.app.screens.workers.viewModel
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.sigmapool.app.screens.settings.viewModel.CoinToolbarVM
 import com.sigmapool.app.screens.workers.params.ANY_STATUS
 import com.sigmapool.app.screens.workers.params.OFFLINE_STATUS
 import com.sigmapool.app.screens.workers.params.ONLINE_STATUS
 import com.sigmapool.app.screens.workers.params.WorkerListParams
+import com.sigmapool.app.utils.vm.AuthVm
 import java.util.*
 
-class WorkersVM : ViewModel() {
+class WorkersVM : AuthVm() {
 
     val screenPositionLiveData = MutableLiveData(0)
 

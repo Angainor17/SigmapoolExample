@@ -12,25 +12,37 @@
                 />
     </data>
 
-    <LinearLayout
+    <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/screenBgColor"
-            android:orientation="vertical"
             >
 
-        <include
-                layout="@layout/coin_toolbar"
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/screenBgColor"
+                android:orientation="vertical"
+                >
 
-                app:vm="@{vm.toolbarVm}"
+            <include
+                    layout="@layout/coin_toolbar"
+
+                    app:vm="@{vm.toolbarVm}"
+                    />
+
+            <include
+                    layout="@layout/fragment_earnings_list"
+
+                    app:vm="@{vm}"
+                    />
+
+        </LinearLayout>
+
+        <include
+                layout="@layout/observer_mode"
+                app:isVisible="@{vm.isObserverMode}"
                 />
 
-        <include
-                layout="@layout/fragment_earnings_list"
-
-                app:vm="@{vm}"
-                />
-
-    </LinearLayout>
+    </FrameLayout>
 
 </layout>
