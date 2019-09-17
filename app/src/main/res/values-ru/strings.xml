@@ -14,12 +14,12 @@
     <string name="password">Пароль</string>
 
     <string name="pool_info">Информация о пуле</string>
-    <string name="fee">Fee</string>
-    <string name="dailyProfitPerTHs">Daily Profit Per TH/s (FPPS)</string>
+    <string name="fee">Комиссия</string>
+    <string name="dailyProfitPerTHs">Доходность за 1 TH/с (FPPS)</string>
     <string name="paymentTime">Время выплат</string>
     <string name="minimumPayout">Минимальная выплата</string>
     <string name="settlementDetails">Информация о выплатах</string>
-    <string name="miningURL">Mining URL</string>
+    <string name="miningURL">Майнинг сервера</string>
 
 
     <string name="home_screen_icon_title">Главная</string>
@@ -34,7 +34,7 @@
     <string name="pool_hashrate">Хешрейт пула</string>
     <string name="worker_count">Количество воркеров</string>
     <string name="min_payment">Мин. выплата</string>
-    <string name="payment_time">Время выплат (UTC)</string>
+    <string name="payment_time_utc">Время выплат (UTC)</string>
     <string name="payoutScheme">Схема выплат</string>
     <string name="profitLabel">Доходность (24ч)</string>
 

@@ -7,6 +7,7 @@ import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.Spinner
 import androidx.databinding.BindingAdapter
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -17,6 +18,7 @@ import com.sigmapool.app.screens.calculator.adapter.CalcTabAdapter
 import com.sigmapool.app.screens.calculator.viewModel.CalcItemVM
 import com.sigmapool.app.screens.home.adapter.CoinViewPagerAdapter
 import com.sigmapool.app.screens.home.coin.CoinsVM
+import com.sigmapool.app.screens.poolInfo.adapters.PoolInfoFragmentPagerAdapter
 import com.sigmapool.app.screens.settings.viewModel.CoinToolbarVM
 import com.sigmapool.app.screens.workers.adapter.WorkerViewPagerAdapter
 import com.sigmapool.app.screens.workers.viewModel.WorkersVM
@@ -66,6 +68,19 @@ fun viewCalcTabAdapter(
 ) {
     view.offscreenPageLimit = 2
     view.adapter = CalcTabAdapter(items, fragmentManager)
+}
+
+@BindingAdapter("app:initPoolInfoAdapter", "app:fragments")
+fun initPoolInfoAdapter(
+    view: FragmentViewPager,
+    fragmentManager: FragmentManager,
+    fragments: ArrayList<Fragment>
+) {
+    view.offscreenPageLimit = 2
+    view.adapter = PoolInfoFragmentPagerAdapter(
+        fragments,
+        fragmentManager
+    )
 }
 
 @BindingAdapter("app:onScreenChange")

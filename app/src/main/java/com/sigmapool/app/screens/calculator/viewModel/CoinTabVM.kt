@@ -7,7 +7,7 @@ import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.utils.customViews.viewPager.AbstractCustomTabView
 import org.kodein.di.generic.instance
 
-class CalculatorTabVM(tabPositionLiveData: MutableLiveData<Int>) : AbstractCustomTabView(tabPositionLiveData) {
+class CoinTabVM(tabPositionLiveData: MutableLiveData<Int>) : AbstractCustomTabView(tabPositionLiveData) {
 
     private val resProvider by kodein.instance<IResProvider>()
 

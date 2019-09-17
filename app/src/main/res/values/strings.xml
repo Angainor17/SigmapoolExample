@@ -43,7 +43,7 @@
     <string name="pool_hashrate">Pool hashrate</string>
     <string name="worker_count">Workers count</string>
     <string name="min_payment">Min payment</string>
-    <string name="payment_time">Payment time (UTC)</string>
+    <string name="payment_time_utc">Payment time (UTC)</string>
     <string name="payoutScheme">Payout Scheme</string>
     <string name="profitLabel">Profit (24h)</string>
 

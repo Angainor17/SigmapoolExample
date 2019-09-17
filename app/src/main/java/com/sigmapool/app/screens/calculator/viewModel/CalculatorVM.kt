@@ -31,7 +31,7 @@ class CalculatorVM(val view: ICalculatorFragmentModel) : ViewModel(), ITitleView
     val refreshing = liveDataZip(btcCalcItem.refreshing, ltcCalcItem.refreshing, refreshingInfo)
     { btcLoading, ltcLoading, infoLoading -> btcLoading || ltcLoading || infoLoading }
 
-    val calculatorTabVM = CalculatorTabVM(tabPositionLiveData)
+    val calculatorTabVM = CoinTabVM(tabPositionLiveData)
 
     private val resProvider by kodein.instance<IResProvider>()
     private val calcManager by kodein.instance<ICalcManager>()

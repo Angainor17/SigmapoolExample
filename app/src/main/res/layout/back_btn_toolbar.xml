@@ -14,7 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
 
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="70dp"
             android:background="@drawable/gradient_status_bar"
 
             tools:showIn="@layout/fragment_minig_profit">

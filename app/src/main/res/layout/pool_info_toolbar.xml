@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         >
 
@@ -34,8 +34,8 @@
             >
 
         <ImageView
-                style="@style/BackBtnStyle"
                 android:id="@+id/backBtn"
+                style="@style/BackBtnStyle"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,26 +49,39 @@
 
         <TextView
                 android:id="@+id/toolbarTitle"
-                android:text="@{titleVm.getTitle()}"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/google_sans_bold"
+                android:text="@{titleVm.getTitle()}"
                 android:textAppearance="@style/ToolbarTitle"
                 android:textSize="19sp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
-                android:fontFamily="@font/google_sans_bold"
 
+                app:layout_constraintBottom_toBottomOf="@+id/backBtn"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="@+id/backBtn"
                 app:layout_constraintTop_toTopOf="@+id/backBtn"
 
                 tools:text="@string/pool_info"
                 />
 
         <include
-                layout="@layout/currency_switcher"
-                app:vm="@{currencySwitcherVm}"
+                layout="@layout/custom_tab_view"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="8dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbarTitle"
+
+                app:vm="@{currencySwitcherVm.coinTabVM}"
                 />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

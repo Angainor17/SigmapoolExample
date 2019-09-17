@@ -1,217 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
->
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        >
+
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.poolInfo.viewmodel.PoolInfoBtcViewModel"/>
+
+        <variable
+                name="vm"
+                type="com.sigmapool.app.screens.poolInfo.viewmodel.PoolInfoBtcViewModel"
+                />
     </data>
 
-    <!-- TODO:scrollView -> LinearLayout orientation vertical -> relative layout - alignParentStart-Below/End-Top-->
-    <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:background="#E5E5E5"
-            android:fillViewport="true">
 
-        <LinearLayout
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:orientation="vertical"
+            >
+
+        <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8dp"
-                android:elevation="2dp"
-                android:background="@drawable/currency_background">
 
-            <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                <TextView
-                        style="@style/ItemLabel"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="@string/fee"/>
-
-                <TextView
-                        style="@style/ItemValue"
-                        android:id="@+id/fppsValue"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_toLeftOf="@id/fppsUnits"
-                        android:text="@{vm.fpps}"
-                        tools:text="4%"
-                        android:layout_marginEnd="4dp"/>
-                <TextView
-                        android:id="@+id/fppsUnits"
-                        style="@style/ItemLabel"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:text="FPPS"/>
-
-                <TextView
-                        android:id="@+id/ppsValues"
-                        style="@style/ItemLabel"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_below="@+id/fppsValue"
-                        android:text="PPS"/>
-
-                <TextView
-                        style="@style/ItemValue"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-
-                        android:layout_toLeftOf="@id/ppsValues"
-                        android:layout_below="@id/fppsValue"
-                        android:text="@{vm.pps}"
-                        android:layout_marginEnd="4dp"
-
-                        tools:text="0%"
-                />
-            </RelativeLayout>
-
-            <View style="@style/DividerPoolInfo"/>
-
-            <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                <TextView
-                        style="@style/ItemLabel"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="@string/dailyProfitPerTHs"/>
-
-                <TextView
-                        style="@style/ItemValue"
-                        android:id="@+id/profitValue"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_toLeftOf="@id/profitUnits"
-                        android:text="@{vm.dailyProfit}"
-                        android:layout_marginEnd="4dp"
-
-                        tools:text="0.00003750"
-                />
-
-                <TextView
-                        android:id="@+id/profitUnits"
-                        style="@style/ItemLabel"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:text="@string/btc"/>
-
-            </RelativeLayout>
-
-            <View style="@style/DividerPoolInfo"/>
-
-            <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                <TextView
-                        style="@style/ItemLabel"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="@string/paymentTime"/>
-
-                <TextView
-                        style="@style/ItemValue"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:text="@{vm.paymentTime}"
-
-                        tools:text="9:00-12:00 fjkjedfhg kjdhfg khdfkjg hdjfkhg kjdg kg hdjkfgh jdgj dj hg"/>
-
-            </RelativeLayout>
-
-            <View style="@style/DividerPoolInfo"/>
-
-            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-                <TextView
-                        style="@style/ItemLabel"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="@string/minimumPayout"
-                />
-
-                <TextView
-                        style="@style/ItemValue"
-                        android:id="@+id/minimumPayoutValue"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_toLeftOf="@id/minimumPayoutUnits"
-                        android:text="@{vm.paymentMin}"
-                        android:layout_marginEnd="4dp"
-
-                        tools:text="0.001"
-                />
-
-                <TextView
-                        android:id="@+id/minimumPayoutUnits"
-                        style="@style/ItemLabel"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:text="@string/btc"/>
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
 
 
-            </RelativeLayout>
-
-            <View style="@style/DividerPoolInfo"/>
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="4dp"
+                >
 
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                <TextView
-                        style="@style/ItemLabel"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="@string/settlementDetails"/>
+                    android:orientation="vertical"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    >
 
-                <TextView
-                        style="@style/ItemValue"
-                        android:layout_height="wrap_content"
+                <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:text="@{vm.settlementDetails}"
+                        android:layout_height="wrap_content"
+                        >
 
-                        tools:text="Settlement is proceeded at UTC 0:30 for yesterday's mining profit. The payment will be delayed in cases of no wallet address, address modification in last 72 hours and balance not reaching minimum payment threshold."/>
+                    <TextView
+                            style="@style/ItemLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:text="@string/fee"
+                            />
+
+                    <TextView
+                            android:id="@+id/fppsValue"
+                            style="@style/ItemValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
+                            android:layout_toLeftOf="@id/fppsUnits"
+                            android:text="@{vm.fpps}"
+                            tools:text="4%"
+                            />
+
+                    <TextView
+                            android:id="@+id/fppsUnits"
+                            style="@style/ItemLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="FPPS"
+                            />
+
+                    <TextView
+                            android:id="@+id/ppsValues"
+                            style="@style/ItemLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/fppsValue"
+                            android:layout_alignParentEnd="true"
+                            android:text="PPS"
+                            />
+
+                    <TextView
+                            style="@style/ItemValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_below="@id/fppsValue"
+                            android:layout_marginEnd="4dp"
+                            android:layout_toLeftOf="@id/ppsValues"
+                            android:text="@{vm.pps}"
+
+                            tools:text="0%"
+                            />
+                </RelativeLayout>
+
+                <View style="@style/DividerPoolInfo" />
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="@dimen/poolInfoBlockMargin"
+                        android:layout_marginBottom="@dimen/poolInfoBlockMargin"
+                        >
+
+                    <TextView
+                            style="@style/ItemLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="@string/dailyProfitPerTHs"
+                            />
+
+                    <TextView
+                            android:id="@+id/profitValue"
+                            style="@style/ItemValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
+                            android:layout_toLeftOf="@id/profitUnits"
+                            android:text="@{vm.dailyProfit}"
+
+                            tools:text="0.00003750"
+                            />
+
+                    <TextView
+                            android:id="@+id/profitUnits"
+                            style="@style/ItemLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="@string/btc"
+                            />
+
+                </RelativeLayout>
+
+                <View style="@style/DividerPoolInfo" />
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="@dimen/poolInfoBlockMargin"
+                        android:layout_marginBottom="@dimen/poolInfoBlockMargin"
+                        >
+
+                    <TextView
+                            style="@style/ItemLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="@string/payment_time_utc"
+                            />
+
+                    <TextView
+                            style="@style/ItemValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="@{vm.paymentTime}"
+
+                            tools:text="9:00-12:00fgh jdgj dj hg"
+                            />
+
+                </RelativeLayout>
+
+                <View style="@style/DividerPoolInfo" />
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="@dimen/poolInfoBlockMargin"
+                        android:layout_marginBottom="@dimen/poolInfoBlockMargin"
+                        >
+
+                    <TextView
+                            style="@style/ItemLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="@string/minimumPayout"
+                            />
+
+                    <TextView
+                            android:id="@+id/minimumPayoutValue"
+                            style="@style/ItemValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
+                            android:layout_toLeftOf="@id/minimumPayoutUnits"
+                            android:text="@{vm.paymentMin}"
+
+                            tools:text="0.001"
+                            />
+
+                    <TextView
+                            android:id="@+id/minimumPayoutUnits"
+                            style="@style/ItemLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="@string/btc"
+                            />
+
+
+                </RelativeLayout>
+
+                <View style="@style/DividerPoolInfo" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="@dimen/poolInfoBlockMargin"
+                        android:layout_marginBottom="@dimen/poolInfoBlockMargin"
+
+                        >
+
+                    <TextView
+                            style="@style/ItemLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="@string/settlementDetails"
+                            />
+
+                    <TextView
+                            style="@style/ItemValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{vm.settlementDetails}"
+
+                            tools:text="Settlement is proceeded at UTC 0:30 for yesterday's mining profit. The payment will be delayed in cases of no wallet address, address modification in last 72 hours and balance not reaching minimum payment threshold."
+                            />
+
+                </LinearLayout>
+
+                <View style="@style/DividerPoolInfo" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="@dimen/poolInfoBlockMargin"
+                        android:layout_marginBottom="@dimen/poolInfoBlockMargin"
+                        >
+
+                    <TextView
+                            style="@style/ItemLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="@string/miningURL"
+                            />
+
+                    <TextView
+                            android:id="@+id/urlsTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:linksClickable="true"
+                            android:text="@{vm.stratumURLs}"
+                            android:textColorLink="#081EEA"
+
+                            tools:text="stratum+tcp://eu2.btc.sigmapool.com:3333\nstratum+tcp://eu3.btc.sigmapool.com:3333\nstratum+tcp://eu4.btc.sigmapool.com:3333"
+                            />
+                </LinearLayout>
 
             </LinearLayout>
 
-            <View style="@style/DividerPoolInfo"/>
+        </androidx.cardview.widget.CardView>
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                <TextView
-                        style="@style/ItemLabel"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="@string/miningURL"/>
-                <TextView
-                        android:id="@+id/urlsTextView"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="@{vm.stratumURLs}"
-                        android:textColorLink="#081EEA"
-                        android:linksClickable="true"
+    </LinearLayout>
 
-                        tools:text="stratum+tcp://eu2.btc.sigmapool.com:3333\nstratum+tcp://eu3.btc.sigmapool.com:3333\nstratum+tcp://eu4.btc.sigmapool.com:3333"/>
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
 </layout>

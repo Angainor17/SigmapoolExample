@@ -1,48 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"
->
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
 
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.poolInfo.viewmodel.PoolInfoViewModel"/>
-        <variable name="toolbarVm" type="com.sigmapool.app.utils.interfaces.IBackBtnScreen"/>
+
+        <variable
+                name="vm"
+                type="com.sigmapool.app.screens.poolInfo.viewmodel.PoolInfoViewModel"
+                />
+
+        <variable
+                name="toolbarVm"
+                type="com.sigmapool.app.utils.interfaces.IBackBtnScreen"
+                />
+
+        <variable
+                name="fragmentManager"
+                type="androidx.fragment.app.FragmentManager"
+                />
     </data>
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:orientation="vertical">
 
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/gradient_status_bar"
                 android:focusable="true"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                >
 
             <include
                     layout="@layout/pool_info_toolbar"
+                    app:currencySwitcherVm="@{vm}"
                     app:titleVm="@{vm}"
                     app:toolbarVm="@{toolbarVm}"
-                    app:currencySwitcherVm="@{vm}"
-            />
+                    />
 
         </LinearLayout>
 
-        <LinearLayout
-                android:background="@drawable/miner_background"
-                android:orientation="vertical"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            <!-- TODO: disable swipe -->
+                android:layout_height="wrap_content"
+                android:background="@color/screenBgColor"
+                android:orientation="vertical"
+                >
 
-            <com.sigmapool.app.utils.customViews.viewPager.SwipeFreeViewPager
-                    android:btc_selected="@{vm.btcSelected}"
-                    android:id="@+id/pager"
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-            />
+                    android:layout_height="wrap_content"
 
-        </LinearLayout>
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:onRefreshListener="@{() -> vm.onRefresh()}"
+                    app:refreshing="@{vm.isLoading}"
+                    >
+
+                <androidx.core.widget.NestedScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none"
+                        >
+
+                    <com.sigmapool.app.utils.customViews.viewPager.FragmentViewPager
+                            android:id="@+id/pager"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+
+                            app:fragments="@{vm.fragments}"
+                            app:initPoolInfoAdapter="@{fragmentManager}"
+                            app:isWrapHeightEnabled="@{true}"
+
+                            app:onScreenChange="@{vm.tabPositionLiveData}"
+                            />
+
+                </androidx.core.widget.NestedScrollView>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
 
 </layout>

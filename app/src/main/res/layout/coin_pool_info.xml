@@ -107,7 +107,7 @@
                 android:id="@+id/paymentTimeLabel"
                 style="@style/PoolTitle"
 
-                android:text="@string/payment_time"
+                android:text="@string/payment_time_utc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
