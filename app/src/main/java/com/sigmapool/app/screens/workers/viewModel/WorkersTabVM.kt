@@ -2,11 +2,11 @@ package com.sigmapool.app.screens.workers.viewModel
 
 import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.coin.ICoinProvider
 import com.sigmapool.app.provider.res.IResProvider
+import com.sigmapool.app.utils.vm.AuthVm
 import com.sigmapool.common.managers.IWorkersManager
 import com.sigmapool.common.models.WorkerDto
 import com.sigmapool.common.utils.INT_PATTERN
@@ -21,9 +21,9 @@ import org.kodein.di.generic.instance
 class WorkersTabVM(
     private val coinProvider: ICoinProvider,
     private val screenPositionLiveData: MutableLiveData<Int>
-) : ViewModel() {
+) : AuthVm() {
 
-    private val workerManager by kodein.instance<IWorkersManager>()
+    private val workerManager by kodein.instance<IWorkersManager>(getManagerMode())
     private val res by kodein.instance<IResProvider>()
 
     val onlineHashrate = MutableLiveData("0 " + res.getString(R.string.hashrate_per_second))

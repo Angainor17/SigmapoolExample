@@ -1,20 +1,17 @@
 package com.sigmapool.app.screens.workers
 
-import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.provider.coin.ICoinProvider
 import com.sigmapool.app.screens.workers.params.WorkerListParams
 import com.sigmapool.common.listLibrary.loader.IItemsLoader
 import com.sigmapool.common.listLibrary.loader.LoaderResult
 import com.sigmapool.common.managers.IWorkersManager
 import com.sigmapool.common.models.WorkerDto
-import org.kodein.di.generic.instance
 
 class WorkerLoader(
     private val params: WorkerListParams,
-    private val coinProvider: ICoinProvider
+    private val coinProvider: ICoinProvider,
+    private val workerManager: IWorkersManager
 ) : IItemsLoader<WorkerDto> {
-
-    private val workerManager by kodein.instance<IWorkersManager>()
 
     var changeListener: ((ArrayList<WorkerDto>?) -> Unit)? = null
 

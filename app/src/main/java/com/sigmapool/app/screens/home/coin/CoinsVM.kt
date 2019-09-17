@@ -1,6 +1,7 @@
 package com.sigmapool.app.screens.home.coin
 
 import androidx.lifecycle.ViewModel
+import com.sigmapool.api.kodein.AUTH_MODE
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.utils.interfaces.ViewState
@@ -16,7 +17,7 @@ class CoinsVM : ViewModel() {
     private val btcCoinVM = CoinItemVM(BTC, R.mipmap.ic_btc)
     private val ltcCoinVM = CoinItemVM(LTC, R.mipmap.ic_ltc)
 
-    private val poolManager by kodein.instance<IPoolManager>()
+    private val poolManager by kodein.instance<IPoolManager>(AUTH_MODE)
 
     init {
         initItem(btcCoinVM)

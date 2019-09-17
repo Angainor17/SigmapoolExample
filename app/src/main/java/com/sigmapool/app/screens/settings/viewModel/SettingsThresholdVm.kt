@@ -5,6 +5,7 @@ import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.provider.coin.ICoinProvider
 import com.sigmapool.app.screens.settings.ISettingsView
 import com.sigmapool.app.utils.databindings.showEditTextAlertDialog
+import com.sigmapool.app.utils.vm.AuthVm
 import com.sigmapool.common.managers.IPoolManager
 import com.sigmapool.common.utils.trimZeroEnd
 import kotlinx.coroutines.Dispatchers
@@ -16,9 +17,9 @@ import org.kodein.di.generic.instance
 class SettingsThresholdVm(
     private val coinProvider: ICoinProvider,
     private val view: ISettingsView
-) {
+) : AuthVm() {
 
-    private val poolManager by kodein.instance<IPoolManager>()
+    private val poolManager by kodein.instance<IPoolManager>(getManagerMode())
 
     val thresholdLiveData = MutableLiveData("")
 

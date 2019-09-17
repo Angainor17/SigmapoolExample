@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
+import com.sigmapool.api.kodein.AUTH_MODE
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.provider.currency.ICurrencyProvider
 import com.sigmapool.app.screens.home.coin.BTC
@@ -24,7 +25,7 @@ import org.kodein.di.generic.instance
 class MiningProfitListVM(params: MinerListParams = MinerListParams()) : ViewModel() {
 
     private val minerManager by kodein.instance<IMinerManager>()
-    private val coinManager by kodein.instance<IPoolManager>()
+    private val coinManager by kodein.instance<IPoolManager>(AUTH_MODE)
     private val jsonDataStorage by kodein.instance<JsonDataStorage>()
     private val currencyProvider by kodein.instance<ICurrencyProvider>()
 

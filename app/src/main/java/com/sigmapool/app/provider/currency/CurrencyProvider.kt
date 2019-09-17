@@ -1,6 +1,7 @@
 package com.sigmapool.app.provider.currency
 
 import com.google.gson.Gson
+import com.sigmapool.api.kodein.AUTH_MODE
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.currency.models.*
@@ -18,7 +19,7 @@ const val CURRENCY_KEY = "currency"
 
 class CurrencyProvider : ICurrencyProvider {
 
-    private val poolManager by kodein.instance<IPoolManager>()
+    private val poolManager by kodein.instance<IPoolManager>(AUTH_MODE)
     private val jsonDataStorage by kodein.instance<JsonDataStorage>()
 
     private var selectedCurrency = usdCurrency

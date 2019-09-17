@@ -13,10 +13,10 @@ import org.kodein.di.generic.instance
 
 class DashboardVM : AuthVm() {
 
-    private val dashboardManager by kodein.instance<IDashboardManager>()
-    private val earningsManager by kodein.instance<IEarningsManager>()
-    private val workerManager by kodein.instance<IWorkersManager>()
-    private val poolManager by kodein.instance<IPoolManager>()
+    private val dashboardManager by kodein.instance<IDashboardManager>(getManagerMode())
+    private val earningsManager by kodein.instance<IEarningsManager>(getManagerMode())
+    private val workerManager by kodein.instance<IWorkersManager>(getManagerMode())
+    private val poolManager by kodein.instance<IPoolManager>(getManagerMode())
 
     val toolbarVm = CoinToolbarVM()
     val coinProvider = toolbarVm.coinProvider

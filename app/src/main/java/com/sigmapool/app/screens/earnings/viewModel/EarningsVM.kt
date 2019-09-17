@@ -24,7 +24,7 @@ import org.kodein.di.generic.instance
 
 class EarningsVM : AuthVm(), IUpdateScreenVm {
 
-    private val earningsManager by kodein.instance<IEarningsManager>()
+    private val earningsManager by kodein.instance<IEarningsManager>(getManagerMode())
     private val resProvider by kodein.instance<IResProvider>()
     private val jsonDataStorage by kodein.instance<JsonDataStorage>()
 

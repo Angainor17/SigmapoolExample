@@ -6,6 +6,7 @@ import android.view.View
 import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sigmapool.api.kodein.AUTH_MODE
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.currency.ICurrencyProvider
@@ -32,7 +33,7 @@ class CalcItemVM(
     private val coinLabel = params.coinLabel
 
     private val res by kodein.instance<IResProvider>()
-    private val poolManager by kodein.instance<IPoolManager>()
+    private val poolManager by kodein.instance<IPoolManager>(AUTH_MODE)
     private val currencyProvider by kodein.instance<ICurrencyProvider>()
     private val converterViewState = MutableLiveData(LOADING)
 

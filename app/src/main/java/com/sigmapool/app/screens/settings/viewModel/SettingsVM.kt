@@ -25,7 +25,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
-private const val APP_EMAIL = "angainor@gmail.com"//FIXME
+private const val APP_EMAIL = "support@sigmapool.com"
 
 private const val LOCALE_TAG = "locale"
 private const val CURRENCY_TAG = "currency"
