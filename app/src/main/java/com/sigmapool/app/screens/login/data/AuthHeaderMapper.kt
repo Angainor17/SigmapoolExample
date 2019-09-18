@@ -45,7 +45,7 @@ class AuthHeaderMapper : HeaderMapper() {
             authDto.accessToken = newToken
             jsonDataStorage.put(AUTH_KEY, authDto)
 
-            Log.d("voronin", "Token refresh = $newToken")//FIXME
+            Log.d("voronin", "Token refresh = $newToken")
         }
     }
 }

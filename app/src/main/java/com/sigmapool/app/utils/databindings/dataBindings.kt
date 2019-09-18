@@ -26,7 +26,6 @@ import com.sigmapool.app.utils.customViews.slider.MainSliderAdapter
 import com.sigmapool.app.utils.customViews.spinner.CustomAdapter
 import com.sigmapool.app.utils.customViews.viewPager.FragmentViewPager
 import com.sigmapool.common.models.BlogDto
-import com.sigmapool.common.utils.px
 import com.squareup.picasso.Picasso
 import com.suke.widget.SwitchButton
 import ss.com.bannerslider.Slider
@@ -42,10 +41,10 @@ fun onNavigationItemSelected(
 }
 
 @BindingAdapter("app:initCoinAdapter", "app:fragmentManager", requireAll = true)
-fun initCoinAdapter(view: ViewPager, vm: CoinsVM, fragmentManager: FragmentManager) {
-    view.offscreenPageLimit = 2
-    view.pageMargin = 20.px
-    view.adapter = CoinViewPagerAdapter(vm.getCoins(), fragmentManager)
+fun initCoinAdapter(viewPager: ViewPager, vm: CoinsVM, fragmentManager: FragmentManager) {
+    viewPager.setPadding(20, 0, 20, 0)
+    viewPager.pageMargin = -50
+    viewPager.adapter = CoinViewPagerAdapter(vm.getCoins(), fragmentManager)
 }
 
 @BindingAdapter("app:initWorkerAdapter", "app:fragmentManager", requireAll = true)

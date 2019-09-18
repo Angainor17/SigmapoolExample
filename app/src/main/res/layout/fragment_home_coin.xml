@@ -20,22 +20,22 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:background="#EFF3F7"
+            android:orientation="vertical"
             >
 
         <com.sigmapool.app.utils.customViews.viewPager.FragmentViewPager
                 android:id="@+id/coinPager"
 
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:background="@null"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
 
-                app:isWrapHeightEnabled="@{true}"
-                app:isPagingEnabled="@{true}"
-
-                app:initCoinAdapter="@{vm}"
                 app:fragmentManager="@{fragmentManager}"
+                app:initCoinAdapter="@{vm}"
+
+                app:isPagingEnabled="@{true}"
+                app:isWrapHeightEnabled="@{true}"
                 />
 
         <com.google.android.material.tabs.TabLayout
