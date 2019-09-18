@@ -3,7 +3,6 @@ package com.sigmapool.app.screens.miningProfit.databinding
 import android.os.Build
 import android.text.Html
 import android.text.util.Linkify
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -64,7 +63,6 @@ private fun <DtoItem, ItemVm : BaseItemViewModel> initHeaderList(
         PaginationListener(pageSize, swipeRefreshLayout, linearLayoutManager) {
         override fun loadMoreItems() {
             itemsVM.loadMoreItems()
-            Log.d("voronin", "loadMoreItems")
         }
 
         override fun isLastPage(): Boolean = itemsVM.isLastPage.value ?: false

@@ -16,6 +16,7 @@ import java.net.HttpURLConnection.HTTP_BAD_REQUEST
 
 const val AUTH_KEY = "auth_info"
 const val REFRESH_HEADER = "x-sigmapool-access-token"
+const val AUTH_ERROR = "AuthError"
 
 class AuthHeaderMapper : HeaderMapper() {
 
@@ -31,7 +32,7 @@ class AuthHeaderMapper : HeaderMapper() {
     }
 
     override fun responseProceed(response: Response) {
-        if (response.code() == HTTP_BAD_REQUEST) {
+        if (response.code() == HTTP_BAD_REQUEST && response.body()?.string()?.contains(AUTH_ERROR) == true) {
             val authDto = Gson().fromJson(jsonDataStorage.getJson(AUTH_KEY), AuthDto::class.java)
             if (authDto != null) {
                 jsonDataStorage.put(AUTH_KEY, null)

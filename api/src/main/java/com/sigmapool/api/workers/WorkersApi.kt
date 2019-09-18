@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 internal interface WorkersApi {
 
-    @GET("api/v2/{coin}/workers")
+    @GET("api/v2/{coin}/workers/list")
     suspend fun getWorkers(
         @Path("coin") coin: String,
         @Query("page") page: Int,
