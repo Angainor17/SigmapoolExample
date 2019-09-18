@@ -43,7 +43,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/google_sans_medium"
-                android:textColor="#C4FFFFFF"
+                android:textColor="@color/white"
                 android:textSize="28dp"
                 android:text="@{vm.yesterdayEarningsValue}"
 

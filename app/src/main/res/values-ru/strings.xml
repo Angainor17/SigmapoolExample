@@ -15,7 +15,7 @@
 
     <string name="pool_info">Информация о пуле</string>
     <string name="fee">Комиссия</string>
-    <string name="dailyProfitPerTHs">Доходность за 1 TH/с (FPPS)</string>
+    <string name="dailyProfitPerTHs">Доходность за 1 TH/s (FPPS)</string>
     <string name="paymentTime">Время выплат</string>
     <string name="minimumPayout">Мин. выплата</string>
     <string name="settlementDetails">Информация о выплатах</string>
@@ -38,7 +38,7 @@
     <string name="payoutScheme">Схема выплат</string>
     <string name="profitLabel">Доходность (24ч)</string>
 
-    <string name="hashrate_per_second">H/с</string>
+    <string name="hashrate_per_second">H/s</string>
     <string name="network_hashrate">Хэшрейт сети</string>
     <string name="network_difficulty">Сложность сети</string>
     <string name="current_block">Текущий блок</string>
@@ -66,8 +66,8 @@
     </string-array>
 
     <string name="hashrate">Хешрейт</string>
-    <string name="t_hashs_per_sec">Thash/с</string>
-    <string name="m_hashs_per_sec">Mhash/с</string>
+    <string name="t_hashs_per_sec">Thash/s</string>
+    <string name="m_hashs_per_sec">Mhash/s</string>
     <string name="per_day">/день</string>
 
     <string name="current_price">Текущая цена</string>
