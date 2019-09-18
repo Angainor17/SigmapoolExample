@@ -66,14 +66,14 @@
                             app:value="@{vm.currencyLiveData}"
                             />
 
-                    <include
-                            layout="@layout/fragment_settings_check_item"
+<!--                    <include-->
+<!--                            layout="@layout/fragment_settings_check_item"-->
 
-                            app:isTopSeparatorVisible="@{false}"
-                            app:label="@{@string/push_notification}"
-                            app:switchListener="@{(v, checked)->vm.pushSwitch(checked)}"
-                            app:value="@{vm.pushLiveData}"
-                            />
+<!--                            app:isTopSeparatorVisible="@{false}"-->
+<!--                            app:label="@{@string/push_notification}"-->
+<!--                            app:switchListener="@{(v, checked)->vm.pushSwitch(checked)}"-->
+<!--                            app:value="@{vm.pushLiveData}"-->
+<!--                            />-->
 
                     <include
                             layout="@layout/fragment_settings_select_item"
