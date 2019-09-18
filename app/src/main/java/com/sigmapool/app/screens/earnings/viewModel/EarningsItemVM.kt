@@ -23,7 +23,7 @@ class EarningsItemVM(
     var coin: String = coinProvider.getLabel().toUpperCase()
     var coinValue: String = input.amount.trimZeroEnd()
     var status: String = ""
-    var scheme: String = "PPS"//FIXME
+    var scheme: String = input.scheme ?: ""
     var statusTextColor: Int = Color.BLUE
 
     var lastPaymentDate: Date? = null

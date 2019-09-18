@@ -57,6 +57,7 @@ internal class StubEarningsManager(private val context: Context) : IEarningsMana
                     Date(Date().time - it * 2L * 24 * 60 * 60 * 1000),
                     100.123123f + it,
                     it,
+                    "FPPS",
                     1000000000L * it,
                     null,
                     null

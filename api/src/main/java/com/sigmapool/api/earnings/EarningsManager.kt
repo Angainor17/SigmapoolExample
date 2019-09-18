@@ -39,6 +39,7 @@ internal class EarningsManager(private val service: IEarningsService) : IEarning
                 Date(it.date ?: Date().time),
                 it.amount ?: 0f,
                 it.bonus,
+                it.scheme,
                 it.diff ?: 0L,
                 it.transaction,
                 it.type
