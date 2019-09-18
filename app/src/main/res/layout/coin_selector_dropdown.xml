@@ -21,8 +21,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:background="@drawable/coin_selector_dropdown_bg"
             android:layout_height="wrap_content"
-
             >
 
         <ImageView

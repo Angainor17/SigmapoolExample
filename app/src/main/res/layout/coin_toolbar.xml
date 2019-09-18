@@ -48,6 +48,7 @@
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/coin_selector_drawable"
                 android:layout_marginTop="8dp"
+                android:popupBackground="@drawable/spinner_selector_bg"
                 android:spinnerMode="dropdown"
 
                 app:initCoinSpinner="@{vm}"

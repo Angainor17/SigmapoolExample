@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.sigmapool.app.databinding.CoinSelectorBinding
+import com.sigmapool.app.databinding.CoinSelectorDropdownBinding
 import com.sigmapool.app.screens.home.coin.CoinVm
 
 
@@ -25,11 +26,22 @@ class CustomAdapter(var context: Context, var coins: ArrayList<CoinVm>) : BaseAd
     }
 
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        return getCustomView(parent, position)
+        if (position == 0) {
+            return getCustomView(parent, position)
+        }
+        return getCustomViewUnselected(parent, position)
     }
 
     private fun getCustomView(viewGroup: ViewGroup?, i: Int): View {
         var binding = CoinSelectorBinding.inflate(inflater, viewGroup, false)
+        binding.setIcon(coins[i].imageResId)
+        binding.setText(coins[i].text)
+
+        return binding.root
+    }
+
+    private fun getCustomViewUnselected(viewGroup: ViewGroup?, i: Int): View {
+        var binding = CoinSelectorDropdownBinding.inflate(inflater, viewGroup, false)
         binding.setIcon(coins[i].imageResId)
         binding.setText(coins[i].text)
 
