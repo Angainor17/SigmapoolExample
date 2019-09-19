@@ -19,7 +19,7 @@ import org.kodein.di.generic.instance
 class SettingsSchemeVM(
     private val coinProvider: ICoinProvider,
     private val view: ISettingsView
-) :AuthVm(){
+) : AuthVm() {
 
     private val resProvider by kodein.instance<IResProvider>()
     private val poolManager by kodein.instance<IPoolManager>(getManagerMode())
@@ -62,7 +62,6 @@ class SettingsSchemeVM(
     }
 
     fun setScheme(text: String) {
-        schemeLiveData.postValue(text)
         sendScheme(text)
     }
 
@@ -77,7 +76,13 @@ class SettingsSchemeVM(
 
     private fun sendScheme(scheme: String) {
         GlobalScope.launch(Dispatchers.IO) {
-            poolManager.setScheme(coinProvider.getLabel().toLowerCase(), scheme.toLowerCase())
+            val result = poolManager.setScheme(
+                coinProvider.getLabel().toLowerCase(),
+                scheme.toUpperCase()
+            )
+            if (result.success) {
+                schemeLiveData.postValue(scheme)
+            }
         }
     }
 }

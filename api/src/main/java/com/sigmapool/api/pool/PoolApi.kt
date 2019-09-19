@@ -36,6 +36,7 @@ internal interface PoolApi {
         @Path("coin") coin: String
     ): PayloadModel<SchemeResponse>
 
+    @FormUrlEncoded
     @POST("api/v2/{coin}/user/settings/payout/scheme")
     suspend fun setScheme(
         @Path("coin") coin: String,

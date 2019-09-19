@@ -37,10 +37,13 @@ class SettingsThresholdVm(
 
     private fun thresholdSelect(value: Float) {
         val coin = coinProvider.getLabel()
-        thresholdLiveData.postValue(value.trimZeroEnd() + " " + coin.toUpperCase())
 
         GlobalScope.launch(Dispatchers.IO) {
-            poolManager.setThreshold(coin, value)
+            val result = poolManager.setThreshold(coin, value)
+
+            if (result.success) {
+                thresholdLiveData.postValue(value.trimZeroEnd() + " " + coin.toUpperCase())
+            }
         }
     }
 
