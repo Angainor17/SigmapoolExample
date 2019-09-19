@@ -71,4 +71,5 @@ dependencies {
     testImplementation test.junit
     androidTestImplementation test.testRunner
     androidTestImplementation test.espresso
+    implementation files('lib\\chart-release.aar')
 }

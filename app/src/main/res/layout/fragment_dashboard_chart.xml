@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-        xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -16,12 +16,20 @@
             android:background="@color/screenBgColor"
             >
 
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/dashboard_chart"
-                />
+        <LinearLayout android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/gradient_status_bar"
+                android:focusable="true">
+
+
+            <com.sigmapool.app.views.FullChartView android:layout_width="match_parent" android:layout_height="200dp"
+                    android:layout_marginTop="25dp"
+                    app:xyValues="@{vm.xyValues}"
+                    app:dates="@{vm.dates}"/>
+
+            <!--<SingleChartView android:layout_width="match_parent" android:layout_height="200dp"></SingleChartView>-->
+        </LinearLayout>
 
     </LinearLayout>
 

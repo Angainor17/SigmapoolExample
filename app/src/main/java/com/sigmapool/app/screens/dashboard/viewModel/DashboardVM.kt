@@ -4,10 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.screens.settings.viewModel.CoinToolbarVM
 import com.sigmapool.app.utils.vm.AuthVm
-import com.sigmapool.common.managers.IDashboardManager
-import com.sigmapool.common.managers.IEarningsManager
-import com.sigmapool.common.managers.IPoolManager
-import com.sigmapool.common.managers.IWorkersManager
+import com.sigmapool.common.managers.*
 import kotlinx.coroutines.*
 import org.kodein.di.generic.instance
 
@@ -17,11 +14,12 @@ class DashboardVM : AuthVm() {
     private val earningsManager by kodein.instance<IEarningsManager>(getManagerMode())
     private val workerManager by kodein.instance<IWorkersManager>(getManagerMode())
     private val poolManager by kodein.instance<IPoolManager>(getManagerMode())
+    private val chartManager by kodein.instance<IChartManager>()
 
     val toolbarVm = CoinToolbarVM()
     val coinProvider = toolbarVm.coinProvider
 
-    val dashboardChartVM = DashboardChartVM(coinProvider)
+    val dashboardChartVM = DashboardChartVM(chartManager)
     val dashboardChartInfoVM = DashboardChartInfoVM(coinProvider)
     val dashboardSubaccountsVM = DashboardSubAccountsVM(coinProvider)
     val dashboardEarningsVM = DashboardEarningsVM(coinProvider)
