@@ -19,8 +19,7 @@
 
     <string name="pool_info">Pool Info</string>
     <string name="fee">Fee</string>
-    <string name="pps"
-            translatable="false">PPS</string>
+    <string name="pps" translatable="false">PPS</string>
     <string name="btc"
             translatable="false">BTC</string>
     <string name="ltc"
@@ -138,6 +137,6 @@
     <string name="minute">min</string>
     <string name="second">sec</string>
     <string name="observer_mode_text">You are in the observer mode,\nstart mining after logging in!</string>
-
+    <string name="fpps" translatable="false">FPPS</string>
 
 </resources>

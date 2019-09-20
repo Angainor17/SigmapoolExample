@@ -15,7 +15,7 @@
 
     <LinearLayout
             android:layout_width="match_parent"
-            android:background="#EFF3F7"
+            android:background="@color/screenBgColor"
             android:layout_height="wrap_content"
 
             android:orientation="vertical"
@@ -40,7 +40,8 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="4dp"
                 android:orientation="vertical"
                 >
 
@@ -54,10 +55,9 @@
                     layout="@layout/loading_error_frame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
 
                     app:vm="@{vm}"
+                    app:hasElevation="@{true}"
                     app:errorText="@{vm.itemsVM.message}"
                     />
 

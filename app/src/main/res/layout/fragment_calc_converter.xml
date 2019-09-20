@@ -23,7 +23,7 @@
 
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="6dp"
-            app:cardElevation="4dp"
+            app:cardElevation="@dimen/card_view_elevation_default"
             >
 
         <LinearLayout

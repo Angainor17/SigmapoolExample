@@ -127,6 +127,7 @@ fun setImages(slider: Slider, items: ArrayList<BlogDto>?, listener: OnSlideClick
     }
 }
 
+
 @BindingAdapter("app:onActivatedChange")
 fun onActivatedChange(view: View, isActivated: Boolean) {
     view.isActivated = isActivated

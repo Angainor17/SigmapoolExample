@@ -17,11 +17,21 @@
         <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
     </style>
 
-    <style name="WhiteArrowBtn" parent="IconBtn">
+    <style name="WhiteArrowBtn" parent="ArrowBtn">
         <item name="android:background">@drawable/arrow_up_background_ripple</item>
         <item name="android:drawableEnd">@drawable/arrow_up_drawable</item>
         <item name="android:drawablePadding">3dp</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="DarkArrowBtn" parent="ArrowBtn">
+        <item name="android:background">@drawable/arrow_up_background_ripple</item>
+        <item name="android:drawableEnd">@drawable/dark_arrow_up_drawable</item>
+        <item name="android:drawablePadding">3dp</item>
+        <item name="android:textColor">@color/titleGray</item>
+    </style>
+
+    <style name="ArrowBtn" parent="IconBtn">
         <item name="android:paddingLeft">13dp</item>
         <item name="android:paddingRight">13dp</item>
         <item name="android:paddingTop">3dp</item>
