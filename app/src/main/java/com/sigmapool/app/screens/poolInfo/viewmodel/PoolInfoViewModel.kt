@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.res.IResProvider
+import com.sigmapool.app.screens.bottomSheetScreen.ViewPagerScreen
 import com.sigmapool.app.screens.calculator.viewModel.CoinTabVM
 import com.sigmapool.app.screens.poolInfo.model.IPoolInfoModel
 import com.sigmapool.common.viewModels.ITitleViewModel
@@ -21,7 +22,7 @@ class PoolInfoViewModel(val model: IPoolInfoModel) : ViewModel(), ITitleViewMode
 
     private val res by kodein.instance<IResProvider>()
 
-    val tabPositionLiveData = MutableLiveData<Int>()
+    val tabPositionLiveData = MutableLiveData(ViewPagerScreen(0))
     val isLoading = MutableLiveData<Boolean>(false)
 
     override val coinTabVM = CoinTabVM(tabPositionLiveData)

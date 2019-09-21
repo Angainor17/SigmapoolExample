@@ -12,17 +12,29 @@ import com.sigmapool.app.utils.eventBus.LogoutEvent
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
+const val SCREEN_KEY = "screen"
+
+const val SETTINGS_ITEM_ID = R.id.settings
+const val SETTINGS_POS = 4
+
 class BottomNavActivity : ColoredToolbarActivity(), IBottomSheetScreen {
+
+    val vm = BottomNavVM(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(null)
         val binding: ActivityBottomNavBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_bottom_nav)
-        val vm = BottomNavVM(this)
 
         binding.lifecycleOwner = this
         binding.vm = vm
         binding.fragmentManager = supportFragmentManager
+
+        val screenPos = intent?.getIntExtra(SCREEN_KEY, -1)
+        if (screenPos ?: 0 == SETTINGS_POS) {
+            binding.bottomNavigation.selectedItemId = SETTINGS_ITEM_ID
+            vm.screenPositionLiveData.postValue(ViewPagerScreen(SETTINGS_POS, false))
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -36,5 +48,10 @@ class BottomNavActivity : ColoredToolbarActivity(), IBottomSheetScreen {
         if (resultCode == Activity.RESULT_OK) {
             recreate()
         }
+    }
+
+    override fun recreate() {
+        finish()
+        startActivity(intent)
     }
 }

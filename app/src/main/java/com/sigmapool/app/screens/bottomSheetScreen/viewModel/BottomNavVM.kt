@@ -6,11 +6,12 @@ import androidx.lifecycle.ViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sigmapool.app.R
 import com.sigmapool.app.screens.bottomSheetScreen.IBottomSheetScreen
+import com.sigmapool.app.screens.bottomSheetScreen.ViewPagerScreen
 
 class BottomNavVM(val bottomSheetScreen: IBottomSheetScreen) : ViewModel(),
     BottomNavigationView.OnNavigationItemSelectedListener {
 
-    val screenPositionLiveData = MutableLiveData<Int>()
+    val screenPositionLiveData = MutableLiveData(ViewPagerScreen(0))
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         navigateTo(getScreenPosition(item.itemId))
@@ -27,6 +28,6 @@ class BottomNavVM(val bottomSheetScreen: IBottomSheetScreen) : ViewModel(),
     }
 
     private fun navigateTo(position: Int) {
-        screenPositionLiveData.postValue(position)
+        screenPositionLiveData.postValue(ViewPagerScreen(position))
     }
 }

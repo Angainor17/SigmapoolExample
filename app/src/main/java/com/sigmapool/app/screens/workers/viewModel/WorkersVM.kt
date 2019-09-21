@@ -1,6 +1,7 @@
 package com.sigmapool.app.screens.workers.viewModel
 
 import androidx.lifecycle.MutableLiveData
+import com.sigmapool.app.screens.bottomSheetScreen.ViewPagerScreen
 import com.sigmapool.app.screens.settings.viewModel.CoinToolbarVM
 import com.sigmapool.app.screens.workers.params.ANY_STATUS
 import com.sigmapool.app.screens.workers.params.OFFLINE_STATUS
@@ -11,7 +12,7 @@ import java.util.*
 
 class WorkersVM : AuthVm() {
 
-    val screenPositionLiveData = MutableLiveData(0)
+    val screenPositionLiveData = MutableLiveData(ViewPagerScreen(0))
 
     val toolbarVm = CoinToolbarVM()
     private val coinProvider = toolbarVm.coinProvider
