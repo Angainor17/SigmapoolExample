@@ -39,7 +39,7 @@ class SettingsFragment : UpdateFragment(), ISettingsView, ModalBottomSheetDialog
 
     override fun recreate() {
         GlobalScope.launch(Dispatchers.Main) {
-            activity?.intent.putExtra(SCREEN_KEY, SETTINGS_POS)
+            activity?.intent?.putExtra(SCREEN_KEY, SETTINGS_POS)
             activity?.recreate()
         }
     }
