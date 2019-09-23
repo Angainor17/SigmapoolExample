@@ -61,7 +61,9 @@ class EarningsVM : AuthVm(), IUpdateScreenVm {
         GlobalScope.launch(Dispatchers.IO) {
             val result = earningsManager.getLastPayment(coin)
             if (result.success) {
-                adapter.lastPaymentDate = result.data?.date
+                GlobalScope.launch(Dispatchers.Main) {
+                    adapter.lastPaymentDate = result.data?.date
+                }
             }
         }
     }

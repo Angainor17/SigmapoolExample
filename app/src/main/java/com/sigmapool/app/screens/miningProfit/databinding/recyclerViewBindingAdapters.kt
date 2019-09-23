@@ -22,6 +22,7 @@ import com.sigmapool.app.screens.miningProfit.params.MINER_PAGE_SIZE
 import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitListVM
 import com.sigmapool.app.screens.news.vm.NewsListVM
 import com.sigmapool.app.screens.workers.viewModel.WorkersListVM
+import com.sigmapool.app.utils.customViews.CustomLinearLayoutManager
 import com.sigmapool.common.listLibrary.HeaderListVM
 import com.sigmapool.common.listLibrary.PaginationListener
 import com.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
@@ -55,7 +56,7 @@ private fun <DtoItem, ItemVm : BaseItemViewModel> initHeaderList(
     pageSize: Int
 
 ) {
-    val linearLayoutManager = LinearLayoutManager(view.context)
+    val linearLayoutManager = CustomLinearLayoutManager(view.context)
     view.layoutManager = linearLayoutManager
     view.adapter = itemsVM.adapter
 
