@@ -16,7 +16,6 @@
     <string name="pool_info">Информация о пуле</string>
     <string name="fee">Комиссия</string>
     <string name="dailyProfitPerTHs">Доходность за 1 TH/s (FPPS)</string>
-    <string name="paymentTime">Время выплат</string>
     <string name="minimumPayout">Мин. выплата</string>
     <string name="settlementDetails">Информация о выплатах</string>
     <string name="miningURL">Майнинг сервера</string>
@@ -77,7 +76,6 @@
     <string name="rus">Русский</string>
     <string name="language">Язык</string>
     <string name="currency">Валюта</string>
-    <string name="push_notification">Push-уведомления</string>
     <string name="payment_scheme">Схема выплат</string>
     <string name="threshold">Порог</string>
     <string name="write_review">Написать отзыв или предложение</string>
@@ -102,13 +100,12 @@
     <string name="submit">Подтвердить</string>
     <string name="cancel">Отменить</string>
     <string name="enter_threshold">Введите пороговое значение</string>
-    <string name="saved_to_balance">Положен на счёт</string>
+    <string name="saved_to_balance">Сохранено на Балансе</string>
     <string name="avg_hashrate">Ср. Хэшрейт</string>
     <string name="earned_last_24h">Начислено за 24ч</string>
     <string name="workers">Воркеры</string>
 
     <string name="twenty_four_hour">24ч</string>
-    <string name="one_day">1д</string>
     <string name="one_hour">1ч</string>
     <string name="subaccounts">Субаккаунты</string>
 

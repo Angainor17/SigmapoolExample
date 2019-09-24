@@ -5,8 +5,11 @@ import com.sigmapool.common.managers.IWorkersManager
 import com.sigmapool.common.models.ManagerResult
 import com.sigmapool.common.models.WorkerDto
 import com.sigmapool.common.models.WorkersStatusDto
+import kotlin.random.Random
 
 internal class StubWorkerManager(val context: Context) : IWorkersManager {
+
+    private val onlineItemsIndexes = arrayListOf(2, 3, 8, 10, 11, 15, 20)
 
     override suspend fun getWorkers(
         coin: String,
@@ -16,10 +19,10 @@ internal class StubWorkerManager(val context: Context) : IWorkersManager {
     ): ManagerResult<ArrayList<WorkerDto>> {
         val list = List(perPage) {
             WorkerDto(
-                "Worker $it $coin",
-                (it + 1) * 10000000000,
-                (it + 1) * 40000000000,
-                status == "online"
+                if (it % 4 == 0) "Sigmaoffice" else "Miner $it $coin",
+                (Random.nextInt(10) + ((it + 1) * 1000000000000 + (Random.nextInt(100) * 10000000000))),
+                Random.nextInt(10) + ((it + 1) * 4000000000000 + (Random.nextInt(100) * 30000000000)),
+                status == "online" && (!onlineItemsIndexes.contains(it))
             )
         }
         return ManagerResult(data = ArrayList(list))

@@ -43,18 +43,19 @@ class EarningsVM : AuthVm(), IUpdateScreenVm {
 
     init {
         initListStatus(coinProvider.getLabel())
+        refreshHeader()
+
+        itemsVM.onRefreshListener = this::refreshHeader
 
         coinProvider.addOnChangeListener {
             params.coin = it
-            Handler().postDelayed({
-                headerVm.refresh()
-            }, 500)
 
+            refreshHeader()
             initListStatus(params.coin)
             itemsVM.onRefresh()
         }
 
-        headerVm.onRefreshListener = this::refreshHeader
+        headerVm.onRefreshListener = this::updateHeader
     }
 
     private fun initListStatus(coin: String) {
@@ -69,6 +70,13 @@ class EarningsVM : AuthVm(), IUpdateScreenVm {
     }
 
     private fun refreshHeader() {
+        Handler().postDelayed(
+            { headerVm.refresh() },
+            500
+        )
+    }
+
+    private fun updateHeader() {
         GlobalScope.launch(Dispatchers.Main) {
             adapter.notifyItemChanged(0)
         }

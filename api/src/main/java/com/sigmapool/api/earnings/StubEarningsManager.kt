@@ -5,19 +5,32 @@ import com.sigmapool.common.managers.IEarningsManager
 import com.sigmapool.common.models.*
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.random.Random
 
 internal class StubEarningsManager(private val context: Context) : IEarningsManager {
 
     override suspend fun earningsDaily(coin: String): ManagerResult<EarningsDto> {
-        return ManagerResult(EarningsDto(42f))
+        return ManagerResult(
+            EarningsDto(
+                if (coin == "btc") 42f else 39f
+            )
+        )
     }
 
     override suspend fun totalPaid(coin: String): ManagerResult<TotalPaidDto> {
-        return ManagerResult(TotalPaidDto(43342f))
+        return ManagerResult(
+            TotalPaidDto(
+                if (coin == "btc") 43342f else 31342f
+            )
+        )
     }
 
     override suspend fun balance(coin: String): ManagerResult<BalanceDto> {
-        return ManagerResult(BalanceDto(123123f))
+        return ManagerResult(
+            BalanceDto(
+                if (coin == "btc") 123123f else 54223f
+            )
+        )
     }
 
     override suspend fun payments(
@@ -25,10 +38,10 @@ internal class StubEarningsManager(private val context: Context) : IEarningsMana
         page: Int
     ): ManagerResult<ArrayList<PaymentItemDto>> {
         return ManagerResult(
-            ArrayList(List(15) {
+            ArrayList(List(10) {
                 PaymentItemDto(
                     Date(Date().time - it * 2L * 24 * 60 * 60 * 1000),
-                    100.123123f + it,
+                    10.123123f + it + Random.nextInt(10) + Random.nextInt(99999) / 10000f,
                     it,
                     "FPPS",
                     1000000000L * it,
@@ -44,7 +57,11 @@ internal class StubEarningsManager(private val context: Context) : IEarningsMana
     }
 
     override suspend fun getEstimatedProfit(coin: String): ManagerResult<EstimatedProfitDto> {
-        return ManagerResult(EstimatedProfitDto(1710f))
+        return ManagerResult(
+            EstimatedProfitDto(
+                if (coin == "btc") 1710f else 863f
+            )
+        )
     }
 
     override suspend fun getAddress(coin: String): ManagerResult<AddressDto> {

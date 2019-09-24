@@ -24,7 +24,6 @@
             translatable="false">BTC</string>
     <string name="ltc"
             translatable="false">LTC</string>
-    <string name="paymentTime">Payment Time</string>
     <string name="minimumPayout">Minimum Payout</string>
     <string name="settlementDetails">Settlement Details</string>
     <string name="miningURL">Mining URL</string>
@@ -85,7 +84,6 @@
     <string name="rus">Russian</string>
     <string name="language">Language</string>
     <string name="currency">Currency</string>
-    <string name="push_notification">Push-notifications</string>
     <string name="payment_scheme">Payment scheme</string>
     <string name="threshold">Threshold</string>
     <string name="write_review">Write a review or suggestion</string>
@@ -120,7 +118,6 @@
     <string name="earned_last_24h">Earned Last 24h</string>
     <string name="workers">Workers</string>
 
-    <string name="one_day">1d</string>
     <string name="twenty_four_hour">24h</string>
     <string name="one_hour">1h</string>
     <string name="subaccounts">Subaccounts</string>
