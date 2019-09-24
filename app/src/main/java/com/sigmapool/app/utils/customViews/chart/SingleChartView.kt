@@ -1,4 +1,4 @@
-package com.example.myapplication.chart
+package com.sigmapool.app.utils.customViews.chart
 
 //import android.databinding.BindingMethod;
 //import android.databinding.BindingMethods;
@@ -11,8 +11,8 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import com.lustgr.chart.*
+import com.sigmapool.common.utils.BigNumberHelper
 import java.util.*
-import kotlin.random.Random
 
 /**
  * Created by stepan on 2017-07-08.
@@ -48,30 +48,19 @@ class SingleChartView @JvmOverloads constructor(context: Context, attrs: Attribu
     private var bitmap: Bitmap? = null
     private var bitmapReady: Boolean = false
 
-    init {
+    fun createChart(chartLineValues: FloatArray, dates: List<Date>) {
 
-        // dbg
-        val chartLineValues = FloatArray(18*2)
-        for (i in 0..chartLineValues.size-1){
-            if(i%2 == 0) chartLineValues[i] = (i*(1f/(chartLineValues.size/2)))-1f
-            else chartLineValues[i] = Random.nextDouble(-1.0, 1.0).toFloat()
-        }
+        val linePaint = LinePaint(0x6643358f, 2f)
+        val chartLineModel = ChartLineModel("Test1", chartLineValues)
+        val chartLine = ShadowedChartLine(linePaint, chartLineModel, 0x6643358f, 0x0043358f)
+        val chart = Chart(chartLine.minimalChartArea, chartLine)
 
-            val chartArea = ChartArea(-1.0f, 1.0f, -1.11f, 1.11f)
-
-            val linePaint = LinePaint(Color.WHITE, 2f)
-            val chartLineModel = ChartLineModel("Test1", chartLineValues)
-            val chartLine = ShadowedChartLine(linePaint, chartLineModel, 0x7fffffff, 0x00ffffff)
-            val chart = Chart(chartArea, chartLine)
-
-        val cal = Calendar.getInstance() // creates calendar
-        cal.time = Date() // sets calendar time/date
-
-        val dates = List(chartLineValues.size/2) {
-            cal.add(Calendar.HOUR_OF_DAY, 1)
-            cal.time
-        }
-
+//        val barChartLineIncreased = BooleanArray(chartLineValues.size / 2) { true }
+//
+//        val barChartLinePaint = LinePaint(Color.GREEN, 2f)
+//        val barchartLineModel = BarChartLineModel(chartLineValues, barChartLineIncreased)
+//        val barChartLine = BarChartLine(barChartLinePaint, barchartLineModel)
+//        val barChart = Chart(barChartLine.minimalChartArea, barChartLine)
         setChart(chart, dates)
     }
 
@@ -138,9 +127,9 @@ class SingleChartView @JvmOverloads constructor(context: Context, attrs: Attribu
 
     private fun updateGridLines() {
         val ca = this.compositeTh!!.ca
-        val lp = LinePaint(0x41ffffff, 1f)
+        val lp = LinePaint(0x7f828282, 1f)
 
-        val verGridCount = 6
+        val verGridCount = 4
         val verGridStep = ca.w / verGridCount
 
         val dateLabels = DateLabelsHelper.createLabels(this.chartDates!!, verGridCount+1)
@@ -159,29 +148,21 @@ class SingleChartView @JvmOverloads constructor(context: Context, attrs: Attribu
             positionX += verGridStep
         }
 
-        val caPrice = candlesChart!!.getChartLines()!![0].minimalChartArea
         val fullChartArea = candlesChart!!.chartArea
-        val cMaxY = caPrice.maxY
-        val cMinY = caPrice.minY
         val gridPositions = GridLineHelper.getGridLinesPositions(fullChartArea.minY, fullChartArea.maxY)
 
-        gridLines.add(OpaquedLabelHorizontalGridLine(lp, cMaxY))
-        gridLines.add(OpaquedLabelHorizontalGridLine(lp, cMinY))
-
         if (gridPositions.size > 1) {
-            val step = gridPositions[1] - gridPositions[0]
+            var i = 0
             for (gridPosition in gridPositions) {
-                if (Math.abs(gridPosition!! - cMaxY) > step && Math.abs(gridPosition - cMinY) > step) {
-                    gridLines.add(OpaquedLabelHorizontalGridLine(lp, gridPosition))
-                    barGridLines.add(OpaquedLabelHorizontalGridLine(lp, gridPosition))
-                }
+                if (i == gridPositions.size - 1) continue
+                i++
+                gridLines.add(OpaquedLabelHorizontalGridLine(lp, gridPosition, BigNumberHelper.format(gridPosition)))
+                barGridLines.add(OpaquedLabelHorizontalGridLine(lp, gridPosition, BigNumberHelper.format(gridPosition)))
             }
         }
 
-        gridLines.addAll(barGridLines)
-
         candlesChart?.setGridLines(gridLines.toTypedArray())
-        candlesChart
+        candlesChart?.setGridLines(barGridLines.toTypedArray())
     }
 
     override fun onDraw(canvas: Canvas) {

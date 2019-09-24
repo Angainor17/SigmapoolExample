@@ -9,9 +9,15 @@ import com.sigmapool.app.provider.currency.ICurrencyProvider
 import com.sigmapool.app.provider.res.IResProvider
 import com.sigmapool.app.utils.interfaces.StateVM
 import com.sigmapool.app.utils.interfaces.ViewState
+import com.sigmapool.common.managers.IChartManager
 import com.sigmapool.common.models.*
 import com.sigmapool.common.utils.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
+import java.text.SimpleDateFormat
+import java.util.*
 
 class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewModel(),
     StateVM {
@@ -126,6 +132,39 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
             result.lastChar() + resProvider.getString(R.string.hashrate_per_second),
             resProvider.getColor(R.color.titleGray)
         )
+    }
+
+    //=== Chart VM
+
+    private val chartManager by kodein.instance<IChartManager>()
+
+    val xyValues = MutableLiveData<FloatArray>()
+    val dates = MutableLiveData<List<Date>>()
+
+    init {
+        GlobalScope.launch(Dispatchers.Default) {
+            handleChartData(chartManager.getChart())
+        }
+    }
+
+    fun handleChartData(chartDto: ManagerResult<ChartDto>) = GlobalScope.launch (Dispatchers.Main) {
+        if(chartDto.success){
+            val datesbuf = chartDto.data!!.series.flatMap { listOf(SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(it.time)) }
+            var counter = 0
+            val xybuf1 = chartDto.data!!.series.flatMap {
+                listOf(
+                    (counter++).toFloat(),
+                    (it.hashrate).toFloat()
+//                    SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parseit.time
+
+                )
+            }
+
+            xyValues.postValue(xybuf1.toFloatArray())
+            dates.postValue(datesbuf)
+        } else{
+            // TODO: error handling
+        }
     }
 }
 

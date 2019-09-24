@@ -1,4 +1,4 @@
-package com.sigmapool.app.views
+package com.sigmapool.app.utils.customViews.chart
 
 //import android.databinding.BindingMethod;
 //import android.databinding.BindingMethods;

@@ -23,7 +23,8 @@
                 android:focusable="true">
 
 
-            <com.sigmapool.app.views.FullChartView android:layout_width="match_parent" android:layout_height="200dp"
+            <com.sigmapool.app.utils.customViews.chart.FullChartView
+                    android:layout_width="match_parent" android:layout_height="200dp"
                     android:layout_marginTop="25dp"
                     app:xyValues="@{vm.xyValues}"
                     app:dates="@{vm.dates}"/>
