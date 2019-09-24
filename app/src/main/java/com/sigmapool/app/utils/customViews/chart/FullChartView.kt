@@ -135,11 +135,11 @@ class FullChartView @JvmOverloads constructor(context: Context, attrs: Attribute
         val barGridLines = mutableListOf<GridLine>()
 
         for (i in 0..verGridCount) {
-            gridLines.add(OpaquedLabelVerticalGridLine(lp, positionX))
+            gridLines.add(ParameterizedVerticalGridLine(lp, lp.paint, positionX))
             if (i < verGridCount) {
-                barGridLines.add(OpaquedLabelVerticalGridLine(lp, positionX, dateLabels[i]))
+                barGridLines.add(ParameterizedVerticalGridLine(lp, lp.paint, positionX, dateLabels[i]))
             }else {
-                barGridLines.add(OpaquedLabelVerticalGridLine(lp, positionX))
+                barGridLines.add(ParameterizedVerticalGridLine(lp, lp.paint, positionX))
             }
             positionX += verGridStep
         }
@@ -152,8 +152,8 @@ class FullChartView @JvmOverloads constructor(context: Context, attrs: Attribute
             for (gridPosition in gridPositions) {
                 if (i == gridPositions.size - 1) continue
                 i++
-                gridLines.add(OpaquedLabelHorizontalGridLine(lp, gridPosition, BigNumberHelper.format(gridPosition)))
-                barGridLines.add(OpaquedLabelHorizontalGridLine(lp, gridPosition, BigNumberHelper.format(gridPosition)))
+                gridLines.add(ParameterizedHorizontalGridLine(lp, lp.paint, gridPosition, BigNumberHelper.format(gridPosition)))
+                barGridLines.add(ParameterizedHorizontalGridLine(lp, lp.paint, gridPosition, BigNumberHelper.format(gridPosition)))
             }
         }
 

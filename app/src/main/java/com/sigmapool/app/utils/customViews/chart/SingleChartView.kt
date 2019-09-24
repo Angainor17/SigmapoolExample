@@ -4,10 +4,7 @@ package com.sigmapool.app.utils.customViews.chart
 //import android.databinding.BindingMethods;
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.RectF
+import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import com.lustgr.chart.*
@@ -127,8 +124,9 @@ class SingleChartView @JvmOverloads constructor(context: Context, attrs: Attribu
 
     private fun updateGridLines() {
         val ca = this.compositeTh!!.ca
-        val lp = LinePaint(0x7f828282, 1f)
-
+        val lp = LinePaint(0, 1f)
+        var gridPaint = Paint(lp.paint)
+            gridPaint.color = 0x7f828282
         val verGridCount = 4
         val verGridStep = ca.w / verGridCount
 
@@ -139,11 +137,11 @@ class SingleChartView @JvmOverloads constructor(context: Context, attrs: Attribu
         val barGridLines = mutableListOf<GridLine>()
 
         for (i in 0..verGridCount) {
-            gridLines.add(OpaquedLabelVerticalGridLine(lp, positionX))
+            gridLines.add(ParameterizedVerticalGridLine(lp, gridPaint, positionX))
             if (i < verGridCount) {
-                barGridLines.add(OpaquedLabelVerticalGridLine(lp, positionX, dateLabels[i]))
+                barGridLines.add(ParameterizedVerticalGridLine(lp, gridPaint, positionX, dateLabels[i]))
             }else {
-                barGridLines.add(OpaquedLabelVerticalGridLine(lp, positionX))
+                barGridLines.add(ParameterizedVerticalGridLine(lp, gridPaint, positionX))
             }
             positionX += verGridStep
         }
@@ -156,13 +154,13 @@ class SingleChartView @JvmOverloads constructor(context: Context, attrs: Attribu
             for (gridPosition in gridPositions) {
                 if (i == gridPositions.size - 1) continue
                 i++
-                gridLines.add(OpaquedLabelHorizontalGridLine(lp, gridPosition, BigNumberHelper.format(gridPosition)))
-                barGridLines.add(OpaquedLabelHorizontalGridLine(lp, gridPosition, BigNumberHelper.format(gridPosition)))
+                gridLines.add(ParameterizedHorizontalGridLine(lp, gridPaint, gridPosition, BigNumberHelper.format(gridPosition)))
+                barGridLines.add(ParameterizedHorizontalGridLine(lp, gridPaint, gridPosition, BigNumberHelper.format(gridPosition)))
             }
         }
-
+        gridLines.addAll(barGridLines);
         candlesChart?.setGridLines(gridLines.toTypedArray())
-        candlesChart?.setGridLines(barGridLines.toTypedArray())
+       // candlesChart?.setGridLines(barGridLines.toTypedArray())
     }
 
     override fun onDraw(canvas: Canvas) {
