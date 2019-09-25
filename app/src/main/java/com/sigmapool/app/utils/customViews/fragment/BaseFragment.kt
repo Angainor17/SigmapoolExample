@@ -7,6 +7,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import com.sigmapool.api.hasConnection
+import com.sigmapool.app.R
 import com.sigmapool.app.utils.interfaces.IBrowserVm
 import com.sigmapool.app.utils.vm.ErrorHandleVm
 
@@ -25,7 +27,7 @@ abstract class BaseFragment : Fragment() {
     }
 
     private fun toast(text: String) {
-        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, getErrorText(text), Toast.LENGTH_SHORT).show()
     }
 
     private fun openUrl(url: String) {
@@ -33,5 +35,14 @@ abstract class BaseFragment : Fragment() {
 
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(browserIntent)
+    }
+
+    private fun getErrorText(text: String): String {
+        context.let {
+            if (hasConnection(context!!)) {
+                context?.getString(R.string.no_connection)
+            }
+        }
+        return text
     }
 }

@@ -19,13 +19,11 @@
 
     <string name="pool_info">Pool Info</string>
     <string name="fee">Fee</string>
-    <string name="pps"
-            translatable="false">PPS</string>
+    <string name="pps" translatable="false">PPS</string>
     <string name="btc"
             translatable="false">BTC</string>
     <string name="ltc"
             translatable="false">LTC</string>
-    <string name="paymentTime">Payment Time</string>
     <string name="minimumPayout">Minimum Payout</string>
     <string name="settlementDetails">Settlement Details</string>
     <string name="miningURL">Mining URL</string>
@@ -86,7 +84,6 @@
     <string name="rus">Russian</string>
     <string name="language">Language</string>
     <string name="currency">Currency</string>
-    <string name="push_notification">Push-notifications</string>
     <string name="payment_scheme">Payment scheme</string>
     <string name="threshold">Threshold</string>
     <string name="write_review">Write a review or suggestion</string>
@@ -121,7 +118,6 @@
     <string name="earned_last_24h">Earned Last 24h</string>
     <string name="workers">Workers</string>
 
-    <string name="one_day">1d</string>
     <string name="twenty_four_hour">24h</string>
     <string name="one_hour">1h</string>
     <string name="subaccounts">Subaccounts</string>
@@ -138,6 +134,6 @@
     <string name="minute">min</string>
     <string name="second">sec</string>
     <string name="observer_mode_text">You are in the observer mode,\nstart mining after logging in!</string>
-
+    <string name="fpps" translatable="false">FPPS</string>
 
 </resources>

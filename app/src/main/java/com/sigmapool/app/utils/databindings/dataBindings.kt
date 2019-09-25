@@ -14,6 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 import com.sigmapool.app.R
 import com.sigmapool.app.screens.bottomSheetScreen.ViewPagerAdapter
+import com.sigmapool.app.screens.bottomSheetScreen.ViewPagerScreen
 import com.sigmapool.app.screens.calculator.adapter.CalcTabAdapter
 import com.sigmapool.app.screens.calculator.viewModel.CalcItemVM
 import com.sigmapool.app.screens.home.adapter.CoinViewPagerAdapter
@@ -83,8 +84,12 @@ fun initPoolInfoAdapter(
 }
 
 @BindingAdapter("app:onScreenChange")
-fun onScreenChange(view: FragmentViewPager, position: Int) {
-    view.currentItem = position
+fun onScreenChange(view: FragmentViewPager, screen: ViewPagerScreen) {
+    if (screen.smoothScroll) {
+        view.currentItem = screen.position
+    } else {
+        view.setCurrentItem(screen.position, false)
+    }
 }
 
 @BindingAdapter("app:src")
@@ -126,6 +131,7 @@ fun setImages(slider: Slider, items: ArrayList<BlogDto>?, listener: OnSlideClick
         }
     }
 }
+
 
 @BindingAdapter("app:onActivatedChange")
 fun onActivatedChange(view: View, isActivated: Boolean) {

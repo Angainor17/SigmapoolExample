@@ -1,61 +1,47 @@
 package com.sigmapool.api.earnings
 
 import android.content.Context
-import com.sigmapool.api.R
-import com.sigmapool.api.hasConnection
 import com.sigmapool.common.managers.IEarningsManager
 import com.sigmapool.common.models.*
-import kotlinx.coroutines.delay
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.random.Random
 
 internal class StubEarningsManager(private val context: Context) : IEarningsManager {
 
     override suspend fun earningsDaily(coin: String): ManagerResult<EarningsDto> {
-        delay(1000)
-
-        if (!hasConnection(context)) {
-            return ManagerResult(error = context.getString(R.string.no_connection))
-        }
-
-        return ManagerResult(EarningsDto(42f))
+        return ManagerResult(
+            EarningsDto(
+                if (coin == "btc") 42f else 39f
+            )
+        )
     }
 
     override suspend fun totalPaid(coin: String): ManagerResult<TotalPaidDto> {
-        delay(1000)
-
-        if (!hasConnection(context)) {
-            return ManagerResult(error = context.getString(R.string.no_connection))
-        }
-
-        return ManagerResult(TotalPaidDto(43342f))
+        return ManagerResult(
+            TotalPaidDto(
+                if (coin == "btc") 43342f else 31342f
+            )
+        )
     }
 
     override suspend fun balance(coin: String): ManagerResult<BalanceDto> {
-        delay(1000)
-
-        if (!hasConnection(context)) {
-            return ManagerResult(error = context.getString(R.string.no_connection))
-        }
-
-        return ManagerResult(BalanceDto(123123f))
+        return ManagerResult(
+            BalanceDto(
+                if (coin == "btc") 123123f else 54223f
+            )
+        )
     }
 
     override suspend fun payments(
         coin: String,
         page: Int
     ): ManagerResult<ArrayList<PaymentItemDto>> {
-        delay(2000)
-
-        if (!hasConnection(context)) {
-            return ManagerResult(error = context.getString(R.string.no_connection))
-        }
-
         return ManagerResult(
-            ArrayList(List(15) {
+            ArrayList(List(10) {
                 PaymentItemDto(
                     Date(Date().time - it * 2L * 24 * 60 * 60 * 1000),
-                    100.123123f + it,
+                    10.123123f + it + Random.nextInt(10) + Random.nextInt(99999) / 10000f,
                     it,
                     "FPPS",
                     1000000000L * it,
@@ -67,29 +53,18 @@ internal class StubEarningsManager(private val context: Context) : IEarningsMana
     }
 
     override suspend fun getLastPayment(coin: String): ManagerResult<LastPaymentDto> {
-        delay(1500)
-
-        if (!hasConnection(context)) {
-            return ManagerResult(error = context.getString(R.string.no_connection))
-        }
         return ManagerResult((LastPaymentDto(Date(Date().time - 5L * 24 * 60 * 60 * 1000))))
     }
 
     override suspend fun getEstimatedProfit(coin: String): ManagerResult<EstimatedProfitDto> {
-        delay(1500)
-
-        if (!hasConnection(context)) {
-            return ManagerResult(error = context.getString(R.string.no_connection))
-        }
-        return ManagerResult(EstimatedProfitDto(1710f))
+        return ManagerResult(
+            EstimatedProfitDto(
+                if (coin == "btc") 1710f else 863f
+            )
+        )
     }
 
     override suspend fun getAddress(coin: String): ManagerResult<AddressDto> {
-        delay(1500)
-
-        if (!hasConnection(context)) {
-            return ManagerResult(error = context.getString(R.string.no_connection))
-        }
         return ManagerResult(AddressDto("1LK1kzAvNuoiqkyqr3G8v55krE71ZpBEU"))
     }
 }

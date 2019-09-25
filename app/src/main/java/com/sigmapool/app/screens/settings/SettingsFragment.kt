@@ -12,6 +12,8 @@ import com.commit451.modalbottomsheetdialogfragment.ModalBottomSheetDialogFragme
 import com.commit451.modalbottomsheetdialogfragment.Option
 import com.sigmapool.app.R
 import com.sigmapool.app.databinding.FragmentSettingsBinding
+import com.sigmapool.app.screens.bottomSheetScreen.SCREEN_KEY
+import com.sigmapool.app.screens.bottomSheetScreen.SETTINGS_POS
 import com.sigmapool.app.screens.settings.viewModel.SettingsVM
 import com.sigmapool.app.utils.customViews.fragment.UpdateFragment
 import kotlinx.coroutines.Dispatchers
@@ -37,6 +39,7 @@ class SettingsFragment : UpdateFragment(), ISettingsView, ModalBottomSheetDialog
 
     override fun recreate() {
         GlobalScope.launch(Dispatchers.Main) {
+            activity?.intent?.putExtra(SCREEN_KEY, SETTINGS_POS)
             activity?.recreate()
         }
     }

@@ -6,6 +6,7 @@ import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.coin.ICoinProvider
 import com.sigmapool.app.provider.res.IResProvider
+import com.sigmapool.app.screens.bottomSheetScreen.ViewPagerScreen
 import com.sigmapool.app.utils.vm.AuthVm
 import com.sigmapool.common.managers.IWorkersManager
 import com.sigmapool.common.models.WorkerDto
@@ -20,7 +21,7 @@ import org.kodein.di.generic.instance
 
 class WorkersTabVM(
     private val coinProvider: ICoinProvider,
-    private val screenPositionLiveData: MutableLiveData<Int>
+    private val screenPositionLiveData: MutableLiveData<ViewPagerScreen>
 ) : AuthVm() {
 
     private val workerManager by kodein.instance<IWorkersManager>(getManagerMode())
@@ -48,15 +49,15 @@ class WorkersTabVM(
     }
 
     fun onlineTabSelected() {
-        screenPositionLiveData.postValue(0)
+        screenPositionLiveData.postValue(ViewPagerScreen(0))
     }
 
     fun offlineTabSelected() {
-        screenPositionLiveData.postValue(1)
+        screenPositionLiveData.postValue(ViewPagerScreen(1))
     }
 
     fun allTabSelected() {
-        screenPositionLiveData.postValue(2)
+        screenPositionLiveData.postValue(ViewPagerScreen(2))
     }
 
     fun initTabValues() {

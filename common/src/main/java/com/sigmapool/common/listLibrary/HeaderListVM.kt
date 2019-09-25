@@ -39,10 +39,10 @@ abstract class HeaderListVM<DtoItem, ItemVm : BaseItemViewModel>(
         GlobalScope.launch(Dispatchers.Default) {
             val t = loader.load("", pageNumber * pageSize, pageSize)
             if (t.isSuccess) {
-                items.postValue(mapper.map(t.data!!))
+                items.postValue(t.data?.let { mapper.map(it) })
                 loaderState.postValue(ItemsLoaderState.Idle)
 
-                if (t.data.size < pageSize) {
+                if (t.data?.size ?: 0 < pageSize) {
                     isLastPage.postValue(true)
                 }
                 pageNumber++

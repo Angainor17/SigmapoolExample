@@ -2,20 +2,13 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item>
-        <shape
-                android:shape="rectangle">
+        <shape android:shape="rectangle">
 
-            <solid android:color="@color/white"/>
+            <solid android:color="@color/white" />
 
-            <corners android:radius="5dp"/>
+            <corners android:radius="5dp" />
 
         </shape>
     </item>
-
-    <item
-            android:right="5dp"
-            android:left="0dp"
-            android:drawable="@drawable/triangle_down_violet"
-            android:gravity="center_vertical|right"/>
 
 </layer-list>

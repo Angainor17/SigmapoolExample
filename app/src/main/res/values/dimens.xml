@@ -13,4 +13,7 @@
     <dimen name="poolInfoBlockMargin">12dp</dimen>
     <dimen name="spinner_corner">9dp</dimen>
 
+    <dimen name="card_view_elevation_default">4dp</dimen>
+    <dimen name="card_view_no_elevation">0dp</dimen>
+
 </resources>

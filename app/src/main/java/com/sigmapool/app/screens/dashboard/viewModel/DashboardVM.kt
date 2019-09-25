@@ -117,7 +117,7 @@ class DashboardVM : AuthVm() {
 
         val currency = poolManager.getCurrency(coin)
         if (currency.success) {
-            dashboardNetworkStatusVM.initCurrency(currency.data!!)
+            currency.data?.let { dashboardNetworkStatusVM.initCurrency(it) }
         }
     }
 

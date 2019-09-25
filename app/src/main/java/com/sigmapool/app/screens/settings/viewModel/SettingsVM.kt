@@ -31,8 +31,6 @@ private const val LOCALE_TAG = "locale"
 private const val CURRENCY_TAG = "currency"
 const val PAYOUT_SCHEME_TAG = "scheme"
 
-private const val PUSH_ENABLE = "push_notification"
-
 class SettingsVM(private val view: ISettingsView) : AuthVm(), IUpdateScreenVm,
     ModalBottomSheetDialogFragment.Listener {
 
@@ -52,7 +50,6 @@ class SettingsVM(private val view: ISettingsView) : AuthVm(), IUpdateScreenVm,
     val localeLiveData = MutableLiveData(resProvider.getString(selectedLang.labelResId))
     val currencyLiveData =
         MutableLiveData(resProvider.getString(currencyProvider.getCurrency().labelResId))
-    val pushLiveData = MutableLiveData(getPushEnable())
 
     val isLoginLiveData = MutableLiveData(false)
 
@@ -85,10 +82,6 @@ class SettingsVM(private val view: ISettingsView) : AuthVm(), IUpdateScreenVm,
             .add(R.menu.currency_menu)
             .header(resProvider.getString(R.string.switch_currency))
             .show(view.fragmentManager(), CURRENCY_TAG)
-    }
-
-    fun pushSwitch(isChecked: Boolean) {
-        jsonDataStorage.put(PUSH_ENABLE, isChecked)
     }
 
     fun writeReview() {
@@ -143,8 +136,6 @@ class SettingsVM(private val view: ISettingsView) : AuthVm(), IUpdateScreenVm,
 
         view.recreate()
     }
-
-    private fun getPushEnable(): Boolean = jsonDataStorage.get(PUSH_ENABLE)
 
     private fun refreshAuth() {
         val authDto = Gson().fromJson(jsonDataStorage.getJson(AUTH_KEY), AuthDto::class.java)
