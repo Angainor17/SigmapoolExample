@@ -1,4 +1,4 @@
-package com.sigmapool.app.screens.chart.databindings
+package com.sigmapool.app.utils.databindings
 
 import android.graphics.Color
 import androidx.core.content.ContextCompat
@@ -14,8 +14,6 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.sigmapool.app.R
 import com.sigmapool.app.utils.customViews.chart.MyMarkerView
 import com.sigmapool.common.models.SeriesDto
-import com.sigmapool.common.utils.INT_PATTERN
-import com.sigmapool.common.utils.formatLongValue
 import java.util.*
 
 @BindingAdapter("app:chartData")
@@ -50,8 +48,7 @@ fun chartData(chart: LineChart, chartData: List<SeriesDto>) {
     val yAxis: YAxis = chart.axisLeft
     yAxis.setDrawZeroLine(false)
     yAxis.valueFormatter = object : ValueFormatter() {
-        override fun getFormattedValue(value: Float): String =
-            formatLongValue(value.toLong(), INT_PATTERN).toLowerCase()
+        override fun getFormattedValue(value: Float)= formatYAxis(value)
     }
     yAxis.setDrawAxisLine(false)
     yAxis.textColor = axisTextColor

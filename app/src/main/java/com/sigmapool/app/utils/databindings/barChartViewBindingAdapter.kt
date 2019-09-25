@@ -1,4 +1,4 @@
-package com.sigmapool.app.screens.chart.databindings
+package com.sigmapool.app.utils.databindings
 
 import android.graphics.Color
 import androidx.databinding.BindingAdapter
@@ -13,10 +13,7 @@ import com.sigmapool.app.R
 import com.sigmapool.app.utils.customViews.chart.MyMarkerView
 import com.sigmapool.common.managers.PERIOD_DAY
 import com.sigmapool.common.models.SeriesDto
-import com.sigmapool.common.utils.INT_PATTERN
-import com.sigmapool.common.utils.formatDateShort
-import com.sigmapool.common.utils.formatLongValue
-import com.sigmapool.common.utils.formatTime
+import com.sigmapool.common.utils.*
 import java.util.*
 
 val axisTextColor = Color.parseColor("#B5FFFFFF")
@@ -39,8 +36,6 @@ fun chartData(chart: BarChart, chartData: List<SeriesDto>, chartMode: String) {
         MyMarkerView(context, R.layout.custom_marker_view)
     markerView.chartView = chart
     chart.marker = markerView
-
-    chart.extraLeftOffset = 13f
     chart.setDragOffsetX(10f)
 
     val xAxis: XAxis = chart.xAxis
@@ -48,7 +43,7 @@ fun chartData(chart: BarChart, chartData: List<SeriesDto>, chartMode: String) {
     xAxis.isEnabled = true
     xAxis.axisLineColor = Color.TRANSPARENT
     xAxis.isGranularityEnabled = true
-    xAxis.granularity = 1f // only intervals of 1 day
+    xAxis.granularity = 1f
     xAxis.labelCount = 5
     xAxis.valueFormatter = object : ValueFormatter() {
         override fun getFormattedValue(value: Float): String {
@@ -66,8 +61,7 @@ fun chartData(chart: BarChart, chartData: List<SeriesDto>, chartMode: String) {
     val yAxis: YAxis = chart.axisLeft
     yAxis.setDrawZeroLine(false)
     yAxis.valueFormatter = object : ValueFormatter() {
-        override fun getFormattedValue(value: Float) =
-            formatLongValue(value.toLong(), INT_PATTERN).toLowerCase()
+        override fun getFormattedValue(value: Float) = formatYAxis(value)
     }
 
     yAxis.textColor = axisTextColor
@@ -81,6 +75,13 @@ fun chartData(chart: BarChart, chartData: List<SeriesDto>, chartMode: String) {
     chart.legend.isEnabled = false
 
     setData(chart, chartData)
+}
+
+fun formatYAxis(value: Float): String {
+    if (value == 0f) return "0"
+    val newValue = (value / 1000000000000000f)
+    if (newValue < 1f) return newValue.format(FLOAT_PATTERN)
+    return newValue.format(INT_PATTERN) + "k"
 }
 
 private fun getYAxisMax(data: List<SeriesDto>?): Float {

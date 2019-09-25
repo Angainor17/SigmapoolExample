@@ -23,7 +23,7 @@ class DashboardChartVM : ViewModel() {
     private val dayData = ArrayList<SeriesDto>()
 
     val chartData = MutableLiveData<ArrayList<SeriesDto>>(hourData)
-    val yAxisLabel = MutableLiveData(resProvider.getString(R.string.hashrate_per_second))
+    val yAxisLabel = MutableLiveData("T" + resProvider.getString(R.string.hashrate_per_second))
 
     val customSwitchVm = CustomSwitchVm(
         resProvider.getString(R.string.one_hour),
