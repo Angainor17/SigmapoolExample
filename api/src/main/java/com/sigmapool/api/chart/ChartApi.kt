@@ -1,16 +1,16 @@
 package com.sigmapool.api.chart
 
+import com.sigmapool.api.chart.models.ChartResponse
 import com.sigmapool.api.models.PayloadModel
-import com.sigmapool.common.models.ChartDto
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
-interface ChartApi {
+internal interface ChartApi {
 
-    //TODO: cehardcode coin into parameter
-    @GET("api/v2/btc/chart/hashrate")
-   suspend fun getChart(): PayloadModel<ChartDto>
-//   @GET("api/v2/{coin}/profit/daily")
- //   suspend fun getDailyProfit(@Path("coin") coin:String): PayloadModel<DailyProfitBtc>
-
-
+    @GET("api/v2/{coin}/chart/hashrate")
+    suspend fun getChart(
+        @Path("coin") coin: String,
+        @Query("period") period: String
+    ): PayloadModel<ChartResponse>
 }

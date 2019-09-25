@@ -1,5 +1,6 @@
 package com.sigmapool.app.provider.res
 
+import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 
 interface IResProvider {
@@ -9,6 +10,7 @@ interface IResProvider {
     fun getTextArray(arrayRes: Int): Array<CharSequence>
     fun getStringArray(arrayRes: Int): Array<String>
     fun getIntArray(arrayRes: Int): IntArray
+    fun getColorStateList(id: Int): ColorStateList
     fun getDimension(dimenRes: Int): Float
     fun getColor(colorRes: Int): Int
     fun getBoolean(boolRes: Int): Boolean

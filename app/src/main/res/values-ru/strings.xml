@@ -107,6 +107,8 @@
 
     <string name="twenty_four_hour">24ч</string>
     <string name="one_hour">1ч</string>
+    <string name="one_day">1д</string>
+
     <string name="subaccounts">Субаккаунты</string>
 
     <string name="total_amount_paid">Выплачено за все время</string>
@@ -120,5 +122,7 @@
     <string name="minute">мин</string>
     <string name="second">сек</string>
     <string name="observer_mode_text">Вы находитесь в режиме наблюдения,\nавторизуйтесь, чтобы начать майнить.</string>
+
+    <string name="chart_no_data">Отсутствуют данные</string>
 
 </resources>

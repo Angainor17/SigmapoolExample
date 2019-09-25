@@ -37,6 +37,7 @@ dependencies {
     implementation project(path: ':api')
     implementation project(path: ':common')
 
+    implementation androidChart.core
     implementation eventbus.core
 
     implementation modalBottomSheetDialog.core

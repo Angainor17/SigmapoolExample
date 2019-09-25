@@ -2,8 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <corners android:radius="@dimen/custom_switcher_radius" />
-            <solid android:color="@color/switcher_selected" />
+            <corners android:radius="5dp" />
+            <solid android:color="#DE3A2A82" />
         </shape>
     </item>
 </selector>

@@ -19,7 +19,7 @@ class DashboardVM : AuthVm() {
     val toolbarVm = CoinToolbarVM()
     val coinProvider = toolbarVm.coinProvider
 
-    val dashboardChartVM = DashboardChartVM(chartManager)
+    val dashboardChartVM = DashboardChartVM()
     val dashboardChartInfoVM = DashboardChartInfoVM(coinProvider)
     val dashboardSubaccountsVM = DashboardSubAccountsVM(coinProvider)
     val dashboardEarningsVM = DashboardEarningsVM(coinProvider)
@@ -45,15 +45,17 @@ class DashboardVM : AuthVm() {
 
         val coin = coinProvider.getLabel().toLowerCase()
         mainJob = GlobalScope.launch(Dispatchers.IO) {
-            val chartDeferred = async(Dispatchers.IO) { initChartInfo(coin) }
+            val chartInfoDeferred = async(Dispatchers.IO) { initChartInfo(coin) }
             val subAccountsDeferred = async(Dispatchers.IO) { initSubAccounts(coin) }
             val networkDeferred = async(Dispatchers.IO) { initNetwork(coin) }
             val earningsDeferred = async(Dispatchers.IO) { initEarnings(coin) }
+            val chartDeferred = async(Dispatchers.IO) { initCharts(coin) }
 
-            chartDeferred.await()
+            chartInfoDeferred.await()
             subAccountsDeferred.await()
             networkDeferred.await()
             earningsDeferred.await()
+            chartDeferred.await()
 
             isLoading.postValue(false)
         }
@@ -118,6 +120,26 @@ class DashboardVM : AuthVm() {
         val currency = poolManager.getCurrency(coin)
         if (currency.success) {
             currency.data?.let { dashboardNetworkStatusVM.initCurrency(it) }
+        }
+    }
+
+    private suspend fun initCharts(coin: String) {
+        val hourResult = chartManager.getChart(
+            coin,
+            PERIOD_HOUR
+        )
+
+        val dayResult = chartManager.getChart(
+            coin,
+            PERIOD_DAY
+        )
+
+        if (hourResult.success) {
+            hourResult.data.let { dashboardChartVM.initHourData(it!!) }
+        }
+
+        if (dayResult.success) {
+            dayResult.data.let { dashboardChartVM.initDayData(it!!) }
         }
     }
 

@@ -14,5 +14,6 @@
     <color name="switcher_unselected">#b4a8de</color>
     <color name="violet_text">#543eac</color>
     <color name="listTitleColor">#6A6A6A</color>
+    <color name="chart_switcher_bg">#7c6bc1</color>
 
 </resources>

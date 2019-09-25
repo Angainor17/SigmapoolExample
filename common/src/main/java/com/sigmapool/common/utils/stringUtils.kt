@@ -40,6 +40,8 @@ operator fun SpannableString.plus(s: SpannableString) = SpannableString(TextUtil
 
 fun Date.formatTime(): String = SimpleDateFormat("HH:mm").format(this)
 fun Date.formatDate(): String = SimpleDateFormat("dd.MM.yyyy").format(this)
+fun Date.formatDateShort(): String = SimpleDateFormat("dd.MM").format(this)
+fun Date.formatDateFull(): String = SimpleDateFormat("yyyy/MM/dd HH:mm").format(this)
 fun Date.formatDashDate(): String = SimpleDateFormat("yyyy-MM-dd").format(this)
 
 fun String.lastChar() = substring(length - 1)

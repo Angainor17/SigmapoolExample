@@ -25,7 +25,8 @@ buildscript {
             bannerslider          : '2.0.0',
             modalBottomSheetDialog: '1.1.0',
             indicatorseekbar      : '2.1.2',
-            eventbus              : '3.1.1'
+            eventbus              : '3.1.1',
+            androidChart              : 'v3.1.0'
     ]
 
     ext.kotlinCore = [
@@ -34,6 +35,10 @@ buildscript {
             kotlinxCoroutine: "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1",
             reflection      : "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
 
+    ]
+
+    ext.androidChart = [
+            core: "com.github.PhilJay:MPAndroidChart:$versions.androidChart"
     ]
 
     ext.eventbus = [

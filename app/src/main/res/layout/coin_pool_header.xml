@@ -90,29 +90,6 @@
                 tools:text="8.54 %"
         />
 
-<!--        <ImageView-->
-<!--                android:id="@+id/chart"-->
-
-<!--                android:src="@mipmap/chart_stub"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:adjustViewBounds="true"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:layout_marginStart="16dp"-->
-
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/coinPrice"-->
-
-<!--                android:layout_marginTop="8dp"/>-->
-
-        <com.sigmapool.app.utils.customViews.chart.SingleChartView
-                app:layout_constraintTop_toBottomOf="@+id/coinPriceChange"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="25dp"
-                app:xyValues="@{vm.xyValues}"
-                app:dates="@{vm.dates}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -2,44 +2,72 @@ package com.sigmapool.app.screens.dashboard.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sigmapool.common.managers.IChartManager
-import com.sigmapool.common.models.ChartDto
-import com.sigmapool.common.models.ManagerResult
+import com.sigmapool.app.App.Companion.kodein
+import com.sigmapool.app.R
+import com.sigmapool.app.provider.res.IResProvider
+import com.sigmapool.app.utils.customViews.CustomSwitchVm
+import com.sigmapool.app.utils.customViews.OnSwitchSelected
+import com.sigmapool.common.managers.PERIOD_DAY
+import com.sigmapool.common.managers.PERIOD_HOUR
+import com.sigmapool.common.models.SeriesDto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.*
+import org.kodein.di.generic.instance
 
-class DashboardChartVM(manager: IChartManager) : ViewModel(){
+class DashboardChartVM : ViewModel() {
 
-    val xyValues = MutableLiveData<FloatArray>()
-    val dates = MutableLiveData<List<Date>>()
+    val resProvider by kodein.instance<IResProvider>()
+
+    private val hourData = ArrayList<SeriesDto>()
+    private val dayData = ArrayList<SeriesDto>()
+
+    val chartData = MutableLiveData<ArrayList<SeriesDto>>(hourData)
+    val yAxisLabel = MutableLiveData(resProvider.getString(R.string.hashrate_per_second))
+
+    val customSwitchVm = CustomSwitchVm(
+        resProvider.getString(R.string.one_hour),
+        resProvider.getString(R.string.one_day),
+        R.color.chart_switcher_text_color,
+        R.drawable.chart_switcher_left_bg,
+        R.drawable.chart_switcher_bg,
+        R.drawable.chart_switcher_bg_unselected
+    )
+
+    var chartMode: String = PERIOD_HOUR
 
     init {
-        GlobalScope.launch(Dispatchers.Default) {
-            handleChartData(manager.getChart())
-        }
-    }
-
-    fun handleChartData(chartDto: ManagerResult<ChartDto>) = GlobalScope.launch (Dispatchers.Main) {
-        if(chartDto.success){
-            val datesbuf = chartDto.data!!.series.flatMap { listOf(SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(it.time)) }
-            var counter = 0
-            val xybuf1 = chartDto.data!!.series.flatMap {
-                listOf(
-                    (counter++).toFloat(),
-                    (it.hashrate).toFloat()
-//                    SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parseit.time
-
-                )
+        customSwitchVm.clickListener = object : OnSwitchSelected {
+            override fun onSelected(leftSelected: Boolean) {
+                chartMode = if (leftSelected) PERIOD_HOUR else PERIOD_DAY
+                renderChartData()
             }
-
-            xyValues.postValue(xybuf1.toFloatArray())
-            dates.postValue(datesbuf)
-        } else{
-            // TODO: error handling
         }
     }
 
+    fun initHourData(newData: ArrayList<SeriesDto>) {
+        hourData.clear()
+        hourData.addAll(newData)
+
+        if (chartMode == PERIOD_HOUR) {
+            renderChartData()
+        }
+    }
+
+    fun initDayData(newData: ArrayList<SeriesDto>) {
+        dayData.clear()
+        dayData.addAll(newData)
+
+        if (chartMode == PERIOD_DAY) {
+            renderChartData()
+        }
+    }
+
+    private fun renderChartData() {
+        GlobalScope.launch(Dispatchers.Main) {
+            chartData.postValue(
+                if (chartMode == PERIOD_HOUR) hourData else dayData
+            )
+        }
+    }
 }

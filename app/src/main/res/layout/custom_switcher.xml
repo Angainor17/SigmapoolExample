@@ -16,7 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_switcher_bg"
+            android:background="@{vm.rightDrawable}"
 
             tools:layout_width="200dp"
             >
@@ -27,12 +27,12 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
 
-                android:background="@drawable/custom_switcher_left_bg"
+                android:background="@{vm.leftDrawable}"
                 android:gravity="center_vertical|center_horizontal"
                 android:onClick="@{v->vm.leftClick()}"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
 
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/rightContainer"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -49,6 +49,7 @@
                     android:focusable="true"
                     android:onClick="@{v->vm.leftClick()}"
                     android:text="@{vm.leftText}"
+                    android:textColor="@{vm.textColor}"
 
                     app:onActivatedChange="@{vm.leftActivated}"
 
@@ -62,7 +63,7 @@
 
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/custom_switcher_bg"
+                android:background="@{vm.rightDrawable}"
                 android:duplicateParentState="false"
                 android:gravity="center_vertical|center_horizontal"
                 android:onClick="@{v->vm.rightClick()}"
@@ -86,6 +87,7 @@
                     android:layout_height="wrap_content"
                     android:onClick="@{v->vm.rightClick()}"
                     android:text="@{vm.rightText}"
+                    android:textColor="@{vm.textColor}"
 
                     app:onActivatedChange="@{vm.rightActivated}"
 
