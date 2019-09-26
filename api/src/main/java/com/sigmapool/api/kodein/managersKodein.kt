@@ -2,7 +2,7 @@ package com.sigmapool.api.kodein
 
 import com.sigmapool.api.blog.BlogManager
 import com.sigmapool.api.calculator.CalcManager
-import com.sigmapool.api.chart.StubChartManager
+import com.sigmapool.api.chart.ChartManager
 import com.sigmapool.api.dashboard.DashboardManager
 import com.sigmapool.api.dashboard.StubDashboardManager
 import com.sigmapool.api.earnings.EarningsManager
@@ -46,5 +46,5 @@ val managersModule = Kodein.Module("ManagersModule") {
     bind<IPoolInfoManager>() with singleton { PoolInfoManager(instance()) }
     bind<ICalcManager>() with singleton { CalcManager(instance()) }
 
-    bind<IChartManager>() with singleton { StubChartManager(instance()) }
+    bind<IChartManager>() with singleton { ChartManager(instance()) }
 }

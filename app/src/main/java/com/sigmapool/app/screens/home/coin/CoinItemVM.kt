@@ -17,6 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
+import kotlin.math.abs
 
 class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewModel(),
     StateVM {
@@ -47,7 +48,7 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
     val nextDifficultyChange = MutableLiveData<String>()
     val isNextDifficultyChangeUp = MutableLiveData<Boolean>()
 
-    val chartData = MutableLiveData<ArrayList<SeriesDto>>()
+    val chartData = MutableLiveData(ArrayList<SeriesDto>())
 
     init {
         refreshChartData()
@@ -120,10 +121,8 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
     )
 
     private fun formatPercent(prev: Float, now: Float): String {
-        var percent = (((now - prev) / prev) * 100)
-        if (percent < -1) percent = -percent
-
-        return percent.format(FLOAT_PATTERN) + "%"
+        val percent = (((now - prev) / prev) * 100)
+        return abs(percent).format(FLOAT_PATTERN) + "%"
     }
 
     private fun formatPaymentTime(timeInterval: TimeIntervalDto): String {
@@ -152,10 +151,7 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
     private fun refreshChartData() {
         GlobalScope.launch(Dispatchers.Default) {
             handleChartData(
-                chartManager.getChart(
-                    coinLabel.toLowerCase(),
-                    PERIOD_HOUR//FIXME
-                )
+                chartManager.getChart(coinLabel.toLowerCase(), PERIOD_HOUR)
             )
         }
     }

@@ -47,14 +47,7 @@ fun chartData(chart: BarChart, chartData: List<SeriesDto>, chartMode: String) {
     xAxis.labelCount = 5
     xAxis.valueFormatter = object : ValueFormatter() {
         override fun getFormattedValue(value: Float): String {
-            val position = value.toInt()
-            if (position >= chartData.size) return ""
-
-            val itemDate = chartData[position].time
-            if (chartMode == PERIOD_DAY) {
-                return itemDate.formatDateShort()
-            }
-            return itemDate.formatTime()
+            return xAxisFormatter(value, chartMode, chartData)
         }
     }
     xAxis.position = XAxis.XAxisPosition.BOTTOM
@@ -78,6 +71,17 @@ fun chartData(chart: BarChart, chartData: List<SeriesDto>, chartMode: String) {
     chart.legend.isEnabled = false
 
     setData(chart, chartData)
+}
+
+fun xAxisFormatter(value: Float, chartMode: String, chartData: List<SeriesDto>): String {
+    val position = value.toInt()
+    if (position >= chartData.size) return ""
+
+    val itemDate = chartData[position].time
+    if (chartMode == PERIOD_DAY) {
+        return itemDate.formatDateShort()
+    }
+    return itemDate.formatTime()
 }
 
 fun formatYAxis(value: Float): String {

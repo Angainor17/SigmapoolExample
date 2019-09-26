@@ -13,17 +13,58 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.sigmapool.app.R
 import com.sigmapool.app.utils.customViews.chart.MyMarkerView
+import com.sigmapool.common.managers.PERIOD_HOUR
 import com.sigmapool.common.models.SeriesDto
 import java.util.*
 
+private val AXIS_TEXT_COLOR = Color.parseColor("#828282")
+
+@BindingAdapter("app:homeChartData")
+fun homeChartData(chart: LineChart, chartData: List<SeriesDto>) {
+    lineChartCommonCustomize(chart, chartData)
+
+    val xAxis: XAxis = chart.xAxis
+    val leftAxis: YAxis = chart.axisLeft
+
+    xAxis.textColor = AXIS_TEXT_COLOR
+    xAxis.setDrawAxisLine(false)
+
+    leftAxis.gridLineWidth = 0f
+    leftAxis.gridColor = Color.TRANSPARENT
+    leftAxis.textColor = AXIS_TEXT_COLOR
+
+    xAxis.gridLineWidth = 0f
+    xAxis.gridColor = Color.TRANSPARENT
+    xAxis.position = XAxis.XAxisPosition.BOTTOM
+    xAxis.valueFormatter = object : ValueFormatter() {
+        override fun getFormattedValue(value: Float) = xAxisFormatter(value, PERIOD_HOUR, chartData)
+    }
+
+    chart.setTouchEnabled(false)
+
+    setData(chart, chartData, R.drawable.fade_violet, false)
+}
+
 @BindingAdapter("app:chartData")
 fun chartData(chart: LineChart, chartData: List<SeriesDto>) {
+    lineChartCommonCustomize(chart, chartData)
+    chart.setTouchEnabled(true)
+
+    val xAxis: XAxis = chart.xAxis
+
+    xAxis.textColor = Color.TRANSPARENT
+    xAxis.setDrawAxisLine(false)
+
+    setData(chart, chartData, R.drawable.fade_white)
+}
+
+private fun lineChartCommonCustomize(chart: LineChart, chartData: List<SeriesDto>) {
     val context = chart.context
 
     chart.setBackgroundColor(Color.TRANSPARENT)
     chart.description.isEnabled = false
     chart.isDoubleTapToZoomEnabled = false
-    chart.setTouchEnabled(true)
+
     chart.isDragEnabled = true
     chart.setDrawGridBackground(false)
     chart.setNoDataTextColor(Color.WHITE)
@@ -35,20 +76,17 @@ fun chartData(chart: LineChart, chartData: List<SeriesDto>) {
     markerView.chartView = chart
     chart.marker = markerView
 
-
     val xAxis: XAxis = chart.xAxis
-    xAxis.textColor = Color.TRANSPARENT
     xAxis.isEnabled = true
     xAxis.isGranularityEnabled = true
     xAxis.granularity = 1f
-    xAxis.setDrawAxisLine(false)
 
     chart.axisRight.isEnabled = false
 
     val yAxis: YAxis = chart.axisLeft
     yAxis.setDrawZeroLine(false)
     yAxis.valueFormatter = object : ValueFormatter() {
-        override fun getFormattedValue(value: Float)= formatYAxis(value)
+        override fun getFormattedValue(value: Float) = formatYAxis(value)
     }
     yAxis.setDrawAxisLine(false)
     yAxis.textColor = axisTextColor
@@ -60,8 +98,6 @@ fun chartData(chart: LineChart, chartData: List<SeriesDto>) {
     yAxis.axisMinimum = getYAxisMin(chartData)
 
     chart.legend.isEnabled = false
-
-    setData(chart, chartData)
 }
 
 private fun getYAxisMin(data: List<SeriesDto>?): Float {
@@ -80,7 +116,12 @@ private fun getYAxisMax(data: List<SeriesDto>?): Float {
     return 22.5f
 }
 
-fun setData(chart: LineChart, data: List<SeriesDto>) {
+fun setData(
+    chart: LineChart,
+    data: List<SeriesDto>,
+    gradient: Int,
+    refreshRangeEnable: Boolean = true
+) {
     val values = ArrayList<Entry>()
 
     data.forEachIndexed { index, item ->
@@ -105,8 +146,9 @@ fun setData(chart: LineChart, data: List<SeriesDto>) {
         chart.animateX(500)
         chart.notifyDataSetChanged()
 
-        refreshRange(chart)
-
+        if (refreshRangeEnable) {
+            refreshRange(chart)
+        }
     } else {
         lineDataSet = LineDataSet(values, "")
 
@@ -119,7 +161,7 @@ fun setData(chart: LineChart, data: List<SeriesDto>) {
         lineDataSet.valueTextSize = 9f
         lineDataSet.setDrawFilled(true)
 
-        val drawable = ContextCompat.getDrawable(context, R.drawable.fade_white)
+        val drawable = ContextCompat.getDrawable(context, gradient)
         lineDataSet.fillDrawable = drawable
 
         lineDataSet.setDrawHorizontalHighlightIndicator(false)
