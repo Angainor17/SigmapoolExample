@@ -26,14 +26,14 @@ fun homeChartData(chart: LineChart, chartData: List<SeriesDto>) {
     val xAxis: XAxis = chart.xAxis
     val leftAxis: YAxis = chart.axisLeft
 
-    xAxis.textColor = AXIS_TEXT_COLOR
-    xAxis.setDrawAxisLine(false)
-
     leftAxis.gridLineWidth = 0f
     leftAxis.gridColor = Color.TRANSPARENT
     leftAxis.textColor = AXIS_TEXT_COLOR
 
+    xAxis.textColor = AXIS_TEXT_COLOR
+    xAxis.setDrawAxisLine(false)
     xAxis.gridLineWidth = 0f
+    xAxis.labelCount = 4
     xAxis.gridColor = Color.TRANSPARENT
     xAxis.position = XAxis.XAxisPosition.BOTTOM
     xAxis.valueFormatter = object : ValueFormatter() {
