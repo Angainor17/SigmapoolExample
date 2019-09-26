@@ -47,7 +47,10 @@ fun chartData(chart: BarChart, chartData: List<SeriesDto>, chartMode: String) {
     xAxis.labelCount = 5
     xAxis.valueFormatter = object : ValueFormatter() {
         override fun getFormattedValue(value: Float): String {
-            val itemDate = chartData[value.toInt()].time
+            val position = value.toInt()
+            if (position >= chartData.size) return ""
+
+            val itemDate = chartData[position].time
             if (chartMode == PERIOD_DAY) {
                 return itemDate.formatDateShort()
             }

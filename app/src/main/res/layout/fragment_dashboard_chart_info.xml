@@ -104,6 +104,7 @@
                         app:layout_constraintTop_toTopOf="@+id/avg_hashrate_label"
 
                         app:vm="@{vm.customSwitchVm}"
+                        app:bg="@{@drawable/custom_switcher_bg_unselected}"
                         />
 
                 <TextView

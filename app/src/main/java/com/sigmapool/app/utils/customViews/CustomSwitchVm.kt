@@ -1,7 +1,6 @@
 package com.sigmapool.app.utils.customViews
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.res.IResProvider
@@ -14,8 +13,7 @@ class CustomSwitchVm(
     leftBgDrawable: Int = R.drawable.custom_switcher_left_bg,
     private val rightBgDrawableSelected: Int = R.drawable.custom_switcher_bg,
     private val rightBgDrawableUnselected: Int = R.drawable.custom_switcher_bg_unselected
-
-) : ViewModel() {
+) {
 
     val res by kodein.instance<IResProvider>()
 
@@ -46,6 +44,12 @@ class CustomSwitchVm(
 
             clickListener?.onSelected(true)
         }
+    }
+
+    fun refreshBg() {
+        rightDrawable.postValue(rightDrawable.value)
+        leftActivated.postValue(leftActivated.value)
+        rightActivated.postValue(rightActivated.value)
     }
 }
 

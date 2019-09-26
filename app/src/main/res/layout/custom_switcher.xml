@@ -11,13 +11,18 @@
                 name="vm"
                 type="com.sigmapool.app.utils.customViews.CustomSwitchVm"
                 />
+
+        <variable
+                name="bg"
+                type="android.graphics.drawable.Drawable"
+                />
     </data>
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@{vm.rightDrawable}"
+                android:background="@{bg}"
 
                 tools:layout_width="200dp"
                 >

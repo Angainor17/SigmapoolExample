@@ -10,12 +10,24 @@ import com.sigmapool.app.screens.dashboard.viewModel.DashboardVM
 
 class DashboardFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding = FragmentDashboardBinding.inflate(inflater, container, false)
-        val vm = DashboardVM()
-        binding.vm = vm
+    val vm = DashboardVM()
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        binding.vm = vm
         binding.lifecycleOwner = this
+
         return binding.root
+    }
+
+    override fun setMenuVisibility(menuVisible: Boolean) {
+        super.setMenuVisibility(menuVisible)
+        if (menuVisible) {
+            vm.dashboardChartVM.onStart()
+        }
     }
 }

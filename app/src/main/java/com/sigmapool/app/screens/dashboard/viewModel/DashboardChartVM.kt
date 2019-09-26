@@ -1,7 +1,6 @@
 package com.sigmapool.app.screens.dashboard.viewModel
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
 import com.sigmapool.app.provider.res.IResProvider
@@ -15,7 +14,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
-class DashboardChartVM : ViewModel() {
+class DashboardChartVM {
 
     val resProvider by kodein.instance<IResProvider>()
 
@@ -43,6 +42,10 @@ class DashboardChartVM : ViewModel() {
                 renderChartData()
             }
         }
+    }
+
+    fun onStart(){
+        customSwitchVm.refreshBg()
     }
 
     fun initHourData(newData: ArrayList<SeriesDto>) {

@@ -23,7 +23,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/gradient_status_bar"
-                android:focusable="true"
                 android:orientation="vertical"
                 >
 
@@ -62,6 +61,7 @@
                         app:layout_constraintTop_toTopOf="parent"
 
                         app:vm="@{vm.customSwitchVm}"
+                        app:bg="@{@drawable/chart_switcher_bg_unselected}"
                         />
 
 
@@ -79,6 +79,7 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
+                    android:layout_marginBottom="12dp"
 
                     app:chartData="@{vm.chartData}"
                     app:chartMode="@{vm.chartMode}"
