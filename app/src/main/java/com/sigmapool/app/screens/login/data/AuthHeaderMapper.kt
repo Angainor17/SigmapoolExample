@@ -10,11 +10,9 @@ import com.sigmapool.app.utils.storages.JsonDataStorage
 import com.sigmapool.common.models.AuthDto
 import okhttp3.Response
 import org.kodein.di.generic.instance
-import java.net.HttpURLConnection.HTTP_BAD_REQUEST
 
 const val AUTH_KEY = "auth_info"
 const val REFRESH_HEADER = "x-sigmapool-access-token"
-const val AUTH_ERROR = "AuthError"
 
 class AuthHeaderMapper : HeaderMapper() {
 
@@ -30,13 +28,6 @@ class AuthHeaderMapper : HeaderMapper() {
     }
 
     override fun responseProceed(response: Response) {
-        if (response.code() == HTTP_BAD_REQUEST && response.body()?.string()?.contains(AUTH_ERROR) == true) {
-            val authDto = Gson().fromJson(jsonDataStorage.getJson(AUTH_KEY), AuthDto::class.java)
-            if (authDto != null) {
-                //TODO logout implement
-            }
-        }
-
         val newToken = response.header(REFRESH_HEADER)
         if (newToken != null) {
             val authDto = Gson().fromJson(jsonDataStorage.getJson(AUTH_KEY), AuthDto::class.java)

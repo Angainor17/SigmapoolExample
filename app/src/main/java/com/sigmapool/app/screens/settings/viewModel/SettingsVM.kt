@@ -19,7 +19,6 @@ import com.sigmapool.app.utils.storages.JsonDataStorage
 import com.sigmapool.app.utils.vm.AuthVm
 import com.sigmapool.common.managers.ILoginManager
 import com.sigmapool.common.models.AuthDto
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -95,18 +94,8 @@ class SettingsVM(private val view: ISettingsView) : AuthVm(), IUpdateScreenVm,
     fun exit() {
         GlobalScope.launch(Dispatchers.Default) {
             val result = loginManager.logout()
-            if (result.success) {
-                logoutAction()
-            } else {
-                if ((result.error ?: "").contains("HTTP")) {
-                    logoutAction()
-                    return@launch
-                }
-
-                CoroutineScope(Dispatchers.Main).launch {
-                    errorLiveData.value = result.error
-                }
-            }
+            logoutAction()
+            return@launch
         }
     }
 
