@@ -36,7 +36,6 @@ fun chartData(chart: BarChart, chartData: List<SeriesDto>, chartMode: String) {
         MyMarkerView(context, R.layout.custom_marker_view)
     markerView.chartView = chart
     chart.marker = markerView
-    chart.setDragOffsetX(10f)
 
     val xAxis: XAxis = chart.xAxis
     xAxis.textColor = axisTextColor
@@ -142,7 +141,7 @@ fun setData(chart: BarChart, data: List<SeriesDto>) {
 }
 
 private fun refreshRange(chart: BarChart) {
-    chart.setVisibleXRangeMaximum(20f)
+    chart.setVisibleXRangeMaximum(X_RANGE_MAX)
     chart.moveViewToX(0f)
 }
 

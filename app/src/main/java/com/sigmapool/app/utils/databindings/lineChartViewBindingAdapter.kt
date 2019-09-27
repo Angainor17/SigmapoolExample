@@ -1,8 +1,13 @@
 package com.sigmapool.app.utils.databindings
 
 import android.graphics.Color
+import android.graphics.Matrix
+import android.util.Log
+import android.view.MotionEvent
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
@@ -11,17 +16,22 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import com.github.mikephil.charting.utils.ViewPortHandler
 import com.sigmapool.app.R
+import com.sigmapool.app.utils.customViews.chart.AbstractOnChartGestureListener
 import com.sigmapool.app.utils.customViews.chart.MyMarkerView
 import com.sigmapool.common.managers.PERIOD_HOUR
 import com.sigmapool.common.models.SeriesDto
 import java.util.*
 
+
 private val AXIS_TEXT_COLOR = Color.parseColor("#828282")
+const val X_RANGE_MAX = 15f
 
 @BindingAdapter("app:homeChartData")
 fun homeChartData(chart: LineChart, chartData: List<SeriesDto>) {
     lineChartCommonCustomize(chart, chartData)
+
 
     val xAxis: XAxis = chart.xAxis
     val leftAxis: YAxis = chart.axisLeft
@@ -45,10 +55,44 @@ fun homeChartData(chart: LineChart, chartData: List<SeriesDto>) {
     setData(chart, chartData, R.drawable.fade_violet, false)
 }
 
-@BindingAdapter("app:chartData")
-fun chartData(chart: LineChart, chartData: List<SeriesDto>) {
+private fun syncCharts(
+    mainChart: ViewPortHandler,
+    tempChart: ViewPortHandler,
+    tempChartView: View
+) {
+    val mainMatrix: Matrix = mainChart.matrixTouch
+    val mainVals = FloatArray(9)
+    val otherMatrix: Matrix = tempChart.matrixTouch
+    val otherVals = FloatArray(9)
+    mainMatrix.getValues(mainVals)
+
+    otherMatrix.getValues(otherVals)
+    otherVals[Matrix.MSCALE_X] = mainVals[Matrix.MSCALE_X]
+    otherVals[Matrix.MTRANS_X] = mainVals[Matrix.MTRANS_X]
+    otherVals[Matrix.MSKEW_X] = mainVals[Matrix.MSKEW_X]
+    otherMatrix.setValues(otherVals)
+    tempChart.refresh(otherMatrix, tempChartView, true)
+
+}
+
+@BindingAdapter("app:chartData", "app:barChart")
+fun chartData(chart: LineChart, chartData: List<SeriesDto>, barChart: BarChart) {
     lineChartCommonCustomize(chart, chartData)
     chart.setTouchEnabled(true)
+
+    chart.onChartGestureListener = object : AbstractOnChartGestureListener() {
+        override fun onChartTranslate(me: MotionEvent?, dX: Float, dY: Float) {
+            syncCharts(chart.viewPortHandler, barChart.viewPortHandler, barChart)
+            Log.d("voronin","chart onChartTranslate")
+        }
+    }
+
+    barChart.onChartGestureListener = object : AbstractOnChartGestureListener() {
+        override fun onChartTranslate(me: MotionEvent?, dX: Float, dY: Float) {
+            Log.d("voronin","barChart onChartTranslate")
+            syncCharts(barChart.viewPortHandler, chart.viewPortHandler, chart)
+        }
+    }
 
     val xAxis: XAxis = chart.xAxis
 
@@ -173,7 +217,7 @@ fun setData(
 }
 
 private fun refreshRange(chart: LineChart) {
-    chart.setVisibleXRangeMaximum(10f)
+    chart.setVisibleXRangeMaximum(X_RANGE_MAX)
     chart.moveViewToX(0f)
 }
 

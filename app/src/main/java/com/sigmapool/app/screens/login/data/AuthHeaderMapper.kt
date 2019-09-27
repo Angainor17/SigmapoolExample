@@ -6,11 +6,9 @@ import com.sigmapool.api.retrofit.AUTHORIZATION
 import com.sigmapool.api.retrofit.BEARER
 import com.sigmapool.api.retrofit.HeaderMapper
 import com.sigmapool.app.App.Companion.kodein
-import com.sigmapool.app.utils.eventBus.LogoutEvent
 import com.sigmapool.app.utils.storages.JsonDataStorage
 import com.sigmapool.common.models.AuthDto
 import okhttp3.Response
-import org.greenrobot.eventbus.EventBus
 import org.kodein.di.generic.instance
 import java.net.HttpURLConnection.HTTP_BAD_REQUEST
 
@@ -35,8 +33,7 @@ class AuthHeaderMapper : HeaderMapper() {
         if (response.code() == HTTP_BAD_REQUEST && response.body()?.string()?.contains(AUTH_ERROR) == true) {
             val authDto = Gson().fromJson(jsonDataStorage.getJson(AUTH_KEY), AuthDto::class.java)
             if (authDto != null) {
-                jsonDataStorage.put(AUTH_KEY, null)
-                EventBus.getDefault().post(LogoutEvent())
+                //TODO logout implement
             }
         }
 
