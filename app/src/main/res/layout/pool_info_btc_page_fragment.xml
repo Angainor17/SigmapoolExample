@@ -272,6 +272,10 @@
                             android:linksClickable="true"
                             android:text="@{vm.stratumURLs}"
                             android:textColorLink="#081EEA"
+                            android:enabled="true"
+                            android:textIsSelectable="true"
+                            android:focusable="true"
+                            android:longClickable="true"
 
                             tools:text="stratum+tcp://eu2.btc.sigmapool.com:3333\nstratum+tcp://eu3.btc.sigmapool.com:3333\nstratum+tcp://eu4.btc.sigmapool.com:3333"
                             />

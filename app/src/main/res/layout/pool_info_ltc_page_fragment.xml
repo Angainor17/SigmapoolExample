@@ -247,6 +247,12 @@
                             android:linksClickable="true"
                             android:text="@{vm.stratumURLs}"
                             android:textColorLink="#081EEA"
+                            android:enabled="true"
+                            android:textIsSelectable="true"
+                            android:focusable="true"
+                            android:longClickable="true"
+
+
                             tools:text="stratum+tcp://eu2.ltc.sigmapool.com:3333\nstratum+tcp://eu3.ltc.sigmapool.com:3333\nstratum+tcp://eu4.ltc.sigmapool.com:3333"
                             />
                 </LinearLayout>
