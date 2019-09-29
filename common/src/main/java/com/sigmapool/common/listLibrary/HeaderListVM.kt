@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-abstract class HeaderListVM<DtoItem, ItemVm : BaseItemViewModel>(
+open class HeaderListVM<DtoItem, ItemVm : BaseItemViewModel>(
     val mapper: SimpleMapper<DtoItem, ItemVm>,
     val loader: IItemsLoader<DtoItem>,
     val adapter: SimpleAdapter<ItemVm>,

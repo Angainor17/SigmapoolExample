@@ -18,7 +18,7 @@ class NewsItemVM(
     val url = newsDto.url
     val title: String = newsDto.title
     val text: String = newsDto.brief
-    private val date: Date = newsDto.publishedAt
+    val date: Date = newsDto.publishedAt
     val dateString = date.formatDate()
 
     var clickAction = {

@@ -27,7 +27,8 @@ private const val REGISTER_URL = "https://btc.sigmapool.com/signup"
 
 private const val BLOG_INIT_PAGE = 1
 private const val BLOG_PER_PAGE = 20
-private const val NEWS_PER_PAGE = 3
+private const val DISPLAYED_NEWS = 3
+private const val NEWS_PAGE_SIZE = 1000
 
 class HomeVM : ViewModel(), OnSlideClickListener, IUpdateScreenVm, IBrowserVm {
 
@@ -43,7 +44,7 @@ class HomeVM : ViewModel(), OnSlideClickListener, IUpdateScreenVm, IBrowserVm {
 
     val coinsVM = CoinsVM()
     val minersVM = HomeMinerVM()
-    val newsVM = NewsListVM(NewsListParams(NEWS_PER_PAGE))
+    val newsVM = NewsListVM(NewsListParams(NEWS_PAGE_SIZE, DISPLAYED_NEWS))
 
     override val urlLiveData = newsVM.urlLiveData
 

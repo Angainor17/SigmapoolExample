@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
 
                 app:onRefreshListener="@{() -> vm.listVM.itemsVM.onRefresh()}"
-                app:refreshing="@{vm.listVM.itemsVM.refreshing}"
+                app:refreshing="@{vm.listVM.itemsVM.isLoading}"
                 >
 
             <LinearLayout

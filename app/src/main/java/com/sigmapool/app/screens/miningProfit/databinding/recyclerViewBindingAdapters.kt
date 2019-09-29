@@ -10,7 +10,6 @@ import androidx.databinding.BindingAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
 import androidx.paging.PagedList
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.sigmapool.app.screens.dashboard.adapters.SubAccountsAdapter
@@ -20,6 +19,7 @@ import com.sigmapool.app.screens.earnings.viewModel.EarningsVM
 import com.sigmapool.app.screens.miningProfit.listener.IProfitBtnListener
 import com.sigmapool.app.screens.miningProfit.params.MINER_PAGE_SIZE
 import com.sigmapool.app.screens.miningProfit.viewModels.MiningProfitListVM
+import com.sigmapool.app.screens.news.params.NEWS_PAGE_SIZE
 import com.sigmapool.app.screens.news.vm.NewsListVM
 import com.sigmapool.app.screens.workers.viewModel.WorkersListVM
 import com.sigmapool.app.utils.customViews.CustomLinearLayoutManager
@@ -53,7 +53,8 @@ private fun <DtoItem, ItemVm : BaseItemViewModel> initHeaderList(
     view: RecyclerView,
     itemsVM: HeaderListVM<DtoItem, ItemVm>,
     swipeRefreshLayout: SwipeRefreshLayout?,
-    pageSize: Int
+    pageSize: Int,
+    headerCount: Int = 1
 
 ) {
     val linearLayoutManager = CustomLinearLayoutManager(view.context)
@@ -68,13 +69,13 @@ private fun <DtoItem, ItemVm : BaseItemViewModel> initHeaderList(
 
         override fun isLastPage(): Boolean = itemsVM.isLastPage.value ?: false
         override fun isLoading(): Boolean = itemsVM.isLoading.value ?: true
-        override fun headerCount(): Int = 1
+        override fun headerCount(): Int = headerCount
     })
 
     val adapter = itemsVM.adapter
     itemsVM.items.observe(view.context as AppCompatActivity, Observer {
         adapter.addItems(it)
-        adapter.notifyItemRangeChanged(1, adapter.items.size)
+        adapter.notifyItemRangeChanged(headerCount, adapter.items.size)
     })
 }
 
@@ -89,23 +90,7 @@ fun setEarningsAdapter(
 
 @BindingAdapter("setNewsAdapter", "swipeRefresh")
 fun setNewsAdapter(view: RecyclerView, vm: NewsListVM, swipeRefreshLayout: SwipeRefreshLayout?) {
-    val linearLayoutManager = LinearLayoutManager(view.context)
-    view.layoutManager = linearLayoutManager
-    view.adapter = vm.itemsVM.pagedRecyclerAdapter
-
-    view.addOnScrollListener(object :
-        PaginationListener(20, swipeRefreshLayout, linearLayoutManager) {
-        override fun loadMoreItems() = Unit
-        override fun isLastPage(): Boolean = false
-        override fun isLoading(): Boolean = false
-        override fun headerCount(): Int = 1
-    })
-    val activity = view.context as AppCompatActivity
-    vm.itemsVM.items.observe(activity,
-        Observer<PagedList<BaseItemViewModel>?> { t ->
-            vm.itemsVM.pagedRecyclerAdapter.submitList(t)
-        }
-    )
+    initHeaderList(view, vm.itemsVM, swipeRefreshLayout, NEWS_PAGE_SIZE, 0)
 }
 
 @BindingAdapter("setWorkersAdapter")
