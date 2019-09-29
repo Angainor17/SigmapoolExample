@@ -87,7 +87,7 @@
     <string name="payment_scheme">Payment scheme</string>
     <string name="threshold">Threshold</string>
     <string name="write_review">Write a review or suggestion</string>
-    <string name="mark_app">Star app</string>
+    <string name="rate_app">Rate the app</string>
     <string name="exit">Exit</string>
     <string name="rub"
             translatable="false">RUB</string>

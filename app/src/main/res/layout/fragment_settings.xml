@@ -112,7 +112,7 @@
 
                             app:clickListener="@{v->vm.markApp()}"
                             app:isTopSeparatorVisible="@{false}"
-                            app:label="@{@string/mark_app}"
+                            app:label="@{@string/rate_app}"
                             />
 
                     <include

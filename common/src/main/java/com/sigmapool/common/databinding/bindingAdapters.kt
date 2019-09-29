@@ -24,7 +24,9 @@ fun setSeekBarStep(view: IndicatorSeekBar, liveData: Int?) {
 @BindingAdapter("app:isb_tick_texts_array")
 fun setSeekBarStringArray(view: IndicatorSeekBar, liveData: Int?) {
     liveData?.let {
-        view.customTickTexts(view.context.resources.getStringArray(it))
+        val array = view.context.resources.getStringArray(it)
+        view.tickCount = array.size
+        view.customTickTexts(array)
     }
 }
 
