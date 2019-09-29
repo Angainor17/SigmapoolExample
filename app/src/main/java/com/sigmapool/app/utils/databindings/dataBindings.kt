@@ -3,7 +3,6 @@ package com.sigmapool.app.utils.databindings
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.Spinner
 import androidx.databinding.BindingAdapter
@@ -28,7 +27,6 @@ import com.sigmapool.app.utils.customViews.spinner.CustomAdapter
 import com.sigmapool.app.utils.customViews.viewPager.FragmentViewPager
 import com.sigmapool.common.models.BlogDto
 import com.squareup.picasso.Picasso
-import com.suke.widget.SwitchButton
 import ss.com.bannerslider.Slider
 import ss.com.bannerslider.event.OnSlideClickListener
 
@@ -132,7 +130,6 @@ fun setImages(slider: Slider, items: ArrayList<BlogDto>?, listener: OnSlideClick
     }
 }
 
-
 @BindingAdapter("app:onActivatedChange")
 fun onActivatedChange(view: View, isActivated: Boolean) {
     view.isActivated = isActivated
@@ -166,26 +163,9 @@ private fun createAnimation(): Animation {
     return anim
 }
 
-@BindingAdapter("app:onCheckedChange")
-fun onCheckedChange(view: SwitchButton, listener: SwitchButton.OnCheckedChangeListener) {
-    view.setOnCheckedChangeListener(listener)
-}
-
-@BindingAdapter("app:value")
-fun onCheckedChange(view: SwitchButton, isChecked: Boolean) {
-    view.isChecked = isChecked
-}
-
 @BindingAdapter("bind:initCoinSpinner")
 fun initCoinSpinner(spinner: Spinner, vm: CoinToolbarVM) {
-    val adapter = CustomAdapter(spinner.context, vm.coinProvider.coins)
-    spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            vm.coinProvider.onCoinSelected(vm.coinProvider.coins[position])
-        }
-
-        override fun onNothingSelected(parent: AdapterView<*>?) = Unit
-    }
+    val adapter = CustomAdapter(spinner, vm,vm.coinProvider.coins)
     spinner.adapter = adapter
 
 }
