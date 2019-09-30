@@ -1,6 +1,7 @@
 package com.sigmapool.app.screens.dashboard.viewModel
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.ViewModel
 import com.sigmapool.app.App.Companion.kodein
 import com.sigmapool.app.R
@@ -23,6 +24,7 @@ class DashboardSubAccountsVM(
     val isDropdownOpen = MutableLiveData(false)
 
     val listItems = MutableLiveData<ArrayList<SubAccountItemVM>>()
+    val hasSubaccounts = map(listItems) { it.isNotEmpty() }
 
     init {
         initSubAccounts(ArrayList())

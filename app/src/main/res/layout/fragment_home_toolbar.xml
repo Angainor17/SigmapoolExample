@@ -57,6 +57,22 @@
 
 
         <Button
+                android:id="@+id/registerBtn"
+                style="@style/LoginBtnStyle"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/registration"
+                android:onClick="@{v->vm.register()}"
+                android:layout_marginEnd="8dp"
+                android:visibility="@{vm.isLogin ? View.INVISIBLE : View.VISIBLE}"
+
+                app:layout_constraintEnd_toStartOf="@+id/vertical_line"
+                app:layout_constraintTop_toTopOf="@+id/enterBtn"
+                app:layout_constraintBottom_toBottomOf="@+id/enterBtn"
+                />
+
+        <Button
                 android:id="@+id/enterBtn"
                 style="@style/LoginBtnStyle"
 

@@ -34,8 +34,8 @@
     <string name="workers_screen_icon_title">Workers</string>
     <string name="earnings_screen_icon_title">Earnings</string>
     <string name="settings_screen_icon_title">Settings</string>
-    <string name="registration">Sign Up</string>
-    <string name="enter">Sign In</string>
+    <string name="registration">Register</string>
+    <string name="enter">Log in</string>
     <string name="calculator">Calculator</string>
     <string name="news">News</string>
     <string name="pool_hashrate">Pool hashrate</string>

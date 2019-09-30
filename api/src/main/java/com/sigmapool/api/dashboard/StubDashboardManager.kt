@@ -10,13 +10,15 @@ internal class StubDashboardManager(private val context: Context) : IDashboardMa
 
     override suspend fun subaccounts(coin: String): ManagerResult<ArrayList<SubAccountDto>> {
         return ManagerResult(
+//            ArrayList()
             ArrayList(List(4) {
                 SubAccountDto(
                     getName(it),
                     1230112f - it / 10 * 1000012f,
                     0.03f + it.toFloat() / 100
                 )
-            })
+            }
+    )
         )
     }
 
