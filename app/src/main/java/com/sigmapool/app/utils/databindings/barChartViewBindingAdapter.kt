@@ -73,14 +73,18 @@ fun chartData(chart: BarChart, chartData: List<SeriesDto>, chartMode: String) {
 }
 
 fun xAxisFormatter(value: Float, chartMode: String, chartData: List<SeriesDto>): String {
-    val position = value.toInt()
-    if (position >= chartData.size) return ""
+    try {
+        val position = value.toInt()
+        if (position >= chartData.size) return ""
 
-    val itemDate = chartData[position].time
-    if (chartMode == PERIOD_DAY) {
-        return itemDate.formatDateShort()
+        val itemDate = chartData[position].time
+        if (chartMode == PERIOD_DAY) {
+            return itemDate.formatDateShort()
+        }
+        return itemDate.formatTime()
+    } catch (e: Exception) {
+        return ""
     }
-    return itemDate.formatTime()
 }
 
 fun formatYAxis(value: Float): String {
