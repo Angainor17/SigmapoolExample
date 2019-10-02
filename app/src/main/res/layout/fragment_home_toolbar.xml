@@ -55,7 +55,6 @@
                 app:layout_constraintTop_toTopOf="@+id/sigmapoolIcon"
                 />
 
-
         <Button
                 android:id="@+id/registerBtn"
                 style="@style/LoginBtnStyle"
