@@ -64,10 +64,11 @@
                     android:fontFamily="@font/google_sans_bold"
                     android:inputType="numberDecimal"
                     android:hint="0"
-                    android:onTextChanged="@{textWatcher.onTextChanged}"
                     android:text="@{vm.value}"
                     android:textColor="@color/black"
                     android:textSize="22dp"
+
+                    app:textWatcher="@{textWatcher.onTextChanged}"
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"

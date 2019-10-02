@@ -59,7 +59,7 @@ class CalcItemVM(
     )
 
     private fun formatPrice(price: Float) =
-        "~ " + currencyProvider.getSymbol() + " " + price.format(FLOAT_PATTERN)
+        "~ " + currencyProvider.getSymbol() + " " + price.format(FLOAT_PATTERN).replace(',', '.')
 
     private var profitDaily: ProfitDailyDto? = null
 
@@ -114,7 +114,7 @@ class CalcItemVM(
     private fun convertValue(s: CharSequence) {
         profitDaily?.let {
             val value = try {
-                s.toString().toFloat()
+                s.toString().replace(',', '.').toFloat()
             } catch (e: Exception) {
                 0f
             }
@@ -125,7 +125,7 @@ class CalcItemVM(
                 value / it.profit
             }
 
-            bottomLine.value.postValue(calculatedValue.trimZeroEnd())
+            bottomLine.value.postValue(calculatedValue.trimZeroEnd().replace(',', '.'))
 
             updatePrice(
                 if (isHashrateToProfit) bottomLine else topLine,
@@ -135,7 +135,7 @@ class CalcItemVM(
     }
 
     private fun updatePrice(vm: CalcValueVM, calculatedValue: Float) {
-        vm.price.postValue(formattedPrice(calculatedValue))
+        vm.price.postValue(formattedPrice(calculatedValue).replace(',', '.'))
     }
 
     private fun formattedPrice(coinValue: Float): String {

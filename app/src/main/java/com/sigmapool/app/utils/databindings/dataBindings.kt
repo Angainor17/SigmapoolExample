@@ -1,8 +1,11 @@
 package com.sigmapool.app.utils.databindings
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
 import androidx.databinding.BindingAdapter
@@ -25,6 +28,7 @@ import com.sigmapool.app.screens.workers.viewModel.WorkersVM
 import com.sigmapool.app.utils.customViews.slider.MainSliderAdapter
 import com.sigmapool.app.utils.customViews.spinner.CustomAdapter
 import com.sigmapool.app.utils.customViews.viewPager.FragmentViewPager
+import com.sigmapool.app.utils.interfaces.OnTextWatcherVm
 import com.sigmapool.common.models.BlogDto
 import com.squareup.picasso.Picasso
 import ss.com.bannerslider.Slider
@@ -165,7 +169,24 @@ private fun createAnimation(): Animation {
 
 @BindingAdapter("bind:initCoinSpinner")
 fun initCoinSpinner(spinner: Spinner, vm: CoinToolbarVM) {
-    val adapter = CustomAdapter(spinner, vm,vm.coinProvider.coins)
+    val adapter = CustomAdapter(spinner, vm, vm.coinProvider.coins)
     spinner.adapter = adapter
+}
 
+@BindingAdapter("app:textWatcher")
+fun textWatcher(view: EditText, textWatcher: OnTextWatcherVm?) {
+    view.addTextChangedListener(object : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            val text = s.toString()
+            if (text.contains(',')) {
+                view.setText(text.replace(',', '.'))
+            }
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
+
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            textWatcher?.onTextChanged(s, start, before, count)
+        }
+    })
 }
