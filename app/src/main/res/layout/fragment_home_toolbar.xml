@@ -25,34 +25,32 @@
         <ImageView
                 android:id="@+id/sigmapoolIcon"
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="16dp"
-                android:onClick="@{v->vm.register()}"
                 android:src="@drawable/small_sigmapool_icon"
                 android:tint="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="16dp"
 
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 />
 
         <ImageView
                 android:id="@+id/sigmapoolWord"
 
+                android:src="@drawable/sigmapool_row"
+                android:tint="@color/white"
                 android:layout_width="wrap_content"
+                android:textSize="18dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
-                android:onClick="@{v->vm.register()}"
-                android:src="@drawable/sigmapool_row"
-                android:textSize="18dp"
-                android:tint="@color/white"
 
-                app:layout_constraintBottom_toBottomOf="@+id/sigmapoolIcon"
                 app:layout_constraintStart_toEndOf="@+id/sigmapoolIcon"
                 app:layout_constraintTop_toTopOf="@+id/sigmapoolIcon"
+                app:layout_constraintBottom_toBottomOf="@+id/sigmapoolIcon"
                 />
 
         <Button
@@ -77,19 +75,28 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:paddingLeft="32dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
+                android:text="@string/enter"
                 android:layout_marginEnd="8dp"
                 android:onClick="@{v->vm.login()}"
-                android:text="@string/enter"
-                android:textAlignment="viewEnd"
-
                 android:visibility="@{vm.isLogin ? View.INVISIBLE : View.VISIBLE}"
-                app:layout_constraintBottom_toBottomOf="@+id/sigmapoolWord"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/sigmapoolWord"
+                app:layout_constraintBottom_toBottomOf="@+id/sigmapoolWord"
+                />
+
+        <View
+                android:id="@+id/vertical_line"
+
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:layout_marginEnd="8dp"
+                android:visibility="@{vm.isLogin ? View.INVISIBLE : View.VISIBLE}"
+
+                app:layout_constraintTop_toTopOf="@+id/enterBtn"
+                app:layout_constraintBottom_toBottomOf="@+id/enterBtn"
+                app:layout_constraintEnd_toStartOf="@+id/enterBtn"
                 />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
