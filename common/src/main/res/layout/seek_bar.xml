@@ -9,7 +9,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.common.viewModels.IIndicatorSeekBarViewModel"
+                type="org.sigmapool.common.viewModels.IIndicatorSeekBarViewModel"
                 />
     </data>
 

@@ -9,7 +9,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.settings.viewModel.CoinToolbarVM"
+                type="org.sigmapool.sigmapool.screens.settings.viewModel.CoinToolbarVM"
                 />
     </data>
 

@@ -9,7 +9,7 @@
 
         <import type="android.view.View" />
 
-        <import type="com.sigmapool.app.utils.interfaces.ViewState" />
+        <import type="org.sigmapool.sigmapool.utils.interfaces.ViewState" />
 
         <variable
                 name="hasElevation"
@@ -18,7 +18,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.utils.interfaces.StateVM"
+                type="org.sigmapool.sigmapool.utils.interfaces.StateVM"
                 />
 
         <variable

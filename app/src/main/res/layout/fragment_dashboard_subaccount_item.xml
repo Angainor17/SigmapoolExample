@@ -16,7 +16,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.dashboard.viewModel.SubAccountItemVM"
+                type="org.sigmapool.sigmapool.screens.dashboard.viewModel.SubAccountItemVM"
                 />
     </data>
 

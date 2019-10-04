@@ -11,7 +11,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.workers.viewModel.WorkersListItemVM"
+                type="org.sigmapool.sigmapool.screens.workers.viewModel.WorkersListItemVM"
                 />
     </data>
 

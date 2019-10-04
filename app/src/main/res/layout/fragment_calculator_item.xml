@@ -8,7 +8,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.calculator.viewModel.CalcItemVM"
+                type="org.sigmapool.sigmapool.screens.calculator.viewModel.CalcItemVM"
                 />
     </data>
 

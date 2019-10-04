@@ -10,7 +10,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.dashboard.viewModel.DashboardEarningsVM"
+                type="org.sigmapool.sigmapool.screens.dashboard.viewModel.DashboardEarningsVM"
                 />
     </data>
 

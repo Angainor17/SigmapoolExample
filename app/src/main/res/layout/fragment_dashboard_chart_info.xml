@@ -9,7 +9,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.dashboard.viewModel.DashboardChartInfoVM"
+                type="org.sigmapool.sigmapool.screens.dashboard.viewModel.DashboardChartInfoVM"
                 />
     </data>
 

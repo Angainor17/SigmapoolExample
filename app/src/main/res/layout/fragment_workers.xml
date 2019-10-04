@@ -8,7 +8,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.workers.viewModel.WorkersVM"
+                type="org.sigmapool.sigmapool.screens.workers.viewModel.WorkersVM"
                 />
 
 
@@ -44,7 +44,7 @@
                     />
 
 
-            <com.sigmapool.app.utils.customViews.viewPager.FragmentViewPager
+            <org.sigmapool.sigmapool.utils.customViews.viewPager.FragmentViewPager
                     android:id="@+id/pager"
 
                     android:layout_width="match_parent"

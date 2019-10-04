@@ -3,7 +3,7 @@
 >
 
     <data>
-        <variable name="vm" type="com.sigmapool.app.screens.home.viewModel.HomeMenuVM"/>
+        <variable name="vm" type="org.sigmapool.sigmapool.screens.home.viewModel.HomeMenuVM"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

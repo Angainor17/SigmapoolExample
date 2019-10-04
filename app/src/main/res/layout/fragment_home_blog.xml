@@ -8,7 +8,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.home.viewModel.HomeVM"
+                type="org.sigmapool.sigmapool.screens.home.viewModel.HomeVM"
                 />
     </data>
 

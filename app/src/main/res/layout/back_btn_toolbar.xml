@@ -4,10 +4,10 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="titleVm" type="com.sigmapool.common.viewModels.ITitleViewModel"/>
+        <variable name="titleVm" type="org.sigmapool.common.viewModels.ITitleViewModel"/>
 
         <variable name="toolbarVm"
-                  type="com.sigmapool.app.utils.interfaces.IBackBtnScreen"/>
+                  type="org.sigmapool.sigmapool.utils.interfaces.IBackBtnScreen"/>
     </data>
 
 

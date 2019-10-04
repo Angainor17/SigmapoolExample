@@ -9,7 +9,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.poolInfo.viewmodel.PoolInfoLtcViewModel"
+                type="org.sigmapool.sigmapool.screens.poolInfo.viewmodel.PoolInfoLtcViewModel"
                 />
     </data>
 

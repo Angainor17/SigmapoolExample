@@ -8,7 +8,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.dashboard.viewModel.DashboardVM"
+                type="org.sigmapool.sigmapool.screens.dashboard.viewModel.DashboardVM"
                 />
     </data>
 

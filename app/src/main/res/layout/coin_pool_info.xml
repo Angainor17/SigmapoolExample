@@ -5,8 +5,8 @@
 
     <data>
         <import type="android.view.View"/>
-        <import type="com.sigmapool.app.utils.interfaces.ViewState"/>
-        <variable name="vm" type="com.sigmapool.app.screens.home.coin.CoinItemVM"/>
+        <import type="org.sigmapool.sigmapool.utils.interfaces.ViewState"/>
+        <variable name="vm" type="org.sigmapool.sigmapool.screens.home.coin.CoinItemVM"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

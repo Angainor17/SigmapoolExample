@@ -8,7 +8,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.news.vm.NewsListVM"
+                type="org.sigmapool.sigmapool.screens.news.vm.NewsListVM"
                 />
 
         <variable

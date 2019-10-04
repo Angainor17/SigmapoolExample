@@ -8,12 +8,12 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.login.viewModel.LoginVM"
+                type="org.sigmapool.sigmapool.screens.login.viewModel.LoginVM"
         />
 
         <variable
                 name="toolbarVm"
-                type="com.sigmapool.app.utils.interfaces.IBackBtnScreen"
+                type="org.sigmapool.sigmapool.utils.interfaces.IBackBtnScreen"
         />
     </data>
 

@@ -9,7 +9,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.calculator.viewModel.CalculatorVM"
+                type="org.sigmapool.sigmapool.screens.calculator.viewModel.CalculatorVM"
                 />
 
         <variable
@@ -97,7 +97,7 @@
                             />
 
 
-                    <com.sigmapool.app.utils.customViews.viewPager.FragmentViewPager
+                    <org.sigmapool.sigmapool.utils.customViews.viewPager.FragmentViewPager
                             android:id="@+id/viewPager"
 
                             android:layout_width="match_parent"

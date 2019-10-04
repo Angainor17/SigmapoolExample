@@ -8,7 +8,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.home.coin.CoinsVM"
+                type="org.sigmapool.sigmapool.screens.home.coin.CoinsVM"
                 />
 
         <variable
@@ -24,7 +24,7 @@
             android:orientation="vertical"
             >
 
-        <com.sigmapool.app.utils.customViews.viewPager.FragmentViewPager
+        <org.sigmapool.sigmapool.utils.customViews.viewPager.FragmentViewPager
                 android:id="@+id/coinPager"
 
                 android:layout_width="match_parent"

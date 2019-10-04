@@ -8,7 +8,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.earnings.viewModel.EarningsVM"
+                type="org.sigmapool.sigmapool.screens.earnings.viewModel.EarningsVM"
                 />
     </data>
 

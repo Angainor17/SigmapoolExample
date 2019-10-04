@@ -14,13 +14,13 @@
 
         <variable
                 name="textWatcher"
-                type="com.sigmapool.app.utils.interfaces.OnTextWatcherVm"
+                type="org.sigmapool.sigmapool.utils.interfaces.OnTextWatcherVm"
                 />
 
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.calculator.viewModel.CalcValueVM"
+                type="org.sigmapool.sigmapool.screens.calculator.viewModel.CalcValueVM"
                 />
 
     </data>

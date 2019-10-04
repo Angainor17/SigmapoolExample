@@ -8,12 +8,12 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.screens.poolInfo.viewmodel.PoolInfoViewModel"
+                type="org.sigmapool.sigmapool.screens.poolInfo.viewmodel.PoolInfoViewModel"
                 />
 
         <variable
                 name="toolbarVm"
-                type="com.sigmapool.app.utils.interfaces.IBackBtnScreen"
+                type="org.sigmapool.sigmapool.utils.interfaces.IBackBtnScreen"
                 />
 
         <variable
@@ -72,7 +72,7 @@
                         android:scrollbars="none"
                         >
 
-                    <com.sigmapool.app.utils.customViews.viewPager.FragmentViewPager
+                    <org.sigmapool.sigmapool.utils.customViews.viewPager.FragmentViewPager
                             android:id="@+id/pager"
 
                             android:layout_width="match_parent"

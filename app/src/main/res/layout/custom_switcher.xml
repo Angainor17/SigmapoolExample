@@ -9,7 +9,7 @@
 
         <variable
                 name="vm"
-                type="com.sigmapool.app.utils.customViews.CustomSwitchVm"
+                type="org.sigmapool.sigmapool.utils.customViews.CustomSwitchVm"
                 />
 
         <variable
