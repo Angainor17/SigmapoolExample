@@ -4,13 +4,16 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
+def RELEASE_STORE_KEY = '7L}uNECe$?zsH*w5'
+def RELEASE_KEY_PASS = 'HWob|1|%bLS0S40Y'
+
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "org.sigmapool.sigmapool"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 23
+        versionCode 24
         versionName "2.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -72,5 +75,4 @@ dependencies {
     testImplementation test.junit
     androidTestImplementation test.testRunner
     androidTestImplementation test.espresso
-    implementation files('lib\\chart-release.aar')
 }
