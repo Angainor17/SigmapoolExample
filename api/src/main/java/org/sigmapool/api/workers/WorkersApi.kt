@@ -1,7 +1,7 @@
 package org.sigmapool.api.workers
 
 import org.sigmapool.api.models.PayloadModel
-import org.sigmapool.api.workers.models.WorkerResponseItem
+import org.sigmapool.api.workers.models.WorkerListResponse
 import org.sigmapool.api.workers.models.WorkerStatusResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -15,7 +15,7 @@ internal interface WorkersApi {
         @Query("page") page: Int,
         @Query("perPage") perPage: Int,
         @Query("status") status: String
-    ): PayloadModel<ArrayList<WorkerResponseItem>>
+    ): PayloadModel<WorkerListResponse>
 
     @GET("api/v2/{coin}/workers/status")
     suspend fun getStatus(

@@ -10,7 +10,7 @@ internal class DashboardManager(private val service: IDashboardService) : IDashb
     override suspend fun subaccounts(coin: String): ManagerResult<ArrayList<SubAccountDto>> = try {
         ManagerResult(ArrayList(service.subaccounts(coin).map {
             SubAccountDto(
-                it.name,
+                it.username,
                 it.hashrate,
                 it.balance
             )

@@ -17,15 +17,18 @@ internal class WorkerManager(serviceProvider: IApiServiceProvider) : IWorkersMan
         status: String
     ): ManagerResult<ArrayList<WorkerDto>> {
         return try {
-            ManagerResult(ArrayList(api.getWorkers(coin, page, perPage, status).payload?.map {
-                WorkerDto(
-                    it.title,
-                    it.hashrate,
-                    it.hashrate24h,
-                    it.isOnline
+            ManagerResult(
+                ArrayList(
+                    api.getWorkers(coin, page, perPage, status).payload?.workers?.map {
+                        WorkerDto(
+                            it.title,
+                            it.hashrate.toLong(),
+                            it.hashrate24h.toLong(),
+                            it.isOnline
+                        )
+                    } ?: ArrayList()
                 )
-            }
-            ))
+            )
         } catch (e: Throwable) {
             ManagerResult(error = e.message)
         }

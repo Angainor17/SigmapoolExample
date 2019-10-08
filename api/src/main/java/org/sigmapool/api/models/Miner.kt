@@ -7,7 +7,7 @@ internal data class Miner(
     val title: TitleModel,
     val coin: String,
     val image: String,
-    val hashrate: Long,
+    val hashrate: Float,
     val power: Int,
     val revenue: Float,
     val shutdownPrice: Float

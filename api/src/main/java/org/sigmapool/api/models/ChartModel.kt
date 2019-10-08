@@ -6,5 +6,5 @@ data class ChartModel(
 
 data class SeriesModel(
     val time:String,
-    val hashrate:Long
+    val hashrate:Float
 )
