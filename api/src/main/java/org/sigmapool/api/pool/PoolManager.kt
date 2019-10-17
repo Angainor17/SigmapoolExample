@@ -49,7 +49,7 @@ internal class PoolManager(private val service: IPoolService) : IPoolManager {
     }
 
     override suspend fun getNetwork(coin: String): ManagerResult<NetworkDto> = try {
-        val response = service.getNetwork(coin.toUpperCase())
+        val response = service.getNetwork(coin.toLowerCase())
         ManagerResult(
             NetworkDto(
                 response.blockReward,

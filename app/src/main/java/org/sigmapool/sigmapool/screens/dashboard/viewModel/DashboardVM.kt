@@ -44,7 +44,7 @@ class DashboardVM : AuthVm() {
         isLoading.postValue(true)
 
         mainJob = GlobalScope.launch(Dispatchers.IO) {
-            val coin = coinProvider.getLabel().toLowerCase()
+            val coin = coinProvider.getLabelAwait().toLowerCase()
 
             val chartInfoDeferred = async(Dispatchers.IO) { initChartInfo(coin) }
             val subAccountsDeferred = async(Dispatchers.IO) { initSubAccounts(coin) }

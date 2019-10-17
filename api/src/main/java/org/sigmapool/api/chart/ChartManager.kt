@@ -16,7 +16,7 @@ internal class ChartManager(serviceProvider: IApiServiceProvider) : IChartManage
     ): ManagerResult<ArrayList<SeriesDto>> {
         return wrapManagerResult {
 
-            val chart = this.chartService.getChart(coin, period).payload!!
+            val chart = this.chartService.getChart(coin.toLowerCase(), period).payload!!
 
             ArrayList(chart.series.map {
                 SeriesDto(it.time, it.hashrate)

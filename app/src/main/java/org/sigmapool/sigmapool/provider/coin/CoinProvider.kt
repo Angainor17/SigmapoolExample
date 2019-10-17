@@ -10,6 +10,8 @@ import org.sigmapool.common.managers.IPoolManager
 import org.sigmapool.sigmapool.App.Companion.kodein
 import org.sigmapool.sigmapool.screens.home.coin.CoinVm
 
+private const val INIT_COIN_LIST_INDEX = 0
+
 class CoinProvider : ICoinProvider {
 
     private val poolManager by kodein.instance<IPoolManager>(AUTH_MODE)
@@ -21,34 +23,51 @@ class CoinProvider : ICoinProvider {
     private var listener: ((String) -> Unit)? = null
 
     init {
-        getCoinsFromApi()
-        getCoinsFromCache()
+        initCoinsList()
     }
 
-    private fun getCoinsFromCache() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    private fun getCoinsFromApi() {
-        GlobalScope.launch(Dispatchers.Default) {
-            val result = poolManager.getCoins()//FIXME add cache
-            if (result.success) {
-                coins.postValue(ArrayList(result.data!!.map {
-                    CoinVm(
-                        it.code.toUpperCase(),
-                        it.icon,
-                        it.unit
-                    )
-                }))
-
+    private fun initCoinsList() {
+        GlobalScope.launch(Dispatchers.IO) {
+            val cache = getCoinsFromCache()
+            if (!cache.isNullOrEmpty()) {
+                initList(cache)
+            } else {
+                initList(getCoinsFromApi())
             }
         }
+    }
+
+    private fun initList(newList: ArrayList<CoinVm>) {
+        if (!coins.value.isNullOrEmpty()) return
+
+        selectedCoin = newList[INIT_COIN_LIST_INDEX]
+
+        coins.postValue(newList)
+    }
+
+    private fun getCoinsFromCache() = CoinStorage.getCoins()
+
+    private suspend fun getCoinsFromApi(): ArrayList<CoinVm> {
+        val result = poolManager.getCoins()
+        if (result.success) {
+            val newItems = ArrayList(result.data!!.map {
+                CoinVm(
+                    it.code.toUpperCase(),
+                    it.icon,
+                    it.unit
+                )
+            })
+            CoinStorage.saveCoins(newItems)
+            return newItems
+        }
+        return ArrayList()
     }
 
     override fun getLabel(): String = selectedCoin?.text ?: ""
 
     override suspend fun getLabelAwait(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        initCoinsList()
+        return getLabel()
     }
 
     override fun addOnChangeListener(listener: (String) -> Unit) {

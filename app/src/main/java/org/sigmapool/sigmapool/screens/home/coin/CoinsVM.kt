@@ -27,9 +27,10 @@ class CoinsVM : ViewModel() {
 
     private fun initItem(vm: CoinItemVM) {
         vm.viewState.postValue(ViewState.LOADING)
-        val coin = vm.coinLabel
 
         GlobalScope.launch(Dispatchers.IO) {
+            val coin = vm.coinLabel
+
             val coinDto = poolManager.getCoin(coin)
             val networkDto = poolManager.getNetwork(coin)
             val paymentDto = poolManager.getPayment(coin)
