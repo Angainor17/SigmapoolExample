@@ -8,7 +8,7 @@
 
         <variable
                 name="vm"
-                type="org.sigmapool.sigmapool.screens.poolInfo.viewmodel.PoolInfoViewModel"
+                type="org.sigmapool.sigmapool.screens.poolInfo.viewModel.PoolInfoVM"
                 />
 
         <variable
@@ -39,8 +39,7 @@
 
             <include
                     layout="@layout/pool_info_toolbar"
-                    app:currencySwitcherVm="@{vm}"
-                    app:titleVm="@{vm}"
+                    app:vm="@{vm}"
                     app:toolbarVm="@{toolbarVm}"
                     />
 

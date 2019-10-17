@@ -23,8 +23,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            app:cardBackgroundColor="#38FFFFFF"
-            app:cardCornerRadius="6dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/coin_selector_corner_radius"
             app:cardElevation="@dimen/card_view_no_elevation"
             >
 
@@ -57,14 +57,27 @@
                     android:layout_marginStart="4dp"
                     android:singleLine="true"
                     android:text="@{text}"
-                    android:textColor="@color/white"
+                    android:textColor="@color/violet"
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/icon"
-                    app:layout_constraintTop_toTopOf="parent"
 
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="@string/btc"
                     />
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/triangle_down_violet"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/text"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

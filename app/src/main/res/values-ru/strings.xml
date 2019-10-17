@@ -123,5 +123,6 @@
     <string name="observer_mode_text">Вы находитесь в режиме наблюдения,\nавторизуйтесь, чтобы начать майнить.</string>
 
     <string name="chart_no_data">Отсутствуют данные</string>
+    <string name="pool_info_title">Инфо о пуле</string>
 
 </resources>

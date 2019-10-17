@@ -8,7 +8,7 @@ import org.sigmapool.sigmapool.R
 import org.sigmapool.sigmapool.screens.calculator.CalculatorFragment
 import org.sigmapool.sigmapool.screens.miningProfit.MiningProfitFragment
 import org.sigmapool.sigmapool.screens.news.NewsFragment
-import org.sigmapool.sigmapool.screens.poolInfo.viewmodel.PoolInfoFragment
+import org.sigmapool.sigmapool.screens.poolInfo.fragments.PoolInfoFragment
 
 
 class HomeMenuVM(private val fragmentLiveData: MutableLiveData<Class<out Fragment>>) : ViewModel() {

@@ -136,5 +136,6 @@
     <string name="observer_mode_text">You are in the observer mode,\nstart mining after logging in!</string>
     <string name="fpps" translatable="false">FPPS</string>
     <string name="chart_no_data">No Data</string>
+    <string name="pool_info_title"> Pool Info</string>
 
 </resources>

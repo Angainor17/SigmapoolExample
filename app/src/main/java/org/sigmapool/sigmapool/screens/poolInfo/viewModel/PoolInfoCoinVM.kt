@@ -1,4 +1,4 @@
-package org.sigmapool.sigmapool.screens.poolInfo.viewmodel
+package org.sigmapool.sigmapool.screens.poolInfo.viewModel
 
 import android.text.Html
 import androidx.lifecycle.MutableLiveData
@@ -6,13 +6,23 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.kodein.di.generic.instance
+import org.sigmapool.common.managers.IPoolInfoManager
 import org.sigmapool.common.models.*
-import org.sigmapool.sigmapool.screens.poolInfo.model.IPoolInfoBtcModel
+import org.sigmapool.sigmapool.App
+import org.sigmapool.sigmapool.provider.lang.ILocaleProvider
+import org.sigmapool.sigmapool.screens.poolInfo.params.PoolInfoItemParams
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class PoolInfoBtcViewModel : ViewModel() {
+class PoolInfoCoinVM(params: PoolInfoItemParams) : ViewModel() {
+
+    private val poolInfoManager by App.kodein.instance<IPoolInfoManager>()
+    private val localeProvider by App.kodein.instance<ILocaleProvider>()
+
+    private val coin = params.coinLabel.toLowerCase()
+
     val fpps = MutableLiveData<String>()
     val pps = MutableLiveData<String>()
     val dailyProfit = MutableLiveData<String>()
@@ -21,15 +31,11 @@ class PoolInfoBtcViewModel : ViewModel() {
     val settlementDetails = MutableLiveData<String>()
     val stratumURLs = MutableLiveData<CharSequence>()
 
-    var model: IPoolInfoBtcModel? = null
-
     suspend fun refreshData() {
-        if (model == null) return
-
-        handlePoolInfoData(model!!.getBtcPoolInfo())
-        handleDailyProfitData(model!!.getDailyProfit("btc")) // TODO: dehardcode "btc" String
-        handlePaymentData(model!!.getPayment("btc")) // TODO: dehardcode "btc" String
-        handleSettlementDetailsData(model!!.getSettlementDetails("btc")) // TODO: you know what to do with that "btc" String
+        handlePoolInfoData(poolInfoManager.getBtcPoolInfo())
+        handleDailyProfitData(poolInfoManager.getDailyProfit(coin))
+        handlePaymentData(poolInfoManager.getPayment(coin))
+        handleSettlementDetailsData(poolInfoManager.getSettlementDetails(coin, localeProvider.getLocale().locale))
     }
 
     private fun handlePoolInfoData(poolInfoBtcDto: ManagerResult<PoolInfoBtcDto>) =
@@ -47,8 +53,6 @@ class PoolInfoBtcViewModel : ViewModel() {
                 }
                 stratumUrl += ""
                 stratumURLs.postValue(Html.fromHtml(stratumUrl))
-            } else {
-                // TODO: error handling
             }
         }
 
@@ -57,8 +61,6 @@ class PoolInfoBtcViewModel : ViewModel() {
             if (dailyProfitDto.success) {
                 val info = dailyProfitDto.data
                 dailyProfit.postValue(String.format("%.8f", (info?.profit)))
-            } else {
-                // TODO: error handling
             }
         }
 
@@ -80,20 +82,14 @@ class PoolInfoBtcViewModel : ViewModel() {
 
                 paymentTime.postValue(String.format("%s-%s", fromStr, toStr))
                 paymentMin.postValue(String.format("%.3f", data?.min))
-            } else {
-                // TODO: error handling
             }
         }
 
     private fun handleSettlementDetailsData(settlementDetailsDto: ManagerResult<SettlementDetailsDto>) =
-        GlobalScope.launch(
-            Dispatchers.Main
-        ) {
+        GlobalScope.launch(Dispatchers.Main) {
             if (settlementDetailsDto.success) {
                 val data = settlementDetailsDto.data
                 settlementDetails.postValue(data?.settlementDetailsText)
-            } else {
-                // TODO: error handling
             }
         }
 }

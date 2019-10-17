@@ -17,5 +17,6 @@
     <dimen name="card_view_no_elevation">0dp</dimen>
     <dimen name="coin_label_height">18dp</dimen>
     <dimen name="coin_icon_margin">12dp</dimen>
+    <dimen name="coin_selector_corner_radius">6dp</dimen>
 
 </resources>

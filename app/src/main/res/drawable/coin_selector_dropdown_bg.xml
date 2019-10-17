@@ -5,7 +5,7 @@
             <corners android:bottomLeftRadius="@dimen/spinner_corner"
                     android:bottomRightRadius="@dimen/spinner_corner" />
 
-            <solid android:color="#1F4D39A5" />
+            <solid android:color="#e9e7f4" />
         </shape>
     </item>
 </selector>

@@ -8,18 +8,14 @@
     <data>
 
         <variable
-                name="titleVm"
-                type="org.sigmapool.common.viewModels.ITitleViewModel"
-                />
-
-        <variable
-                name="currencySwitcherVm"
-                type="org.sigmapool.sigmapool.screens.poolInfo.viewmodel.ICurrencySwitcherViewModel"
-                />
-
-        <variable
                 name="toolbarVm"
                 type="org.sigmapool.sigmapool.utils.interfaces.IBackBtnScreen"
+                />
+
+
+        <variable
+                name="vm"
+                type="org.sigmapool.sigmapool.screens.poolInfo.viewModel.PoolInfoVM"
                 />
     </data>
 
@@ -55,7 +51,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
                 android:fontFamily="@font/google_sans_bold"
-                android:text="@{titleVm.getTitle()}"
+                android:text="@string/pool_info_title"
                 android:textAppearance="@style/ToolbarTitle"
                 android:textSize="19sp"
 
@@ -80,7 +76,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/toolbarTitle"
 
-                app:vm="@{currencySwitcherVm.coinTabVM}"
+                app:vm="@{vm.coinTabVM}"
                 />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

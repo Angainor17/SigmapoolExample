@@ -41,7 +41,7 @@ class CalculatorVM(val view: ICalculatorFragmentModel) : ViewModel(), ITitleView
     val refreshing = liveDataZip(isScreensRefreshing(), refreshingInfo)
     { screenLoading, infoLoading -> screenLoading || infoLoading }
 
-    val calculatorTabVM = CoinTabVM(tabPositionLiveData)
+    val coinVM = CoinTabVM(tabPositionLiveData)
 
     override fun getTitle() = MutableLiveData(resProvider.getString(R.string.calculator))
 

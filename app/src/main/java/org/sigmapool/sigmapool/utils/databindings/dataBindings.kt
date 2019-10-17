@@ -103,11 +103,11 @@ fun viewCalcTabAdapter(
 fun initPoolInfoAdapter(
     view: FragmentViewPager,
     fragmentManager: FragmentManager,
-    fragments: ArrayList<Fragment>
+    fragments: ArrayList<out Fragment>?
 ) {
     view.offscreenPageLimit = 6
     view.adapter = PoolInfoFragmentPagerAdapter(
-        fragments,
+        fragments!!,
         fragmentManager
     )
 }

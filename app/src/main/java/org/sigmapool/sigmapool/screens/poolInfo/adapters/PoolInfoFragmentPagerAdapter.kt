@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
 class PoolInfoFragmentPagerAdapter(
-    private val list: ArrayList<Fragment>,
+    private val list: ArrayList<out Fragment>,
     fm: FragmentManager
 ) :
     FragmentPagerAdapter(fm) {

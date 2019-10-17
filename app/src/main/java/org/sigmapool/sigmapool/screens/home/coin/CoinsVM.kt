@@ -29,7 +29,7 @@ class CoinsVM : ViewModel() {
         vm.viewState.postValue(ViewState.LOADING)
 
         GlobalScope.launch(Dispatchers.IO) {
-            val coin = vm.coinLabel
+            val coin = vm.coinLabel.toLowerCase()
 
             val coinDto = poolManager.getCoin(coin)
             val networkDto = poolManager.getNetwork(coin)
