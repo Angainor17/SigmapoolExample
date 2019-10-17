@@ -37,7 +37,7 @@
                     android:id="@+id/icon"
                     android:layout_width="@dimen/coin_label_height"
                     android:layout_height="@dimen/coin_label_height"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="@dimen/coin_icon_margin"
                     android:clickable="false"
                     android:focusable="false"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -55,14 +55,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:layout_marginEnd="@dimen/coin_icon_margin"
                     android:singleLine="true"
                     android:text="@{text}"
                     android:textColor="@color/white"
 
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/icon"
-                    app:layout_constraintTop_toTopOf="parent"
 
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="@string/btc"
                     />
 

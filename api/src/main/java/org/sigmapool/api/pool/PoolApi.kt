@@ -11,6 +11,10 @@ internal interface PoolApi {
         @Path("coin") coin: String
     ): PayloadModel<CoinResponse>
 
+    @GET("api/v2/coin/list")
+    suspend fun getCoins(
+    ): PayloadModel<CoinListResponse>
+
     @GET("api/v2/{coin}/payment")
     suspend fun getPayment(
         @Path("coin") coin: String

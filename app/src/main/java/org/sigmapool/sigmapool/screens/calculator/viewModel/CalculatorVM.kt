@@ -1,7 +1,10 @@
 package org.sigmapool.sigmapool.screens.calculator.viewModel
 
+
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -10,34 +13,35 @@ import org.sigmapool.common.managers.ICalcManager
 import org.sigmapool.common.viewModels.ITitleViewModel
 import org.sigmapool.sigmapool.App.Companion.kodein
 import org.sigmapool.sigmapool.R
+import org.sigmapool.sigmapool.provider.coin.ICoinProvider
 import org.sigmapool.sigmapool.provider.lang.ILocaleProvider
 import org.sigmapool.sigmapool.provider.res.IResProvider
 import org.sigmapool.sigmapool.screens.bottomSheetScreen.ViewPagerScreen
 import org.sigmapool.sigmapool.screens.calculator.ICalculatorFragmentModel
 import org.sigmapool.sigmapool.screens.calculator.params.CalcItemParams
-import org.sigmapool.sigmapool.screens.home.coin.BTC
-import org.sigmapool.sigmapool.screens.home.coin.LTC
 import org.sigmapool.sigmapool.utils.liveDataZip
 
 class CalculatorVM(val view: ICalculatorFragmentModel) : ViewModel(), ITitleViewModel {
 
-    private val btcCalcItem =
-        CalcItemVM(CalcItemParams(BTC, R.string.t_hashs_per_sec, 1000000000000L))
-    private val ltcCalcItem = CalcItemVM(CalcItemParams(LTC, R.string.m_hashs_per_sec, 1000000L))
+    private val resProvider by kodein.instance<IResProvider>()
+    private val calcManager by kodein.instance<ICalcManager>()
+    private val coinProvider by kodein.instance<ICoinProvider>()
+    private val localeProvider by kodein.instance<ILocaleProvider>()
+
     private val refreshingInfo = MutableLiveData(false)
 
-    val calcItems = arrayListOf(btcCalcItem, ltcCalcItem)
+    val calcItems: LiveData<List<CalcItemVM>> = coinProvider.coins.map {
+        it.map {
+            CalcItemVM(CalcItemParams(it.text, it.unit))
+        }
+    }
     val info = MutableLiveData("")
     val tabPositionLiveData = MutableLiveData(ViewPagerScreen(0))
 
-    val refreshing = liveDataZip(btcCalcItem.refreshing, ltcCalcItem.refreshing, refreshingInfo)
-    { btcLoading, ltcLoading, infoLoading -> btcLoading || ltcLoading || infoLoading }
+    val refreshing = liveDataZip(isScreensRefreshing(), refreshingInfo)
+    { screenLoading, infoLoading -> screenLoading || infoLoading }
 
     val calculatorTabVM = CoinTabVM(tabPositionLiveData)
-
-    private val resProvider by kodein.instance<IResProvider>()
-    private val calcManager by kodein.instance<ICalcManager>()
-    private val localeProvider by kodein.instance<ILocaleProvider>()
 
     override fun getTitle() = MutableLiveData(resProvider.getString(R.string.calculator))
 
@@ -45,9 +49,16 @@ class CalculatorVM(val view: ICalculatorFragmentModel) : ViewModel(), ITitleView
         onRefresh()
     }
 
+    private fun isScreensRefreshing(): LiveData<Boolean> =
+        try {
+            liveDataZip(calcItems.value!!.map { it.refreshing }) { items -> items.any { it } }
+        } catch (e: Exception) {
+            MutableLiveData(false)
+        }
+
     fun onRefresh() {
         initRefreshInfo()
-        calcItems.forEach { it.onRefresh() }
+        calcItems.value?.forEach { it.onRefresh() }
     }
 
     private fun initRefreshInfo() {

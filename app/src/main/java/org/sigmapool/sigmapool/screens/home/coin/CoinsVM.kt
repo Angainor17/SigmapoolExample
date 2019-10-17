@@ -1,5 +1,6 @@
 package org.sigmapool.sigmapool.screens.home.coin
 
+import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -8,23 +9,21 @@ import org.kodein.di.generic.instance
 import org.sigmapool.api.kodein.AUTH_MODE
 import org.sigmapool.common.managers.IPoolManager
 import org.sigmapool.sigmapool.App.Companion.kodein
-import org.sigmapool.sigmapool.R
+import org.sigmapool.sigmapool.provider.coin.ICoinProvider
 import org.sigmapool.sigmapool.utils.interfaces.ViewState
-
 
 class CoinsVM : ViewModel() {
 
-    private val btcCoinVM = CoinItemVM(BTC, R.mipmap.ic_btc)
-    private val ltcCoinVM = CoinItemVM(LTC, R.mipmap.ic_ltc)
+    private val coinProvider by kodein.instance<ICoinProvider>()
 
     private val poolManager by kodein.instance<IPoolManager>(AUTH_MODE)
 
-    init {
-        initItem(btcCoinVM)
-        initItem(ltcCoinVM)
-    }
-
-    fun getCoins() = arrayListOf(btcCoinVM, ltcCoinVM)
+    fun getCoins() =
+        map(coinProvider.coins) {
+            val items = ArrayList(it.map { CoinItemVM(it.text, it.imageUrl) })
+            items.forEach { initItem(it) }
+            items
+        }
 
     private fun initItem(vm: CoinItemVM) {
         vm.viewState.postValue(ViewState.LOADING)
@@ -37,7 +36,12 @@ class CoinsVM : ViewModel() {
             val profitDailyDto = poolManager.getProfitDaily(coin)
 
             if (coinDto.success && networkDto.success && paymentDto.success && profitDailyDto.success) {
-                vm.initVMs(coinDto.data!!, networkDto.data!!, paymentDto.data!!, profitDailyDto.data!!)
+                vm.initVMs(
+                    coinDto.data!!,
+                    networkDto.data!!,
+                    paymentDto.data!!,
+                    profitDailyDto.data!!
+                )
                 vm.viewState.postValue(ViewState.CONTENT)
             } else {
                 vm.viewState.postValue(ViewState.ERROR)

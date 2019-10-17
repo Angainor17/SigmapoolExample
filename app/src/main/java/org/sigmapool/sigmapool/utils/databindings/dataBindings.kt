@@ -11,20 +11,26 @@ import android.widget.Spinner
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 import com.squareup.picasso.Picasso
 import org.sigmapool.common.models.BlogDto
 import org.sigmapool.sigmapool.R
+import org.sigmapool.sigmapool.provider.coin.ICoinProvider
 import org.sigmapool.sigmapool.screens.bottomSheetScreen.ViewPagerAdapter
 import org.sigmapool.sigmapool.screens.bottomSheetScreen.ViewPagerScreen
 import org.sigmapool.sigmapool.screens.calculator.adapter.CalcTabAdapter
 import org.sigmapool.sigmapool.screens.calculator.viewModel.CalcItemVM
+import org.sigmapool.sigmapool.screens.calculator.viewModel.CoinTabVM
 import org.sigmapool.sigmapool.screens.home.adapter.CoinViewPagerAdapter
-import org.sigmapool.sigmapool.screens.home.coin.CoinsVM
+import org.sigmapool.sigmapool.screens.home.coin.CoinItemVM
+import org.sigmapool.sigmapool.screens.home.coin.CoinVm
 import org.sigmapool.sigmapool.screens.poolInfo.adapters.PoolInfoFragmentPagerAdapter
-import org.sigmapool.sigmapool.screens.settings.viewModel.CoinToolbarVM
 import org.sigmapool.sigmapool.screens.workers.adapter.WorkerViewPagerAdapter
 import org.sigmapool.sigmapool.screens.workers.viewModel.WorkersVM
 import org.sigmapool.sigmapool.utils.customViews.slider.MainSliderAdapter
@@ -44,16 +50,35 @@ fun onNavigationItemSelected(
 }
 
 @BindingAdapter("app:initCoinAdapter", "app:fragmentManager", requireAll = true)
-fun initCoinAdapter(viewPager: ViewPager, vm: CoinsVM, fragmentManager: FragmentManager) {
+fun initCoinAdapter(
+    viewPager: ViewPager,
+    coins: ArrayList<CoinItemVM>?,
+    fragmentManager: FragmentManager
+) {
+    if (coins.isNullOrEmpty()) return
+
     viewPager.setPadding(20, 0, 20, 0)
     viewPager.pageMargin = -50
-    viewPager.adapter = CoinViewPagerAdapter(vm.getCoins(), fragmentManager)
+    viewPager.adapter = CoinViewPagerAdapter(coins, fragmentManager)
 }
 
 @BindingAdapter("app:initWorkerAdapter", "app:fragmentManager", requireAll = true)
 fun initWorkerAdapter(view: ViewPager, vm: WorkersVM, fragmentManager: FragmentManager) {
     view.offscreenPageLimit = 4
     view.adapter = WorkerViewPagerAdapter(vm.getWorkerLists(), fragmentManager)
+}
+
+@BindingAdapter("app:coinTabVm")
+fun coinTabVm(view: RecyclerView, vm: CoinTabVM) {
+    if (view.adapter == null) {
+        view.adapter = vm.adapter
+
+        val layoutManager = FlexboxLayoutManager(view.context)
+        layoutManager.flexDirection = FlexDirection.ROW
+        layoutManager.justifyContent = JustifyContent.SPACE_EVENLY
+
+        view.layoutManager = layoutManager
+    }
 }
 
 @BindingAdapter("app:viewPagerAdapter")
@@ -65,10 +90,12 @@ fun viewPagerAdapter(view: FragmentViewPager, fragmentManager: FragmentManager) 
 @BindingAdapter("app:initCalcAdapter", "app:viewCalcTabAdapter")
 fun viewCalcTabAdapter(
     view: FragmentViewPager,
-    items: ArrayList<CalcItemVM>,
+    items: List<CalcItemVM>?,
     fragmentManager: FragmentManager
 ) {
-    view.offscreenPageLimit = 2
+    if(items.isNullOrEmpty()) return
+
+    view.offscreenPageLimit = 6
     view.adapter = CalcTabAdapter(items, fragmentManager)
 }
 
@@ -78,7 +105,7 @@ fun initPoolInfoAdapter(
     fragmentManager: FragmentManager,
     fragments: ArrayList<Fragment>
 ) {
-    view.offscreenPageLimit = 2
+    view.offscreenPageLimit = 6
     view.adapter = PoolInfoFragmentPagerAdapter(
         fragments,
         fragmentManager
@@ -112,6 +139,13 @@ fun isWrapHeightEnabled(view: FragmentViewPager, isWrapHeightEnabled: Boolean) {
 @BindingAdapter("bind:pager")
 fun bindViewPagerTabs(view: TabLayout, pagerView: ViewPager) {
     view.setupWithViewPager(pagerView, true)
+}
+
+@BindingAdapter("app:src")
+fun loadIcon(view: ImageView, url: String?) {
+    if (!url.isNullOrEmpty()) {
+        Picasso.get().load(url).into(view)
+    }
 }
 
 @BindingAdapter("app:loadMinerIcon")
@@ -167,9 +201,9 @@ private fun createAnimation(): Animation {
     return anim
 }
 
-@BindingAdapter("bind:initCoinSpinner")
-fun initCoinSpinner(spinner: Spinner, vm: CoinToolbarVM) {
-    val adapter = CustomAdapter(spinner, vm, vm.coinProvider.coins)
+@BindingAdapter("bind:initCoinSpinner", "bind:initCoins")
+fun initCoinSpinner(spinner: Spinner, coinProvider: ICoinProvider, coins: ArrayList<CoinVm>) {
+    val adapter = CustomAdapter(spinner, coinProvider, coins)
     spinner.adapter = adapter
 }
 

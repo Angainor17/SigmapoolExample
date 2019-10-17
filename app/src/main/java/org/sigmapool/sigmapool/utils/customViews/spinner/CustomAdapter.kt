@@ -1,6 +1,5 @@
 package org.sigmapool.sigmapool.utils.customViews.spinner
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,20 +8,18 @@ import android.widget.BaseAdapter
 import android.widget.Spinner
 import org.sigmapool.sigmapool.databinding.CoinSelectorBinding
 import org.sigmapool.sigmapool.databinding.CoinSelectorDropdownBinding
+import org.sigmapool.sigmapool.provider.coin.ICoinProvider
 import org.sigmapool.sigmapool.screens.home.coin.CoinVm
-import org.sigmapool.sigmapool.screens.settings.viewModel.CoinToolbarVM
 
 class CustomAdapter(
     private val spinner: Spinner,
-    private val vm: CoinToolbarVM,
+    private val coinProvider: ICoinProvider,
     private val coins: ArrayList<CoinVm>
 ) : BaseAdapter() {
 
     init {
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                Log.d("", "")
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) = Unit
 
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -31,19 +28,10 @@ class CustomAdapter(
                 id: Long
             ) {
                 val selectedItem = coins[position]
-                vm.coinProvider.onCoinSelected(selectedItem)
+                coinProvider.onCoinSelected(selectedItem)
 
-                val firstItem = coins[0]
-                val lastItem = coins[1]
-
-                coins.clear()
-                if (position == 0) {
-                    coins.add(firstItem)
-                    coins.add(lastItem)
-                } else {
-                    coins.add(lastItem)
-                    coins.add(firstItem)
-                }
+                coins.remove(selectedItem)
+                coins.add(0, selectedItem)
                 spinner.setSelection(0)
                 notifyDataSetChanged()
             }
@@ -71,7 +59,7 @@ class CustomAdapter(
 
     private fun getCustomView(viewGroup: ViewGroup?, i: Int): View {
         val binding = CoinSelectorBinding.inflate(inflater, viewGroup, false)
-        binding.setIcon(coins[i].imageResId)
+        binding.setIcon(coins[i].imageUrl)
         binding.setText(coins[i].text)
 
         return binding.root
@@ -79,7 +67,7 @@ class CustomAdapter(
 
     private fun getCustomViewUnselected(viewGroup: ViewGroup?, i: Int): View {
         val binding = CoinSelectorDropdownBinding.inflate(inflater, viewGroup, false)
-        binding.setIcon(coins[i].imageResId)
+        binding.setIcon(coins[i].imageUrl)
         binding.setText(coins[i].text)
 
         return binding.root

@@ -1,6 +1,5 @@
 package org.sigmapool.sigmapool.screens.home.coin
 
-import androidx.annotation.DrawableRes
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +18,7 @@ import org.sigmapool.sigmapool.utils.interfaces.StateVM
 import org.sigmapool.sigmapool.utils.interfaces.ViewState
 import kotlin.math.abs
 
-class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewModel(),
+class CoinItemVM(val coinLabel: String,  val iconUrl: String) : ViewModel(),
     StateVM {
 
     private val resProvider by kodein.instance<IResProvider>()
@@ -55,7 +54,7 @@ class CoinItemVM(val coinLabel: String, @DrawableRes val iconRes: Int) : ViewMod
     }
 
     fun initVMs(
-        coinDto: CoinDto,
+        coinDto: CoinInfoDto,
         networkDto: NetworkDto,
         paymentDto: PaymentDto,
         profitDailyDto: ProfitDailyDto

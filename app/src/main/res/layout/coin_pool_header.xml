@@ -40,9 +40,7 @@
                     app:layout_constraintStart_toStartOf="parent"
 
                     app:layout_constraintTop_toTopOf="parent"
-                    app:src="@{vm.iconRes}"
-
-                    tools:src="@mipmap/ic_btc"
+                    app:src="@{vm.iconUrl}"
                     />
 
             <TextView

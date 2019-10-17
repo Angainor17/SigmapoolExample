@@ -51,7 +51,8 @@
                 android:popupBackground="@drawable/spinner_selector_bg"
                 android:spinnerMode="dropdown"
 
-                app:initCoinSpinner="@{vm}"
+                app:initCoinSpinner="@{vm.coinProvider}"
+                app:initCoins="@{vm.coinProvider.coins}"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

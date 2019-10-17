@@ -11,7 +11,7 @@ import org.kodein.di.generic.instance
 import org.sigmapool.api.kodein.AUTH_MODE
 import org.sigmapool.common.managers.IMinerManager
 import org.sigmapool.common.managers.IPoolManager
-import org.sigmapool.common.models.CoinDto
+import org.sigmapool.common.models.CoinInfoDto
 import org.sigmapool.sigmapool.App.Companion.kodein
 import org.sigmapool.sigmapool.provider.currency.ICurrencyProvider
 import org.sigmapool.sigmapool.screens.home.coin.BTC
@@ -32,7 +32,7 @@ class MiningProfitListVM(params: MinerListParams = MinerListParams()) : ViewMode
     private val seekBarVM = SeekBarVM(MutableLiveData(currencyProvider.getCurrency().params))
     val minerAdapter = MiningListAdapter(MinerHeaderVM(seekBarVM), MinerBindingHelper())
 
-    private var coinInfo: CoinDto? = null
+    private var coinInfo: CoinInfoDto? = null
 
     val seekBarLiveData = Transformations.map(seekBarVM.seekBarValueLiveData) { value ->
         GlobalScope.launch(Dispatchers.Default) {
@@ -56,7 +56,7 @@ class MiningProfitListVM(params: MinerListParams = MinerListParams()) : ViewMode
         initCoinValue()
     }
 
-    private fun setCoin(coin: CoinDto) {
+    private fun setCoin(coin: CoinInfoDto) {
         coinInfo = coin
         jsonDataStorage.put(COIN_TAG, coin)
         minerAdapter.coinInfo = coinInfo
@@ -87,7 +87,7 @@ class MiningProfitListVM(params: MinerListParams = MinerListParams()) : ViewMode
     private fun initCoinValue() {
         val json = jsonDataStorage.getJson(COIN_TAG, "")
         if (!json.isNullOrEmpty()) {
-            val coinDto: CoinDto = Gson().fromJson(json, CoinDto::class.java)
+            val coinDto: CoinInfoDto = Gson().fromJson(json, CoinInfoDto::class.java)
             setCoin(coinDto)
             setCoinValue(coinDto.price)
             return

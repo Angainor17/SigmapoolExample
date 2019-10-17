@@ -28,6 +28,10 @@ open class FragmentViewPager : ViewPager {
 
         if (!isWrapHeightEnabled) return
 
+        if (adapter == null) {
+            return
+        }
+
         val currentView = if (adapter is FragmentPagerAdapter)
             (adapter as FragmentPagerAdapter).getItem(0).view else {
             (adapter as FragmentStatePagerAdapter).getItem(0).view
@@ -41,6 +45,5 @@ open class FragmentViewPager : ViewPager {
             )
             return
         }
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
 }

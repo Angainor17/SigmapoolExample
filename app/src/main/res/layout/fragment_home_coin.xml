@@ -32,7 +32,7 @@
                 android:clipToPadding="false"
 
                 app:fragmentManager="@{fragmentManager}"
-                app:initCoinAdapter="@{vm}"
+                app:initCoinAdapter="@{vm.coins}"
 
                 app:isPagingEnabled="@{true}"
                 app:isWrapHeightEnabled="@{true}"

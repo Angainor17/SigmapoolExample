@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 import org.sigmapool.api.kodein.AUTH_MODE
 import org.sigmapool.common.managers.IPoolManager
-import org.sigmapool.common.models.CoinDto
+import org.sigmapool.common.models.CoinInfoDto
 import org.sigmapool.common.models.NetworkDto
 import org.sigmapool.common.models.ProfitDailyDto
 import org.sigmapool.common.utils.*
@@ -46,14 +46,13 @@ class CalcItemVM(
     val blockReward = MutableLiveData<CharSequence>(formatBlockReward(0f))
     val topLine = CalcValueVM(
         res.getString(R.string.hashrate),
-        res.getString(params.hashLabelRes),
+        params.hashLabel,
         ""
     )
 
     val bottomLine = CalcValueVM(
         res.getString(R.string.profit),
         coinLabel.toUpperCase() + res.getString(R.string.per_day),
-
         "",
         formatPrice(0.0f)
     )
@@ -157,7 +156,7 @@ class CalcItemVM(
         }
     }
 
-    private fun initViews(coin: CoinDto?, network: NetworkDto?) {
+    private fun initViews(coin: CoinInfoDto?, network: NetworkDto?) {
         currentPrice.postValue(formatCurrentPrice(coin?.price ?: 0f))
         difficulty.postValue(formatDifficulty(network?.networkDifficulty?.toLong() ?: 0L))
         blockReward.postValue(formatBlockReward(network?.blockReward ?: 0f))

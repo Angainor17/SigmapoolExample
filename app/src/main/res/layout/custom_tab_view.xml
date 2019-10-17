@@ -8,67 +8,23 @@
 
         <variable
                 name="vm"
-                type="org.sigmapool.sigmapool.utils.customViews.viewPager.AbstractCustomTabView"
+                type="org.sigmapool.sigmapool.screens.calculator.viewModel.CoinTabVM"
                 />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+    <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/transparent"
+            android:orientation="vertical"
             >
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/leftContainer"
-
-                android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/left_tab_bg"
-                android:onClick="@{()->vm.leftClickAction()}"
 
-                app:onActivatedChange="@{vm.leftTab.activatedLiveData}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintEnd_toStartOf="@+id/rightContainer"
-                >
+                app:coinTabVm="@{vm}"
+                />
 
-            <include
-                    layout="@layout/custom_tab_view_item"
-
-                    app:vm="@{vm.leftTab}"
-                    />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/rightContainer"
-
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/right_tab_bg"
-                android:onClick="@{()->vm.rightClickAction()}"
-
-                app:onActivatedChange="@{vm.rightTab.activatedLiveData}"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/leftContainer"
-                app:layout_constraintHorizontal_bias="0.5"
-                >
-
-            <include
-                    layout="@layout/custom_tab_view_item"
-
-                    app:vm="@{vm.rightTab}"
-                    />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </layout>

@@ -19,6 +19,6 @@ class CoinViewPagerAdapter(
 
     override fun getItem(position: Int): Fragment = fragment[position]
 
-    override fun getCount(): Int = items.size
+    override fun getCount(): Int = fragment.size
 
 }

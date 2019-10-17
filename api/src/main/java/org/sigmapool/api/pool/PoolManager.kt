@@ -5,10 +5,10 @@ import org.sigmapool.common.models.*
 
 internal class PoolManager(private val service: IPoolService) : IPoolManager {
 
-    override suspend fun getCoin(coin: String): ManagerResult<CoinDto> = try {
-        val coinResponse = service.getCoin(coin)
+    override suspend fun getCoin(coin: String): ManagerResult<CoinInfoDto> = try {
+        val coinResponse = service.getCoin(coin.toLowerCase())
         ManagerResult(
-            CoinDto(
+            CoinInfoDto(
                 coinResponse.poolHashrate,
                 coinResponse.poolWorkers,
                 coinResponse.payoutScheme,
@@ -19,6 +19,22 @@ internal class PoolManager(private val service: IPoolService) : IPoolManager {
     } catch (e: Throwable) {
         ManagerResult(error = e.message)
     }
+
+    override suspend fun getCoins(): ManagerResult<ArrayList<CoinDto>> = try {
+        val response = service.getCoins()
+        ManagerResult(
+            ArrayList(response.map {
+                CoinDto(
+                    it.code,
+                    it.icon,
+                    it.unit
+                )
+            })
+        )
+    } catch (e: Throwable) {
+        ManagerResult(error = e.message)
+    }
+
 
     override suspend fun getPayment(coin: String): ManagerResult<PaymentDto> = try {
         val response = service.getPayment(coin)
@@ -33,7 +49,7 @@ internal class PoolManager(private val service: IPoolService) : IPoolManager {
     }
 
     override suspend fun getNetwork(coin: String): ManagerResult<NetworkDto> = try {
-        val response = service.getNetwork(coin)
+        val response = service.getNetwork(coin.toUpperCase())
         ManagerResult(
             NetworkDto(
                 response.blockReward,
@@ -50,7 +66,7 @@ internal class PoolManager(private val service: IPoolService) : IPoolManager {
     }
 
     override suspend fun getProfitDaily(coin: String): ManagerResult<ProfitDailyDto> = try {
-        val response = service.getProfitDaily(coin)
+        val response = service.getProfitDaily(coin.toLowerCase())
         ManagerResult(ProfitDailyDto(response.profit))
     } catch (e: Throwable) {
         ManagerResult(error = e.message)

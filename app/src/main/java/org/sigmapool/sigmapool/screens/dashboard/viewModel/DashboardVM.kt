@@ -43,8 +43,9 @@ class DashboardVM : AuthVm() {
     private fun refreshAllData() {
         isLoading.postValue(true)
 
-        val coin = coinProvider.getLabel().toLowerCase()
         mainJob = GlobalScope.launch(Dispatchers.IO) {
+            val coin = coinProvider.getLabel().toLowerCase()
+
             val chartInfoDeferred = async(Dispatchers.IO) { initChartInfo(coin) }
             val subAccountsDeferred = async(Dispatchers.IO) { initSubAccounts(coin) }
             val networkDeferred = async(Dispatchers.IO) { initNetwork(coin) }

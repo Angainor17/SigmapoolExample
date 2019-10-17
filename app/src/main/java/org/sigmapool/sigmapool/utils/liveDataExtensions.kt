@@ -86,3 +86,32 @@ fun <T1, T2, T3, R> liveDataZip(
         }
     }
 }
+
+fun <T, R> liveDataZip(
+    liveItems: List<LiveData<T>>,
+    zipper: (List<T>) -> R
+): LiveData<R> {
+
+    return MediatorLiveData<R>().apply {
+        var srcVersions = MutableList(liveItems.size) { 0 }
+        val lastSrcs = MutableList<T?>(liveItems.size) { null }
+
+        fun updateValueIfNeeded() {
+            if (srcVersions.all { it > 0 } && lastSrcs.all { it != null }) {
+                val arrayList = ArrayList<LiveData<T>>()
+                repeat(liveItems.size) { arrayList.addAll(liveItems) }
+                value = zipper(arrayList as List<T>)
+
+                srcVersions = MutableList(liveItems.size) { 0 }
+            }
+        }
+
+        liveItems.forEachIndexed { index, item ->
+            addSource(item) {
+                lastSrcs[index] = it
+                srcVersions[index]++
+                updateValueIfNeeded()
+            }
+        }
+    }
+}

@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import org.sigmapool.common.listLibrary.IItemBindingHelper
 import org.sigmapool.common.listLibrary.pagedlist.SimpleAdapter
-import org.sigmapool.common.models.CoinDto
+import org.sigmapool.common.models.CoinInfoDto
 import org.sigmapool.sigmapool.R
 import org.sigmapool.sigmapool.screens.miningProfit.viewModels.MinerHeaderVM
 import org.sigmapool.sigmapool.screens.miningProfit.viewModels.MinerItemVM
@@ -23,7 +23,7 @@ class MiningListAdapter(
 
     var maxItemsCount: Int = -1
     private var powerCostTv: TextView? = null
-    var coinInfo: CoinDto? = null
+    var coinInfo: CoinInfoDto? = null
 
     override fun addItems(newItems: List<MinerItemVM>) {
         newItems.forEach {

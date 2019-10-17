@@ -1,13 +1,13 @@
 package org.sigmapool.sigmapool.screens.calculator.viewModel
 
-import androidx.annotation.DrawableRes
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class CalcTabItemVM(
     val text: String,
-    @DrawableRes val icon: Int,
-    val activatedLiveData: MutableLiveData<Boolean>
+    val iconUrl: LiveData<String>,
+    val activatedLiveData: MutableLiveData<Boolean> = MutableLiveData(false)
 ) : ViewModel() {
 
     fun value() = activatedLiveData.value

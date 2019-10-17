@@ -7,15 +7,37 @@ import java.util.*
 
 internal class StubPoolManager(private val context: Context) : IPoolManager {
 
-    override suspend fun getCoin(coin: String): ManagerResult<CoinDto> {
+    override suspend fun getCoin(coin: String): ManagerResult<CoinInfoDto> {
         return ManagerResult(
-            CoinDto(123123123123123, 12, arrayListOf("PPS", "PTS"), 11432f, 11000f)
+            CoinInfoDto(123123123123123, 12, arrayListOf("PPS", "PTS"), 11432f, 11000f)
         )
     }
 
     override suspend fun getPayment(coin: String): ManagerResult<PaymentDto> {
         return ManagerResult(
             PaymentDto(TimeIntervalDto(Date(Date().time - 3 * 60 * 60 * 1000), Date()), 0.01f)
+        )
+    }
+
+    override suspend fun getCoins(): ManagerResult<ArrayList<CoinDto>> {
+        return ManagerResult(
+            arrayListOf(
+                CoinDto(
+                    "bsv",
+                    "http://api.sigmapool.com/img/coins/bsv.png",
+                    "TH/s"
+                ),
+                CoinDto(
+                    "btc",
+                    "http://api.sigmapool.com/img/coins/btc.png",
+                    "TH/s"
+                ),
+                CoinDto(
+                    "ltc",
+                    "http://api.sigmapool.com/img/coins/ltc.png",
+                    "MH/s"
+                )
+            )
         )
     }
 

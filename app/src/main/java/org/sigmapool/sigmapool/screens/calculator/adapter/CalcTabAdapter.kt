@@ -6,7 +6,7 @@ import org.sigmapool.sigmapool.screens.calculator.CalcItemFragment
 import org.sigmapool.sigmapool.screens.calculator.viewModel.CalcItemVM
 
 class CalcTabAdapter(
-    private val items: ArrayList<CalcItemVM>,
+    private val items: List<CalcItemVM>,
     fragmentManager: FragmentManager
 ) : FragmentPagerAdapter(fragmentManager) {
 

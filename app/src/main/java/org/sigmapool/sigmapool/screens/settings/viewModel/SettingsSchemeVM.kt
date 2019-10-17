@@ -8,7 +8,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 import org.sigmapool.common.managers.IPoolManager
-import org.sigmapool.common.models.CoinDto
+import org.sigmapool.common.models.CoinInfoDto
 import org.sigmapool.sigmapool.App.Companion.kodein
 import org.sigmapool.sigmapool.R
 import org.sigmapool.sigmapool.provider.coin.ICoinProvider
@@ -24,7 +24,7 @@ class SettingsSchemeVM(
     private val resProvider by kodein.instance<IResProvider>()
     private val poolManager by kodein.instance<IPoolManager>(getManagerMode())
 
-    private var coinDto: CoinDto? = null
+    private var coinDto: CoinInfoDto? = null
 
     val schemeLiveData = MutableLiveData("")
 

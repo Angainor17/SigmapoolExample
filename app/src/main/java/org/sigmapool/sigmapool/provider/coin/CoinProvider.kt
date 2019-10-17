@@ -1,25 +1,55 @@
 package org.sigmapool.sigmapool.provider.coin
 
+import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
-import org.sigmapool.sigmapool.App
-import org.sigmapool.sigmapool.R
-import org.sigmapool.sigmapool.provider.res.IResProvider
+import org.sigmapool.api.kodein.AUTH_MODE
+import org.sigmapool.common.managers.IPoolManager
+import org.sigmapool.sigmapool.App.Companion.kodein
 import org.sigmapool.sigmapool.screens.home.coin.CoinVm
 
 class CoinProvider : ICoinProvider {
 
-    private val resProvider by App.kodein.instance<IResProvider>()
+    private val poolManager by kodein.instance<IPoolManager>(AUTH_MODE)
 
-    private val ltcCoin = CoinVm(resProvider.getString(R.string.ltc), R.mipmap.ic_ltc)
-    private val btcCoin = CoinVm(resProvider.getString(R.string.btc), R.mipmap.ic_btc)
+    override val coins = MutableLiveData(ArrayList<CoinVm>())
 
-    override val coins = arrayListOf(btcCoin, ltcCoin)
-
-    private var selectedCoin = btcCoin
+    private var selectedCoin: CoinVm? = null
 
     private var listener: ((String) -> Unit)? = null
 
-    override fun getLabel(): String = selectedCoin.text
+    init {
+        getCoinsFromApi()
+        getCoinsFromCache()
+    }
+
+    private fun getCoinsFromCache() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    private fun getCoinsFromApi() {
+        GlobalScope.launch(Dispatchers.Default) {
+            val result = poolManager.getCoins()//FIXME add cache
+            if (result.success) {
+                coins.postValue(ArrayList(result.data!!.map {
+                    CoinVm(
+                        it.code.toUpperCase(),
+                        it.icon,
+                        it.unit
+                    )
+                }))
+
+            }
+        }
+    }
+
+    override fun getLabel(): String = selectedCoin?.text ?: ""
+
+    override suspend fun getLabelAwait(): String {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun addOnChangeListener(listener: (String) -> Unit) {
         this.listener = listener

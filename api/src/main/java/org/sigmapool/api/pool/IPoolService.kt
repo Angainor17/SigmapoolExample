@@ -10,6 +10,8 @@ internal interface IPoolService {
     suspend fun getProfitDaily(coin: String): ProfitDailyResponse
     suspend fun getCurrency(coin: String): CurrencyResponse
 
+    suspend fun getCoins(): ArrayList<CoinModelResponse>
+
     suspend fun getScheme(coin: String): SchemeResponse
     suspend fun setScheme(coin: String, scheme: String): SchemeResponse
 
