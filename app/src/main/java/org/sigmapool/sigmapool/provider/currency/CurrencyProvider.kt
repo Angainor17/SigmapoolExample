@@ -98,7 +98,7 @@ class CurrencyProvider : ICurrencyProvider {
     }
 
     private fun initValues() {
-        CoinStorage.getCoins().forEach {
+        CoinStorage.getCoins()?.forEach {
             initCurrencyDto(it.text.toLowerCase())
         }
     }

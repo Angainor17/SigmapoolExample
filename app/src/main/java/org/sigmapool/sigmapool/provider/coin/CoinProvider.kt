@@ -28,37 +28,19 @@ class CoinProvider : ICoinProvider {
         coins.postValue(newList)
     }
 
-    override suspend fun init() {
+    override suspend fun init(): Boolean {
         val result = poolManager.getCoins()
         if (result.success) {
-            result.data!!.toCoinVmList()
+            val newList = result.data!!.toCoinVmList()
+            CoinStorage.saveCoins(newList)
+            initList(newList)
         } else {
-            thro
+            val savedList = CoinStorage.getCoins()
+            if (savedList.isNullOrEmpty()) return false
+            initList(savedList)
         }
-        val savedList = CoinStorage.getCoins()
-        if (savedList.isNullOrEmpty()) {
-
-        }
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return true
     }
-
-    private fun getCoinsFromCache() = CoinStorage.getCoins()
-
-//    private suspend fun getCoinsFromApi(): ArrayList<CoinVm> {
-//        val result = poolManager.getCoins()
-//        if (result.success) {
-//            val newItems = ArrayList(result.data!!.map {
-//                CoinVm(
-//                    it.code.toUpperCase(),
-//                    it.icon,
-//                    it.unit
-//                )
-//            })
-//            CoinStorage.saveCoins(newItems)
-//            return newItems
-//        }
-//        return ArrayList()
-//    }
 
     override fun getLabel(): String = selectedCoin?.text ?: ""
 
@@ -75,12 +57,12 @@ class CoinProvider : ICoinProvider {
 }
 
 fun ArrayList<CoinDto>.toCoinVmList(): ArrayList<CoinVm> {
-    return this.map {
+    return ArrayList(this.map {
         CoinVm(
             it.code.toUpperCase(),
             it.icon,
             it.unit
         )
-    }
+    })
 }
 

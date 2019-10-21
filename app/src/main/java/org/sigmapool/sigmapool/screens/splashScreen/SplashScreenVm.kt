@@ -28,9 +28,13 @@ class SplashScreenVm(val view: ISplashScreenVIew) : ViewModel() {
 
     private fun getInitData() {
         GlobalScope.launch(Dispatchers.IO) {
-            val coinDeferred = async { coinProvider.init()}
+            var coinResult = true
+            val coinDeferred = async { coinResult = coinProvider.init() }
 
             coinDeferred.await()
+            if (!coinResult) {
+                view.startBaseApp()
+            }
         }
     }
 }

@@ -13,6 +13,6 @@ interface ICoinProvider {
 
     fun onCoinSelected(coin: CoinVm)
 
-    suspend fun init()
+    suspend fun init(): Boolean
 
 }
