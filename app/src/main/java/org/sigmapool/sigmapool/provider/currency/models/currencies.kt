@@ -3,8 +3,6 @@ package org.sigmapool.sigmapool.provider.currency.models
 import android.text.Html
 import org.sigmapool.common.models.CurrencyDto
 import org.sigmapool.sigmapool.R
-import org.sigmapool.sigmapool.screens.home.coin.BTC
-import org.sigmapool.sigmapool.screens.home.coin.LTC
 
 const val RUB_CODE = "rub"
 const val USD_CODE = "usd"
@@ -37,7 +35,6 @@ val usdCurrency = AppCurrency(
     )
 )
 
-val currencies = mutableMapOf(
-    BTC to CurrencyDto(),
-    LTC to CurrencyDto()
-)
+val currencies = mutableMapOf<String, CurrencyDto>()
+//    BTC to CurrencyDto(),
+//    LTC to CurrencyDto()

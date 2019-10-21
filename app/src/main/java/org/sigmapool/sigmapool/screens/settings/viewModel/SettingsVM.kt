@@ -48,7 +48,7 @@ class SettingsVM(private val view: ISettingsView) : AuthVm(), IUpdateScreenVm,
 
     val localeLiveData = MutableLiveData(resProvider.getString(selectedLang.labelResId))
     val currencyLiveData =
-        MutableLiveData(resProvider.getString(currencyProvider.getCurrency().labelResId))
+        MutableLiveData(resProvider.getString(currencyProvider.getCurrency().label))
 
     val isLoginLiveData = MutableLiveData(false)
 
@@ -108,7 +108,7 @@ class SettingsVM(private val view: ISettingsView) : AuthVm(), IUpdateScreenVm,
         val selectedCurrency = if (option.id == R.id.currency_rub) rubCurrency else usdCurrency
 
         currencyProvider.setCurrency(selectedCurrency)
-        currencyLiveData.postValue(resProvider.getString(selectedCurrency.labelResId))
+        currencyLiveData.postValue(resProvider.getString(selectedCurrency.label))
         view.recreate()
     }
 

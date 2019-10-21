@@ -18,7 +18,7 @@
             tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-                android:name="org.sigmapool.sigmapool.screens.bottomSheetScreen.BottomNavActivity"
+                android:name=".screens.splashScreen.SplashScreenActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar"
 
@@ -29,6 +29,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+                android:name=".screens.bottomSheetScreen.BottomNavActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.NoActionBar"
+                />
 
         <activity
                 android:name="org.sigmapool.sigmapool.navigation.ContainerActivity"

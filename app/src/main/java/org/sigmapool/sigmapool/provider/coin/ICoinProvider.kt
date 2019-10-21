@@ -9,10 +9,10 @@ interface ICoinProvider {
 
     fun getLabel(): String
 
-    suspend fun getLabelAwait(): String
-
     fun addOnChangeListener(listener: (String) -> Unit)
 
     fun onCoinSelected(coin: CoinVm)
+
+    suspend fun init()
 
 }

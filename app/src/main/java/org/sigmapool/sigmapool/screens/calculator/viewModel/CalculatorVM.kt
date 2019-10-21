@@ -3,6 +3,7 @@ package org.sigmapool.sigmapool.screens.calculator.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import kotlinx.coroutines.Dispatchers
@@ -58,7 +59,9 @@ class CalculatorVM(val view: ICalculatorFragmentModel) : ViewModel(), ITitleView
 
     fun onRefresh() {
         initRefreshInfo()
-        calcItems.value?.forEach { it.onRefresh() }
+        map(calcItems){it.forEach {
+            it.onRefresh()
+        }}
     }
 
     private fun initRefreshInfo() {

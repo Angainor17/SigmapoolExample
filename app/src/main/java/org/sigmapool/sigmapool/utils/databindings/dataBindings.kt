@@ -9,7 +9,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
 import androidx.databinding.BindingAdapter
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
@@ -31,6 +30,7 @@ import org.sigmapool.sigmapool.screens.home.adapter.CoinViewPagerAdapter
 import org.sigmapool.sigmapool.screens.home.coin.CoinItemVM
 import org.sigmapool.sigmapool.screens.home.coin.CoinVm
 import org.sigmapool.sigmapool.screens.poolInfo.adapters.PoolInfoFragmentPagerAdapter
+import org.sigmapool.sigmapool.screens.poolInfo.fragments.PoolInfoPageFragment
 import org.sigmapool.sigmapool.screens.workers.adapter.WorkerViewPagerAdapter
 import org.sigmapool.sigmapool.screens.workers.viewModel.WorkersVM
 import org.sigmapool.sigmapool.utils.customViews.slider.MainSliderAdapter
@@ -103,7 +103,7 @@ fun viewCalcTabAdapter(
 fun initPoolInfoAdapter(
     view: FragmentViewPager,
     fragmentManager: FragmentManager,
-    fragments: ArrayList<out Fragment>?
+    fragments: ArrayList<PoolInfoPageFragment>?
 ) {
     view.offscreenPageLimit = 6
     view.adapter = PoolInfoFragmentPagerAdapter(

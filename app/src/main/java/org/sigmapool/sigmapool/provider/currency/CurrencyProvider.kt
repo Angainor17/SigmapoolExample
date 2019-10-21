@@ -10,9 +10,9 @@ import org.sigmapool.common.managers.IPoolManager
 import org.sigmapool.common.models.CurrencyDto
 import org.sigmapool.sigmapool.App.Companion.kodein
 import org.sigmapool.sigmapool.R
+import org.sigmapool.sigmapool.provider.coin.CoinStorage
 import org.sigmapool.sigmapool.provider.currency.models.*
-import org.sigmapool.sigmapool.screens.home.coin.BTC
-import org.sigmapool.sigmapool.screens.home.coin.LTC
+import org.sigmapool.sigmapool.screens.miningProfit.viewModels.BTC
 import org.sigmapool.sigmapool.utils.storages.JsonDataStorage
 
 const val CURRENCY_KEY = "currency"
@@ -39,8 +39,8 @@ class CurrencyProvider : ICurrencyProvider {
     }
 
     override fun fromUsdToCurrency(value: Float): Float {
-        val currencyDto = currencies[BTC]!!
-        if (selectedCurrency.labelResId == usdCurrency.labelResId || currencyDto.usd == 0f) return value
+        val currencyDto = currencyDto(BTC)!!
+        if (selectedCurrency.label == usdCurrency.label || currencyDto.usd == 0f) return value
 
         return (value / currencyDto.usd) * currencyDto.rub
     }
@@ -48,7 +48,7 @@ class CurrencyProvider : ICurrencyProvider {
     override fun fromCoinToCurrency(coin: String, coinValue: Float): Float {
         initValues()
 
-        return coinValue * getCurrencyPrice(currencies[coin]!!)
+        return coinValue * getCurrencyPrice(currencyDto(coin)!!)
     }
 
     private fun initCurrency() {
@@ -61,7 +61,7 @@ class CurrencyProvider : ICurrencyProvider {
     }
 
     private fun initCurrencyDto(coin: String) {
-        if (currencies[coin]?.usd ?: 0f != 0f) return
+        if (currencyDto(coin)?.usd ?: 0f != 0f) return
 
         GlobalScope.launch(Dispatchers.IO) {
             val result = poolManager.getCurrency(coin)
@@ -70,6 +70,10 @@ class CurrencyProvider : ICurrencyProvider {
                 currencies[coin] = result.data!!
             }
         }
+    }
+
+    private fun currencyDto(coin: String): CurrencyDto? {
+        return currencies[coin] ?: CurrencyDto()
     }
 
     private fun getCurrencyPrice(currencyDto: CurrencyDto) =
@@ -82,7 +86,7 @@ class CurrencyProvider : ICurrencyProvider {
         val json = jsonDataStorage.getJson(CURRENCY_KEY, "")
         val appCurrency = Gson().fromJson(json, AppCurrency::class.java)
 
-        appCurrency?.labelResId = when (appCurrency.code) {
+        appCurrency?.label = when (appCurrency.code) {
             RUB_CODE -> R.string.rub
             USD_CODE -> R.string.usd
             else -> R.string.usd
@@ -94,7 +98,8 @@ class CurrencyProvider : ICurrencyProvider {
     }
 
     private fun initValues() {
-        initCurrencyDto(BTC)
-        initCurrencyDto(LTC)
+        CoinStorage.getCoins().forEach {
+            initCurrencyDto(it.text.toLowerCase())
+        }
     }
 }

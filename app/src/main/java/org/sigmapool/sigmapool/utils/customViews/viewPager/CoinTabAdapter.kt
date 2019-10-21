@@ -23,11 +23,10 @@ class CoinTabAdapter(
     var selectedItemPosition = 0
         set(value) {
             field = value
-            tabPositionLiveData.postValue(ViewPagerScreen(value))
             notifyDataSetChanged()
+            tabPositionLiveData.postValue(ViewPagerScreen(value))
         }
 
-    var coinsCount = 0
     var coins = ArrayList<CalcTabItemVM>()
 
     init {
@@ -35,10 +34,7 @@ class CoinTabAdapter(
             coins.clear()
             coins.addAll(
                 it.map {
-                    CalcTabItemVM(
-                        it.text,
-                        MutableLiveData(it.imageUrl)
-                    )
+                    CalcTabItemVM(it.text, MutableLiveData(it.imageUrl))
                 }
             )
 
@@ -46,7 +42,6 @@ class CoinTabAdapter(
                 coins[0].activatedLiveData.postValue(true)
             }
 
-            coinsCount = it.size
             notifyDataSetChanged()
         }
     }
@@ -55,7 +50,7 @@ class CoinTabAdapter(
         return if (position == selectedItemPosition) SELECTED_ITEM else UN_SELECTED_ITEM
     }
 
-    override fun getItemCount(): Int = coinsCount
+    override fun getItemCount(): Int = coins.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val layoutInflater = LayoutInflater.from(parent.context)

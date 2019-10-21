@@ -14,13 +14,14 @@ import org.sigmapool.common.managers.IPoolManager
 import org.sigmapool.common.models.CoinInfoDto
 import org.sigmapool.sigmapool.App.Companion.kodein
 import org.sigmapool.sigmapool.provider.currency.ICurrencyProvider
-import org.sigmapool.sigmapool.screens.home.coin.BTC
 import org.sigmapool.sigmapool.screens.miningProfit.MinerBindingHelper
 import org.sigmapool.sigmapool.screens.miningProfit.MinerItemMapper
 import org.sigmapool.sigmapool.screens.miningProfit.MinerLoader
 import org.sigmapool.sigmapool.screens.miningProfit.MiningListAdapter
 import org.sigmapool.sigmapool.screens.miningProfit.params.MinerListParams
 import org.sigmapool.sigmapool.utils.storages.JsonDataStorage
+
+ const val BTC = "btc"
 
 class MiningProfitListVM(params: MinerListParams = MinerListParams()) : ViewModel() {
 
