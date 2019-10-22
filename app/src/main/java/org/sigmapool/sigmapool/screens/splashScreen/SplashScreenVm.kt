@@ -32,7 +32,7 @@ class SplashScreenVm(val view: ISplashScreenVIew) : ViewModel() {
             val coinDeferred = async { coinResult = coinProvider.init() }
 
             coinDeferred.await()
-            if (!coinResult) {
+            if (coinResult) {
                 view.startBaseApp()
             }
         }

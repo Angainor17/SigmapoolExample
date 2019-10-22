@@ -14,21 +14,18 @@ object CoinStorage {
     private val jsonDataStorage by kodein.instance<JsonDataStorage>()
 
     fun getCoins(): ArrayList<CoinVm>? {
-        var json = jsonDataStorage.getJson(LIST_KEY)
+        val json = jsonDataStorage.getJson(LIST_KEY)
         if (!json.isNullOrEmpty()) {
-            json = json.trimStart('"').trimEnd('"')
-            val items = Gson().fromJson<ArrayList<CoinVm>>(json)
-            return items
+            return Gson().fromJson<ArrayList<CoinVm>>(json)
         }
         return null
     }
 
     fun saveCoins(newCoins: ArrayList<CoinVm>?) {
         if (!newCoins.isNullOrEmpty()) {
-            jsonDataStorage.put(LIST_KEY, Gson().toJson(newCoins))
+            jsonDataStorage.put(LIST_KEY, newCoins)
         }
     }
 }
 
-inline fun <reified T> Gson.fromJson(json: String) =
-    this.fromJson<T>(json, object : TypeToken<T>() {}.type)
+inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object: TypeToken<T>() {}.type)

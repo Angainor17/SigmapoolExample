@@ -26,7 +26,6 @@ class CoinTabAdapter(
             notifyDataSetChanged()
             tabPositionLiveData.postValue(ViewPagerScreen(value))
         }
-
     var coins = ArrayList<CalcTabItemVM>()
 
     init {

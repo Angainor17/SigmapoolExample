@@ -14,14 +14,14 @@ class CoinProvider : ICoinProvider {
 
     private val poolManager by kodein.instance<IPoolManager>(AUTH_MODE)
 
-    override val coins = MutableLiveData(ArrayList<CoinVm>())
+    override val coins = MutableLiveData(CoinStorage.getCoins()!!)
 
     private var selectedCoin: CoinVm? = null
 
     private var listener: ((String) -> Unit)? = null
 
     private fun initList(newList: ArrayList<CoinVm>) {
-        if (!coins.value.isNullOrEmpty()) return
+        if (newList.isNullOrEmpty()) return
 
         selectedCoin = newList[INIT_COIN_LIST_INDEX]
 
@@ -37,6 +37,7 @@ class CoinProvider : ICoinProvider {
         } else {
             val savedList = CoinStorage.getCoins()
             if (savedList.isNullOrEmpty()) return false
+
             initList(savedList)
         }
         return true

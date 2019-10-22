@@ -2,6 +2,7 @@ package org.sigmapool.sigmapool.screens.splashScreen
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import org.sigmapool.sigmapool.R
@@ -23,8 +24,9 @@ class SplashScreenActivity : AppCompatActivity(), ISplashScreenVIew {
 
     override fun startBaseApp() {
         val intent = Intent(this, BottomNavActivity::class.java)
-        startActivity(intent)
         finish()
+        application.startActivity(intent)
+        Log.d("voronin"," startBaseApp")
     }
 
     override fun onBackPressed() {

@@ -31,7 +31,6 @@ class PoolInfoVM : ViewModel() {
             PoolInfoCoinVM(PoolInfoItemParams(it.text, it.unit))
         }
     }
-
     val fragments: LiveData<ArrayList<PoolInfoPageFragment>> =
         map(poolInfoItems) {
             onRefresh()

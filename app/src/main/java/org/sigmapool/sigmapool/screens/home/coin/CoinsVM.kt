@@ -18,12 +18,11 @@ class CoinsVM : ViewModel() {
 
     private val poolManager by kodein.instance<IPoolManager>(AUTH_MODE)
 
-    fun getCoins() =
-        map(coinProvider.coins) {
-            val items = ArrayList(it.map { CoinItemVM(it.text, it.imageUrl) })
-            items.forEach { initItem(it) }
-            items
-        }
+    val coins = map(coinProvider.coins) {
+        val items = ArrayList(it.map { CoinItemVM(it.text, it.imageUrl) })
+        items.forEach { initItem(it) }
+        items
+    }
 
     private fun initItem(vm: CoinItemVM) {
         vm.viewState.postValue(ViewState.LOADING)

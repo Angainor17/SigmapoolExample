@@ -59,9 +59,11 @@ class CalculatorVM(val view: ICalculatorFragmentModel) : ViewModel(), ITitleView
 
     fun onRefresh() {
         initRefreshInfo()
-        map(calcItems){it.forEach {
-            it.onRefresh()
-        }}
+        map(calcItems) {
+            it.forEach {
+                it.onRefresh()
+            }
+        }
     }
 
     private fun initRefreshInfo() {
