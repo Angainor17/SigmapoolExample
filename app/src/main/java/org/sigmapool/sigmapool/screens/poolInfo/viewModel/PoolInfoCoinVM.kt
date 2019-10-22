@@ -21,7 +21,7 @@ class PoolInfoCoinVM(params: PoolInfoItemParams) : ViewModel() {
     private val poolInfoManager by App.kodein.instance<IPoolInfoManager>()
     private val localeProvider by App.kodein.instance<ILocaleProvider>()
 
-    private val coin = params.coinLabel.toLowerCase()
+     val coin = params.coinLabel.toLowerCase()
 
     val fpps = MutableLiveData<String>()
     val pps = MutableLiveData<String>()

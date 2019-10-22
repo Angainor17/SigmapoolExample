@@ -36,8 +36,7 @@ class PoolInfoVM : ViewModel() {
             onRefresh()
             ArrayList(it.map {
                 PoolInfoPageFragment(it)
-            }
-            )
+            })
         }
 
     init {
