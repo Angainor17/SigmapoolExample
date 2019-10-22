@@ -136,11 +136,11 @@ class DashboardVM : AuthVm() {
         )
 
         if (hourResult.success) {
-            hourResult.data.let { dashboardChartVM.initHourData(it!!) }
+            hourResult.data.let { dashboardChartVM.initHourData(it ?: ArrayList()) }
         }
 
         if (dayResult.success) {
-            dayResult.data.let { dashboardChartVM.initDayData(it!!) }
+            dayResult.data.let { dashboardChartVM.initDayData(it ?: ArrayList()) }
         }
     }
 

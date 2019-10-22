@@ -36,5 +36,3 @@ val usdCurrency = AppCurrency(
 )
 
 val currencies = mutableMapOf<String, CurrencyDto>()
-//    BTC to CurrencyDto(),
-//    LTC to CurrencyDto()

@@ -14,7 +14,7 @@ class CoinProvider : ICoinProvider {
 
     private val poolManager by kodein.instance<IPoolManager>(AUTH_MODE)
 
-    override val coins = MutableLiveData(CoinStorage.getCoins()!!)
+    override val coins = MutableLiveData(CoinStorage.getCoins() ?: ArrayList())
 
     private var selectedCoin: CoinVm? = null
 

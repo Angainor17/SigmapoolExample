@@ -22,8 +22,18 @@ class SplashScreenVm(val view: ISplashScreenVIew) : ViewModel() {
     }
 
     fun onRefresh() {
+        showLoading()
+        getInitData()
+    }
+
+    private fun showLoading() {
         loadingVisibility.postValue(true)
         errorVisibility.postValue(false)
+    }
+
+    private fun showError() {
+        loadingVisibility.postValue(false)
+        errorVisibility.postValue(true)
     }
 
     private fun getInitData() {
@@ -34,6 +44,8 @@ class SplashScreenVm(val view: ISplashScreenVIew) : ViewModel() {
             coinDeferred.await()
             if (coinResult) {
                 view.startBaseApp()
+            } else {
+                showError()
             }
         }
     }

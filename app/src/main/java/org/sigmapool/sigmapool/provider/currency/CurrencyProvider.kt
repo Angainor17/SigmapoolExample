@@ -63,11 +63,15 @@ class CurrencyProvider : ICurrencyProvider {
     private fun initCurrencyDto(coin: String) {
         if (currencyDto(coin)?.usd ?: 0f != 0f) return
 
-        GlobalScope.launch(Dispatchers.IO) {
+        GlobalScope.launch(Dispatchers.Default) {
             val result = poolManager.getCurrency(coin)
 
             if (result.success) {
-                currencies[coin] = result.data!!
+                try {
+                    currencies[coin] = result.data!!
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
         }
     }
