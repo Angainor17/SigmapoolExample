@@ -3,7 +3,6 @@ package org.sigmapool.sigmapool.screens.calculator.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import kotlinx.coroutines.Dispatchers
@@ -33,7 +32,9 @@ class CalculatorVM(val view: ICalculatorFragmentModel) : ViewModel(), ITitleView
 
     val calcItems: LiveData<List<CalcItemVM>> = coinProvider.coins.map {
         it.map {
-            CalcItemVM(CalcItemParams(it.text, it.unit))
+            val item = CalcItemVM(CalcItemParams(it.text, it.unit))
+            item.onRefresh()
+            item
         }
     }
     val info = MutableLiveData("")
@@ -52,17 +53,16 @@ class CalculatorVM(val view: ICalculatorFragmentModel) : ViewModel(), ITitleView
 
     private fun isScreensRefreshing(): LiveData<Boolean> =
         try {
-            liveDataZip(calcItems.value!!.map { it.refreshing }) { items -> items.any { it } }
+            liveDataZip(calcItems.value?.map { it.refreshing }
+                ?: ArrayList()) { items -> items.any { it } }
         } catch (e: Exception) {
             MutableLiveData(false)
         }
 
     fun onRefresh() {
         initRefreshInfo()
-        map(calcItems) {
-            it.forEach {
-                it.onRefresh()
-            }
+        calcItems.value?.forEach {
+            it.onRefresh()
         }
     }
 
