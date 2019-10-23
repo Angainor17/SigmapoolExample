@@ -13,7 +13,7 @@ android {
         applicationId "org.sigmapool.sigmapool"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 27
+        versionCode 28
         versionName "2.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
