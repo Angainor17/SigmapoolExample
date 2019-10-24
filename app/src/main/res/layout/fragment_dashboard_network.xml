@@ -56,7 +56,7 @@
                 <include
                         layout="@layout/fragment_dashboard_postfix"
 
-                        app:isBottomSeparatorVisible="@{false}"
+                        app:isBottomSeparatorVisible="@{true}"
                         app:label="@{@string/network_hashrate}"
                         app:postfix="@{vm.hashratePostfix}"
                         app:value="@{vm.hashrate}"

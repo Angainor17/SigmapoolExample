@@ -59,7 +59,7 @@
                         app:label="@{@string/balance}"
                         app:value="@{vm.balance}"
                         app:postfix="@{vm.coin}"
-                        app:isBottomSeparatorVisible="@{false}"
+                        app:isBottomSeparatorVisible="@{true}"
                         />
 
                 <include
