@@ -11,6 +11,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 import org.sigmapool.api.kodein.AUTH_MODE
+import org.sigmapool.common.managers.ICalcManager
 import org.sigmapool.common.managers.IPoolManager
 import org.sigmapool.common.models.CoinInfoDto
 import org.sigmapool.common.models.NetworkDto
@@ -19,6 +20,7 @@ import org.sigmapool.common.utils.*
 import org.sigmapool.sigmapool.App.Companion.kodein
 import org.sigmapool.sigmapool.R
 import org.sigmapool.sigmapool.provider.currency.ICurrencyProvider
+import org.sigmapool.sigmapool.provider.lang.ILocaleProvider
 import org.sigmapool.sigmapool.provider.res.IResProvider
 import org.sigmapool.sigmapool.screens.calculator.params.CalcItemParams
 import org.sigmapool.sigmapool.utils.interfaces.OnTextWatcherVm
@@ -34,12 +36,18 @@ class CalcItemVM(
 
     private val res by kodein.instance<IResProvider>()
     private val poolManager by kodein.instance<IPoolManager>(AUTH_MODE)
+    private val calcManager by kodein.instance<ICalcManager>()
     private val currencyProvider by kodein.instance<ICurrencyProvider>()
-    private val converterViewState = MutableLiveData(LOADING)
+    private val localeProvider by kodein.instance<ILocaleProvider>()
 
+    private val converterViewState = MutableLiveData(LOADING)
     private val generalInfoViewState = MutableLiveData(LOADING)
-    val refreshing = liveDataZip(converterViewState, generalInfoViewState)
-    { converterVS, generalVS -> converterVS == LOADING || generalVS == LOADING }
+    private val infoVS = MutableLiveData(LOADING)
+
+    var infoText = ""
+
+    val refreshing = liveDataZip(converterViewState, generalInfoViewState, infoVS)
+    { converterVS, generalVS, infoVS -> converterVS == LOADING || generalVS == LOADING || infoVS == LOADING }
 
     val currentPrice = MutableLiveData<CharSequence>(formatCurrentPrice(0f))
     val difficulty = MutableLiveData<CharSequence>(formatDifficulty(0L))
@@ -73,6 +81,7 @@ class CalcItemVM(
         GlobalScope.launch(Dispatchers.IO) {
             initGeneralInfo()
             initConverter()
+            initInfo()
         }
     }
 
@@ -188,5 +197,21 @@ class CalcItemVM(
         )
     }
 
-    private fun darkGray() = Color.rgb(133, 133, 133)
+    private suspend fun initInfo() {
+        infoVS.postValue(LOADING)
+
+        val result = calcManager.getCalcInfo(
+            coinLabel.toLowerCase(),
+            localeProvider.getLocale().locale
+        )
+
+        if (result.success) {
+            infoText = result.data?.calculatorText ?: ""
+            infoVS.postValue(CONTENT)
+        } else {
+            infoVS.postValue(ERROR)
+        }
+    }
 }
+
+private fun darkGray() = Color.rgb(133, 133, 133)
