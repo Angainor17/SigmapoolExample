@@ -205,6 +205,9 @@ private fun createAnimation(): Animation {
 fun initCoinSpinner(spinner: Spinner, coinProvider: ICoinProvider, coins: ArrayList<CoinVm>) {
     val adapter = CustomAdapter(spinner, coinProvider, coins)
     spinner.adapter = adapter
+    coinProvider.addOnChangeListener {
+        adapter.refresh()
+    }
 }
 
 @BindingAdapter("app:textWatcher")

@@ -16,7 +16,7 @@ class DashboardVM : AuthVm() {
     private val poolManager by kodein.instance<IPoolManager>(getManagerMode())
     private val chartManager by kodein.instance<IChartManager>()
 
-    val toolbarVm = CoinToolbarVM()
+    val toolbarVm by kodein.instance<CoinToolbarVM>()
     val coinProvider = toolbarVm.coinProvider
 
     val dashboardChartVM = DashboardChartVM()

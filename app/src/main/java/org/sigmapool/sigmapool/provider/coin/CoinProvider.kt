@@ -18,7 +18,7 @@ class CoinProvider : ICoinProvider {
 
     private var selectedCoin: CoinVm? = null
 
-    private var listener: ((String) -> Unit)? = null
+    private var listeners: ArrayList<((String) -> Unit)?> = ArrayList()
 
     private fun initList(newList: ArrayList<CoinVm>) {
         if (newList.isNullOrEmpty()) return
@@ -46,13 +46,16 @@ class CoinProvider : ICoinProvider {
     override fun getLabel(): String = selectedCoin?.text ?: ""
 
     override fun addOnChangeListener(listener: (String) -> Unit) {
-        this.listener = listener
+        listeners.add(listener)
     }
 
     override fun onCoinSelected(coin: CoinVm) {
         if (selectedCoin != coin) {
             selectedCoin = coin
-            listener?.invoke(coin.text)
+
+            listeners.forEach {
+                it?.invoke(coin.text)
+            }
         }
     }
 }

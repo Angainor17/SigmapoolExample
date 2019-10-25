@@ -38,6 +38,10 @@ class CustomAdapter(
         }
     }
 
+    fun refresh() {
+        notifyDataSetChanged()
+    }
+
     private var inflater: LayoutInflater = LayoutInflater.from(spinner.context)
 
     override fun getCount(): Int = coins.size

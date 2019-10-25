@@ -9,7 +9,6 @@ import org.sigmapool.common.models.AuthDto
 import org.sigmapool.common.viewModels.ITitleViewModel
 import org.sigmapool.sigmapool.App.Companion.kodein
 import org.sigmapool.sigmapool.R
-import org.sigmapool.sigmapool.provider.coin.CoinProvider
 import org.sigmapool.sigmapool.provider.coin.ICoinProvider
 import org.sigmapool.sigmapool.provider.res.IResProvider
 import org.sigmapool.sigmapool.screens.login.data.AUTH_KEY
@@ -20,7 +19,7 @@ class CoinToolbarVM : ViewModel(), ITitleViewModel {
     private val resProvider by kodein.instance<IResProvider>()
     private val jsonDataStorage by kodein.instance<JsonDataStorage>()
 
-    val coinProvider: ICoinProvider = CoinProvider()
+    val coinProvider by kodein.instance<ICoinProvider>()
     val titleLiveData = MutableLiveData(resProvider.getString(R.string.demo))
 
     init {

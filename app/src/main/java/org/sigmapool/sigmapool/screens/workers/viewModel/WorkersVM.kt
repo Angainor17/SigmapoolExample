@@ -1,6 +1,8 @@
 package org.sigmapool.sigmapool.screens.workers.viewModel
 
 import androidx.lifecycle.MutableLiveData
+import org.kodein.di.generic.instance
+import org.sigmapool.sigmapool.App.Companion.kodein
 import org.sigmapool.sigmapool.screens.bottomSheetScreen.ViewPagerScreen
 import org.sigmapool.sigmapool.screens.settings.viewModel.CoinToolbarVM
 import org.sigmapool.sigmapool.screens.workers.params.ANY_STATUS
@@ -14,7 +16,7 @@ class WorkersVM : AuthVm() {
 
     val screenPositionLiveData = MutableLiveData(ViewPagerScreen(0))
 
-    val toolbarVm = CoinToolbarVM()
+    val toolbarVm by kodein.instance<CoinToolbarVM>()
     private val coinProvider = toolbarVm.coinProvider
 
     val tabVm = WorkersTabVM(coinProvider, screenPositionLiveData)

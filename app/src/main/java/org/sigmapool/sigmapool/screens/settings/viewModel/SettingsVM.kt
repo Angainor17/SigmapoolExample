@@ -40,7 +40,7 @@ class SettingsVM(private val view: ISettingsView) : AuthVm(), IUpdateScreenVm,
     private val loginManager by kodein.instance<ILoginManager>()
     private val context by kodein.instance<Context>()
 
-    val toolbarVm = CoinToolbarVM()
+    val toolbarVm by kodein.instance<CoinToolbarVM>()
     val settingsSchemeVM = SettingsSchemeVM(toolbarVm.coinProvider, view)
     val settingsThresholdVm = SettingsThresholdVm(toolbarVm.coinProvider, view)
 

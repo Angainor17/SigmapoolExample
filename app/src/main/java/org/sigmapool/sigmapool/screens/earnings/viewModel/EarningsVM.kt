@@ -28,7 +28,7 @@ class EarningsVM : AuthVm(), IUpdateScreenVm {
     private val resProvider by kodein.instance<IResProvider>()
     private val jsonDataStorage by kodein.instance<JsonDataStorage>()
 
-    val toolbarVm = CoinToolbarVM()
+    val toolbarVm by kodein.instance<CoinToolbarVM>()
     private val coinProvider = toolbarVm.coinProvider
 
     val headerVm = EarningsHeaderVM(coinProvider, earningsManager)
