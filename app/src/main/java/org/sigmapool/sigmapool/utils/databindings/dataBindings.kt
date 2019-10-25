@@ -8,6 +8,7 @@ import android.view.animation.RotateAnimation
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
@@ -93,7 +94,7 @@ fun viewCalcTabAdapter(
     items: List<CalcItemVM>?,
     fragmentManager: FragmentManager
 ) {
-    if(items.isNullOrEmpty()) return
+    if (items.isNullOrEmpty()) return
 
     view.offscreenPageLimit = 6
     view.adapter = CalcTabAdapter(items, fragmentManager)
@@ -226,4 +227,10 @@ fun textWatcher(view: EditText, textWatcher: OnTextWatcherVm?) {
             textWatcher?.onTextChanged(s, start, before, count)
         }
     })
+}
+
+@BindingAdapter("app:wrappedText")
+fun wrappedText(view: AppCompatTextView, textRes: Int) {
+    val text = view.context.getString(textRes)
+    view.text = "$text"
 }
