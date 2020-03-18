@@ -26,7 +26,7 @@ buildscript {
             modalBottomSheetDialog: '1.1.0',
             indicatorseekbar      : '2.1.2',
             eventbus              : '3.1.1',
-            androidChart              : 'v3.1.0'
+            androidChart          : 'v3.1.0'
     ]
 
     ext.kotlinCore = [
@@ -112,7 +112,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:3.6.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
     }
 }

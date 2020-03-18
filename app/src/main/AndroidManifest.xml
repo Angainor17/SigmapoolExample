@@ -19,7 +19,7 @@
 
         <activity
                 android:name=".screens.splashScreen.SplashScreenActivity"
-                android:screenOrientation="portrait"
+                android:screenOrientation="fullSensor"
                 android:theme="@style/AppTheme.NoActionBar"
 
         >
@@ -32,13 +32,13 @@
 
         <activity
                 android:name=".screens.bottomSheetScreen.BottomNavActivity"
-                android:screenOrientation="portrait"
+                android:screenOrientation="fullSensor"
                 android:theme="@style/AppTheme.NoActionBar"
                 />
 
         <activity
                 android:name="org.sigmapool.sigmapool.navigation.ContainerActivity"
-                android:screenOrientation="portrait"
+                android:screenOrientation="fullSensor"
                 android:theme="@style/AppTheme.NoActionBar"
                 android:windowSoftInputMode="stateHidden|adjustResize"
         />
