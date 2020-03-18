@@ -47,8 +47,7 @@ class CurrencyProvider : ICurrencyProvider {
 
     override fun fromCoinToCurrency(coin: String, coinValue: Float): Float {
         initValues()
-
-        return coinValue * getCurrencyPrice(currencyDto(coin)!!)
+        return coinValue * getCurrencyPrice(currencyDto(coin.toLowerCase())!!)
     }
 
     private fun initCurrency() {
