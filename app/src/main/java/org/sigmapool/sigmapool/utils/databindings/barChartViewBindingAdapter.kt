@@ -89,9 +89,8 @@ fun xAxisFormatter(value: Float, chartMode: String, chartData: List<SeriesDto>):
 
 fun formatYAxis(value: Float): String {
     if (value == 0f) return "0"
-    val newValue = (value / 1000000000000000f)
-    if (newValue < 1f) return newValue.format(FLOAT_PATTERN)
-    return newValue.format(INT_PATTERN) + "k"
+    if (value < 1f) return value.format(FLOAT_PATTERN)
+    return value.format(INT_PATTERN)
 }
 
 private fun getYAxisMax(data: List<SeriesDto>?): Float {
