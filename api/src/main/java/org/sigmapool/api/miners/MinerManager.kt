@@ -16,7 +16,7 @@ internal class MinerManager(private val minerService: IMinerService) : IMinerMan
                         it.id,
                         it.title.en,
                         it.coin,
-                        "https://$BASE_URL" + it.image,
+                        it.image,
                         it.hashrate.toLong(),
                         it.power,
                         it.revenue,
