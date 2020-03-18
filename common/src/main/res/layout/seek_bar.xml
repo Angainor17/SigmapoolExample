@@ -1,41 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+<layout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        >
 
     <data>
-        <variable name="vm" type="com.sigmapool.common.viewModels.IIndicatorSeekBarViewModel"/>
+
+        <variable
+                name="vm"
+                type="org.sigmapool.common.viewModels.IIndicatorSeekBarViewModel"
+                />
     </data>
+
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="4dp"
-            android:paddingTop="28dp"
-            android:paddingBottom="8dp"
-            android:background="@drawable/seek_bar_background">
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            >
 
-        <com.warkiz.widget.IndicatorSeekBar
-                android:id="@+id/indicatorSeekBar"
+        <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="10dp"
+
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="@dimen/card_view_elevation_default"
+                >
+
+            <com.warkiz.widget.IndicatorSeekBar
+                    android:id="@+id/indicatorSeekBar"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="8dp"
+
+                    app:isb_ticks_count="6"
+                    app:isb_min="@{vm.getStartRange()}"
+                    app:isb_max="@{vm.getEndRange()}"
+                    app:isb_step="@{vm.getStep()}"
+                    app:isb_tick_texts_array="@{vm.getArrayRes()}"
+                    app:isb_seek_smoothly="true"
+                    app:isb_thumb_drawable="@drawable/thumb_selector"
+                    app:isb_thumb_size="30dp"
+                    app:isb_progress_value_float="true"
+                    app:isb_tick_marks_drawable="@drawable/tick_marks"
+                    app:isb_show_tick_texts="true"
+                    app:isb_thumb_color="@android:color/white"
+                    app:isb_indicator_color="@color/blue"
+                    app:isb_tick_texts_typeface="normal"
+                    app:isb_tick_texts_color="@color/lightGray"
+                    app:isb_tick_texts_size="16dp"
+                    app:isb_thumb_adjust_auto="false"
+                    app:isb_track_progress_color="@color/blue"
+
+                    app:changeListener="@{vm::onChange}"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+                android:id="@+id/powerCostTv"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:fontFamily="@font/google_sans_regular"
+                android:text="@{vm.getDisplayedValue()}"
+                android:textAlignment="gravity"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
 
-                app:isb_min="@{vm.getStartRange()}"
-                app:isb_max="@{vm.getEndRange()}"
-                app:isb_step="@{vm.getStep()}"
-                app:isb_tick_texts_array="@{vm.getArrayRes()}"
-
-                app:isb_seek_smoothly="true"
-                app:isb_show_indicator="rectangle"
-                app:isb_progress_value_float="true"
-                app:isb_show_tick_marks_type="oval"
-                app:isb_show_tick_texts="true"
-
-                app:isb_thumb_adjust_auto="false"
-                app:isb_ticks_count="6"
-
-                app:isb_track_progress_color="@color/blue"/>
+                tools:text="Power Cost: P 3.57/Kwh"
+                />
 
     </LinearLayout>
-
 </layout>

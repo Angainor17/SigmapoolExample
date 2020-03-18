@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+>
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="org.sigmapool.sigmapool.utils.interfaces.ViewState"/>
+        <variable name="vm" type="org.sigmapool.sigmapool.screens.home.coin.CoinItemVM"/>
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="@dimen/card_view_elevation_default"
+        >
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+            >
+
+                <include
+                        layout="@layout/coin_pool_header"
+                        app:vm="@{vm}"
+                />
+
+                <include
+                        layout="@layout/coin_pool_info"
+                        app:vm="@{vm}"
+                />
+
+            </LinearLayout>
+
+            <include
+                    layout="@layout/loading_error_frame"
+                    app:hasElevation="@{false}"
+                    app:vm="@{vm}"
+            />
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</layout>

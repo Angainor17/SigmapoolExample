@@ -1,8 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Sigmapool</string>
+    <string name="app_name"
+            translatable="false">Sigmapool</string>
     <string name="profit">Profit</string>
     <string name="mining_profit">Mining Profit</string>
+    <string name="power_cost">Power Cost</string>
+    <string name="kilowatt_hour">Kwh</string>
+    <string name="kilowatt_hour_prefix">P</string>
+    <string name="hashrate_power">Hashrate/Power</string>
+    <string name="revenue_power_cost">Revenue/Power Cost</string>
+    <string name="shutdown_price">Shutdown Price</string>
+    <string name="btc_caps"
+            translatable="false">BTC</string>
+    <string name="power_postfix">W</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+
+    <string name="pool_info">Pool Info</string>
+    <string name="fee">Fee</string>
+    <string name="pps" translatable="false">PPS</string>
+    <string name="btc"
+            translatable="false">BTC</string>
+    <string name="ltc"
+            translatable="false">LTC</string>
+    <string name="minimumPayout">Minimum Payout</string>
+    <string name="settlementDetails">Settlement Details</string>
+    <string name="miningURL">Mining URL</string>
+
+
+    <string name="home_screen_icon_title">Home</string>
+    <string name="dashboard_screen_icon_title">Dashboard</string>
+    <string name="workers_screen_icon_title">Workers</string>
+    <string name="earnings_screen_icon_title">Earnings</string>
+    <string name="settings_screen_icon_title">Settings</string>
+    <string name="registration">Register</string>
+    <string name="enter">Log in</string>
+    <string name="calculator">Calculator</string>
+    <string name="news">News</string>
+    <string name="pool_hashrate">Pool hashrate</string>
+    <string name="worker_count">Workers count</string>
+    <string name="min_payment">Min payment</string>
+    <string name="payment_time_utc">Payment time (UTC)</string>
+    <string name="payoutScheme">Payout Scheme</string>
+    <string name="profitLabel">Profit (24h)</string>
+
+    <string name="hashrate_per_second">H/s</string>
+    <string name="network_hashrate">Network hashrate</string>
+    <string name="network_difficulty">Сложность сети</string>
+    <string name="current_block">Current block</string>
+    <string name="difficulty_change_date">Difficulty change date</string>
+    <string name="next_difficulty_label">Next projected difficulty</string>
+    <string name="profit_of_mining">Mining Profit</string>
+    <string name="last_news">Last News</string>
+    <string name="bitcoin">Bitcoin</string>
+    <string name="general_characteristic">Other params</string>
+
+    <string-array name="months">
+        <item>january</item>
+        <item>february</item>
+        <item>march</item>
+        <item>april</item>
+        <item>may</item>
+        <item>june</item>
+        <item>july</item>
+        <item>august</item>
+        <item>september</item>
+        <item>october</item>
+        <item>november</item>
+        <item>december</item>
+    </string-array>
+
+    <string name="hashrate">Hashrate</string>
+    <string name="t_hashs_per_sec">Thash/s</string>
+    <string name="m_hashs_per_sec">Mhash/s</string>
+    <string name="per_day">/day</string>
+
+    <string name="current_price">Current Price</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="block_reward">Block Reward</string>
+    <string name="demo">Watcher</string>
+    <string name="rus">Russian</string>
+    <string name="language">Language</string>
+    <string name="currency">Currency</string>
+    <string name="payment_scheme">Payment scheme</string>
+    <string name="threshold">Threshold</string>
+    <string name="write_review">Write a review or suggestion</string>
+    <string name="rate_app">Rate the app</string>
+    <string name="exit">Exit</string>
+    <string name="rub"
+            translatable="false">RUB</string>
+    <string name="email_via">Email via…</string>
+    <string name="sigmapool_android_app">Sigmapool Android App</string>
+    <string name="online">Online</string>
+    <string name="offline">Offline</string>
+    <string name="all">All</string>
+    <string name="dailyProfitPerTHs">Daily Profit Per TH/s (FPPS)</string>
+    <string name="english">English</string>
+    <string name="name">Name</string>
+    <string name="current">Current</string>
+    <string name="hashrate24h">Hashrate 24h</string>
+    <string name="switch_language">Switch Language</string>
+    <string name="switch_currency">Switch Currency</string>
+    <string name="usd"
+            translatable="false">USD</string>
+    <string name="wrong_sign_in_data">Wrong login or password</string>
+    <string name="yesterday_earnings">Yesterday Earnings</string>
+    <string name="paid">Paid</string>
+    <string name="balance">Balance</string>
+    <string name="switch_scheme">Switch payment scheme</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter_threshold">Enter threshold</string>
+    <string name="saved_to_balance">Saved to Balance</string>
+    <string name="avg_hashrate">Avg.Hashrate</string>
+    <string name="earned_last_24h">Earned Last 24h</string>
+    <string name="workers">Workers</string>
+
+    <string name="twenty_four_hour">24h</string>
+    <string name="one_hour">1h</string>
+    <string name="one_day">1d</string>
+    <string name="subaccounts">Subaccounts</string>
+
+    <string name="total_amount_paid">Total Amount Paid</string>
+    <string name="last_payment_time">Last Payment Time</string>
+    <string name="withdrawal_address">Withdrawal Address</string>
+    <string name="estimated_profit">Estimated Profit</string>
+    <string name="network_status">Network status</string>
+
+
+    <string name="block_time">Block Time</string>
+    <string name="price">Price</string>
+    <string name="minute">min</string>
+    <string name="second">sec</string>
+    <string name="observer_mode_text">You are in the observer mode,\nstart mining after logging in!</string>
+    <string name="fpps" translatable="false">FPPS</string>
+    <string name="chart_no_data">No Data</string>
+    <string name="pool_info_title"> Pool Info</string>
 
 </resources>

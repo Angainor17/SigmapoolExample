@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/home"
+
+            android:icon="@drawable/ic_home"
+            android:title="@string/home_screen_icon_title"
+    />
+
+    <item
+            android:id="@+id/dashboard"
+
+            android:icon="@drawable/ic_dashboard"
+            android:title="@string/dashboard_screen_icon_title"
+    />
+
+    <item
+            android:id="@+id/workers"
+
+            android:icon="@mipmap/ic_workers"
+            android:title="@string/workers_screen_icon_title"
+    />
+
+    <item
+            android:id="@+id/earnings"
+
+            android:icon="@drawable/ic_wallet"
+            android:title="@string/earnings_screen_icon_title"
+    />
+
+    <item
+            android:id="@+id/settings"
+
+            android:icon="@drawable/settings_icon"
+            android:title="@string/settings_screen_icon_title"
+    />
+
+</menu>

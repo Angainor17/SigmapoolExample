@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="green">#C6FFC1</color>
+    <color name="violet">#6A52C1</color>
+
+    <color name="menu_gray">#A1A1A1</color>
+    <color name="separator_color">#C2E6E9EC</color>
+    <color name="list_item_ripple">#D3D3D3</color>
+
+    <color name="worker_separator_color">#61E0E0E0</color>
+    <color name="red_worker_separator_color">#61FFB7BF</color>
+
+    <color name="switcher_selected">#634cbb</color>
+    <color name="switcher_unselected">#b4a8de</color>
+    <color name="violet_text">#543eac</color>
+    <color name="listTitleColor">#6A6A6A</color>
+    <color name="chart_switcher_bg">#7c6bc1</color>
 
 </resources>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <data>
+
+        <variable
+                name="text"
+                type="String"
+                />
+
+        <variable
+                name="icon"
+                type="String"
+                />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/coin_selector_dropdown_bg"
+            android:layout_height="wrap_content"
+            >
+
+        <ImageView
+                android:id="@+id/icon"
+                android:layout_width="@dimen/coin_label_height"
+                android:layout_height="@dimen/coin_label_height"
+                android:clickable="false"
+                android:focusable="false"
+                android:layout_marginStart="6dp"
+                app:src="@{icon}"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+        <TextView
+                android:id="@+id/text"
+
+                style="@style/TabTextViewStyleNoSelectable"
+
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@{text}"
+                android:singleLine="true"
+                android:layout_marginStart="4dp"
+                android:textColor="@color/violet"
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icon"
+
+                tools:text="@string/btc"
+                />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

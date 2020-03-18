@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <data>
+
+        <variable
+                name="vm"
+                type="org.sigmapool.sigmapool.screens.home.coin.CoinsVM"
+                />
+
+        <variable
+                name="fragmentManager"
+                type="androidx.fragment.app.FragmentManager"
+                />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/screenBgColor"
+            android:orientation="vertical"
+            >
+
+        <org.sigmapool.sigmapool.utils.customViews.viewPager.FragmentViewPager
+                android:id="@+id/coinPager"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+
+                app:fragmentManager="@{fragmentManager}"
+                app:initCoinAdapter="@{vm.coins}"
+
+                app:isPagingEnabled="@{true}"
+                app:isWrapHeightEnabled="@{true}"
+                />
+
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabDots"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:pager="@{(coinPager)}"
+                app:tabBackground="@drawable/tab_selector"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp"
+                />
+
+    </LinearLayout>
+
+</layout>

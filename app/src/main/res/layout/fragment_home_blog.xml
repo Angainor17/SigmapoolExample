@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <data>
+
+        <variable
+                name="vm"
+                type="org.sigmapool.sigmapool.screens.home.viewModel.HomeVM"
+                />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/screenBgColor"
+            >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/gradient_status_bar"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+        <ss.com.bannerslider.Slider
+                android:id="@+id/banner_slider"
+
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/placeholder"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                app:onImageClick="@{vm}"
+                app:setImages="@{vm.blogImages}"
+                app:slider_animateIndicators="true"
+                app:slider_hideIndicators="true"
+                app:slider_indicatorSize="0dp"
+
+                app:slider_loopSlides="true"
+                app:slider_selectedSlideIndicator="@null"
+                app:slider_unselectedSlideIndicator="@null"
+                />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

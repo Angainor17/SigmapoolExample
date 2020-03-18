@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+      >
+
+    <data>
+
+        <variable
+                name="vm"
+                type="org.sigmapool.sigmapool.screens.login.viewModel.LoginVM"
+        />
+
+        <variable
+                name="toolbarVm"
+                type="org.sigmapool.sigmapool.utils.interfaces.IBackBtnScreen"
+        />
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:background="@drawable/gradient_status_bar"
+            android:layout_height="match_parent">
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/parent"
+
+                    android:layout_width="match_parent"
+                    android:background="@drawable/gradient_status_bar"
+                    android:layout_height="wrap_content"
+                    android:onClickListener="@{vm.hideKeyBoard()}"
+                    android:padding="16dp"
+            >
+
+                <ImageView
+                        style="@style/BackBtnStyle"
+                        android:id="@+id/backBtn"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="22dp"
+                        android:onClick="@{()->toolbarVm.backBtnClick()}"
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                        android:id="@+id/icon"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="center"
+                        android:src="@mipmap/ic_sigmapool"
+                        android:background="@drawable/icon_sigmapool_background"
+                        android:layout_marginEnd="8dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/cardView"
+                        app:layout_constraintTop_toBottomOf="@+id/backBtn" android:layout_marginTop="24dp"/>
+
+
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="5dp"
+
+                        app:layout_constraintTop_toBottomOf="@id/icon"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+
+                        android:layout_marginTop="32dp">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+
+                            android:layout_height="wrap_content"
+                    >
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/loginLayout"
+
+                                android:theme="@style/LoginTextLabel"
+                                android:textColorHint="@color/titleGray"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                app:hintTextAppearance="@style/TextInputLayoutHintStyle"
+                        >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/loginEditText"
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/login"
+                                    android:layout_marginTop="8dp"
+                                    android:focusableInTouchMode="true"
+
+                                    android:fontFamily="@font/google_sans_regular"
+                                    android:textColor="@color/black"
+                            />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/passwordLayout"
+
+                                android:theme="@style/LoginTextLabel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                app:hintTextAppearance="@style/TextInputLayoutHintStyle"
+                                app:passwordToggleEnabled="true"
+                        >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/passwordEditText"
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/password"
+                                    android:layout_marginTop="8dp"
+                                    android:focusableInTouchMode="true"
+
+                                    android:fontFamily="@font/google_sans_regular"
+                                    android:textColor="@color/black"
+                                    android:inputType="textPassword"
+                            />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <ImageView
+                        android:id="@+id/nextBtn"
+
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="38dp"
+                        android:src="@drawable/arrow_right"
+                        android:layout_gravity="center"
+                        android:onClick="@{(v) -> vm.doAuth(loginEditText.getText().toString(),passwordEditText.getText().toString())}"
+                        android:scaleType="center"
+                        android:background="@drawable/round_circle"
+
+                        app:layout_constraintTop_toBottomOf="@+id/cardView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</layout>

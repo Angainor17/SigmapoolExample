@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <data>
+
+        <variable
+                name="vm"
+                type="org.sigmapool.sigmapool.screens.home.viewModel.HomeVM"
+                />
+
+        <variable
+                name="fragmentManager"
+                type="androidx.fragment.app.FragmentManager"
+                />
+    </data>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@color/screenBgColor"
+                android:layout_height="wrap_content"
+                >
+
+            <include
+                    layout="@layout/fragment_home_toolbar"
+                    app:vm="@{vm}"
+                    />
+
+            <include
+                    layout="@layout/fragment_home_blog"
+                    app:vm="@{vm}"
+                    />
+
+            <include
+                    layout="@layout/fragment_home_menu"
+                    app:vm="@{vm.homeMenuVM}"
+                    />
+
+            <include
+                    layout="@layout/fragment_home_coin"
+                    app:vm="@{vm.coinsVM}"
+                    app:fragmentManager="@{fragmentManager}"
+                    />
+
+            <include
+                    layout="@layout/fragment_home_miners"
+                    app:vm="@{vm.minersVM}"
+                    />
+
+            <include
+                    layout="@layout/fragment_home_news"
+                    app:vm="@{vm.newsVM}"
+                    />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

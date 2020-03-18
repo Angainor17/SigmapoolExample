@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        >
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="label"
+                type="String"
+                />
+
+        <variable
+                name="value"
+                type="String"
+                />
+
+        <variable
+                name="postfix"
+                type="String"
+                />
+
+        <variable
+                name="isBottomSeparatorVisible"
+                type="Boolean"
+                />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/RippleRect"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#d6d6d6"
+                android:visibility="@{isBottomSeparatorVisible ? View.VISIBLE : View.GONE}"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+
+        <TextView
+                android:id="@+id/label"
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/google_sans_regular"
+                android:text="@{label}"
+                android:textColor="@color/listTitleColor"
+                android:textSize="13dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                tools:text="Язык"
+                />
+
+
+        <TextView
+                android:id="@+id/value"
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
+                android:fontFamily="@font/google_sans_medium"
+                android:text="@{value}"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+
+                app:layout_constraintBaseline_toBaselineOf="@+id/valuePostfix"
+                app:layout_constraintEnd_toStartOf="@+id/valuePostfix"
+
+                tools:text="1124.42"
+                />
+
+        <TextView
+                android:id="@+id/valuePostfix"
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/google_sans_regular"
+                android:text="@{postfix}"
+                android:textColor="#888888"
+                android:textSize="16dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                tools:text="BTC"
+                />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

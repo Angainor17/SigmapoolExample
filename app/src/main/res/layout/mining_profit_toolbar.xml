@@ -4,14 +4,17 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="vm" type="com.sigmapool.common.viewModels.ITitleViewModel"/>
+        <variable name="titleVm" type="org.sigmapool.common.viewModels.ITitleViewModel"/>
+
+        <variable name="toolbarVM"
+                  type="org.sigmapool.sigmapool.screens.miningProfit.viewModels.IMiningProfitToolbarVM"/>
     </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:elevation="4dp"
             android:background="@drawable/gradient_status_bar"
 
             tools:showIn="@layout/fragment_minig_profit">
@@ -24,6 +27,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="34dp"
+                android:onClick="@{()->toolbarVM.backBtnClick()}"
+
 
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -33,46 +38,31 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/ToolbarTitle"
-                android:text="@{vm.getTitle()}"
-                android:textSize="19sp"
-                android:layout_marginBottom="2dp"
                 android:layout_marginTop="2dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/google_sans_bold"
+                android:text="@{titleVm.getTitle()}"
+                android:textAppearance="@style/ToolbarTitle"
+                android:textSize="19sp"
 
-
+                app:layout_constraintBottom_toBottomOf="@+id/backBtn"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="@+id/backBtn"
                 app:layout_constraintTop_toTopOf="@+id/backBtn"
 
-                tools:text="@string/mining_profit"/>
-
-        <ImageView
-                android:id="@+id/rubView"
-
-                style="@style/RubView"
-
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="14dp"
-
-                android:adjustViewBounds="true"
-                android:scaleType="center"
-
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintTop_toTopOf="@+id/profitButton"
-                app:layout_constraintBottom_toBottomOf="@+id/profitButton"
-                app:layout_constraintEnd_toStartOf="@+id/profitButton"/>
+                tools:text="@string/mining_profit"
+                />
 
         <Button
                 android:id="@+id/profitButton"
-                style="@style/WhiteArrowUpBtn"
+                style="@style/WhiteArrowBtn"
 
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginEnd="12dp"
                 android:text="@string/profit"
+
+                app:onProfitClickAction="@{toolbarVM}"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="@+id/toolbarTitle"

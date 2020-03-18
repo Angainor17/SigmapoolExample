@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <data>
+
+        <variable
+                name="vm"
+                type="org.sigmapool.sigmapool.screens.home.viewModel.HomeMinerVM"
+                />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:orientation="vertical"
+
+            >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal"
+                >
+
+            <TextView
+                    style="@style/TitleHeaderStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/profit_of_mining"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+            <Button
+                    android:id="@+id/profitButton"
+                    style="@style/DarkArrowBtn"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:backgroundTint="@color/titleGray"
+                    android:gravity="end"
+                    android:text="@string/profit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:onProfitClickAction="@{vm}"
+                    />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+            <include
+                    layout="@layout/mining_profit_list"
+
+                    app:swipeRefresh="@{null}"
+                    app:vm="@{vm.miningProfitVM}"
+                    />
+
+            <include
+                    layout="@layout/loading_error_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+
+                    app:hasElevation="@{true}"
+                    app:errorText="@{vm.miningProfitVM.itemsVM.message}"
+                    app:vm="@{vm}"
+                    />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

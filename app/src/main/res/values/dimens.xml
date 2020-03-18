@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="tab_corner_radius">4dp</dimen>
+
+    <dimen name="design_bottom_navigation_text_size"
+            tools:override="true">12sp
+    </dimen>
+    <dimen name="design_bottom_navigation_active_text_size"
+            tools:override="true">11sp
+    </dimen>
+
+    <dimen name="custom_switcher_radius">16dp</dimen>
+    <dimen name="poolInfoBlockMargin">12dp</dimen>
+    <dimen name="spinner_corner">9dp</dimen>
+
+    <dimen name="card_view_elevation_default">4dp</dimen>
+    <dimen name="card_view_no_elevation">0dp</dimen>
+    <dimen name="coin_label_height">18dp</dimen>
+    <dimen name="coin_icon_margin">12dp</dimen>
+    <dimen name="coin_selector_corner_radius">6dp</dimen>
+
+</resources>

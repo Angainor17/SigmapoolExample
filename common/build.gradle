@@ -26,12 +26,17 @@ android {
 
 dependencies {
 
-    implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.2'
+    implementation indicatorseekbar.core
 
     implementation kotlinCore.core
     implementation kotlinCore.coroutine
 
+    implementation gson.core
+
+    implementation androidx.liveData
     implementation androidx.appcompat
+    implementation androidx.paging
+    implementation androidx.pagingKtx
 
     testImplementation test.junit
     androidTestImplementation test.testRunner

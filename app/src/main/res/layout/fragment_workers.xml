@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <data>
+
+        <variable
+                name="vm"
+                type="org.sigmapool.sigmapool.screens.workers.viewModel.WorkersVM"
+                />
+
+
+        <variable
+                name="fragmentManager"
+                type="androidx.fragment.app.FragmentManager"
+                />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/screenBgColor"
+                android:orientation="vertical"
+                >
+
+            <include
+                    layout="@layout/coin_toolbar"
+
+                    app:vm="@{vm.toolbarVm}"
+                    />
+
+
+            <include
+                    layout="@layout/fragment_workers_tab"
+
+                    app:vm="@{vm.tabVm}"
+                    />
+
+
+            <org.sigmapool.sigmapool.utils.customViews.viewPager.FragmentViewPager
+                    android:id="@+id/pager"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+
+                    app:fragmentManager="@{fragmentManager}"
+                    app:initWorkerAdapter="@{vm}"
+                    app:isPagingEnabled="@{false}"
+
+                    app:isWrapHeightEnabled="@{false}"
+                    app:onScreenChange="@{vm.screenPositionLiveData}"
+                    />
+
+
+        </LinearLayout>
+
+        <include
+                layout="@layout/observer_mode"
+                app:isVisible="@{vm.isObserverMode}"
+                />
+
+    </FrameLayout>
+
+</layout>

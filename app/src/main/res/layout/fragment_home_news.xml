@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <data>
+
+        <variable
+                name="vm"
+                type="org.sigmapool.sigmapool.screens.news.vm.NewsListVM"
+                />
+
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@color/screenBgColor"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            >
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/last_news"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                style="@style/TitleHeaderStyle"
+                />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical"
+                >
+
+            <include
+                    layout="@layout/fragment_news_list"
+                    app:vm="@{vm}"
+                    app:swipeRefresh="@{null}"
+                    />
+
+            <include
+                    layout="@layout/loading_error_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    app:vm="@{vm}"
+                    app:hasElevation="@{true}"
+                    app:errorText="@{vm.itemsVM.message}"
+                    />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

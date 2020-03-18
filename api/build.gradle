@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 4
+        versionName "1.0.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -22,11 +22,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
+    implementation project(path: ':common')
 
+    implementation kodein.core
     implementation gson.core
 
     implementation kotlinCore.core
@@ -35,6 +40,7 @@ dependencies {
     implementation retrofit.core
     implementation retrofit.gsonConverter
     implementation retrofit.coroutinesAdapter
+    implementation retrofit.logging
 
     testImplementation test.junit
     androidTestImplementation test.testRunner
