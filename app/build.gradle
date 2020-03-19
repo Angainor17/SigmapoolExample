@@ -8,11 +8,12 @@ def RELEASE_STORE_KEY = '7L}uNECe$?zsH*w5'
 def RELEASE_KEY_PASS = 'HWob|1|%bLS0S40Y'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "org.sigmapool.sigmapool"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 31
         versionName "2.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
