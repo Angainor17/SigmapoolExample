@@ -1,5 +1,6 @@
 package org.sigmapool.api.chart
 
+import org.sigmapool.api.chart.models.ChartResponse
 import org.sigmapool.api.poolinfo.wrapManagerResult
 import org.sigmapool.api.providers.IApiServiceProvider
 import org.sigmapool.common.managers.IChartManager
@@ -15,12 +16,24 @@ internal class ChartManager(serviceProvider: IApiServiceProvider) : IChartManage
         period: String
     ): ManagerResult<ArrayList<SeriesDto>> {
         return wrapManagerResult {
-
             val chart = this.chartService.getChart(coin.toLowerCase(), period).payload!!
 
-            ArrayList(chart.series.map {
-                SeriesDto(it.time, it.hashrate)
-            })
+            chart.toList()
         }
     }
+
+    override suspend fun getUserChart(
+        coin: String,
+        period: String
+    ): ManagerResult<ArrayList<SeriesDto>> {
+        return wrapManagerResult {
+            val chart = this.chartService.getUserChart(coin.toLowerCase(), period).payload!!
+
+            chart.toList()
+        }
+    }
+
+    private fun ChartResponse.toList(): ArrayList<SeriesDto> = ArrayList(this.series.map {
+        SeriesDto(it.time, it.hashrate, it.shares)
+    })
 }

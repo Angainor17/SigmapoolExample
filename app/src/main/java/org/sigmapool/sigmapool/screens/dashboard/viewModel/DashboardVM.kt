@@ -125,12 +125,12 @@ class DashboardVM : AuthVm() {
     }
 
     private suspend fun initCharts(coin: String) {
-        val hourResult = chartManager.getChart(
+        val hourResult = chartManager.getUserChart(
             coin,
             PERIOD_HOUR
         )
 
-        val dayResult = chartManager.getChart(
+        val dayResult = chartManager.getUserChart(
             coin,
             PERIOD_DAY
         )

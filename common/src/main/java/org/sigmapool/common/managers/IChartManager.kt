@@ -12,4 +12,9 @@ interface IChartManager {
         coin: String,
         period: String
     ): ManagerResult<ArrayList<SeriesDto>>
+
+    suspend fun getUserChart(
+        coin: String,
+        period: String
+    ): ManagerResult<ArrayList<SeriesDto>>
 }

@@ -90,12 +90,13 @@ fun xAxisFormatter(value: Float, chartMode: String, chartData: List<SeriesDto>):
 fun formatYAxis(value: Float): String {
     if (value == 0f) return "0"
     if (value < 1f) return value.format(FLOAT_PATTERN)
-    return value.format(INT_PATTERN)
+
+    return formatLongValue(value.toLong())
 }
 
 private fun getYAxisMax(data: List<SeriesDto>?): Float {
     if (!data.isNullOrEmpty()) {
-        val maxValue = data.map { it.hashrate }.max()!!
+        val maxValue = data.map { it.shares }.max()!!
         return 1.2f * maxValue
     }
     return 22.5f
@@ -108,7 +109,7 @@ fun setData(chart: BarChart, data: List<SeriesDto>) {
         values.add(
             BarEntry(
                 index.toFloat(),
-                item.hashrate,
+                item.shares,
                 item
             )
         )

@@ -13,4 +13,10 @@ internal interface ChartApi {
         @Path("coin") coin: String,
         @Query("period") period: String
     ): PayloadModel<ChartResponse>
+
+    @GET("api/v2/{coin}/user/chart/hashrate")
+    suspend fun getUserChart(
+        @Path("coin") coin: String,
+        @Query("period") period: String
+    ): PayloadModel<ChartResponse>
 }
