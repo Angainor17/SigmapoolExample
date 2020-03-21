@@ -15,7 +15,7 @@
 
     <string name="pool_info">Информация о пуле</string>
     <string name="fee">Комиссия</string>
-    <string name="dailyProfitPerTHs">Доходность за 1 TH/s (FPPS)</string>
+    <string name="dailyProfitPerHs">Доходность за 1 %s (FPPS)</string>
     <string name="minimumPayout">Мин. выплата</string>
     <string name="settlementDetails">Информация о выплатах</string>
     <string name="miningURL">Майнинг сервера</string>

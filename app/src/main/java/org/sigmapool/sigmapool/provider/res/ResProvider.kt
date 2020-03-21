@@ -10,6 +10,9 @@ class ResProvider(private val resources: Resources) : IResProvider {
 
     override fun getString(stringRes: Int): String = resources.getString(stringRes)
 
+    override fun getString(stringRes: Int, vararg params: String): String =
+        resources.getString(stringRes, params)
+
     override fun getQuantityString(stringRes: Int, quantity: Int): String =
         resources.getString(stringRes)
 

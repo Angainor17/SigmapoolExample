@@ -9,8 +9,11 @@ import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 import org.sigmapool.common.managers.IPoolInfoManager
 import org.sigmapool.common.models.*
-import org.sigmapool.sigmapool.App
+import org.sigmapool.sigmapool.App.Companion.kodein
+import org.sigmapool.sigmapool.R
+import org.sigmapool.sigmapool.provider.coin.ICoinProvider
 import org.sigmapool.sigmapool.provider.lang.ILocaleProvider
+import org.sigmapool.sigmapool.provider.res.IResProvider
 import org.sigmapool.sigmapool.screens.poolInfo.params.PoolInfoItemParams
 import java.text.SimpleDateFormat
 import java.util.*
@@ -18,8 +21,10 @@ import java.util.*
 
 class PoolInfoCoinVM(params: PoolInfoItemParams) : ViewModel() {
 
-    private val poolInfoManager by App.kodein.instance<IPoolInfoManager>()
-    private val localeProvider by App.kodein.instance<ILocaleProvider>()
+    private val poolInfoManager by kodein.instance<IPoolInfoManager>()
+    private val localeProvider by kodein.instance<ILocaleProvider>()
+    private val res by kodein.instance<IResProvider>()
+    private val coinProvider by kodein.instance<ICoinProvider>()
 
     val coin = params.coinLabel.toLowerCase()
 
@@ -28,6 +33,7 @@ class PoolInfoCoinVM(params: PoolInfoItemParams) : ViewModel() {
     val solo = MutableLiveData<String>()
     val pplns = MutableLiveData<String>()
 
+    val dailyProfitLabel = MutableLiveData<String>()
     val dailyProfit = MutableLiveData<String>()
     val paymentTime = MutableLiveData<String>()
     val paymentMin = MutableLiveData<String>()
@@ -51,10 +57,10 @@ class PoolInfoCoinVM(params: PoolInfoItemParams) : ViewModel() {
             if (poolInfoCoinDto.success) {
                 val info = poolInfoCoinDto.data!!
 
-                fpps.postValue(formatFee(info.feeFpps) )
-                pps.postValue(formatFee(info.feePps) )
-                solo.postValue(formatFee(info.feeSolo) )
-                pplns.postValue(formatFee(info.feePplns) )
+                fpps.postValue(formatFee(info.feeFpps))
+                pps.postValue(formatFee(info.feePps))
+                solo.postValue(formatFee(info.feeSolo))
+                pplns.postValue(formatFee(info.feePplns))
 
                 var stratumUrl = ""
 
@@ -72,13 +78,21 @@ class PoolInfoCoinVM(params: PoolInfoItemParams) : ViewModel() {
         return "$value% "
     }
 
-    private fun handleDailyProfitData(dailyProfitDto: ManagerResult<DailyProfitDto>) =
-        GlobalScope.launch(Dispatchers.Main) {
+    private fun handleDailyProfitData(dailyProfitDto: ManagerResult<DailyProfitDto>) {
+        val coins = coinProvider.coins.value!!
+        val selectedCoin = coins.find { it.text.toLowerCase() == coin }!!
+
+        val labelText = String.format(res.getString(R.string.dailyProfitPerHs), selectedCoin.unit)
+        dailyProfitLabel.postValue(labelText)
+
+        GlobalScope.launch(Dispatchers.Main)
+        {
             if (dailyProfitDto.success) {
                 val info = dailyProfitDto.data
                 dailyProfit.postValue(String.format("%.8f", (info?.profit)))
             }
         }
+    }
 
     private fun handlePaymentData(paymentDto: ManagerResult<PaymentDto>) =
         GlobalScope.launch(Dispatchers.Main) {

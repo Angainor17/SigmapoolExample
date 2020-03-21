@@ -93,7 +93,7 @@
     <string name="online">Online</string>
     <string name="offline">Offline</string>
     <string name="all">All</string>
-    <string name="dailyProfitPerTHs">Daily Profit Per TH/s (FPPS)</string>
+    <string name="dailyProfitPerHs">Daily Profit Per %s (FPPS)</string>
     <string name="english">English</string>
     <string name="name">Name</string>
     <string name="current">Current</string>
