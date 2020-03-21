@@ -21,10 +21,13 @@ class PoolInfoCoinVM(params: PoolInfoItemParams) : ViewModel() {
     private val poolInfoManager by App.kodein.instance<IPoolInfoManager>()
     private val localeProvider by App.kodein.instance<ILocaleProvider>()
 
-     val coin = params.coinLabel.toLowerCase()
+    val coin = params.coinLabel.toLowerCase()
 
     val fpps = MutableLiveData<String>()
     val pps = MutableLiveData<String>()
+    val solo = MutableLiveData<String>()
+    val pplns = MutableLiveData<String>()
+
     val dailyProfit = MutableLiveData<String>()
     val paymentTime = MutableLiveData<String>()
     val paymentMin = MutableLiveData<String>()
@@ -32,22 +35,30 @@ class PoolInfoCoinVM(params: PoolInfoItemParams) : ViewModel() {
     val stratumURLs = MutableLiveData<CharSequence>()
 
     suspend fun refreshData() {
-        handlePoolInfoData(poolInfoManager.getBtcPoolInfo())
+        handlePoolInfoData(poolInfoManager.getPoolInfo(coin))
         handleDailyProfitData(poolInfoManager.getDailyProfit(coin))
         handlePaymentData(poolInfoManager.getPayment(coin))
-        handleSettlementDetailsData(poolInfoManager.getSettlementDetails(coin, localeProvider.getLocale().locale))
+        handleSettlementDetailsData(
+            poolInfoManager.getSettlementDetails(
+                coin,
+                localeProvider.getLocale().locale
+            )
+        )
     }
 
-    private fun handlePoolInfoData(poolInfoBtcDto: ManagerResult<PoolInfoBtcDto>) =
+    private fun handlePoolInfoData(poolInfoCoinDto: ManagerResult<PoolInfoCoinDto>) =
         GlobalScope.launch(Dispatchers.Main) {
-            if (poolInfoBtcDto.success) {
-                val info = poolInfoBtcDto.data
-                fpps.postValue(info?.feeFpps.toString() + "%")
-                pps.postValue(info?.feePps.toString() + "%")
+            if (poolInfoCoinDto.success) {
+                val info = poolInfoCoinDto.data!!
+
+                fpps.postValue(formatFee(info.feeFpps) )
+                pps.postValue(formatFee(info.feePps) )
+                solo.postValue(formatFee(info.feeSolo) )
+                pplns.postValue(formatFee(info.feePplns) )
 
                 var stratumUrl = ""
 
-                for (url in info!!.stratumURLs) {
+                for (url in info.stratumURLs) {
 
                     stratumUrl += "<a href=\"$url\">$url</a><br>"
                 }
@@ -55,6 +66,11 @@ class PoolInfoCoinVM(params: PoolInfoItemParams) : ViewModel() {
                 stratumURLs.postValue(Html.fromHtml(stratumUrl))
             }
         }
+
+    private fun formatFee(value: Float?): String {
+        if (value == null) return ""
+        return "$value% "
+    }
 
     private fun handleDailyProfitData(dailyProfitDto: ManagerResult<DailyProfitDto>) =
         GlobalScope.launch(Dispatchers.Main) {

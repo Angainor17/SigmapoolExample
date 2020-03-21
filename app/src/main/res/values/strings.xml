@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name"
-            translatable="false">Sigmapool</string>
+    <string name="app_name" translatable="false">Sigmapool</string>
     <string name="profit">Profit</string>
     <string name="mining_profit">Mining Profit</string>
     <string name="power_cost">Power Cost</string>
@@ -11,8 +10,7 @@
     <string name="hashrate_power">Hashrate/Power</string>
     <string name="revenue_power_cost">Revenue/Power Cost</string>
     <string name="shutdown_price">Shutdown Price</string>
-    <string name="btc_caps"
-            translatable="false">BTC</string>
+    <string name="btc_caps" translatable="false">BTC</string>
     <string name="power_postfix">W</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
@@ -20,10 +18,11 @@
     <string name="pool_info">Pool Info</string>
     <string name="fee">Fee</string>
     <string name="pps" translatable="false">PPS</string>
-    <string name="btc"
-            translatable="false">BTC</string>
-    <string name="ltc"
-            translatable="false">LTC</string>
+    <string name="solo" translatable="false">SOLO</string>
+    <string name="fpps" translatable="false">FPPS</string>
+    <string name="pplns" translatable="false">PPLNS</string>
+    <string name="btc" translatable="false">BTC</string>
+    <string name="ltc" translatable="false">LTC</string>
     <string name="minimumPayout">Minimum Payout</string>
     <string name="settlementDetails">Settlement Details</string>
     <string name="miningURL">Mining URL</string>
@@ -88,8 +87,7 @@
     <string name="write_review">Write a review or suggestion</string>
     <string name="rate_app">Rate the app</string>
     <string name="exit">Exit</string>
-    <string name="rub"
-            translatable="false">RUB</string>
+    <string name="rub" translatable="false">RUB</string>
     <string name="email_via">Email via…</string>
     <string name="sigmapool_android_app">Sigmapool Android App</string>
     <string name="online">Online</string>
@@ -102,8 +100,7 @@
     <string name="hashrate24h">Hashrate 24h</string>
     <string name="switch_language">Switch Language</string>
     <string name="switch_currency">Switch Currency</string>
-    <string name="usd"
-            translatable="false">USD</string>
+    <string name="usd" translatable="false">USD</string>
     <string name="wrong_sign_in_data">Wrong login or password</string>
     <string name="yesterday_earnings">Yesterday Earnings</string>
     <string name="paid">Paid</string>
@@ -134,7 +131,6 @@
     <string name="minute">min</string>
     <string name="second">sec</string>
     <string name="observer_mode_text">You are in the observer mode,\nstart mining after logging in!</string>
-    <string name="fpps" translatable="false">FPPS</string>
     <string name="chart_no_data">No Data</string>
     <string name="pool_info_title"> Pool Info</string>
 
