@@ -9,15 +9,17 @@ import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.utils.MPPointF
 import org.kodein.di.generic.instance
 import org.sigmapool.common.models.SeriesDto
-import org.sigmapool.common.utils.FLOAT_PATTERN
 import org.sigmapool.common.utils.formatDateFull
-import org.sigmapool.common.utils.formatLongValue
 import org.sigmapool.sigmapool.App.Companion.kodein
 import org.sigmapool.sigmapool.R
 import org.sigmapool.sigmapool.provider.res.IResProvider
 
 @SuppressLint("ViewConstructor")
-class MyMarkerView(context: Context, layoutResource: Int) : MarkerView(context, layoutResource) {
+class MyMarkerView(
+    context: Context,
+    layoutResource: Int,
+    private val valueFormatter: ((Long, IResProvider) -> String)
+) : MarkerView(context, layoutResource) {
 
     private val res by kodein.instance<IResProvider>()
 
@@ -31,13 +33,7 @@ class MyMarkerView(context: Context, layoutResource: Int) : MarkerView(context, 
             val item = entry.data as SeriesDto
 
             tvTime.text = item.time.formatDateFull()
-
-            val hashrateString = "" + formatLongValue(
-                y.toLong(),
-                FLOAT_PATTERN
-            ) + res.getString(R.string.hashrate_per_second)
-
-            tvHashrate.text = hashrateString
+            tvHashrate.text = valueFormatter.invoke(y.toLong(), res)
         }
 
         super.refreshContent(entry, highlight)

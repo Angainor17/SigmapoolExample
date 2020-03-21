@@ -19,7 +19,10 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.github.mikephil.charting.utils.ViewPortHandler
 import org.sigmapool.common.managers.PERIOD_HOUR
 import org.sigmapool.common.models.SeriesDto
+import org.sigmapool.common.utils.FLOAT_PATTERN
+import org.sigmapool.common.utils.formatLongValue
 import org.sigmapool.sigmapool.R
+import org.sigmapool.sigmapool.provider.res.IResProvider
 import org.sigmapool.sigmapool.utils.customViews.chart.AbstractOnChartGestureListener
 import org.sigmapool.sigmapool.utils.customViews.chart.MyMarkerView
 import java.util.*
@@ -102,6 +105,13 @@ fun chartData(chart: LineChart, chartData: List<SeriesDto>, barChart: BarChart) 
     setData(chart, chartData, R.drawable.fade_white)
 }
 
+private fun getMarkerValueFormatter(value: Long, res: IResProvider): String {
+    return "" + formatLongValue(
+        value,
+        FLOAT_PATTERN
+    ) + res.getString(R.string.hashrate_per_second)
+}
+
 private fun lineChartCommonCustomize(chart: LineChart, chartData: List<SeriesDto>) {
     val context = chart.context
 
@@ -116,7 +126,7 @@ private fun lineChartCommonCustomize(chart: LineChart, chartData: List<SeriesDto
     chart.setNoDataText(context.getString(R.string.chart_no_data))
 
     val markerView =
-        MyMarkerView(context, R.layout.custom_marker_view)
+        MyMarkerView(context, R.layout.custom_marker_view, ::getMarkerValueFormatter)
     markerView.chartView = chart
     chart.marker = markerView
 

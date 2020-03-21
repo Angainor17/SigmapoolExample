@@ -13,6 +13,7 @@ import org.sigmapool.common.managers.PERIOD_DAY
 import org.sigmapool.common.models.SeriesDto
 import org.sigmapool.common.utils.*
 import org.sigmapool.sigmapool.R
+import org.sigmapool.sigmapool.provider.res.IResProvider
 import org.sigmapool.sigmapool.utils.customViews.chart.MyMarkerView
 import java.util.*
 
@@ -32,8 +33,7 @@ fun chartData(chart: BarChart, chartData: List<SeriesDto>, chartMode: String) {
     chart.setDrawBorders(false)
     chart.setNoDataText(context.getString(R.string.chart_no_data))
 
-    val markerView =
-        MyMarkerView(context, R.layout.custom_marker_view)
+    val markerView = MyMarkerView(context, R.layout.custom_marker_view, ::getMarkerValueFormatter)
     markerView.chartView = chart
     chart.marker = markerView
 
@@ -71,6 +71,8 @@ fun chartData(chart: BarChart, chartData: List<SeriesDto>, chartMode: String) {
 
     setData(chart, chartData)
 }
+
+private fun getMarkerValueFormatter(value: Long, res: IResProvider) = value.format(INT_PATTERN)
 
 fun xAxisFormatter(value: Float, chartMode: String, chartData: List<SeriesDto>): String {
     try {
