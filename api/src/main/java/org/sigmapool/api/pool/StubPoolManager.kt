@@ -25,17 +25,29 @@ internal class StubPoolManager(private val context: Context) : IPoolManager {
                 CoinDto(
                     "bsv",
                     "http://api.sigmapool.com/img/coins/bsv.png",
-                    "TH/s"
+                    "TH/s",
+                    167f,
+                    155.154022f,
+                    13356.2258f,
+                    1184.9986f
                 ),
                 CoinDto(
                     "btc",
                     "http://api.sigmapool.com/img/coins/btc.png",
-                    "TH/s"
+                    "TH/s",
+                    167f,
+                    155.154022f,
+                    13356.2258f,
+                    1184.9986f
                 ),
                 CoinDto(
                     "ltc",
                     "http://api.sigmapool.com/img/coins/ltc.png",
-                    "MH/s"
+                    "MH/s",
+                    167f,
+                    155.154022f,
+                    13356.2258f,
+                    1184.9986f
                 )
             )
         )

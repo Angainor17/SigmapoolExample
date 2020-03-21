@@ -7,6 +7,7 @@ import org.sigmapool.common.models.MinerDto
 import org.sigmapool.common.utils.*
 import org.sigmapool.sigmapool.App.Companion.kodein
 import org.sigmapool.sigmapool.R
+import org.sigmapool.sigmapool.provider.coin.ICoinProvider
 import org.sigmapool.sigmapool.provider.currency.ICurrencyProvider
 import org.sigmapool.sigmapool.provider.res.IResProvider
 import kotlin.math.abs
@@ -17,12 +18,14 @@ class MinerItemVM(
 ) : BaseItemViewModel {
 
     private val res by kodein.instance<IResProvider>()
+    private val coinProvider by kodein.instance<ICoinProvider>()
 
     val name: String = miner.title
+    val coin: String = miner.coin
     val imageUrl: String = miner.image
     val hashratePower: CharSequence = createHashratePower(miner)
 
-    var btcValue: String = createBtcValueText(0f)
+    var coinValue: String = createCoinValueText()
 
     var revenuePowerCost: CharSequence = createRevenuePowerCost(0f)
     val shutdownPrice: String =
@@ -69,9 +72,13 @@ class MinerItemVM(
         return item is MinerItemVM && item.name == this.name
     }
 
-    private fun createBtcValueText(value: Float) =
-        res.getString(R.string.btc_caps) + " - " + getCurrencyLabel() + " " +
-                value.toCurrency().format(INT_PATTERN)
+    private fun createCoinValueText(): String {
+        val coins = coinProvider.coins.value!!
+        val selectedCoin = coins.find { it.text.toLowerCase() == coin }!!
+
+        return coin.toUpperCase() + " - " + getCurrencyLabel() + " " +
+                currencyProvider.fromUsdToCurrency(selectedCoin.priceUsd).format(FLOAT_PATTERN)
+    }
 
     private fun createHashratePower(miner: MinerDto): CharSequence {
         val hashrate = formatLongValue(miner.hashrate)
@@ -83,7 +90,7 @@ class MinerItemVM(
     }
 
     fun initCoin(value: Float) {
-        btcValue = createBtcValueText(value)
+        coinValue = createCoinValueText()
     }
 
     private fun Float.toCurrency(): Float = currencyProvider.fromUsdToCurrency(this)

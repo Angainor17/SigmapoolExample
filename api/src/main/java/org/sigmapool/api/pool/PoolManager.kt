@@ -27,7 +27,11 @@ internal class PoolManager(private val service: IPoolService) : IPoolManager {
                 CoinDto(
                     it.code,
                     it.icon,
-                    it.unit
+                    it.unit,
+                    it.priceUsd,
+                    it.priceEur,
+                    it.priceRub,
+                    it.priceCny
                 )
             })
         )

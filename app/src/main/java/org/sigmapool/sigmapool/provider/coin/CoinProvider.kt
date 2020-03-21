@@ -65,7 +65,11 @@ fun ArrayList<CoinDto>.toCoinVmList(): ArrayList<CoinVm> {
         CoinVm(
             it.code.toUpperCase(),
             it.icon,
-            it.unit
+            it.unit,
+            it.priceUsd,
+            it.priceEur,
+            it.priceRub,
+            it.priceCny
         )
     })
 }
