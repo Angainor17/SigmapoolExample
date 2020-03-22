@@ -47,5 +47,5 @@ val managersModule = Kodein.Module("ManagersModule") {
     bind<IPoolInfoManager>() with singleton { PoolInfoManager(instance()) }
     bind<ICalcManager>() with singleton { CalcManager(instance()) }
 
-    bind<IChartManager>() with singleton { StubChartManager(instance()) }
+    bind<IChartManager>() with singleton { ChartManager(instance()) }
 }
