@@ -166,7 +166,11 @@ class CalcItemVM(
     }
 
     private fun initViews(coin: CoinInfoDto?, network: NetworkDto?) {
-        currentPrice.postValue(formatCurrentPrice(coin?.price ?: 0f))
+        currentPrice.postValue(
+            formatCurrentPrice(
+                currencyProvider.fromUsdToCurrency(coin?.price ?: 0f)
+            )
+        )
         difficulty.postValue(formatDifficulty(network?.networkDifficulty?.toLong() ?: 0L))
         blockReward.postValue(formatBlockReward(network?.blockReward ?: 0f))
     }
