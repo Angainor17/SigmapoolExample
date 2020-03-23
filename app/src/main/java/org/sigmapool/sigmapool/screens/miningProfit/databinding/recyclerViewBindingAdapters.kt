@@ -107,7 +107,9 @@ fun setWorkersAdapter(view: RecyclerView, vm: WorkersListVM?) {
 
 @BindingAdapter("app:onProfitClickAction")
 fun onClickBasicAction(view: View, listener: IProfitBtnListener?) {
-    var isProfit = false
+    var isProfit = true
+    view.isActivated = isProfit
+
     view.setOnClickListener {
         it.isActivated = !it.isActivated
         isProfit = !isProfit

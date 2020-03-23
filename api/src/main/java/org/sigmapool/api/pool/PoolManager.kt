@@ -28,6 +28,7 @@ internal class PoolManager(private val service: IPoolService) : IPoolManager {
                     it.code,
                     it.icon,
                     it.unit,
+                    it.profitability,
                     it.priceUsd,
                     it.priceEur,
                     it.priceRub,

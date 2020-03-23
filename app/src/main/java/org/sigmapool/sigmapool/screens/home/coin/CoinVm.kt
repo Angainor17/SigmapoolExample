@@ -4,6 +4,7 @@ class CoinVm (
     var text: String = "",
     var imageUrl: String = "",
     var unit: String = "",
+    val profitability: Float,
     val priceUsd: Float,
     val priceEur: Float,
     val priceRub: Float,

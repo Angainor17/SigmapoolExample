@@ -21,7 +21,7 @@ import org.sigmapool.sigmapool.screens.miningProfit.MiningListAdapter
 import org.sigmapool.sigmapool.screens.miningProfit.params.MinerListParams
 import org.sigmapool.sigmapool.utils.storages.JsonDataStorage
 
- const val BTC = "btc"
+const val BTC = "btc"
 
 class MiningProfitListVM(params: MinerListParams = MinerListParams()) : ViewModel() {
 
@@ -70,14 +70,14 @@ class MiningProfitListVM(params: MinerListParams = MinerListParams()) : ViewMode
     private fun setProfitValue(value: Float) {
         minerAdapter.initPowerCost(value)
         minerAdapter.items.forEach {
-            it.initPowerCost(value)
+            it.initByPowerCost(value)
         }
     }
 
     private fun setCoinValue(value: Float) {
         minerAdapter.initCoin(value)
         minerAdapter.items.forEach {
-            it.initCoin(value)
+            it.initCoin()
         }
 
         GlobalScope.launch(Dispatchers.Main) {

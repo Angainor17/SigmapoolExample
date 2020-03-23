@@ -21,16 +21,19 @@ class MiningListAdapter(
     private var powerCost: Float = 0f
     private var coin: Float = 0f
 
+    var isUpSort: Boolean = true
     var maxItemsCount: Int = -1
     private var powerCostTv: TextView? = null
     var coinInfo: CoinInfoDto? = null
 
     override fun addItems(newItems: List<MinerItemVM>) {
         newItems.forEach {
-            it.initCoin(coin)
-            it.initPowerCost(powerCost)
+            it.initCoin()
+            it.initByPowerCost(powerCost)
         }
+
         items.addAll(newItems)
+        items.sortByDescending { (if (isUpSort) 1 else -1) * it.profitValue }
     }
 
     fun setPowerCost(text: CharSequence) {
@@ -104,7 +107,7 @@ class MiningListAdapter(
 
         getItem(position - 1).let {
             coinInfo.let { coin ->
-                it.initCoin(coin?.price ?: 0f)
+                it.initCoin()
             }
 
             holder.bind(it)

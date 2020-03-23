@@ -3,6 +3,7 @@ package org.sigmapool.sigmapool.screens.home.viewModel
 import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.ViewModel
 import org.sigmapool.common.listLibrary.loader.ItemsLoaderState
+import org.sigmapool.sigmapool.screens.miningProfit.MiningListAdapter
 import org.sigmapool.sigmapool.screens.miningProfit.listener.IProfitBtnListener
 import org.sigmapool.sigmapool.screens.miningProfit.params.MinerListParams
 import org.sigmapool.sigmapool.screens.miningProfit.viewModels.MiningProfitListVM
@@ -20,10 +21,12 @@ class HomeMinerVM : ViewModel(), IProfitBtnListener, StateVM {
         miningProfitVM.minerAdapter.maxItemsCount = ITEMS_COUNT
     }
 
-    override val viewState = map(miningProfitVM.itemsVM.loaderState, ItemsLoaderState::mapToViwState)
+    override val viewState =
+        map(miningProfitVM.itemsVM.loaderState, ItemsLoaderState::mapToViwState)
 
     override fun onProfitBtnSelected(isUpSort: Boolean) {
-        val adapter = miningProfitVM.itemsVM.adapter
+        val adapter = miningProfitVM.itemsVM.adapter as MiningListAdapter
+        adapter.isUpSort = isUpSort
         adapter.items.sortByDescending {
             (if (isUpSort) 1 else -1) * it.profitValue
         }
