@@ -44,7 +44,7 @@ class CalcItemVM(
     private val generalInfoViewState = MutableLiveData(LOADING)
     private val infoVS = MutableLiveData(LOADING)
 
-    var infoText = ""
+    var infoText = MutableLiveData("")
 
     val refreshing = liveDataZip(converterViewState, generalInfoViewState, infoVS)
     { converterVS, generalVS, infoVS -> converterVS == LOADING || generalVS == LOADING || infoVS == LOADING }
@@ -210,7 +210,7 @@ class CalcItemVM(
         )
 
         if (result.success) {
-            infoText = result.data?.calculatorText ?: ""
+            infoText.postValue(result.data?.calculatorText ?: "")
             infoVS.postValue(CONTENT)
         } else {
             infoVS.postValue(ERROR)

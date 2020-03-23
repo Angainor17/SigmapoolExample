@@ -30,7 +30,7 @@ class CalculatorVM(val view: ICalculatorFragmentModel) : ViewModel(), ITitleView
             item
         }
     }
-    val info = MutableLiveData("")
+
     val tabPositionLiveData = MutableLiveData(ViewPagerScreen(0))
 
     val refreshing = liveDataZip(isScreensRefreshing(), refreshingInfo)
@@ -42,9 +42,6 @@ class CalculatorVM(val view: ICalculatorFragmentModel) : ViewModel(), ITitleView
 
     init {
         onRefresh()
-        tabPositionLiveData.observeForever {
-            info.postValue(calcItems.value?.get(it.position)?.infoText ?: "")
-        }
     }
 
     private fun isScreensRefreshing(): LiveData<Boolean> =

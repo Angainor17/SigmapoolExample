@@ -1,52 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-                name="vm"
-                type="org.sigmapool.sigmapool.screens.calculator.viewModel.CalcItemVM"
-                />
+            name="vm"
+            type="org.sigmapool.sigmapool.screens.calculator.viewModel.CalcItemVM" />
     </data>
 
     <LinearLayout
-            android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:orientation="vertical"
+
+        >
+
+        <LinearLayout
+            android:id="@+id/calc_info"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/transparent"
+            android:background="@drawable/gradient_status_bar"
+            android:orientation="vertical"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
 
             >
 
-        <include
-                layout="@layout/fragment_calc_converter"
-                app:vm="@{vm}"
-                />
-
-        <TextView
-                style="@style/TitleHeaderStyle"
-
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/general_characteristic"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="12dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/google_sans_regular"
+                android:singleLine="false"
+                android:text="@{vm.infoText}"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
 
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Test text" />
 
-                />
+        </LinearLayout>
 
 
         <include
-                layout="@layout/fragment_calc_other_params"
-                app:vm="@{vm}"
-                />
+            layout="@layout/fragment_calc_converter"
+            app:vm="@{vm}" />
+
+        <TextView
+            style="@style/TitleHeaderStyle"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="12dp"
+            android:text="@string/general_characteristic"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+
+        <include
+            layout="@layout/fragment_calc_other_params"
+            app:vm="@{vm}" />
 
 
     </LinearLayout>
