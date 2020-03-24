@@ -31,19 +31,16 @@ class MinerItemVM(
 
     var coinValue = ""
 
-    private var profitability: Float = 0f
-    private var currencyUsdRate: Float = 0f
-    private var coinDailyGrossProfit: Float = 0f
+    private val profitability: Float
+    private val currencyUsdRate: Float
+    private val coinDailyGrossProfit: Float
 
-    private var fiatDailyGrossProfit: Float = 0f //Revenue
-    private var fiatDailyNetProfit: Float = 0f //Profit
-    private var fiatDailyPowerExpenses: Float = 0f //Power Cost
-
+    var fiatDailyNetProfit: Float = 0f //Profit
+    private val fiatDailyGrossProfit: Float  //Revenue
 
     var revenuePowerCost: CharSequence = createRevenuePowerCost(0f)
     var shutdownPrice: String = ""
     var profit = ""
-    var profitValue = 0f
 
     init {
         val coins = coinProvider.coins.value!!
@@ -63,20 +60,20 @@ class MinerItemVM(
             profitability * (miner.hashrate / coinHashrateUnit(selectedCoin.unit))
 
         fiatDailyGrossProfit = coinDailyGrossProfit * fiatRate
-
-        initByPowerCost(1f)
     }
 
     fun initByPowerCost(powerCost: Float) {
+        val fiatDailyPowerExpenses =
+            (miner.power / 1000.0f) * (powerCost * 24f) * currencyUsdRate //Power Cost
         fiatDailyNetProfit = fiatDailyGrossProfit - (fiatDailyPowerExpenses / currencyUsdRate)
-        fiatDailyPowerExpenses = (miner.power / 1000.0f) * (powerCost * 24f) * currencyUsdRate
 
         val shutdownCoinPrice = fiatDailyPowerExpenses / coinDailyGrossProfit
         shutdownPrice = getCurrencyLabel() + " " + shutdownCoinPrice.format(FLOAT_PATTERN)
 
-        profitValue = fiatDailyNetProfit
         profit =
-            (if (profitValue < 0) "-" else "") + getCurrencyLabel() + " " + abs(profitValue).format(
+            (if (fiatDailyNetProfit < 0) "-" else "") + getCurrencyLabel() + " " + abs(
+                fiatDailyNetProfit
+            ).format(
                 FLOAT_PATTERN
             )
         revenuePowerCost = createRevenuePowerCost(fiatDailyPowerExpenses)

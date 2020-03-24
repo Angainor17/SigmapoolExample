@@ -28,7 +28,7 @@ class HomeMinerVM : ViewModel(), IProfitBtnListener, StateVM {
         val adapter = miningProfitVM.itemsVM.adapter as MiningListAdapter
         adapter.isUpSort = isUpSort
         adapter.items.sortByDescending {
-            (if (isUpSort) 1 else -1) * it.profitValue
+            (if (isUpSort) 1 else -1) * it.fiatDailyNetProfit
         }
         adapter.notifyItemRangeChanged(1, adapter.items.size)
     }

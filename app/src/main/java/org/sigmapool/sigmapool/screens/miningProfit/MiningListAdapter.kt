@@ -33,7 +33,7 @@ class MiningListAdapter(
         }
 
         items.addAll(newItems)
-        items.sortByDescending { (if (isUpSort) 1 else -1) * it.profitValue }
+        items.sortByDescending { (if (isUpSort) 1 else -1) * it.fiatDailyNetProfit }
     }
 
     fun setPowerCost(text: CharSequence) {
@@ -50,7 +50,7 @@ class MiningListAdapter(
 
     override fun getItem(i: Int): MinerItemVM {
         val item = super.getItem(i)
-        item.profitValue
+        item.fiatDailyNetProfit
 
         return item
     }
