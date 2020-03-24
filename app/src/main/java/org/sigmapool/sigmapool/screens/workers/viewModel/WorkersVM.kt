@@ -11,6 +11,7 @@ import org.sigmapool.sigmapool.screens.workers.params.ONLINE_STATUS
 import org.sigmapool.sigmapool.screens.workers.params.WorkerListParams
 import org.sigmapool.sigmapool.utils.vm.AuthVm
 import java.util.*
+import kotlin.collections.ArrayList
 
 class WorkersVM : AuthVm() {
 
@@ -29,6 +30,7 @@ class WorkersVM : AuthVm() {
 
     init {
         coinProvider.addOnChangeListener { refreshAll() }
+        tabVm.initOnlineHashrate(ArrayList())
 
         onlineList.loader.changeListener = {
             it?.let { it1 -> tabVm.initOnlineHashrate(it1) }

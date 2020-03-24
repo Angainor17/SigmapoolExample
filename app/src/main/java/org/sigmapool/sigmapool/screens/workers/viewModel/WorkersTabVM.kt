@@ -35,13 +35,15 @@ class WorkersTabVM(
 
     fun initOnlineHashrate(list: ArrayList<WorkerDto>) {
         val hashrateSum = list.sumByDouble { it.hashrate.toDouble() }.toFloat()
-
         val result = formatLongValue(hashrateSum.toLong(), INT_PATTERN)
 
-        onlineHashrate.postValue(
-            result.beforeLastChar() + " " + if (result.lastChar().isDigitsOnly()) "" else result.lastChar() +
-                    res.getString(R.string.hashrate_per_second)
-        )
+        val value = if (hashrateSum == 0f) "0" else result.beforeLastChar()
+
+        val text = value + " " +
+                (if (result.lastChar().isDigitsOnly()) "" else result.lastChar()) +
+                res.getString(R.string.hashrate_per_second)
+
+        onlineHashrate.postValue(text)
     }
 
     init {
