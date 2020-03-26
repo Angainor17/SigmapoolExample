@@ -12,8 +12,8 @@ val rubCurrency = AppCurrency(
     Html.fromHtml(" &#x20bd").toString(),
     RUB_CODE,
     CurrencyParams(
-        1,
-        6,
+        1f,
+        6f,
         1,
         R.array.array_first_and_last_1_6,
         1,
@@ -26,8 +26,8 @@ val usdCurrency = AppCurrency(
     "$",
     USD_CODE,
     CurrencyParams(
-        1,
-        12,
+        1f,
+        12f,
         1,
         R.array.array_first_and_last_1_12,
         0,

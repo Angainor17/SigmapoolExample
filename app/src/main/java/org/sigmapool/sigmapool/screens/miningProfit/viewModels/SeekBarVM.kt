@@ -8,6 +8,7 @@ import org.sigmapool.common.utils.spannableString
 import org.sigmapool.common.viewModels.IIndicatorSeekBarViewModel
 import org.sigmapool.sigmapool.App.Companion.kodein
 import org.sigmapool.sigmapool.R
+import org.sigmapool.sigmapool.provider.currency.ICurrencyProvider
 import org.sigmapool.sigmapool.provider.currency.models.CurrencyParams
 import org.sigmapool.sigmapool.provider.res.IResProvider
 import java.text.DecimalFormat
@@ -17,11 +18,12 @@ class SeekBarVM(private val currencyParamsLiveData: MutableLiveData<CurrencyPara
     IIndicatorSeekBarViewModel {
 
     private val res by kodein.instance<IResProvider>()
+    private val currencyProvider by kodein.instance<ICurrencyProvider>()
 
     val seekBarValueLiveData = MutableLiveData<Float>()
 
-    override fun getStartRange() = currencyParamsLiveData.value?.scaleFrom ?: 1
-    override fun getEndRange() = currencyParamsLiveData.value?.scaleTo ?: 12
+    override fun getStartRange() = currencyParamsLiveData.value?.scaleFrom ?: 1f
+    override fun getEndRange() = currencyParamsLiveData.value?.scaleTo ?: 12f
     override fun getInitValue() = currencyParamsLiveData.value?.initValue ?: 1
     override fun getStep() = currencyParamsLiveData.value?.step ?: 0
     override fun getDisplayedValue() = getSeekText(getInitValue().toFloat())
@@ -40,7 +42,7 @@ class SeekBarVM(private val currencyParamsLiveData: MutableLiveData<CurrencyPara
 
     fun getSeekText(value: Float?): CharSequence =
         spannableString(
-            res.getString(R.string.power_cost) + ": " + res.getString(R.string.kilowatt_hour_prefix) + " ",
+            res.getString(R.string.power_cost) + ": " + currencyProvider.getSymbol() + " ",
             16,
             res.getColor(R.color.titleGray)
         ) +

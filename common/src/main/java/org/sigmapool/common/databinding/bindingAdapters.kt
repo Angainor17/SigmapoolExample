@@ -1,6 +1,7 @@
 package org.sigmapool.common.databinding
 
 import android.graphics.drawable.Drawable
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.warkiz.widget.IndicatorSeekBar
@@ -8,9 +9,9 @@ import com.warkiz.widget.OnSeekChangeListener
 import com.warkiz.widget.SeekParams
 
 @BindingAdapter("app:isb_max")
-fun setSeekBarMaxRange(view: IndicatorSeekBar, liveData: Int?) {
+fun setSeekBarMaxRange(view: IndicatorSeekBar, liveData: Float?) {
     liveData?.let {
-        view.max = it.toFloat()
+        view.max = it
     }
 }
 
@@ -34,26 +35,25 @@ fun setSeekBarStringArray(view: IndicatorSeekBar, liveData: Int?) {
 fun setSeekBarChangeListener(
     view: IndicatorSeekBar,
     action: OnSeekValueChangeListener?,
-    value: Int?
+    value: Float?
 ) {
+    view.indicator.contentView.visibility = View.GONE
+    view.indicator.topContentView.visibility = View.GONE
+
     view.onSeekChangeListener = object : OnSeekChangeListener {
         override fun onSeeking(seekParams: SeekParams?) {
             seekParams?.progressFloat?.let { action?.onChange(it) }
         }
 
-        override fun onStartTrackingTouch(seekBar: IndicatorSeekBar?) {
+        override fun onStartTrackingTouch(seekBar: IndicatorSeekBar?) = Unit
 
-        }
-
-        override fun onStopTrackingTouch(seekBar: IndicatorSeekBar?) {
-
-        }
+        override fun onStopTrackingTouch(seekBar: IndicatorSeekBar?) = Unit
     }
 
     value?.let {
-        view.min = it.toFloat()
-        view.setProgress(it.toFloat())
-        action?.onChange(it.toFloat())
+        view.min = it
+        view.setProgress(it)
+        action?.onChange(it)
     }
 }
 

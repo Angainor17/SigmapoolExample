@@ -3,10 +3,10 @@ package org.sigmapool.common.viewModels
 interface IIndicatorSeekBarViewModel : OnValueChange<Float> {
 
     /*** Scale value from */
-    fun getStartRange(): Int
+    fun getStartRange(): Float
 
     /*** Scale value to */
-    fun getEndRange(): Int
+    fun getEndRange(): Float
 
     /*** Init value, when view init first*/
     fun getInitValue(): Int

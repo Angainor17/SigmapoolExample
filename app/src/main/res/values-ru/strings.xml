@@ -5,7 +5,6 @@
     <string name="mining_profit">Доходность</string>
     <string name="power_cost">Стоимость электр</string>
     <string name="kilowatt_hour">Квч</string>
-    <string name="kilowatt_hour_prefix">P</string>
     <string name="hashrate_power">Хэшрейт/Мощность</string>
     <string name="revenue_power_cost">Доход/Электр.</string>
     <string name="shutdown_price">Убыточная цена</string>
