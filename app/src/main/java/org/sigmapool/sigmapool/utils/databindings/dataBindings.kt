@@ -1,5 +1,6 @@
 package org.sigmapool.sigmapool.utils.databindings
 
+import android.annotation.SuppressLint
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -69,6 +70,7 @@ fun initWorkerAdapter(view: ViewPager, vm: WorkersVM, fragmentManager: FragmentM
     view.adapter = WorkerViewPagerAdapter(vm.getWorkerLists(), fragmentManager)
 }
 
+@SuppressLint("WrongConstant")
 @BindingAdapter("app:coinTabVm")
 fun coinTabVm(view: RecyclerView, vm: CoinTabVM) {
     if (view.adapter == null) {
@@ -151,7 +153,8 @@ fun loadIcon(view: ImageView, url: String?) {
 
 @BindingAdapter("app:loadMinerIcon")
 fun loadMinerIcon(view: ImageView, url: String) {
-    Picasso.get().load(url)
+    val localUrl = if (url.isEmpty()) "default" else url
+    Picasso.get().load(localUrl)
         .placeholder(R.mipmap.ic_ant)
         .error(R.mipmap.ic_ant)
         .into(view)
