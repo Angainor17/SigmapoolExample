@@ -17,7 +17,6 @@ import org.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
 import org.sigmapool.sigmapool.screens.miningProfit.listener.IProfitBtnListener
 import org.sigmapool.sigmapool.screens.miningProfit.params.MINER_PAGE_SIZE
 import org.sigmapool.sigmapool.screens.miningProfit.viewModels.MiningProfitListVM
-import org.sigmapool.sigmapool.screens.workers.viewModel.WorkersListVM
 import org.sigmapool.sigmapool.utils.customViews.CustomLinearLayoutManager
 
 @BindingAdapter("setMinersAdapter", "swipeRefresh")
@@ -86,17 +85,17 @@ private fun <DtoItem, ItemVm : BaseItemViewModel> initHeaderList(
 //    initHeaderList(view, vm.itemsVM, swipeRefreshLayout, NEWS_PAGE_SIZE, 0)
 //}
 
-@BindingAdapter("setWorkersAdapter")
-fun setWorkersAdapter(view: RecyclerView, vm: WorkersListVM?) {
-    view.adapter = vm?.itemsVM?.pagedRecyclerAdapter
-
-    val activity = view.context as AppCompatActivity
-    vm?.itemsVM?.items?.observe(activity,
-        Observer<PagedList<BaseItemViewModel>?> { t ->
-            vm.itemsVM.pagedRecyclerAdapter.submitList(t)
-        }
-    )
-}
+//@BindingAdapter("setWorkersAdapter")
+//fun setWorkersAdapter(view: RecyclerView, vm: WorkersListVM?) {
+//    view.adapter = vm?.itemsVM?.pagedRecyclerAdapter
+//
+//    val activity = view.context as AppCompatActivity
+//    vm?.itemsVM?.items?.observe(activity,
+//        Observer<PagedList<BaseItemViewModel>?> { t ->
+//            vm.itemsVM.pagedRecyclerAdapter.submitList(t)
+//        }
+//    )
+//}
 
 @BindingAdapter("app:onProfitClickAction")
 fun onClickBasicAction(view: View, listener: IProfitBtnListener?) {

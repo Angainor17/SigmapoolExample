@@ -41,9 +41,8 @@ class HomeVM : ViewModel(), OnSlideClickListener, IUpdateScreenVm, IBrowserVm {
 
     val coinsVM = CoinsVM()
     val minersVM = HomeMinerVM()
-    val newsVM = NewsListVM(NewsListParams(NEWS_PAGE_SIZE, DISPLAYED_NEWS))
 
-    override val urlLiveData = newsVM.urlLiveData
+    override val urlLiveData = MutableLiveData("")// stub
 
     init {
         initBlogBanner()

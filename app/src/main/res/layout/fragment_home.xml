@@ -55,10 +55,10 @@
                     app:vm="@{vm.minersVM}"
                     />
 
-            <include
-                    layout="@layout/fragment_home_news"
-                    app:vm="@{vm.newsVM}"
-                    />
+<!--            <include-->
+<!--                    layout="@layout/fragment_home_news"-->
+<!--                    app:vm="@{vm.newsVM}"-->
+<!--                    />-->
 
         </LinearLayout>
 
