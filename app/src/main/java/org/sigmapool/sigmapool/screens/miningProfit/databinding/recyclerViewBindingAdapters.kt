@@ -8,22 +8,15 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.Observer
-import androidx.lifecycle.observe
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import org.sigmapool.common.listLibrary.HeaderListVM
 import org.sigmapool.common.listLibrary.PaginationListener
 import org.sigmapool.common.listLibrary.viewmodel.BaseItemViewModel
-import org.sigmapool.sigmapool.screens.dashboard.adapters.SubAccountsAdapter
-import org.sigmapool.sigmapool.screens.dashboard.viewModel.DashboardSubAccountsVM
-import org.sigmapool.sigmapool.screens.earnings.params.EARNINGS_PAGE_SIZE
-import org.sigmapool.sigmapool.screens.earnings.viewModel.EarningsVM
 import org.sigmapool.sigmapool.screens.miningProfit.listener.IProfitBtnListener
 import org.sigmapool.sigmapool.screens.miningProfit.params.MINER_PAGE_SIZE
 import org.sigmapool.sigmapool.screens.miningProfit.viewModels.MiningProfitListVM
-import org.sigmapool.sigmapool.screens.news.params.NEWS_PAGE_SIZE
-import org.sigmapool.sigmapool.screens.news.vm.NewsListVM
 import org.sigmapool.sigmapool.screens.workers.viewModel.WorkersListVM
 import org.sigmapool.sigmapool.utils.customViews.CustomLinearLayoutManager
 
@@ -36,18 +29,18 @@ fun setMinersAdapter(
     initHeaderList(view, vm.itemsVM, swipeRefreshLayout, MINER_PAGE_SIZE)
 }
 
-@BindingAdapter("app:subAccountsAdapter")
-fun subAccountsAdapter(
-    view: RecyclerView,
-    vm: DashboardSubAccountsVM
-) {
-    val adapter = SubAccountsAdapter()
-    view.adapter = adapter
-
-    vm.listItems.observe(view.context as AppCompatActivity) {
-        adapter.addItems(it)
-    }
-}
+//@BindingAdapter("app:subAccountsAdapter")
+//fun subAccountsAdapter(
+//    view: RecyclerView,
+//    vm: DashboardSubAccountsVM
+//) {
+//    val adapter = SubAccountsAdapter()
+//    view.adapter = adapter
+//
+//    vm.listItems.observe(view.context as AppCompatActivity) {
+//        adapter.addItems(it)
+//    }
+//}
 
 private fun <DtoItem, ItemVm : BaseItemViewModel> initHeaderList(
     view: RecyclerView,
@@ -79,19 +72,19 @@ private fun <DtoItem, ItemVm : BaseItemViewModel> initHeaderList(
     })
 }
 
-@BindingAdapter("setEarningsAdapter", "swipeRefresh")
-fun setEarningsAdapter(
-    view: RecyclerView,
-    vm: EarningsVM,
-    swipeRefreshLayout: SwipeRefreshLayout?
-) {
-    initHeaderList(view, vm.itemsVM, swipeRefreshLayout, EARNINGS_PAGE_SIZE)
-}
-
-@BindingAdapter("setNewsAdapter", "swipeRefresh")
-fun setNewsAdapter(view: RecyclerView, vm: NewsListVM, swipeRefreshLayout: SwipeRefreshLayout?) {
-    initHeaderList(view, vm.itemsVM, swipeRefreshLayout, NEWS_PAGE_SIZE, 0)
-}
+//@BindingAdapter("setEarningsAdapter", "swipeRefresh")
+//fun setEarningsAdapter(
+//    view: RecyclerView,
+//    vm: EarningsVM,
+//    swipeRefreshLayout: SwipeRefreshLayout?
+//) {
+//    initHeaderList(view, vm.itemsVM, swipeRefreshLayout, EARNINGS_PAGE_SIZE)
+//}
+//
+//@BindingAdapter("setNewsAdapter", "swipeRefresh")
+//fun setNewsAdapter(view: RecyclerView, vm: NewsListVM, swipeRefreshLayout: SwipeRefreshLayout?) {
+//    initHeaderList(view, vm.itemsVM, swipeRefreshLayout, NEWS_PAGE_SIZE, 0)
+//}
 
 @BindingAdapter("setWorkersAdapter")
 fun setWorkersAdapter(view: RecyclerView, vm: WorkersListVM?) {

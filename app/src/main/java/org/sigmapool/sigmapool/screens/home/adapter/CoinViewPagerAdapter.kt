@@ -7,7 +7,7 @@ import org.sigmapool.sigmapool.screens.home.coin.CoinFragment
 import org.sigmapool.sigmapool.screens.home.coin.CoinItemVM
 
 class CoinViewPagerAdapter(
-    private val items: ArrayList<CoinItemVM>,
+    items: ArrayList<CoinItemVM>,
     fragmentManager: FragmentManager
 ) : FragmentPagerAdapter(fragmentManager) {
 

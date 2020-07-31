@@ -13,7 +13,6 @@ import org.sigmapool.sigmapool.provider.lang.ILocaleProvider
 import org.sigmapool.sigmapool.provider.lang.LocaleProvider
 import org.sigmapool.sigmapool.provider.res.IResProvider
 import org.sigmapool.sigmapool.provider.res.ResProvider
-import org.sigmapool.sigmapool.screens.settings.viewModel.CoinToolbarVM
 
 internal val providersModule = Kodein.Module("ProvidersModule") {
 
@@ -22,6 +21,4 @@ internal val providersModule = Kodein.Module("ProvidersModule") {
     bind<ILocaleProvider>() with singleton { LocaleProvider() }
 
     bind<ICoinProvider>() with singleton { CoinProvider() }
-    bind<CoinToolbarVM>() with singleton { CoinToolbarVM() }
-
 }

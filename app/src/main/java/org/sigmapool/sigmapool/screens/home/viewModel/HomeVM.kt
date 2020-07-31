@@ -14,10 +14,7 @@ import org.sigmapool.common.models.BlogDto
 import org.sigmapool.sigmapool.App.Companion.kodein
 import org.sigmapool.sigmapool.provider.lang.ILocaleProvider
 import org.sigmapool.sigmapool.screens.home.coin.CoinsVM
-import org.sigmapool.sigmapool.screens.login.LoginFragment
 import org.sigmapool.sigmapool.screens.login.data.AUTH_KEY
-import org.sigmapool.sigmapool.screens.news.params.NewsListParams
-import org.sigmapool.sigmapool.screens.news.vm.NewsListVM
 import org.sigmapool.sigmapool.utils.interfaces.IBrowserVm
 import org.sigmapool.sigmapool.utils.interfaces.IUpdateScreenVm
 import org.sigmapool.sigmapool.utils.storages.JsonDataStorage
@@ -69,7 +66,7 @@ class HomeVM : ViewModel(), OnSlideClickListener, IUpdateScreenVm, IBrowserVm {
     }
 
     fun login() {
-        fragmentLiveData.postValue(LoginFragment::class.java)
+//        fragmentLiveData.postValue(LoginFragment::class.java)
     }
 
     private fun initBlogBanner() {
