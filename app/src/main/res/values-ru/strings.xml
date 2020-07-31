@@ -9,22 +9,10 @@
     <string name="revenue_power_cost">Доход/Электр.</string>
     <string name="shutdown_price">Убыточная цена</string>
     <string name="power_postfix">В</string>
-    <string name="login">Логин</string>
-    <string name="password">Пароль</string>
 
     <string name="pool_info">Информация о пуле</string>
-    <string name="fee">Комиссия</string>
-    <string name="dailyProfitPerHs">Доходность за 1 %s (FPPS)</string>
-    <string name="minimumPayout">Мин. выплата</string>
-    <string name="settlementDetails">Информация о выплатах</string>
-    <string name="miningURL">Майнинг сервера</string>
 
 
-    <string name="home_screen_icon_title">Главная</string>
-    <string name="dashboard_screen_icon_title">Дашборд</string>
-    <string name="workers_screen_icon_title">Воркеры</string>
-    <string name="earnings_screen_icon_title">Начисления</string>
-    <string name="settings_screen_icon_title">Настройки</string>
     <string name="registration">Регистрация</string>
     <string name="enter">Вход</string>
     <string name="calculator">Калькулятор</string>
@@ -43,85 +31,10 @@
     <string name="difficulty_change_date">Дата изм. сложности</string>
     <string name="next_difficulty_label">Следующая прогнозируемая сложность</string>
     <string name="profit_of_mining">Доходность майнинга</string>
-    <string name="last_news">Последние новости</string>
-    <string name="bitcoin">Bitcoin</string>
-    <string name="general_characteristic">Общие характеристики</string>
 
-    <string-array name="months">
-        <item>января</item>
-        <item>февраля</item>
-        <item>марта</item>
-        <item>апреля</item>
-        <item>мая</item>
-        <item>июня</item>
-        <item>июля</item>
-        <item>августа</item>
-        <item>сентября</item>
-        <item>октября</item>
-        <item>ноября</item>
-        <item>декабря</item>
-    </string-array>
-
-    <string name="hashrate">Хешрейт</string>
-    <string name="t_hashs_per_sec">Thash/s</string>
-    <string name="m_hashs_per_sec">Mhash/s</string>
-    <string name="per_day">/день</string>
-
-    <string name="current_price">Текущая цена</string>
-    <string name="difficulty">Сложность</string>
-    <string name="block_reward">Награда за блок</string>
-    <string name="demo">Наблюдатель</string>
     <string name="rus">Русский</string>
-    <string name="language">Язык</string>
-    <string name="currency">Валюта</string>
-    <string name="payment_scheme">Схема выплат</string>
-    <string name="threshold">Порог</string>
-    <string name="write_review">Написать отзыв или предложение</string>
-    <string name="rate_app">Оценить приложение</string>
-    <string name="exit">Выйти</string>
-    <string name="email_via">Отправить с помощью…</string>
-    <string name="sigmapool_android_app">Sigmapool Android App</string>
-    <string name="online">Онлайн</string>
-    <string name="offline">Офлайн</string>
-    <string name="all">Все</string>
     <string name="english">Английский</string>
-    <string name="name">Имя</string>
-    <string name="current">Текущий</string>
-    <string name="hashrate24h">Хэшрейт за 24ч</string>
-    <string name="switch_language">Выберите язык</string>
-    <string name="switch_currency">Выберите валюту</string>
-    <string name="wrong_sign_in_data">Неправильный логин или пароль</string>
-    <string name="yesterday_earnings">Вчерашний доход</string>
-    <string name="paid">Выплачено</string>
-    <string name="balance">Баланс</string>
-    <string name="switch_scheme">Выберите схему оплаты</string>
-    <string name="submit">Подтвердить</string>
-    <string name="cancel">Отменить</string>
-    <string name="enter_threshold">Введите пороговое значение</string>
-    <string name="saved_to_balance">Сохранено на Балансе</string>
-    <string name="avg_hashrate">Ср. Хэшрейт</string>
-    <string name="earned_last_24h">Начислено за 24ч</string>
-    <string name="workers">Воркеры</string>
-
-    <string name="twenty_four_hour">24ч</string>
-    <string name="one_hour">1ч</string>
-    <string name="one_day">1д</string>
-
-    <string name="subaccounts">Субаккаунты</string>
-
-    <string name="total_amount_paid">Выплачено за все время</string>
-    <string name="last_payment_time">Последняя выплата</string>
-    <string name="withdrawal_address">Адрес выплат</string>
-    <string name="estimated_profit">Доходность</string>
-    <string name="network_status">Статус сети</string>
-
-    <string name="block_time">Время блока</string>
-    <string name="price">Цена</string>
-    <string name="minute">мин</string>
-    <string name="second">сек</string>
-    <string name="observer_mode_text">Вы находитесь в режиме наблюдения,\nавторизуйтесь, чтобы начать майнить.</string>
 
     <string name="chart_no_data">Отсутствуют данные</string>
-    <string name="pool_info_title">Инфо о пуле</string>
 
 </resources>

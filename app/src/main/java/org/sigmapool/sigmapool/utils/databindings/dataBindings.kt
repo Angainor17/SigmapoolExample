@@ -1,6 +1,5 @@
 package org.sigmapool.sigmapool.utils.databindings
 
-import android.annotation.SuppressLint
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -12,29 +11,16 @@ import android.widget.Spinner
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.FragmentManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
-import com.google.android.flexbox.FlexDirection
-import com.google.android.flexbox.FlexboxLayoutManager
-import com.google.android.flexbox.JustifyContent
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 import com.squareup.picasso.Picasso
 import org.sigmapool.common.models.BlogDto
 import org.sigmapool.sigmapool.R
 import org.sigmapool.sigmapool.provider.coin.ICoinProvider
-import org.sigmapool.sigmapool.screens.bottomSheetScreen.ViewPagerAdapter
-import org.sigmapool.sigmapool.screens.bottomSheetScreen.ViewPagerScreen
-import org.sigmapool.sigmapool.screens.calculator.adapter.CalcTabAdapter
-import org.sigmapool.sigmapool.screens.calculator.viewModel.CalcItemVM
-import org.sigmapool.sigmapool.screens.calculator.viewModel.CoinTabVM
 import org.sigmapool.sigmapool.screens.home.adapter.CoinViewPagerAdapter
 import org.sigmapool.sigmapool.screens.home.coin.CoinItemVM
 import org.sigmapool.sigmapool.screens.home.coin.CoinVm
-import org.sigmapool.sigmapool.screens.poolInfo.adapters.PoolInfoFragmentPagerAdapter
-import org.sigmapool.sigmapool.screens.poolInfo.fragments.PoolInfoPageFragment
-import org.sigmapool.sigmapool.screens.workers.adapter.WorkerViewPagerAdapter
-import org.sigmapool.sigmapool.screens.workers.viewModel.WorkersVM
 import org.sigmapool.sigmapool.utils.customViews.slider.MainSliderAdapter
 import org.sigmapool.sigmapool.utils.customViews.spinner.CustomAdapter
 import org.sigmapool.sigmapool.utils.customViews.viewPager.FragmentViewPager
@@ -62,66 +48,6 @@ fun initCoinAdapter(
     viewPager.setPadding(20, 0, 20, 0)
     viewPager.pageMargin = -50
     viewPager.adapter = CoinViewPagerAdapter(coins, fragmentManager)
-}
-
-@BindingAdapter("app:initWorkerAdapter", "app:fragmentManager", requireAll = true)
-fun initWorkerAdapter(view: ViewPager, vm: WorkersVM, fragmentManager: FragmentManager) {
-    view.offscreenPageLimit = 4
-    view.adapter = WorkerViewPagerAdapter(vm.getWorkerLists(), fragmentManager)
-}
-
-@SuppressLint("WrongConstant")
-@BindingAdapter("app:coinTabVm")
-fun coinTabVm(view: RecyclerView, vm: CoinTabVM) {
-    if (view.adapter == null) {
-        view.adapter = vm.adapter
-
-        val layoutManager = FlexboxLayoutManager(view.context)
-        layoutManager.flexDirection = FlexDirection.ROW
-        layoutManager.justifyContent = JustifyContent.SPACE_EVENLY
-
-        view.layoutManager = layoutManager
-    }
-}
-
-@BindingAdapter("app:viewPagerAdapter")
-fun viewPagerAdapter(view: FragmentViewPager, fragmentManager: FragmentManager) {
-    view.offscreenPageLimit = 5
-    view.adapter = ViewPagerAdapter(fragmentManager)
-}
-
-@BindingAdapter("app:initCalcAdapter", "app:viewCalcTabAdapter")
-fun viewCalcTabAdapter(
-    view: FragmentViewPager,
-    items: List<CalcItemVM>?,
-    fragmentManager: FragmentManager
-) {
-    if (items.isNullOrEmpty()) return
-
-    view.offscreenPageLimit = 6
-    view.adapter = CalcTabAdapter(items, fragmentManager)
-}
-
-@BindingAdapter("app:initPoolInfoAdapter", "app:fragments")
-fun initPoolInfoAdapter(
-    view: FragmentViewPager,
-    fragmentManager: FragmentManager,
-    fragments: ArrayList<PoolInfoPageFragment>?
-) {
-    view.offscreenPageLimit = 6
-    view.adapter = PoolInfoFragmentPagerAdapter(
-        fragments!!,
-        fragmentManager
-    )
-}
-
-@BindingAdapter("app:onScreenChange")
-fun onScreenChange(view: FragmentViewPager, screen: ViewPagerScreen) {
-    if (screen.smoothScroll) {
-        view.currentItem = screen.position
-    } else {
-        view.setCurrentItem(screen.position, false)
-    }
 }
 
 @BindingAdapter("app:src")
